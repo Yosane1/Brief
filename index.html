@@ -6,10 +6,19 @@
 <meta name="description" content="L'essentiel de l'actualité, chaque soir.">
 <meta name="theme-color" content="#ffffff">
 <title>Brief — L'essentiel de l'actualité</title>
+
+<!-- Installation en application autonome (Android, iOS, bureau) -->
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="icones/icone-192.png" type="image/png">
+<link rel="apple-touch-icon" href="icones/apple-touch-icon.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="Brief">
+<meta name="mobile-web-app-capable" content="yes">
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Radio+Canada+Big:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&display=swap" rel="stylesheet">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%23ff4a59'/%3E%3Ctext x='16' y='23' font-family='Helvetica,Arial' font-size='20' font-weight='700' fill='%23fff' text-anchor='middle'%3EB%3C/text%3E%3C/svg%3E">
 
 <style>
 /* ══════════════════════════════════════════════════════════════════════
@@ -58,9 +67,14 @@ button{font:inherit; color:inherit; cursor:pointer; border:0; background:none}
 ::selection{background:var(--accent); color:#fff}
 
 /* ── En-tête ─────────────────────────────────────────────────────────── */
-.entete{
-  position:sticky; top:0; z-index:60; background:color-mix(in srgb, var(--fond) 88%, transparent);
-  backdrop-filter:saturate(1.6) blur(14px); border-bottom:1px solid var(--bord);
+.entete{position:sticky; top:0; z-index:60; border-bottom:1px solid var(--bord)}
+/* Le flou est porté par un pseudo-élément, et non par l'en-tête lui-même :
+   `backdrop-filter` crée un bloc conteneur, qui ferait retomber la barre
+   d'onglets mobile (position:fixed) au bas de l'en-tête au lieu de l'écran. */
+.entete::before{
+  content:""; position:absolute; inset:0; z-index:-1;
+  background:color-mix(in srgb, var(--fond) 88%, transparent);
+  backdrop-filter:saturate(1.6) blur(14px);
 }
 .entete-in{
   width:var(--lg-large); margin-inline:auto; height:60px;
@@ -70,9 +84,11 @@ button{font:inherit; color:inherit; cursor:pointer; border:0; background:none}
 .logo span{color:var(--accent)}
 .nav{display:flex; gap:.25rem; margin-left:auto}
 .nav a{
-  text-decoration:none; font-size:.875rem; font-weight:500; color:var(--texte-2);
+  display:flex; align-items:center; gap:.4rem; text-decoration:none;
+  font-size:.875rem; font-weight:500; color:var(--texte-2);
   padding:.4rem .7rem; border-radius:99px; white-space:nowrap;
 }
+.nav a svg{display:none}      /* les icônes ne servent qu'à la barre mobile */
 .nav a:hover{background:var(--fond-3); color:var(--texte)}
 .nav a[aria-current]{background:var(--texte); color:var(--fond)}
 .icone-btn{
@@ -147,8 +163,18 @@ main{width:var(--lg); margin-inline:auto; padding:2.5rem 0 5rem}
 .rubrique-legende{font-size:.78rem; color:var(--texte-3); font-style:italic; white-space:nowrap}
 
 /* ── Article ─────────────────────────────────────────────────────────── */
-.article{margin-bottom:2.75rem; scroll-margin-top:80px}
-.article:last-child{margin-bottom:0}
+.article{position:relative; scroll-margin-top:80px}
+
+/* Deux articles d'une même rubrique se suivent : sans séparation nette, on ne
+   voit pas où l'un finit. Filet sur toute la largeur, et amorce colorée à la
+   couleur de la rubrique. */
+.article + .article{
+  margin-top:2.6rem; padding-top:2.6rem; border-top:1px solid var(--bord);
+}
+.article + .article::before{
+  content:""; position:absolute; top:-1px; left:0;
+  width:38px; height:2px; border-radius:2px; background:var(--c,var(--accent));
+}
 .article h3{
   font-size:clamp(1.25rem,3.4vw,1.55rem); line-height:1.22; letter-spacing:-.025em;
   margin:0 0 .6rem; text-wrap:balance;
@@ -252,6 +278,40 @@ input:focus-visible, select:focus-visible, button:focus-visible, a:focus-visible
 .carte p{margin:0; font-size:.93rem; color:var(--texte-2); line-height:1.5}
 .pastille{width:7px; height:7px; border-radius:99px; background:var(--c,var(--accent)); flex:none}
 
+/* ── Explorer ────────────────────────────────────────────────────────── */
+.onglets{
+  display:flex; gap:.25rem; border-bottom:1px solid var(--bord);
+  margin-bottom:1.75rem; overflow-x:auto; scrollbar-width:none;
+}
+.onglets::-webkit-scrollbar{display:none}
+.onglets button{
+  padding:.6rem .9rem; font-size:.88rem; font-weight:600; color:var(--texte-3);
+  border-bottom:2px solid transparent; margin-bottom:-1px;
+  border-radius:8px 8px 0 0; white-space:nowrap;
+}
+.onglets button:hover{color:var(--texte); background:var(--fond-2)}
+.onglets button[aria-selected="true"]{color:var(--texte); border-bottom-color:var(--accent)}
+
+.grille{display:grid; gap:.7rem; grid-template-columns:repeat(auto-fill,minmax(210px,1fr))}
+.tuile{
+  display:block; text-decoration:none; padding:1rem 1.1rem; border-radius:12px;
+  background:var(--fond-2); border:1px solid var(--bord);
+  border-left:3px solid var(--c,var(--accent));
+  transition:transform .15s, border-color .15s;
+}
+.tuile:hover{transform:translateY(-2px); border-color:var(--c,var(--accent))}
+.tuile b{display:block; font-size:1rem; letter-spacing:-.015em; line-height:1.25; margin-bottom:.2rem}
+.tuile small{color:var(--texte-3); font-size:.78rem; display:block; line-height:1.4}
+
+.nuage{display:flex; flex-wrap:wrap; gap:.45rem}
+.nuage a{
+  text-decoration:none; padding:.35rem .75rem; border-radius:99px; font-size:.86rem;
+  background:var(--fond-2); border:1px solid var(--bord); transition:.14s;
+}
+.nuage a:hover{background:var(--accent); border-color:var(--accent); color:#fff}
+.nuage a i{font-style:normal; color:var(--texte-3); font-size:.75rem; margin-left:.35rem}
+.nuage a:hover i{color:rgba(255,255,255,.8)}
+
 /* ── Résultats de recherche ──────────────────────────────────────────── */
 mark{background:color-mix(in srgb, var(--accent) 22%, transparent); color:inherit; padding:0 .1em; border-radius:2px}
 .resultat{padding:1.25rem 0; border-bottom:1px solid var(--bord)}
@@ -307,6 +367,12 @@ mark{background:color-mix(in srgb, var(--accent) 22%, transparent); color:inheri
 }
 @keyframes monte{from{opacity:0; transform:translate(-50%,14px)}}
 .bandeau a{color:inherit; font-weight:700; text-decoration:none; white-space:nowrap; border-bottom:1.5px solid}
+#annonce{
+  background:color-mix(in srgb, var(--accent) 12%, transparent);
+  border-bottom:1px solid color-mix(in srgb, var(--accent) 25%, transparent);
+  color:var(--texte); font-size:.88rem; line-height:1.45; text-align:center;
+  padding:.65rem 1.25rem;
+}
 .bandeau button{opacity:.6; flex:none; font-size:1.2rem; line-height:1}
 .menu{
   position:absolute; right:0; top:calc(100% + 8px); background:var(--fond); z-index:70;
@@ -332,22 +398,43 @@ mark{background:color-mix(in srgb, var(--accent) 22%, transparent); color:inheri
 .interrupteur[data-on="1"]{background:var(--vert)}
 .interrupteur[data-on="1"]::after{transform:translateX(14px)}
 
-.court{display:none}
-
 @media (max-width:640px){
   :root{--lg:calc(100% - 2rem); --lg-large:calc(100% - 2rem)}
   body{font-size:16px}
-  .entete-in{height:54px; gap:.15rem}
-  .logo{font-size:1.15rem}
-  .nav{gap:0}
-  .nav a{padding:.35rem .45rem; font-size:.8rem}
-  .long{display:none}
-  .court{display:inline}
-  .icone-btn{width:30px; height:30px}
-  main{padding-top:1.75rem}
+  .entete-in{height:54px; gap:.5rem}
+  .logo{font-size:1.25rem}
+  .icone-btn{width:32px; height:32px; margin-left:0}
+  .icone-btn:first-of-type{margin-left:auto}
+
+  /* Quatre onglets ne tiennent pas dans l'en-tête : ils passent en barre basse,
+     comme dans une application native. env(safe-area-inset-bottom) évite que la
+     barre gestuelle d'iOS ne recouvre les libellés. */
+  .nav{
+    position:fixed; left:0; right:0; bottom:0; z-index:80; margin:0; gap:0;
+    background:color-mix(in srgb, var(--fond) 94%, transparent);
+    backdrop-filter:saturate(1.6) blur(14px);
+    border-top:1px solid var(--bord);
+    padding:.3rem .2rem calc(.3rem + env(safe-area-inset-bottom));
+  }
+  .nav a{
+    flex:1; flex-direction:column; gap:.15rem; padding:.35rem .15rem;
+    font-size:.66rem; font-weight:600; border-radius:10px;
+  }
+  .nav a svg{
+    display:block; width:22px; height:22px; fill:none; stroke:currentColor;
+    stroke-width:1.6; stroke-linecap:round; stroke-linejoin:round;
+  }
+  .nav a:hover{background:none}
+  .nav a[aria-current]{background:none; color:var(--accent)}
+
+  main{padding-top:1.75rem; padding-bottom:calc(5.5rem + env(safe-area-inset-bottom))}
+  .bandeau{bottom:calc(4.75rem + env(safe-area-inset-bottom))}
   .pagination{flex-direction:column}
   .pagination .suiv{text-align:left}
   .chiffre{gap:.5rem}
+  .grille{grid-template-columns:1fr 1fr; gap:.6rem}
+  .tuile{padding:.85rem .9rem}
+  .tuile b{font-size:.92rem}
 }
 @media print{
   .entete,.pagination,.sommaire,.etiquettes{display:none}
@@ -360,9 +447,9 @@ mark{background:color-mix(in srgb, var(--accent) 22%, transparent); color:inheri
 <!-- ════════════════ Portail d'accès ════════════════ -->
 <div class="portail" id="portail" hidden>
   <div class="portail-carte">
-    <span class="logo">brief<span>.</span></span>
-    <h1 id="portail-titre">L'essentiel de l'actualité, chaque soir.</h1>
-    <p class="intro">Cette édition est réservée aux abonnés. Saisissez le jeton d'accès qui vous a été communiqué.</p>
+    <span class="logo"><b data-reglage="app_nom">brief</b><span data-reglage="app_point">.</span></span>
+    <h1 data-reglage="app_baseline">L'essentiel de l'actualité, chaque soir.</h1>
+    <p class="intro" data-reglage="portail_intro">Cette édition est réservée aux abonnés. Saisissez le jeton d'accès qui vous a été communiqué.</p>
     <div id="portail-erreur"></div>
     <form id="form-acces" autocomplete="off">
       <label class="champ">
@@ -370,7 +457,7 @@ mark{background:color-mix(in srgb, var(--accent) 22%, transparent); color:inheri
         <input type="text" id="saisie-jeton" placeholder="BRIEF-XXXX-XXXX" required
                spellcheck="false" autocapitalize="characters" autocomplete="one-time-code">
       </label>
-      <button class="bouton accent" id="btn-acces" type="submit">Accéder au brief</button>
+      <button class="bouton accent" id="btn-acces" type="submit" data-reglage="portail_bouton">Accéder au brief</button>
     </form>
     <p class="aide">
       Votre accès est vérifié à chaque connexion&nbsp;: il dépend des dates de validité
@@ -383,11 +470,24 @@ mark{background:color-mix(in srgb, var(--accent) 22%, transparent); color:inheri
 <!-- ════════════════ Application ════════════════ -->
 <header class="entete" id="entete" hidden>
   <div class="entete-in">
-    <a class="logo" href="#/" aria-label="Accueil">brief<span>.</span></a>
-    <nav class="nav">
-      <a href="#/" data-vue="edition"><span class="long">Aujourd'hui</span><span class="court">Le brief</span></a>
-      <a href="#/archives" data-vue="archives">Archives</a>
-      <a href="#/recherche" data-vue="recherche"><span class="long">Recherche</span><span class="court">Chercher</span></a>
+    <a class="logo" href="#/" aria-label="Accueil"><b data-reglage="app_nom">brief</b><span data-reglage="app_point">.</span></a>
+    <nav class="nav" id="nav">
+      <a href="#/" data-vue="edition">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 4h14v16H5z"/><path d="M8.5 9h7M8.5 13h7M8.5 17h4"/></svg>
+        <span data-reglage="nav_edition">Aujourd'hui</span>
+      </a>
+      <a href="#/archives" data-vue="archives">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="5" width="17" height="15" rx="2"/><path d="M3.5 10h17M8.5 3v4M15.5 3v4"/></svg>
+        <span data-reglage="nav_archives">Archives</span>
+      </a>
+      <a href="#/explorer" data-vue="explorer">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8.5"/><path d="m15.5 8.5-5 2-2 5 5-2z"/></svg>
+        <span data-reglage="nav_explorer">Explorer</span>
+      </a>
+      <a href="#/recherche" data-vue="recherche">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><path d="m19.5 19.5-3.8-3.8"/></svg>
+        <span data-reglage="nav_recherche">Recherche</span>
+      </a>
     </nav>
     <button class="icone-btn" id="btn-theme" title="Changer de thème" aria-label="Changer de thème">
       <svg viewBox="0 0 24 24"><path id="icone-theme" d="M12 3v1m0 16v1m9-10h-1M4 12H3m15.36-6.36l-.7.7M6.34 17.66l-.7.7m12.72 0l-.7-.7M6.34 6.34l-.7-.7"/><circle cx="12" cy="12" r="4"/></svg>
@@ -402,6 +502,7 @@ mark{background:color-mix(in srgb, var(--accent) 22%, transparent); color:inheri
   <div class="progression" id="progression"></div>
 </header>
 
+<div id="annonce" hidden></div>
 <main id="vue" hidden></main>
 
 <script>
@@ -586,14 +687,41 @@ const SESSION = {
 };
 
 let REGLAGES = {};
+const reglage = (cle, defaut = "") => (REGLAGES[cle] ?? "").trim() || defaut;
 
 async function chargerReglages() {
   try {
     const recs = await airtableTout("reglages");
     REGLAGES = Object.fromEntries(
-      recs.filter(r => r.fields["Clé"]).map(r => [r.fields["Clé"], r.fields["Valeur"] || ""])
+      recs.filter(r => r.fields["Clé"])
+          .map(r => [r.fields["Clé"], (r.fields["Valeur"] ?? "").trim()])
     );
   } catch { REGLAGES = {}; }
+  appliquerReglages();
+}
+
+/**
+ * Répercute la table Réglages sur l'interface. Tout élément portant un attribut
+ * `data-reglage="clé"` reçoit la valeur correspondante : ajouter un libellé
+ * personnalisable ne demande donc pas une ligne de JavaScript de plus.
+ */
+function appliquerReglages() {
+  $$("[data-reglage]").forEach(el => {
+    const v = REGLAGES[el.dataset.reglage];
+    if (v !== undefined) el.textContent = v;
+  });
+
+  const style = document.documentElement.style;
+  style.setProperty("--rouge", reglage("couleur_accent", "#ff4a59"));
+  style.setProperty("--violet", reglage("couleur_accent_weekend", "#7070f5"));
+
+  const nom = reglage("app_nom", "Brief");
+  document.title = `${nom} — ${reglage("app_baseline", "L'essentiel de l'actualité")}`;
+
+  const annonce = $("#annonce");
+  const message = reglage("message_accueil");
+  annonce.hidden = !message;
+  if (message) annonce.textContent = message;
 }
 
 /**
@@ -687,7 +815,19 @@ function fermerSession() {
 /* ══════════════════════════════════════════════════════════════════════════
    Accès aux contenus
    ══════════════════════════════════════════════════════════════════════════ */
-const CACHE = { editions: null, parDate: new Map() };
+const CACHE = { editions: null, parDate: new Map(), vivier: null };
+
+/** Tous les articles parus, allégés : de quoi alimenter la vue Explorer. */
+async function chargerVivier(force = false) {
+  if (CACHE.vivier && !force) return CACHE.vivier;
+  const recs = await airtableTout("articles", {
+    "fields[]": ["Titre", "Rubrique", "Thématique", "Mots-clés", "Date", "Chapô"],
+    "sort[0][field]": "Date",
+    "sort[0][direction]": "desc",
+  });
+  CACHE.vivier = recs.map(lireArticle);
+  return CACHE.vivier;
+}
 
 async function listerEditions(force = false) {
   if (CACHE.editions && !force) return CACHE.editions;
@@ -929,7 +1069,7 @@ async function vueArchives() {
   vue().className = "";
   vue().innerHTML = `
     <div class="chapeau-page">
-      <h1>Archives</h1>
+      <h1 data-reglage="titre_archives">Archives</h1>
       <p>${editions.length} édition${editions.length > 1 ? "s" : ""} disponible${editions.length > 1 ? "s" : ""},
          de ${dateCourte(bornes.min)} à ${dateCourte(bornes.max)}.</p>
     </div>
@@ -946,6 +1086,8 @@ async function vueArchives() {
     </div>
 
     <div id="liste-archives">${rendreArchives(parMois)}</div>`;
+
+  appliquerReglages();
 
   $("#saut-date").addEventListener("change", e => {
     const d = e.target.value;
@@ -989,6 +1131,134 @@ function rendreArchives(parMois) {
   }).join("");
 }
 
+/* ── Vue : explorer ────────────────────────────────────────────────────── */
+
+/** Compte les occurrences d'une clé. `eclate` traite les champs multivalués. */
+function compter(articles, cle, eclate = false) {
+  const m = new Map();
+  for (const a of articles) {
+    const valeurs = eclate ? a[cle] : [a[cle]];
+    for (const v of valeurs) {
+      if (!v) continue;
+      m.set(v, (m.get(v) || 0) + 1);
+    }
+  }
+  return m;
+}
+
+async function vueExplorer(params) {
+  const rubrique = params.get("rubrique") || "";
+  const thematique = params.get("thematique") || "";
+  const onglet = params.get("onglet") || "rubriques";
+
+  chargement("Chargement du vivier d'articles…");
+  const articles = await chargerVivier();
+
+  // — Vue filtrée : la liste des articles d'une rubrique ou d'une thématique —
+  if (rubrique || thematique) {
+    const retenus = articles.filter(a =>
+      (!rubrique || a.rubrique === rubrique) &&
+      (!thematique || a.thematique === thematique));
+    const nom = rubrique || thematique;
+    const couleur = rubrique ? couleurDe(rubrique) : "var(--accent)";
+
+    vue().className = "";
+    vue().innerHTML = `
+      <div class="chapeau-page">
+        <a class="surtitre" href="#/explorer?onglet=${rubrique ? "rubriques" : "thematiques"}"
+           style="text-decoration:none">← ${echappe(reglage("titre_explorer", "Explorer"))}</a>
+        <h1 style="margin-top:.5rem">${echappe(nom)}</h1>
+        <p>${retenus.length} article${retenus.length > 1 ? "s" : ""}
+           ${rubrique ? `· ${echappe(legendeDe(rubrique))}` : ""}</p>
+      </div>
+      <div style="--c:${couleur}">
+        ${retenus.length
+          ? retenus.map(a => rendreResultat(a, "")).join("")
+          : `<div class="vide"><b>Rien pour l'instant</b>Aucun article dans cette catégorie.</div>`}
+      </div>`;
+    document.title = `${nom} — ${reglage("app_nom", "Brief")}`;
+    return;
+  }
+
+  // — Vue d'ensemble : trois entrées dans le corpus —————————————————
+  const parRubrique = compter(articles, "rubrique");
+  const parThematique = compter(articles, "thematique");
+  const parMotCle = compter(articles, "motsCles", true);
+
+  const rubriques = [...parRubrique.entries()].sort((a, b) => rangDe(a[0]) - rangDe(b[0]));
+  const thematiques = [...parThematique.entries()].sort((a, b) => b[1] - a[1]);
+  const motsCles = [...parMotCle.entries()].sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0]));
+
+  const contenus = {
+    rubriques: () => `
+      <div class="grille">
+        ${rubriques.map(([r, n]) => `
+          <a class="tuile" href="#/explorer?rubrique=${encodeURIComponent(r)}"
+             style="--c:${couleurDe(r)}">
+            <b>${echappe(r)}</b>
+            <small>${echappe(legendeDe(r))}</small>
+            <small style="margin-top:.4rem">${n} article${n > 1 ? "s" : ""}</small>
+          </a>`).join("")}
+      </div>`,
+
+    thematiques: () => `
+      <div class="grille">
+        ${thematiques.map(([t, n]) => `
+          <a class="tuile" href="#/explorer?thematique=${encodeURIComponent(t)}">
+            <b>${echappe(t)}</b>
+            <small>${n} article${n > 1 ? "s" : ""}</small>
+          </a>`).join("")}
+      </div>`,
+
+    motscles: () => motsCles.length ? `
+      <p class="surtitre" style="display:block; margin-bottom:1rem">
+        ${motsCles.length} mots-clés · les plus fréquents d'abord
+      </p>
+      <div class="nuage">
+        ${motsCles.slice(0, 120).map(([m, n]) => `
+          <a href="#/recherche?q=${encodeURIComponent(m)}">${echappe(m)}<i>${n}</i></a>`).join("")}
+      </div>`
+      : `<div class="vide"><b>Aucun mot-clé</b>Les articles publiés n'en portent pas encore.</div>`,
+  };
+
+  const onglets = [
+    ["rubriques", "Rubriques", rubriques.length],
+    ["thematiques", "Thématiques", thematiques.length],
+    ["motscles", "Mots-clés", motsCles.length],
+  ];
+
+  vue().className = "";
+  vue().innerHTML = `
+    <div class="chapeau-page">
+      <h1 data-reglage="titre_explorer">Explorer</h1>
+      <p><span data-reglage="soustitre_explorer">Tous les articles parus, classés par rubrique,
+         par thématique et par mot-clé.</span>
+         ${articles.length} article${articles.length > 1 ? "s" : ""} au total.</p>
+    </div>
+
+    <div class="onglets" role="tablist">
+      ${onglets.map(([cle, libelle, n]) => `
+        <button role="tab" data-onglet="${cle}"
+                aria-selected="${cle === onglet}">${libelle} <span style="opacity:.55">${n}</span></button>`).join("")}
+    </div>
+
+    <div id="contenu-onglet">${(contenus[onglet] || contenus.rubriques)()}</div>`;
+
+  appliquerReglages();
+
+  $$(".onglets button").forEach(b => {
+    b.onclick = () => {
+      $$(".onglets button").forEach(x => x.setAttribute("aria-selected", "false"));
+      b.setAttribute("aria-selected", "true");
+      $("#contenu-onglet").innerHTML = contenus[b.dataset.onglet]();
+      // On garde l'onglet dans l'URL sans repasser par le routeur.
+      history.replaceState(null, "", `#/explorer?onglet=${b.dataset.onglet}`);
+    };
+  });
+
+  document.title = `${reglage("titre_explorer", "Explorer")} — ${reglage("app_nom", "Brief")}`;
+}
+
 /* ── Vue : recherche ───────────────────────────────────────────────────── */
 async function vueRecherche(params) {
   const q = params.get("q") || "";
@@ -998,8 +1268,9 @@ async function vueRecherche(params) {
   vue().className = "";
   vue().innerHTML = `
     <div class="chapeau-page">
-      <h1>Recherche</h1>
-      <p>Cherchez dans l'ensemble des briefs publiés : titres, résumés, contenus et mots-clés.</p>
+      <h1 data-reglage="titre_recherche">Recherche</h1>
+      <p data-reglage="soustitre_recherche">Cherchez dans l'ensemble des briefs publiés :
+         titres, résumés, contenus et mots-clés.</p>
     </div>
 
     <form class="barre-outils" id="form-recherche">
@@ -1019,6 +1290,8 @@ async function vueRecherche(params) {
     </form>
 
     <div id="resultats"></div>`;
+
+  appliquerReglages();
 
   $("#form-recherche").addEventListener("submit", e => {
     e.preventDefault();
@@ -1120,12 +1393,53 @@ function rendreResultat(a, q) {
 /* ══════════════════════════════════════════════════════════════════════════
    Notifications « nouveau brief »
    ══════════════════════════════════════════════════════════════════════════ */
+/**
+ * Affiche une notification système.
+ *
+ * Chrome Android refuse `new Notification()` — il lève une TypeError et
+ * n'affiche rien. Seul `ServiceWorkerRegistration.showNotification()` y
+ * fonctionne, d'où le passage systématique par le service worker, avec repli
+ * sur l'API classique pour les navigateurs de bureau sans worker actif.
+ */
+async function notifier(titre, corps, slug) {
+  if (!("Notification" in window) || Notification.permission !== "granted") return false;
+  const options = {
+    body: corps,
+    icon: "icones/icone-192.png",
+    badge: "icones/icone-192.png",
+    tag: "brief-" + (slug || "jour"),
+    renotify: true,
+    lang: "fr",
+    data: { slug },
+  };
+  try {
+    const reg = await navigator.serviceWorker.ready;
+    await reg.showNotification(titre, options);
+    return true;
+  } catch {
+    try {
+      const n = new Notification(titre, options);
+      n.onclick = () => {
+        window.focus();
+        if (slug) location.hash = `#/edition/${slug}`;
+        n.close();
+      };
+      return true;
+    } catch { return false; }
+  }
+}
+
 const NOTIF = {
   actif: () => LOCAL.lire("notifications", false) === true,
 
   async activer() {
     if (!("Notification" in window)) {
       alerte("Votre navigateur ne gère pas les notifications.");
+      return false;
+    }
+    if (!SW.pret && !window.isSecureContext) {
+      alerte("Les notifications exigent une connexion sécurisée (HTTPS). "
+           + "Elles fonctionneront une fois l'application hébergée.");
       return false;
     }
     const perm = Notification.permission === "granted"
@@ -1136,7 +1450,8 @@ const NOTIF = {
     }
     LOCAL.ecrire("notifications", true);
     this.enregistrer();
-    alerte("C'est noté : vous serez prévenu dès la parution du prochain brief.");
+    await notifier(reglage("notification_titre", "Notifications activées"),
+                   "Vous serez prévenu dès la parution du prochain brief.", "");
     return true;
   },
 
@@ -1190,21 +1505,13 @@ const NOTIF = {
     if (!connue) return;                       // première visite : rien à annoncer
     if (derniere.slug === LOCAL.lire("derniereLue")) return;
 
-    const titre = REGLAGES.notification_titre || "Votre brief du soir est arrivé";
-    if (this.actif() && Notification.permission === "granted") {
-      try {
-        const n = new Notification(titre, {
-          body: derniere.titre,
-          tag: "brief-" + derniere.slug,
-          icon: "data:image/svg+xml," + encodeURIComponent(
-            `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><rect width="64" height="64" rx="14" fill="#ff4a59"/><text x="32" y="45" font-family="Helvetica,Arial" font-size="38" font-weight="700" fill="#fff" text-anchor="middle">B</text></svg>`),
-        });
-        n.onclick = () => { window.focus(); location.hash = `#/edition/${derniere.slug}`; n.close(); };
-      } catch {}
-    }
+    const titre = reglage("notification_titre", "Votre brief du soir est arrivé");
+    if (this.actif()) await notifier(titre, derniere.titre, derniere.slug);
+
     alerte(`${titre} — ${derniere.titre}`,
            { texte: "Lire", href: `#/edition/${derniere.slug}` });
     CACHE.parDate.delete(derniere.slug);
+    CACHE.vivier = null;   // le vivier d'Explorer doit intégrer les nouveaux articles
   },
 };
 
@@ -1268,6 +1575,11 @@ function rendreMenuCompte() {
 }
 
 function router() {
+  // Une ancre interne n'est pas une route. Sans ce garde, cliquer dans le
+  // sommaire relance le rendu de l'édition, qui repart en haut de page : d'où
+  // le double clic nécessaire sur ordinateur et l'absence d'effet sur mobile.
+  if (location.hash && !location.hash.startsWith("#/")) return;
+
   const brut = location.hash.replace(/^#\/?/, "");
   const [chemin, requete] = brut.split("?");
   const params = new URLSearchParams(requete || "");
@@ -1279,6 +1591,7 @@ function router() {
   const rendu = (() => {
     switch (segments[0]) {
       case "archives":  marquer("archives");  return vueArchives();
+      case "explorer":  marquer("explorer");  return vueExplorer(params);
       case "recherche": marquer("recherche"); return vueRecherche(params);
       case "edition":   marquer("edition");   return vueEdition(segments[1]);
       default:          marquer("edition");   return vueEdition(null);
@@ -1298,6 +1611,59 @@ function router() {
     })
     .catch(e => erreur("Une erreur est survenue", e.message));
 }
+
+/* ══════════════════════════════════════════════════════════════════════════
+   Service worker — installation, notifications, lecture hors ligne
+   ══════════════════════════════════════════════════════════════════════════ */
+const SW = {
+  pret: false,
+
+  async enregistrer() {
+    // Un service worker exige une origine sécurisée : HTTPS, ou localhost.
+    // Ouvert en file://, l'application fonctionne mais n'est ni installable
+    // ni capable d'afficher des notifications.
+    if (!("serviceWorker" in navigator) || !window.isSecureContext) return;
+    try {
+      const reg = await navigator.serviceWorker.register("sw.js", { scope: "./" });
+      this.pret = true;
+      // Une version plus récente prend la main dès le rechargement suivant.
+      reg.addEventListener("updatefound", () => {
+        const nouveau = reg.installing;
+        nouveau?.addEventListener("statechange", () => {
+          if (nouveau.state === "installed" && navigator.serviceWorker.controller) {
+            alerte("Une mise à jour de l'application est disponible.",
+                   { texte: "Recharger", href: location.hash || "#/" });
+          }
+        });
+      });
+    } catch (e) {
+      console.warn("Service worker non enregistré :", e.message);
+    }
+  },
+
+  /** Propose l'installation quand le navigateur juge l'app installable. */
+  guetterInstallation() {
+    let invite = null;
+    window.addEventListener("beforeinstallprompt", e => {
+      e.preventDefault();
+      invite = e;
+      if (LOCAL.lire("installRefuse")) return;
+      alerte("Installez Brief pour le retrouver comme une application.",
+             { texte: "Installer", href: "#/" });
+      const lien = $("#bandeau a");
+      if (!lien) return;
+      lien.onclick = async ev => {
+        ev.preventDefault();
+        $("#bandeau")?.remove();
+        invite.prompt();
+        const { outcome } = await invite.userChoice;
+        if (outcome !== "accepted") LOCAL.ecrire("installRefuse", true);
+        invite = null;
+      };
+    });
+    window.addEventListener("appinstalled", () => LOCAL.vider("installRefuse"));
+  },
+};
 
 /* ══════════════════════════════════════════════════════════════════════════
    Démarrage
@@ -1322,9 +1688,31 @@ function montrerApplication() {
   });
 }
 
+/** Thème système, sauf préférence explicite du lecteur ou réglage de la base. */
+function themeInitial() {
+  const choisi = LOCAL.lire("theme");
+  if (choisi) return choisi;
+  const defaut = reglage("theme_defaut", "auto").toLowerCase();
+  if (defaut.startsWith("clair") || defaut === "light") return "light";
+  if (defaut.startsWith("sombre") || defaut === "dark") return "dark";
+  return matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+}
+
 async function demarrer() {
-  appliquerTheme(LOCAL.lire("theme") ||
-    (matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light"));
+  SW.enregistrer();
+  SW.guetterInstallation();
+  appliquerTheme(themeInitial());
+
+  // Une ancre interne se traite par un défilement, jamais par un changement de
+  // route : c'est ce qui rend le sommaire cliquable du premier coup, y compris
+  // au doigt sur mobile.
+  document.addEventListener("click", e => {
+    const lien = e.target.closest('a[href^="#article-"]');
+    if (!lien) return;
+    e.preventDefault();
+    const cible = document.getElementById(lien.getAttribute("href").slice(1));
+    if (cible) cible.scrollIntoView({ behavior: "smooth", block: "start" });
+  });
 
   $("#btn-theme").onclick = () =>
     appliquerTheme(document.documentElement.getAttribute("data-theme") === "dark" ? "light" : "dark");
@@ -1347,10 +1735,14 @@ async function demarrer() {
   }, { passive: true });
 
   await chargerReglages();
-  if (REGLAGES.app_baseline) $("#portail-titre").textContent = REGLAGES.app_baseline;
-  if (REGLAGES.contact_email) {
-    $("#lien-contact").href = "mailto:" + REGLAGES.contact_email;
-    $("#lien-contact").textContent = REGLAGES.contact_email;
+  // Le thème par défaut vient de la base : il n'est connu qu'ici, et ne doit
+  // pas écraser un choix déjà fait par le lecteur.
+  if (!LOCAL.lire("theme")) appliquerTheme(themeInitial());
+
+  const contact = reglage("contact_email");
+  if (contact) {
+    $("#lien-contact").href = "mailto:" + contact;
+    $("#lien-contact").textContent = contact;
   }
 
   // Formulaire d'accès
@@ -1362,7 +1754,7 @@ async function demarrer() {
     const saisi = $("#saisie-jeton").value.trim().toUpperCase();
     const res = await verifierJeton(saisi);
     btn.disabled = false;
-    btn.textContent = "Accéder au brief";
+    btn.textContent = reglage("portail_bouton", "Accéder au brief");
     if (!res.ok) {
       $("#portail-erreur").innerHTML = `<div class="alerte">${echappe(res.motif)}</div>`;
       $("#saisie-jeton").select();

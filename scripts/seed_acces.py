@@ -73,19 +73,58 @@ CLIENTS = [
     },
 ]
 
+# Tout ce qui est modifiable sans toucher au code. L'application relit cette
+# table à chaque démarrage : une valeur changée ici s'applique au rechargement.
 REGLAGES = [
-    ("app_nom", "Brief", "Nom affiché dans l'en-tête"),
+    # — Identité ————————————————————————————————————————————————
+    ("app_nom", "brief",
+     "Nom affiché dans l'en-tête, en gras à gauche"),
+    ("app_point", "•",
+     "Signe coloré accolé au nom. Un point « . » pour un logo sobre, vide pour rien"),
     ("app_baseline", "L'essentiel de l'actualité, chaque soir.",
-     "Accroche affichée sur l'écran de connexion"),
+     "Accroche de l'écran de connexion"),
+
+    # — Couleurs ————————————————————————————————————————————————
+    ("couleur_accent", "#ff4a59",
+     "Couleur principale : logo, boutons, liens, rubrique « On rembobine »"),
+    ("couleur_accent_weekend", "#7070f5",
+     "Couleur des éditions « Extra du samedi »"),
+    ("theme_defaut", "auto",
+     "Thème au premier lancement : « clair », « sombre » ou « auto » (suit le système)"),
+
+    # — Libellés de navigation ——————————————————————————————————
+    ("nav_edition", "Aujourd'hui", "Onglet de l'édition du jour"),
+    ("nav_archives", "Archives", "Onglet des éditions passées"),
+    ("nav_explorer", "Explorer", "Onglet de navigation par rubrique et thématique"),
+    ("nav_recherche", "Recherche", "Onglet de recherche"),
+
+    # — Titres de pages —————————————————————————————————————————
+    ("titre_archives", "Archives", "Titre de la page des archives"),
+    ("titre_explorer", "Explorer", "Titre de la page Explorer"),
+    ("titre_recherche", "Recherche", "Titre de la page de recherche"),
+    ("soustitre_explorer",
+     "Tous les articles parus, classés par rubrique, par thématique et par mot-clé.",
+     "Phrase sous le titre de la page Explorer"),
+    ("soustitre_recherche",
+     "Cherchez dans l'ensemble des briefs publiés : titres, résumés, contenus et mots-clés.",
+     "Phrase sous le titre de la page de recherche"),
+
+    # — Écran de connexion ——————————————————————————————————————
+    ("portail_intro",
+     "Cette édition est réservée aux abonnés. Saisissez le jeton d'accès qui vous a été communiqué.",
+     "Paragraphe d'explication sur l'écran de connexion"),
+    ("portail_bouton", "Accéder au brief", "Libellé du bouton de connexion"),
+
+    # — Divers ——————————————————————————————————————————————————
     ("heure_publication", "18:30",
      "Heure de publication annoncée aux lecteurs (Europe/Paris)"),
     ("notification_titre", "Votre brief du soir est arrivé",
      "Titre de la notification « nouveau brief »"),
     ("message_accueil", "",
-     "Bandeau optionnel affiché en haut de l'app. Vide = masqué."),
+     "Bandeau d'information affiché en haut de l'app. Vide = masqué"),
     ("contact_email", "jamet.aymeric.pro@gmail.com",
      "Adresse affichée en cas de problème d'accès"),
-    ("version_schema", "1.0", "Version du schéma de la base"),
+    ("version_schema", "1.1", "Version du schéma de la base"),
 ]
 
 

@@ -5,9 +5,11 @@ brief.me. Un seul fichier `index.html`, adossé à une base Airtable.
 
 - **Lecture** d'une édition du jour, découpée en rubriques éditoriales
 - **Archives** consultables, navigation par date
+- **Explorer** : tout le corpus par rubrique, par thématique et par mot-clé
 - **Recherche** plein texte sur tous les briefs publiés
 - **Accès par jeton**, accordé ou révoqué depuis Airtable, avec dates de validité
-- **Notifications** à la parution d'un nouveau brief
+- **Application installable** (PWA) avec notifications à la parution
+- **Apparence et libellés** pilotés depuis Airtable, sans déploiement
 - **Publication automatisée** chaque soir par Claude Code cloud
 
 ---
@@ -65,9 +67,26 @@ cette base.
 
 ### Réglages modifiables sans toucher au code
 
-La table **Réglages** est lue au démarrage. `app_baseline` change l'accroche de
-l'écran de connexion, `notification_titre` le titre des notifications,
-`contact_email` l'adresse affichée en cas de problème d'accès.
+La table **Réglages** est relue à chaque démarrage : une valeur changée
+s'applique au rechargement suivant, sans déploiement.
+
+| Clé | Effet |
+|---|---|
+| `app_nom`, `app_point` | Le logo de l'en-tête. Le second est le signe coloré accolé au nom |
+| `app_baseline` | L'accroche de l'écran de connexion |
+| `couleur_accent` | Couleur principale : logo, boutons, liens, rubrique « On rembobine » |
+| `couleur_accent_weekend` | Couleur des éditions « Extra du samedi » |
+| `theme_defaut` | `clair`, `sombre` ou `auto` au premier lancement |
+| `nav_*` | Les quatre libellés de navigation |
+| `titre_*`, `soustitre_*` | Les titres et chapôs des pages Archives, Explorer, Recherche |
+| `portail_intro`, `portail_bouton` | Les textes de l'écran de connexion |
+| `message_accueil` | Bandeau d'information en haut de l'app. Vide = masqué |
+| `notification_titre` | Le titre de la notification « nouveau brief » |
+| `contact_email` | L'adresse affichée en cas de problème d'accès |
+
+**Pour ajouter un libellé personnalisable**, aucune ligne de JavaScript n'est
+nécessaire : créez la clé dans Airtable, et posez `data-reglage="votre_cle"` sur
+l'élément HTML concerné. Son contenu sera remplacé au chargement.
 
 ---
 
@@ -174,21 +193,49 @@ articles de la date avant de les réécrire. Pour une correction durable, édite
 
 ---
 
-## Notifications
+## Application installable et notifications
+
+L'application est une PWA : `manifest.webmanifest` la décrit, `sw.js` en est le
+service worker, et `icones/` contient les images générées par
+`scripts/generer_icones.py` (aucune dépendance : l'encodeur PNG tient dans le
+script).
+
+Une fois installée depuis Android, iOS ou le navigateur de bureau, elle s'ouvre
+en plein écran, sans barre d'adresse, avec sa propre icône — et non comme un
+raccourci web. Sur mobile, la navigation passe en barre d'onglets basse.
+
+Le service worker met aussi en cache la coquille de l'application, ce qui permet
+de relire le dernier brief consulté hors ligne. Les données Airtable, elles, ne
+sont jamais mises en cache : un brief périmé affiché comme frais serait pire que
+pas de brief du tout.
+
+### Les notifications
 
 L'application compare, toutes les dix minutes et à chaque retour sur l'onglet,
 la dernière édition publiée à la dernière vue par le lecteur. Quand un nouveau
 brief paraît, elle affiche une notification système et un bandeau cliquable.
-
 L'activation se fait dans le menu de compte, « Alerte nouveau brief ».
-L'appareil est alors enregistré dans **Abonnements push** et la case
-`Notifications` du client est cochée.
 
-**Limite actuelle :** cela ne fonctionne que si l'application est ouverte dans un
-onglet. Une vraie notification *push* — reçue application fermée — suppose un
-service worker et un serveur qui signe les envois avec des clés VAPID. Les
-appareils sont déjà collectés dans Airtable en prévision de cette étape, qui ira
-naturellement avec la migration Firebase décrite ci-dessous.
+Les notifications passent obligatoirement par
+`ServiceWorkerRegistration.showNotification()` : **Chrome Android refuse
+`new Notification()`**, il lève une exception et n'affiche rien. C'est la cause
+la plus fréquente de « les notifications ne marchent pas sur Android ».
+
+**Deux conditions à respecter :**
+
+1. **Une origine sécurisée.** Service worker, installation et notifications
+   exigent HTTPS — ou `localhost` en développement. Ouverte en `file://` ou
+   servie en HTTP simple sur le réseau local, l'application fonctionne mais
+   n'est ni installable ni capable de notifier. C'est silencieux : le navigateur
+   n'affiche aucune erreur.
+2. **L'application doit avoir été ouverte au moins une fois** depuis la
+   parution. La vérification est faite par le client, pas par un serveur.
+
+Une vraie notification *push*, reçue application fermée, suppose un serveur qui
+signe ses envois avec des clés VAPID. Les appareils sont déjà collectés dans la
+table **Abonnements push** en prévision, et `sw.js` contient déjà le gestionnaire
+d'événement `push` : le jour où ce serveur existera, la page n'aura pas à
+changer. Cela ira naturellement avec la migration Firebase décrite plus bas.
 
 ---
 
@@ -228,7 +275,10 @@ côté serveur, c'est leur place.
 ## Organisation des fichiers
 
 ```
-index.html                          l'application (autonome)
+index.html                          l'application
+manifest.webmanifest                description de l'app installable
+sw.js                               service worker : install, notifications, hors ligne
+icones/                             icônes générées, référencées par le manifeste
 veille.json                         matière collectée, déposée par GitHub Actions
 editions/
   _modele.json                      le format documenté champ par champ
@@ -242,6 +292,7 @@ scripts/
   fetch_news.py                     collecte RSS
   push_edition.py                   publication (upsert)
   verifier_edition.py               contrôle de cohérence
+  generer_icones.py                 icônes PNG, sans dépendance
 .claude/
   commands/brief-du-soir.md         la procédure et les règles éditoriales
   launch.json                       serveur local pour la prévisualisation
