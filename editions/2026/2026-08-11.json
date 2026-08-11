@@ -1,0 +1,163 @@
+{
+  "edition": {
+    "titre": "Bachar al-Assad condamné à mort, canicule record sur 78 départements, le bilan du séisme colombien continue de grimper",
+    "date": "2026-08-11",
+    "type": "Quotidienne",
+    "statut": "Publiée",
+    "slug": "2026-08-11",
+    "resume": "Un tribunal syrien a condamné mardi Bachar al-Assad à la peine de mort par contumace pour crimes de guerre et crimes contre l'humanité. En France, la vigilance orange canicule s'étend à 78 départements dès mercredi, un nouvel épisode qui a déjà fait chuter la disponibilité du parc nucléaire à un niveau record. En Colombie, le bilan du séisme de lundi continue de s'alourdir, au-delà de 180 morts selon les derniers décomptes.",
+    "edito": "Ce soir, un mot revient dans toutes les dépêches syriennes : « contumace ». Bachar al-Assad a été condamné à mort sans être présent pour l'entendre, toujours réfugié à Moscou depuis la chute de Damas. Un jugement en grande partie symbolique dans l'immédiat, mais qui pose une vraie question pour l'avenir de la Syrie : peut-on juger et se réconcilier en même temps ? C'est notre décryptage du jour. Ailleurs, la chaleur continue de gagner du terrain sur la France et le bilan du séisme colombien s'alourdit d'heure en heure, entre catastrophe naturelle et incertitude sur les chiffres. Bonne lecture.",
+    "genere_par": "Claude Code Cloud"
+  },
+  "articles": [
+    {
+      "titre": "Bachar al-Assad condamné à mort par contumace : ce que change (vraiment) ce jugement",
+      "rubrique": "Tout s'explique",
+      "thematique": "International",
+      "a_la_une": true,
+      "chapo": "Un tribunal syrien a condamné l'ex-dictateur, réfugié à Moscou, pour crimes de guerre et crimes contre l'humanité. Un verdict qu'il n'entendra pas de sitôt appliquer — mais qui n'est pas pour autant sans conséquence.",
+      "contenu": "### Le fait\n\nUn tribunal syrien a condamné mardi **Bachar al-Assad** à la peine de mort par contumace, pour « crimes de guerre » et « crimes contre l'humanité » commis durant la guerre civile déclenchée en 2011, rapportent franceinfo, *Le Monde* et *Libération*. Son frère **Maher al-Assad** a été condamné dans les mêmes conditions. Le même jour, **Atef Najib**, ancien chef de la sécurité politique à Deraa, a lui été condamné à mort en sa présence : il s'agit des premiers jugements prononcés contre des membres de l'ancien régime, précise franceinfo.\n\nBachar al-Assad a fui vers Moscou avec sa famille lors de la prise de Damas par une coalition menée par des islamistes, en décembre 2024, rappelle *Le Monde*. Selon France 24, « plusieurs autres ex-responsables » du régime déchu ont également été condamnés à mort au cours de la même audience, sans que les dépêches disponibles n'en précisent le nombre exact ni l'identité.\n\n### Le mécanisme\n\n« Par contumace » signifie que l'accusé est jugé et condamné sans être présent ni représenté. Concrètement, ce jugement n'a aucune chance d'être exécuté à court terme : la Russie, qui héberge Assad, n'a pas de raison de l'extrader vers les nouvelles autorités de transition syriennes, avec lesquelles Moscou n'a pas rompu tout lien.\n\nCe que change la sentence, c'est le statut légal de l'ancien pouvoir : pour la première fois depuis sa chute, un tribunal syrien établit officiellement, sur la base de preuves instruites contradictoirement, la responsabilité pénale de l'ex-président dans les crimes commis pendant treize ans de guerre civile. C'est aussi un précédent : d'autres responsables de l'ancien régime, moins protégés qu'Assad, pourraient être jugés dans la foulée — certains, comme Atef Najib, le sont déjà en personne.\n\n### Ce qui est en jeu\n\nPour les nouvelles autorités syriennes, ce jugement sert à la fois de démonstration de rupture avec l'ancien régime et de test de crédibilité pour leur système judiciaire naissant : juger un ex-président en son absence, mais aussi un ancien chef de la sécurité politique bien réel dans le box des accusés, envoie le signal qu'aucun échelon de l'appareil répressif ne sera épargné. Mais cela pose aussi une question que la Syrie n'a pas encore tranchée : comment reconstruire un pays où les bourreaux d'hier vivent souvent encore aux côtés de leurs victimes, sans que la quête de justice ne devienne un obstacle à la réconciliation nationale ? Les dépêches disponibles ne permettent pas de dire si d'autres procès sont déjà programmés.",
+      "mots_cles": "Syrie, Bachar al-Assad, contumace, justice transitionnelle, crimes de guerre, Damas, Moscou",
+      "sources": [
+        "franceinfo — L'ex-dictateur Bachar al-Assad condamné à la peine de mort par contumace par un tribunal syrien | https://www.franceinfo.fr/monde/revolte-en-syrie/bachar-al-assad-condamne-a-la-peine-de-mort-par-contumace-par-un-tribunal-syrien_8143022.html",
+        "Le Monde — Bachar Al-Assad condamné, en son absence, à la peine de mort en Syrie pour « crimes de guerre » et « crimes contre l'humanité » | https://www.lemonde.fr/international/article/2026/08/11/bachar-al-assad-condamne-a-la-peine-de-mort-par-contumace-en-syrie-pour-crimes-de-guerre-et-crimes-contre-l-humanite_6743778_3210.html",
+        "Libération — Syrie : le président déchu Bachar al-Assad condamné à la peine de mort par contumace | https://www.liberation.fr/international/moyen-orient/syrie-le-president-dechu-bachar-al-assad-condamne-a-la-peine-de-mort-par-contumace-20260811_7RGPHXAGZFFSZB6AHZKQNGGVXI/"
+      ]
+    },
+    {
+      "titre": "Canicule : la vigilance orange gagne 78 départements, un record d'indisponibilité pour le nucléaire",
+      "rubrique": "On fait le point",
+      "thematique": "Environnement",
+      "a_la_une": true,
+      "chapo": "Météo-France étend la vigilance orange à 78 départements dès mercredi, avec des pointes à 40 °C. L'épisode a déjà fait chuter la disponibilité du parc nucléaire français à un niveau inédit.",
+      "contenu": "**78 départements** seront placés en vigilance orange canicule à partir de mercredi, contre 43 la veille, avec des températures attendues entre 36 °C et 40 °C sur la quasi-totalité du pays, annonce Météo-France, cité par *Le Monde* et franceinfo.\n\nCette chaleur prolongée pèse directement sur le parc nucléaire d'EDF : dimanche, plus de 15 % des réacteurs français étaient indisponibles à cause de la chaleur — un record, selon franceinfo, qui doit contraindre l'électricien à baisser la puissance de certains réacteurs ou à les arrêter. À cela s'ajoute un incident distinct : un afflux massif de méduses a de nouveau forcé l'arrêt de trois réacteurs de la centrale de Gravelines, un an presque jour pour jour après un épisode similaire, rapporte *Libération*.\n\nCette vague de chaleur s'inscrit dans une tendance de fond : l'Europe occidentale vient de connaître sa période juin-juillet la plus chaude jamais mesurée, avec une température moyenne de 21,62 °C, au-dessus du précédent record de 2022, selon le service européen Copernicus cité par France 24.",
+      "mots_cles": "canicule, Météo-France, nucléaire, EDF, Gravelines, méduses, Copernicus, climat",
+      "sources": [
+        "Le Monde — Canicule : la vigilance orange s'étendra à 78 départements mercredi, des températures jusqu'à 40 °C attendues, annonce Météo-France | https://www.lemonde.fr/planete/article/2026/08/11/canicule-la-vigilance-orange-s-etendra-a-78-departements-mercredi-des-temperatures-jusqu-a-40-c-attendues-annonce-meteo-france_6743937_3244.html",
+        "franceinfo — Plus de 15% du parc nucléaire français indisponible dimanche à cause de la chaleur, un record | https://www.franceinfo.fr/environnement/energie/nucleaire/plus-de-15-du-parc-nucleaire-francais-indisponible-dimanche-a-cause-de-la-chaleur-un-record_8143136.html",
+        "Libération — Des méduses contraignent à nouveau EDF à arrêter trois réacteurs de la centrale nucléaire de Gravelines | https://www.liberation.fr/environnement/nucleaire/des-meduses-contraignent-edf-a-arreter-trois-reacteurs-de-la-centrale-nucleaire-de-gravelines-20260811_ZPQSSGJGM5GL7IGZVW4CZV5KZA/",
+        "France 24 — Sécheresse et canicules : l'Europe connaît sa période juin-juillet la plus chaude jamais enregistrée | https://www.france24.com/fr/vid%C3%A9o/20260811-s%C3%A9cheresse-et-canicules-l-europe-conna%C3%AEt-sa-p%C3%A9riode-juin-juillet-la-plus-chaude-jamais-enregistr%C3%A9e"
+      ]
+    },
+    {
+      "titre": "Colombie : le bilan du séisme continue de s'alourdir, entre 169 et 224 morts selon les sources",
+      "rubrique": "On rembobine",
+      "thematique": "International",
+      "a_la_une": true,
+      "chapo": "Le séisme de magnitude 7,4 qui a frappé l'ouest du pays lundi est, selon les autorités, le plus violent qu'ait connu la Colombie depuis le début du siècle.",
+      "contenu": "Les secours poursuivent leurs recherches dans les villes de Cali, Pereira, Manizales et Quibdo, touchées lundi par un séisme de magnitude 7,4, le plus violent du XXIᵉ siècle en Colombie selon le Service géologique colombien, cité par *Le Monde*. Le pays a décrété l'état d'urgence.\n\nLes bilans divergent nettement selon les sources et l'heure de publication : *Le Monde* fait état d'« au moins 169 morts et plus de 600 blessés », *Libération* de 181 morts et plus de 1 300 blessés, et France 24 évoque jusqu'à 224 morts. franceinfo recense pour sa part 165 bâtiments effondrés. Six aéroports ont dû être mis à l'arrêt, selon *Libération*.",
+      "mots_cles": "Colombie, séisme, Cali, Manizales, Quibdo, catastrophe naturelle, état d'urgence",
+      "sources": [
+        "Le Monde — Séisme en Colombie : au moins 169 morts et plus de 600 blessés, selon un nouveau bilan | https://www.lemonde.fr/international/article/2026/08/11/seisme-en-colombie-au-moins-169-morts-et-plus-de-600-blesses-selon-un-nouveau-bilan_6743869_3210.html",
+        "Libération — Colombie : le pays en « état d'urgence » après un puissant séisme qui a fait au moins 181 morts et plus de 1 300 blessés | https://www.liberation.fr/international/amerique/colombie-un-fort-seisme-de-magnitude-66-ressenti-a-bogota-20260810_RE3YRNO4P5GHHA5PGOCLU6V5RM/",
+        "franceinfo — Au moins 181 morts, 165 bâtiments effondrés, des survivants recherchés… Les dégâts du séisme en Colombie | https://www.franceinfo.fr/environnement/catastrophes-naturelles/seismes/en-images-au-moins-132-morts-86-batiments-effondres-recherche-de-survivants-les-degats-du-seisme-en-colombie_8142965.html"
+      ]
+    },
+    {
+      "titre": "Mer Rouge : un cargo attaqué au large du Yémen, plusieurs morts parmi l'équipage",
+      "rubrique": "On rembobine",
+      "thematique": "International",
+      "chapo": "L'attaque, non revendiquée, est attribuée par les garde-côtes yéménites aux rebelles houthistes, alliés de l'Iran.",
+      "contenu": "Un cargo a été touché par un « projectile » mardi dans le détroit de Bab-el-Mandeb, au large du Yémen. Les bilans diffèrent selon les sources : *Le Monde* fait état d'« au moins deux morts », un membre d'équipage pakistanais et un indonésien, tandis que France 24 rapporte quatre morts parmi l'équipage, selon les autorités yéménites.\n\nL'attaque n'a pas été revendiquée, mais les garde-côtes du Yémen l'attribuent aux rebelles **houthistes**, alliés de l'Iran, déjà responsables d'attaques contre la flotte saoudienne dans la zone depuis juillet, précise *Le Monde*.",
+      "mots_cles": "mer Rouge, Houthis, Yémen, Bab-el-Mandeb, cargo, attaque",
+      "sources": [
+        "Le Monde — En mer Rouge, un cargo touché par un « projectile » au large du Yémen ; au moins deux morts | https://www.lemonde.fr/international/article/2026/08/11/un-cargo-touche-par-un-projectile-en-mer-rouge-au-moins-deux-morts_6743832_3210.html",
+        "France 24 — Une attaque des Houthis sur un navire en mer Rouge fait plusieurs morts | https://www.france24.com/fr/moyen-orient/20260811-une-attaque-des-houthis-sur-un-navire-en-mer-rouge-fait-plusieurs-morts"
+      ]
+    },
+    {
+      "titre": "Le Liban abolit la peine de mort, une première au Proche et Moyen-Orient",
+      "rubrique": "On rembobine",
+      "thematique": "International",
+      "chapo": "Le pays n'avait plus procédé à des exécutions depuis 2004. Les crimes commis avant l'entrée en vigueur de la loi resteront passibles de la perpétuité.",
+      "contenu": "Le Parlement libanais a adopté mardi l'abolition de la peine de mort, une décision qualifiée d'« historique » par le ministre de la Justice **Adel Nassar**, rapporte *Le Monde*. Il s'agit d'une première au Proche et au Moyen-Orient.\n\nLe Liban n'avait plus exécuté personne depuis 2004. Les crimes commis avant l'entrée en vigueur de la nouvelle loi resteront passibles d'une peine de prison à perpétuité, précise franceinfo.",
+      "mots_cles": "Liban, peine de mort, abolition, Parlement, justice, Proche-Orient",
+      "sources": [
+        "Le Monde — Le Liban adopte l'abolition de la peine de mort, une première au Proche- et au Moyen-Orient | https://www.lemonde.fr/international/article/2026/08/11/le-liban-adopte-l-abolition-de-la-peine-de-mort-une-premiere-au-proche-et-au-moyen-orient_6743866_3210.html",
+        "franceinfo — Le Liban vote l'abolition de la peine de mort, une première au Moyen-Orient | https://www.franceinfo.fr/monde/proche-orient/liban/le-liban-vote-l-abolition-de-la-peine-de-mort-une-premiere-au-moyen-orient_8143175.html"
+      ]
+    },
+    {
+      "titre": "En rejetant le plan de Trump sur Gaza, Netanyahu s'expose à des critiques jusque dans son camp",
+      "rubrique": "On rembobine",
+      "thematique": "International",
+      "chapo": "Le rejet, annoncé dimanche soir, révèle les dissensions dans la coalition gouvernementale israélienne à deux mois d'élections législatives décisives.",
+      "contenu": "Le rejet par Israël du plan de paix américain pour Gaza, annoncé dimanche soir, traduit les dissensions au sein de la coalition gouvernementale de **Benjamin Netanyahu**, alors que des élections législatives se profilent en octobre, rapporte France 24. Selon plusieurs analystes cités par le média, le Premier ministre israélien offre par ce refus « une victoire diplomatique au Hamas ».\n\nLes dépêches disponibles ne détaillent pas, à ce stade, les points précis du plan que le gouvernement israélien conteste.",
+      "mots_cles": "Israël, Netanyahu, Gaza, Trump, plan de paix, Hamas",
+      "sources": [
+        "France 24 — En rejetant le plan de Trump sur Gaza, Netanyahu offre \"une victoire au Hamas\" | https://www.france24.com/fr/moyen-orient/20260811-en-rejetant-plan-trump-gaza-netanyahu-offre-victoire-hamas"
+      ]
+    },
+    {
+      "titre": "Le prix de référence du gaz augmente de 5,6 % au 1er septembre",
+      "rubrique": "On rembobine",
+      "thematique": "Économie",
+      "chapo": "Environ six millions de ménages français, dont l'offre est indexée sur ce tarif, verront leur facture grimper à la rentrée.",
+      "contenu": "Le prix de référence du gaz va augmenter de **5,6 %** au 1er septembre pour environ 60 % des Français, soit près de six millions de ménages ayant souscrit une offre indexée sur ce prix moyen, rapporte *Libération*. Cette hausse serait provoquée par le conflit au Moyen-Orient et le blocus du détroit d'Ormuz, précise le journal.",
+      "mots_cles": "gaz, énergie, prix, facture, détroit d'Ormuz, ménages",
+      "sources": [
+        "Libération — Le prix de référence du gaz va augmenter de 5,6 % au 1er septembre pour environ 60 % des Français | https://www.liberation.fr/economie/conso/le-prix-de-reference-du-gaz-va-augmenter-de-56-au-1er-septembre-pour-environ-60-des-francais-20260811_Z575WZMBUNF3BNBGJAT2IACALU/"
+      ]
+    },
+    {
+      "titre": "Les pompiers appelés à la grève le 13 août pour réclamer plus de moyens",
+      "rubrique": "On rembobine",
+      "thematique": "France",
+      "chapo": "L'intersyndicale demande que la santé et la sécurité des soldats du feu deviennent une priorité nationale, après un été marqué par des incendies dévastateurs.",
+      "contenu": "Une intersyndicale de pompiers appelle à la grève le **13 août** pour réclamer davantage de moyens et de recrutements, rapporte franceinfo. Elle demande également que « la santé et la sécurité » des soldats du feu deviennent « une priorité nationale ».\n\nCet appel intervient après un été où les pompiers ont dû intervenir sur de nombreux incendies dévastateurs, dans un contexte de sécheresse et de canicules à répétition.",
+      "mots_cles": "pompiers, grève, moyens, recrutements, incendies, sécurité",
+      "sources": [
+        "franceinfo — Les pompiers appelés à la grève le 13 août pour réclamer plus de moyens et de recrutements | https://www.franceinfo.fr/societe/mobilisation-des-pompiers/les-pompiers-appeles-a-la-greve-le-13-aout-pour-reclamer-plus-de-moyens-et-de-recrutements_8143268.html"
+      ]
+    },
+    {
+      "titre": "Truth Social, le réseau de Trump, accumule les pertes financières",
+      "rubrique": "On rembobine",
+      "thematique": "Économie",
+      "chapo": "La maison mère du réseau social, dont Donald Trump est le principal actionnaire, a perdu près de 240 millions de dollars au deuxième trimestre.",
+      "contenu": "**Trump Media & Technology Group**, la maison mère de Truth Social dont Donald Trump est le principal actionnaire, affiche près de **240 millions de dollars** de pertes au deuxième trimestre, rapporte *Le Monde*. Le groupe avait déjà annoncé plus de 400 millions de dollars de pertes au premier trimestre de l'année.",
+      "mots_cles": "Truth Social, Trump, finances, pertes, réseau social, bourse",
+      "sources": [
+        "Le Monde — La maison mère de Truth Social, le réseau de Donald Trump, affiche près de 240 millions de dollars de pertes au deuxième trimestre | https://www.lemonde.fr/economie/article/2026/08/11/la-maison-mere-de-truth-social-le-reseau-de-donald-trump-affiche-240-millions-de-dollars-de-pertes-au-deuxieme-trimestre_6743610_3234.html"
+      ]
+    },
+    {
+      "titre": "András Baka, « le juge qui a dit non » à Orban, élu président de Hongrie",
+      "rubrique": "C'est qui ?",
+      "thematique": "International",
+      "chapo": "Limogé par Viktor Orban en 2012 après avoir critiqué une de ses réformes, cet ancien magistrat de 73 ans vient d'être élu à la tête de l'État par le Parlement hongrois.",
+      "contenu": "**András Baka**, 73 ans, a été élu mardi président de la Hongrie par le Parlement, succédant à Tamas Sulyok, un allié de l'ex-Premier ministre nationaliste Viktor Orban, rapportent *Le Monde* et franceinfo.\n\nCe juriste, passé par la Cour européenne des droits de l'homme, présidait la Cour suprême de Hongrie jusqu'en 2012, année où Viktor Orban l'a limogé après qu'il eut critiqué une réforme voulant abaisser l'âge de départ à la retraite des juges, précise *Libération*, qui le surnomme « le juge qui a dit non » à Orban.\n\nSon élection intervient dans un contexte de règlement de comptes politique en Hongrie : depuis sa victoire aux législatives d'avril, le nouveau pouvoir, mené par Péter Magyar, qui avait fait de la lutte contre la corruption un axe de sa campagne, multiplie les initiatives pour examiner la gestion de l'État sous les gouvernements d'Orban — dont une plainte déposée par le gouvernement hongrois sur les frais de communication de l'ex-dirigeant, selon *Le Monde*. La présidence hongroise reste toutefois un poste essentiellement honorifique, rappelle *Libération*.",
+      "mots_cles": "Hongrie, András Baka, Viktor Orban, président, Parlement, Péter Magyar",
+      "sources": [
+        "Le Monde — En Hongrie, Andras Baka, opposant à Viktor Orban, est élu président par le Parlement | https://www.lemonde.fr/international/article/2026/08/11/en-hongrie-andras-baka-opposant-a-viktor-orban-est-elu-president-par-le-parlement_6743902_3210.html",
+        "Libération — András Baka, président de la Hongrie : la revanche d'un magistrat évincé par le système Orbán | https://www.liberation.fr/international/europe/andras-baka-president-de-la-hongrie-la-revanche-dun-magistrat-evince-par-le-systeme-orban-20260811_I5HV2DP7LJGJFN5YQKU3OGYHWA/",
+        "Le Monde — Le gouvernement hongrois dépose une plainte concernant les frais de communication de Viktor Orban | https://www.lemonde.fr/international/article/2026/08/11/le-gouvernement-hongrois-depose-une-plainte-concernant-les-frais-de-communication-de-viktor-orban_6743974_3210.html"
+      ]
+    },
+    {
+      "titre": "Comment Trump a quitté en secret un sommet de l'Otan, caché dans un camion de restauration",
+      "rubrique": "Ça alors",
+      "thematique": "International",
+      "chapo": "Le président américain aurait organisé un faux départ à bord d'Air Force One pour tromper jusqu'aux journalistes chargés de le suivre, par crainte d'une menace iranienne.",
+      "contenu": "Donald Trump aurait quitté en secret le sommet de l'Otan à Ankara le 8 juillet, en changeant d'avion à l'aide d'un stratagème impliquant un **camion de restauration**, selon des informations du *Washington Post* relayées par la BBC et *Libération*. La Maison Blanche aurait laissé croire aux journalistes qu'il embarquait à bord d'Air Force One, alors qu'il aurait en réalité quitté les lieux à bord d'un avion militaire spécial.\n\nEn cause : des menaces iraniennes jugées crédibles par les services américains, précise France 24. L'opération, minutieusement orchestrée, aurait trompé jusqu'aux journalistes chargés de suivre les déplacements du président.",
+      "mots_cles": "Trump, Otan, Ankara, Iran, sécurité, Air Force One",
+      "sources": [
+        "BBC News — Trump hid in catering truck in secret plane swap over Iran threat, reports say | https://www.bbc.co.uk/news/articles/cm2g90vvy62o",
+        "Libération — Tour de magie grâce à un camion de restauration : comment Trump a quitté en secret un sommet de l'Otan en Turquie par peur de l'Iran | https://www.liberation.fr/international/amerique/tour-de-magie-grace-a-un-camion-de-restauration-comment-trump-a-quitte-en-secret-un-sommet-de-lotan-en-turquie-par-peur-de-liran-20260811_QEWRZDUTVNGAPBCUQRRD5KOI74/",
+        "France 24 — Trump aurait changé d'avion après le sommet de l'Otan à Ankara | https://www.france24.com/fr/vid%C3%A9o/20260811-trump-aurait-chang%C3%A9-d-avion-apr%C3%A8s-le-sommet-de-l-otan-%C3%A0-ankara"
+      ]
+    },
+    {
+      "titre": "Ukraine : Kiev frappe un nouveau centre logistique du géant russe Wildberries",
+      "rubrique": "Ça vaut un clic",
+      "thematique": "International",
+      "chapo": "Une nouvelle attaque de drones ukrainiens vise l'économie russe, dans une stratégie assumée de pression sur le quotidien des civils.",
+      "contenu": "Kiev a confirmé mardi une nouvelle attaque contre un centre logistique du géant russe de l'e-commerce **Wildberries**, dans l'oblast de Voronej, rapporte *Le Monde* en direct. Le chef des forces de systèmes sans pilote de l'armée ukrainienne a affirmé que ces frappes visaient à faire ressentir aux Russes les conséquences de la guerre, et qu'elles ne cesseraient que lorsque des réparations rapides du réseau logistique deviendraient impossibles.\n\nÀ lire pour comprendre la stratégie des drones ukrainiens à longue portée, qui visent désormais aussi les grandes raffineries russes : l'explication en cinq points du *Monde*.",
+      "mots_cles": "Ukraine, Russie, drones, Wildberries, Voronej, guerre",
+      "sources": [
+        "Le Monde — En direct, guerre en Ukraine : Kiev confirme une nouvelle attaque contre un centre logistique du géant russe de l'e-commerce Wildberries | https://www.lemonde.fr/international/live/2026/08/11/en-direct-guerre-en-ukraine-kiev-confirme-une-nouvelle-attaque-contre-un-centre-logistique-du-geant-russe-de-l-e-commerce-wildberries_6741928_3210.html",
+        "Le Monde — Comment les drones ukrainiens à long rayon d'action se jouent-ils des défenses russes ? | https://www.lemonde.fr/international/article/2026/08/11/comment-les-drones-ukrainiens-a-long-rayon-d-action-se-jouent-ils-des-defenses-russes_6743782_3210.html"
+      ]
+    }
+  ]
+}
