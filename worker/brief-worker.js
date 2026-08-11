@@ -64,11 +64,20 @@ async function router(requete, env, url) {
   const methode = requete.method;
 
   // — Routes publiques ————————————————————————————————————————————
+  if (chemin === "/" && methode === "GET") return diagnostic(env);
+
+  // Une configuration incomplète produit sinon un « Airtable 404 » opaque :
+  // autant nommer précisément ce qui manque.
+  const manquants = ["AIRTABLE_TOKEN", "SESSION_SECRET", "BASE_ID"]
+    .filter(v => !env[v]);
+  if (manquants.length) {
+    throw erreur(
+      `Configuration incomplète : ${manquants.join(", ")} non défini(s). `
+      + `À renseigner dans Settings → Variables and Secrets.`, 500);
+  }
+
   if (chemin === "/reglages" && methode === "GET") return reglages(env);
   if (chemin === "/connexion" && methode === "POST") return connexion(requete, env);
-  if (chemin === "/" && methode === "GET") {
-    return json({ service: "brief", etat: "ok" });
-  }
 
   // — Routes authentifiées ————————————————————————————————————————
   const session = await verifierSession(requete, env);
@@ -82,6 +91,40 @@ async function router(requete, env, url) {
     case "/abonnement POST": return abonnement(requete, env, session);
   }
   throw erreur(`Route inconnue : ${methode} ${chemin}`, 404);
+}
+
+/**
+ * État de la configuration, sans jamais révéler une valeur : seule la présence
+ * de chaque réglage est rapportée, plus un appel réel à Airtable pour vérifier
+ * que le couple jeton / base fonctionne.
+ */
+async function diagnostic(env) {
+  const config = {
+    AIRTABLE_TOKEN: env.AIRTABLE_TOKEN ? "défini" : "MANQUANT",
+    SESSION_SECRET: env.SESSION_SECRET ? "défini" : "MANQUANT",
+    BASE_ID: env.BASE_ID || "MANQUANT",
+    ORIGINES: env.ORIGINES || "(toutes)",
+  };
+
+  let airtableEtat = "non testé";
+  if (env.AIRTABLE_TOKEN && env.BASE_ID) {
+    try {
+      const r = await fetch(
+        `https://api.airtable.com/v0/${env.BASE_ID}/${TABLES.reglages}?maxRecords=1`,
+        { headers: { Authorization: `Bearer ${env.AIRTABLE_TOKEN}` } });
+      airtableEtat = r.ok ? "ok" : `échec ${r.status} — ${(await r.text()).slice(0, 120)}`;
+    } catch (e) {
+      airtableEtat = "injoignable : " + e.message;
+    }
+  }
+
+  const pret = !Object.values(config).includes("MANQUANT") && airtableEtat === "ok";
+  return json({
+    service: "brief",
+    etat: pret ? "ok" : "configuration incomplète",
+    config,
+    airtable: airtableEtat,
+  });
 }
 
 // ───────────────────────────────────────────────────────────────────────────
