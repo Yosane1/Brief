@@ -58,3 +58,21 @@ jobs:
             python scripts/push_edition.py "$f"
             python scripts/verifier_edition.py "$(basename "$f" .json)"
           done
+
+      - name: Annoncer la parution aux abonnés
+        if: steps.cibles.outputs.fichiers != ''
+        env:
+          DIFFUSION_SECRET: ${{ secrets.DIFFUSION_SECRET }}
+          PASSERELLE: https://brief.jamet-aymeric-pro.workers.dev
+        run: |
+          if [ -z "$DIFFUSION_SECRET" ]; then
+            echo "::warning::DIFFUSION_SECRET absent — aucune notification envoyée."
+            exit 0
+          fi
+          # La passerelle choisit la dernière édition publiée et n'annonce
+          # jamais deux fois la même : relancer le workflow est sans risque.
+          reponse=$(curl -sS -X POST "$PASSERELLE/diffuser" \
+            -H "X-Diffusion: $DIFFUSION_SECRET" \
+            -H "Content-Type: application/json" -d '{}')
+          echo "$reponse"
+          echo "$reponse" | grep -q '"echecs":0' || echo "::warning::Des envois ont échoué."

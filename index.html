@@ -353,6 +353,48 @@ mark{background:color-mix(in srgb, var(--accent) 22%, transparent); color:inheri
   font-family:ui-monospace,Menlo,Consolas,monospace; font-size:.9em;
 }
 
+/* ── Lecteur audio ───────────────────────────────────────────────────── */
+.btn-ecoute{
+  display:inline-flex; align-items:center; gap:.5rem; margin-top:1.25rem;
+  padding:.55rem 1.05rem .55rem .8rem; border-radius:99px;
+  border:1px solid var(--bord); background:var(--fond-2);
+  font-size:.87rem; font-weight:600; transition:.15s;
+}
+.btn-ecoute:hover{border-color:var(--accent); color:var(--accent)}
+.btn-ecoute svg{width:17px; height:17px; fill:currentColor}
+
+.lecteur{
+  position:fixed; left:50%; transform:translateX(-50%); bottom:1.25rem; z-index:120;
+  width:min(560px, calc(100% - 2rem)); background:var(--fond);
+  border:1px solid var(--bord); border-radius:14px; box-shadow:var(--ombre);
+  padding:.7rem .8rem .55rem; animation:monte .25s cubic-bezier(.2,.9,.3,1);
+}
+.lecteur-ligne{display:flex; align-items:center; gap:.6rem}
+.lecteur-info{flex:1; min-width:0}
+.lecteur-info b{
+  display:block; font-size:.88rem; line-height:1.25; white-space:nowrap;
+  overflow:hidden; text-overflow:ellipsis;
+}
+.lecteur-info small{font-size:.72rem; color:var(--texte-3)}
+.lecteur button{
+  width:34px; height:34px; border-radius:99px; display:grid; place-items:center;
+  color:var(--texte-2); flex:none;
+}
+.lecteur button:hover{background:var(--fond-3); color:var(--texte)}
+.lecteur button svg{width:17px; height:17px; fill:currentColor}
+.lecteur .principal{
+  width:40px; height:40px; background:var(--accent); color:#fff;
+}
+.lecteur .principal:hover{background:var(--accent); color:#fff; opacity:.88}
+.lecteur .vitesse{width:auto; padding:0 .5rem; font-size:.78rem; font-weight:700}
+.lecteur-jauge{height:3px; background:var(--fond-3); border-radius:3px; margin-top:.6rem; overflow:hidden}
+.lecteur-jauge i{display:block; height:100%; width:0; background:var(--accent); transition:width .25s}
+.article.ecoute{
+  background:color-mix(in srgb, var(--c,var(--accent)) 7%, transparent);
+  box-shadow:0 0 0 12px color-mix(in srgb, var(--c,var(--accent)) 7%, transparent);
+  border-radius:4px;
+}
+
 /* ── Divers ──────────────────────────────────────────────────────────── */
 .vide{text-align:center; padding:4rem 1rem; color:var(--texte-3)}
 .vide b{display:block; font-size:1.1rem; color:var(--texte); margin-bottom:.4rem}
@@ -511,6 +553,29 @@ mark{background:color-mix(in srgb, var(--accent) 22%, transparent); color:inheri
 <div id="annonce" hidden></div>
 <main id="vue" hidden></main>
 
+<div class="lecteur" id="lecteur" hidden role="region" aria-label="Lecture audio">
+  <div class="lecteur-ligne">
+    <button class="principal" id="lect-play" aria-label="Lecture ou pause">
+      <svg viewBox="0 0 24 24" id="lect-icone"><path d="M8 5v14l11-7z"/></svg>
+    </button>
+    <div class="lecteur-info">
+      <b id="lect-titre">—</b>
+      <small id="lect-position"></small>
+    </div>
+    <button id="lect-prec" aria-label="Article précédent">
+      <svg viewBox="0 0 24 24"><path d="M7 6h2v12H7zm3 6l8-6v12z"/></svg>
+    </button>
+    <button id="lect-suiv" aria-label="Article suivant">
+      <svg viewBox="0 0 24 24"><path d="M15 6h2v12h-2zM6 6l8 6-8 6z"/></svg>
+    </button>
+    <button class="vitesse" id="lect-vitesse" aria-label="Vitesse de lecture">1×</button>
+    <button id="lect-fermer" aria-label="Arrêter la lecture">
+      <svg viewBox="0 0 24 24"><path d="M6.4 5 5 6.4 10.6 12 5 17.6 6.4 19l5.6-5.6 5.6 5.6 1.4-1.4-5.6-5.6L19 6.4 17.6 5 12 10.6z"/></svg>
+    </button>
+  </div>
+  <div class="lecteur-jauge"><i id="lect-progres"></i></div>
+</div>
+
 <script>
 "use strict";
 /* ══════════════════════════════════════════════════════════════════════════
@@ -570,6 +635,13 @@ const $$ = (s, r = document) => [...r.querySelectorAll(s)];
 
 const echappe = s => String(s ?? "").replace(/[&<>"']/g,
   c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+
+/** La clé VAPID circule en base64url ; PushManager attend des octets bruts. */
+function base64urlEnOctets(s) {
+  const complet = (s + "=".repeat((4 - s.length % 4) % 4))
+    .replace(/-/g, "+").replace(/_/g, "/");
+  return Uint8Array.from(atob(complet), c => c.charCodeAt(0));
+}
 
 const LOCAL = {
   lire(k, def = null) { try { return JSON.parse(localStorage.getItem("brief." + k)) ?? def; } catch { return def; } },
@@ -790,11 +862,11 @@ const API = {
     });
   },
 
-  async abonnement(active, description = "") {
+  async abonnement(active, description = "", souscription = null) {
     if (this.passerelle) {
       return this.appelAuth("/abonnement", {
         methode: "POST",
-        corps: { appareil: SESSION.appareil, active, description },
+        corps: { appareil: SESSION.appareil, active, description, souscription },
       });
     }
     if (!SESSION.client) return;
@@ -1149,6 +1221,10 @@ async function vueEdition(slug) {
         </div>
         <h1>${echappe(ed.titre)}</h1>
         ${ed.edito ? `<div class="edito" style="border-color:${accent}">${markdown(ed.edito)}</div>` : ""}
+        <button class="btn-ecoute" id="btn-ecouter">
+          <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+          <span data-reglage="bouton_ecouter">Écouter le brief</span>
+        </button>
       </div>
 
       ${ordonnees.length > 1 ? `
@@ -1177,6 +1253,13 @@ async function vueEdition(slug) {
           </a>` : `<span></span>`}
       </nav>
     </article>`;
+
+  appliquerReglages();
+  $("#btn-ecouter").onclick = () => {
+    if (LECTEUR.actif) { LECTEUR.arreter(); return; }
+    LECTEUR.demarrer(ed);
+    journaliser("Lecture", `Écoute de l'édition ${ed.slug}`);
+  };
 
   LOCAL.ecrire("derniereLue", ed.slug);
   journaliser("Lecture", `Édition ${ed.slug} — ${ed.articles.length} articles`);
@@ -1606,16 +1689,44 @@ const NOTIF = {
     return true;
   },
 
-  desactiver() {
+  async desactiver() {
     LOCAL.ecrire("notifications", false);
+    try {
+      const reg = await navigator.serviceWorker.ready;
+      const s = await reg.pushManager.getSubscription();
+      if (s) await s.unsubscribe();
+    } catch {}
     API.abonnement(false).catch(() => {});
   },
 
-  /** Trace l'appareil, pour un futur envoi push signé côté serveur. */
+  /**
+   * Souscrit au service de push du navigateur, puis transmet la souscription à
+   * la passerelle. C'est elle qui permet de recevoir le brief application
+   * fermée : sans elle, l'alerte ne part que si un onglet est ouvert.
+   */
   async enregistrer() {
     if (!SESSION.client) return;
-    try { await API.abonnement(true, navigator.userAgent); }
-    catch (e) { console.warn("Abonnement push non enregistré :", e.message); }
+    let souscription = null;
+    try {
+      const reg = await navigator.serviceWorker.ready;
+      souscription = await reg.pushManager.getSubscription();
+      if (!souscription) {
+        const { cle } = await API.appel("/vapid");
+        if (cle) {
+          souscription = await reg.pushManager.subscribe({
+            userVisibleOnly: true,
+            applicationServerKey: base64urlEnOctets(cle),
+          });
+        }
+      }
+    } catch (e) {
+      console.warn("Souscription push impossible :", e.message);
+    }
+    try {
+      await API.abonnement(true, navigator.userAgent,
+                           souscription ? souscription.toJSON() : null);
+    } catch (e) { console.warn("Abonnement non enregistré :", e.message); }
+    return !!souscription;
   },
 
   /** Compare la dernière édition publiée à la dernière vue par ce lecteur. */
@@ -1639,6 +1750,266 @@ const NOTIF = {
            { texte: "Lire", href: `#/edition/${derniere.slug}` });
     CACHE.parDate.delete(derniere.slug);
     CACHE.vivier = null;   // le vivier d'Explorer doit intégrer les nouveaux articles
+  },
+};
+
+/* ══════════════════════════════════════════════════════════════════════════
+   Lecture audio
+
+   La synthèse vocale du navigateur lit le brief à voix haute. Deux contraintes
+   dictent la forme de ce code :
+
+   • Chrome interrompt un énoncé qui dépasse une quinzaine de secondes. Le texte
+     est donc découpé en phrases, énoncées l'une après l'autre.
+   • Chrome suspend aussi la synthèse au bout d'un moment sans raison apparente.
+     Un appel périodique à resume() la relance — c'est le contournement admis.
+
+   Reste une limite qu'aucun contournement ne lève : la lecture s'arrête quand
+   l'écran se verrouille. Le verrou d'écran (wakeLock) l'évite tant que le
+   téléphone reste allumé, au prix de la batterie.
+   ══════════════════════════════════════════════════════════════════════════ */
+const LECTEUR = {
+  file: [],          // [{texte, article, titre}]
+  index: 0,
+  actif: false,
+  enPause: false,
+  vitesse: LOCAL.lire("vitesseAudio", 1),
+  voix: null,
+  verrou: null,
+  reanimation: null,
+
+  /** Retire la mise en forme Markdown : elle ne s'entend pas. */
+  texteLisible(md) {
+    return String(md || "")
+      .replace(/\[([^\]]+)\]\([^)]*\)/g, "$1")
+      .replace(/^#{1,6}\s+/gm, "")
+      .replace(/\*\*([^*]+)\*\*/g, "$1")
+      .replace(/\*([^*\n]+)\*/g, "$1")
+      .replace(/^[-*]\s+/gm, "")
+      .replace(/^-{3,}$/gm, "")
+      .replace(/`/g, "")
+      .replace(/\s*\n\s*/g, "\n")
+      .trim();
+  },
+
+  /** Découpe en énoncés courts, pour ne pas déclencher la coupure de Chrome. */
+  phrases(texte) {
+    return texte
+      .replace(/([.!?…])\s+/g, "$1\n")
+      .split("\n")
+      .map(s => s.trim())
+      .filter(Boolean)
+      .flatMap(s => this.decouper(s));
+  },
+
+  /**
+   * Ramène un énoncé sous 200 caractères — une douzaine de secondes à voix
+   * normale, avec de la marge sous la coupure de Chrome. On coupe de
+   * préférence sur une ponctuation faible, à défaut entre deux mots : une
+   * phrase peut être longue sans contenir la moindre virgule.
+   */
+  decouper(texte, max = 200) {
+    if (texte.length <= max) return [texte];
+    const sortie = [];
+    let reste = texte;
+
+    while (reste.length > max) {
+      const fenetre = reste.slice(0, max);
+      let coupe = Math.max(
+        fenetre.lastIndexOf(", "), fenetre.lastIndexOf("; "),
+        fenetre.lastIndexOf(" : "), fenetre.lastIndexOf(" — "),
+        fenetre.lastIndexOf(" – "));
+      if (coupe < max * 0.4) coupe = fenetre.lastIndexOf(" ");
+      if (coupe <= 0) coupe = max - 1;
+      sortie.push(reste.slice(0, coupe + 1).trim());
+      reste = reste.slice(coupe + 1).trim();
+    }
+    if (reste) sortie.push(reste);
+    return sortie;
+  },
+
+  choisirVoix() {
+    const voix = speechSynthesis.getVoices();
+    if (!voix.length) return null;
+    const fr = voix.filter(v => v.lang && v.lang.toLowerCase().startsWith("fr"));
+    // Les voix distantes de Google sont nettement plus naturelles.
+    return fr.find(v => /google/i.test(v.name))
+        || fr.find(v => !v.localService)
+        || fr[0] || null;
+  },
+
+  construire(edition) {
+    this.file = [];
+    const intro = `${edition.titre}. ${this.texteLisible(edition.edito)}`;
+    for (const p of this.phrases(intro)) {
+      this.file.push({ texte: p, article: null, titre: "Édito" });
+    }
+    for (const a of edition.articles) {
+      const bloc = [a.titre, a.chapo, this.texteLisible(a.contenu)]
+        .filter(Boolean).join(". ");
+      for (const p of this.phrases(bloc)) {
+        this.file.push({ texte: p, article: a.id, titre: a.titre });
+      }
+    }
+  },
+
+  async demarrer(edition) {
+    if (!("speechSynthesis" in window)) {
+      alerte("La lecture audio n'est pas disponible dans ce navigateur.");
+      return;
+    }
+    this.arreter(false);
+    this.construire(edition);
+    if (!this.file.length) return;
+
+    if (!speechSynthesis.getVoices().length) {
+      await new Promise(r => {
+        speechSynthesis.addEventListener("voiceschanged", r, { once: true });
+        setTimeout(r, 1200);
+      });
+    }
+    this.voix = this.choisirVoix();
+
+    this.index = 0;
+    this.actif = true;
+    this.enPause = false;
+    $("#lecteur").hidden = false;
+    await this.verrouillerEcran();
+    this.reanimer();
+    this.enoncer();
+  },
+
+  enoncer() {
+    if (!this.actif || this.index >= this.file.length) return this.arreter(true);
+
+    const morceau = this.file[this.index];
+    const e = new SpeechSynthesisUtterance(morceau.texte);
+    e.lang = "fr-FR";
+    e.rate = this.vitesse;
+    if (this.voix) e.voice = this.voix;
+
+    e.onend = () => {
+      if (!this.actif || this.enPause) return;
+      this.index++;
+      this.enoncer();
+    };
+    // Une erreur sur un énoncé ne doit pas interrompre toute la lecture.
+    e.onerror = ev => {
+      if (ev.error === "interrupted" || ev.error === "canceled") return;
+      this.index++;
+      if (this.actif && !this.enPause) this.enoncer();
+    };
+
+    speechSynthesis.speak(e);
+    this.rafraichir();
+  },
+
+  basculer() {
+    if (!this.actif) return;
+    if (this.enPause) {
+      this.enPause = false;
+      speechSynthesis.resume();
+      // Si la file d'attente a été vidée entre-temps, on relance l'énoncé.
+      if (!speechSynthesis.speaking) this.enoncer();
+      this.verrouillerEcran();
+    } else {
+      this.enPause = true;
+      speechSynthesis.pause();
+      this.libererEcran();
+    }
+    this.rafraichir();
+  },
+
+  /** Saute au début de l'article suivant ou précédent. */
+  sauter(sens) {
+    if (!this.actif) return;
+    const courant = this.file[this.index]?.article;
+    let i = this.index;
+    if (sens > 0) {
+      while (i < this.file.length && this.file[i].article === courant) i++;
+    } else {
+      while (i > 0 && this.file[i - 1].article === courant) i--;
+      if (i > 0) {
+        const precedent = this.file[i - 1].article;
+        while (i > 0 && this.file[i - 1].article === precedent) i--;
+      }
+    }
+    this.index = Math.max(0, Math.min(i, this.file.length - 1));
+    speechSynthesis.cancel();
+    this.enPause = false;
+    this.enoncer();
+  },
+
+  changerVitesse() {
+    const paliers = [0.8, 1, 1.15, 1.3, 1.5];
+    this.vitesse = paliers[(paliers.indexOf(this.vitesse) + 1) % paliers.length];
+    LOCAL.ecrire("vitesseAudio", this.vitesse);
+    if (this.actif) {
+      speechSynthesis.cancel();
+      this.enPause = false;
+      this.enoncer();
+    }
+    this.rafraichir();
+  },
+
+  arreter(masquer = true) {
+    this.actif = false;
+    this.enPause = false;
+    speechSynthesis.cancel();
+    clearInterval(this.reanimation);
+    this.libererEcran();
+    $$(".article.ecoute").forEach(el => el.classList.remove("ecoute"));
+    if (masquer) $("#lecteur").hidden = true;
+  },
+
+  /** Contournement d'un arrêt spontané de la synthèse dans Chrome. */
+  reanimer() {
+    clearInterval(this.reanimation);
+    this.reanimation = setInterval(() => {
+      if (this.actif && !this.enPause && speechSynthesis.speaking) {
+        speechSynthesis.resume();
+      }
+    }, 9000);
+  },
+
+  async verrouillerEcran() {
+    try {
+      if ("wakeLock" in navigator && !this.verrou) {
+        this.verrou = await navigator.wakeLock.request("screen");
+        this.verrou.addEventListener("release", () => { this.verrou = null; });
+      }
+    } catch {}
+  },
+
+  libererEcran() {
+    try { this.verrou?.release(); } catch {}
+    this.verrou = null;
+  },
+
+  rafraichir() {
+    const morceau = this.file[this.index];
+    if (!morceau) return;
+    $("#lect-titre").textContent = morceau.titre;
+    $("#lect-position").textContent =
+      `${Math.round((this.index / this.file.length) * 100)} % · ${this.vitesse}×`;
+    $("#lect-vitesse").textContent = `${this.vitesse}×`;
+    $("#lect-progres").style.width = `${(this.index / this.file.length) * 100}%`;
+    $("#lect-icone").setAttribute("d", this.enPause
+      ? "M8 5v14l11-7z"
+      : "M6 5h4v14H6zm8 0h4v14h-4z");
+
+    // Suivi visuel : l'article en cours de lecture est mis en évidence.
+    $$(".article.ecoute").forEach(el => el.classList.remove("ecoute"));
+    if (morceau.article) {
+      const el = document.getElementById("article-" + morceau.article);
+      if (el) {
+        el.classList.add("ecoute");
+        const boite = el.getBoundingClientRect();
+        if (boite.top < 60 || boite.top > innerHeight * 0.6) {
+          el.scrollIntoView({ behavior: "smooth", block: "start" });
+        }
+      }
+    }
   },
 };
 
@@ -1865,6 +2236,18 @@ async function demarrer() {
     if (!e.target.closest("#menu-compte") && !e.target.closest("#btn-compte"))
       $("#menu-compte").hidden = true;
   });
+
+  // Lecteur audio
+  $("#lect-play").onclick = () => LECTEUR.basculer();
+  $("#lect-prec").onclick = () => LECTEUR.sauter(-1);
+  $("#lect-suiv").onclick = () => LECTEUR.sauter(1);
+  $("#lect-vitesse").onclick = () => LECTEUR.changerVitesse();
+  $("#lect-fermer").onclick = () => LECTEUR.arreter();
+  // Le verrou d'écran est perdu quand l'onglet passe en arrière-plan.
+  document.addEventListener("visibilitychange", () => {
+    if (!document.hidden && LECTEUR.actif && !LECTEUR.enPause) LECTEUR.verrouillerEcran();
+  });
+  addEventListener("beforeunload", () => LECTEUR.arreter(false));
 
   window.addEventListener("hashchange", router);
   window.addEventListener("scroll", () => {

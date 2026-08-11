@@ -77,7 +77,14 @@ async function router(requete, env, url) {
   }
 
   if (chemin === "/reglages" && methode === "GET") return reglages(env);
+  if (chemin === "/vapid" && methode === "GET") {
+    return json({ cle: env.VAPID_PUBLIC || null });
+  }
   if (chemin === "/connexion" && methode === "POST") return connexion(requete, env);
+
+  // Diffusion : appelée par le workflow de publication, jamais par un lecteur.
+  // Elle s'authentifie par un secret partagé plutôt que par une session.
+  if (chemin === "/diffuser" && methode === "POST") return diffuser(requete, env);
 
   // — Routes authentifiées ————————————————————————————————————————
   const session = await verifierSession(requete, env);
@@ -423,7 +430,7 @@ async function journal(requete, env, session) {
 }
 
 async function abonnement(requete, env, session) {
-  const { appareil = "", active = true, description = "" } =
+  const { appareil = "", active = true, description = "", souscription = null } =
     await requete.json().catch(() => ({}));
   if (!appareil) throw erreur("Identifiant d'appareil manquant", 400);
 
@@ -434,6 +441,14 @@ async function abonnement(requete, env, session) {
     "Active": !!active,
     "Créé le": new Date().toISOString(),
   };
+
+  // La souscription PushManager : c'est elle qui permet d'atteindre l'appareil
+  // application fermée. Sans elle, l'enregistrement ne sert qu'au décompte.
+  if (souscription?.endpoint) {
+    champs["Endpoint"] = souscription.endpoint;
+    champs["Clé p256dh"] = souscription.keys?.p256dh || "";
+    champs["Clé auth"] = souscription.keys?.auth || "";
+  }
   const existants = await tout(env, "push", {
     filterByFormula: `{Identifiant} = '${echapper(appareil)}'`, maxRecords: 1,
   });
@@ -463,6 +478,194 @@ async function tracer(env, clientId, jeton, type, detail, appareil, nom = "") {
   return airtable(env, "journal", {}, {
     method: "POST", body: { records: [{ fields: champs }], typecast: true },
   }).catch(() => {});   // le journal ne doit jamais empêcher la lecture
+}
+
+// ───────────────────────────────────────────────────────────────────────────
+// Diffusion push
+//
+// Deux normes se combinent ici :
+//   RFC 8291 — chiffrement du contenu, pour que le service de push (Google,
+//              Mozilla, Apple) relaie sans jamais pouvoir lire la notification
+//   RFC 8292 — signature VAPID, qui prouve au service que l'envoi vient bien
+//              du serveur déclaré lors de l'abonnement
+//
+// Rien de tout cela n'est optionnel : un envoi non chiffré ou non signé est
+// rejeté par tous les services de push.
+// ───────────────────────────────────────────────────────────────────────────
+
+const octets = s => new TextEncoder().encode(s);
+
+function coller(...morceaux) {
+  const total = morceaux.reduce((n, m) => n + m.byteLength, 0);
+  const sortie = new Uint8Array(total);
+  let i = 0;
+  for (const m of morceaux) { sortie.set(new Uint8Array(m), i); i += m.byteLength; }
+  return sortie;
+}
+
+async function hkdf(ikm, sel, info, longueur) {
+  const cle = await crypto.subtle.importKey("raw", ikm, "HKDF", false, ["deriveBits"]);
+  return new Uint8Array(await crypto.subtle.deriveBits(
+    { name: "HKDF", hash: "SHA-256", salt: sel, info }, cle, longueur * 8));
+}
+
+/** Chiffre le contenu pour un abonné donné, au format aes128gcm. */
+async function chiffrer(p256dh, auth, message) {
+  const clePubliqueNavigateur = deB64url(p256dh);
+  const secretAuth = deB64url(auth);
+
+  // Paire éphémère : une nouvelle à chaque notification.
+  const paire = await crypto.subtle.generateKey(
+    { name: "ECDH", namedCurve: "P-256" }, true, ["deriveBits"]);
+  const clePubliqueServeur = new Uint8Array(
+    await crypto.subtle.exportKey("raw", paire.publicKey));
+
+  const cleNavigateur = await crypto.subtle.importKey(
+    "raw", clePubliqueNavigateur, { name: "ECDH", namedCurve: "P-256" }, false, []);
+  const partage = new Uint8Array(await crypto.subtle.deriveBits(
+    { name: "ECDH", public: cleNavigateur }, paire.privateKey, 256));
+
+  const sel = crypto.getRandomValues(new Uint8Array(16));
+
+  const infoCle = coller(octets("WebPush: info\0"),
+                         clePubliqueNavigateur, clePubliqueServeur);
+  const ikm = await hkdf(partage, secretAuth, infoCle, 32);
+
+  const cleContenu = await hkdf(ikm, sel, octets("Content-Encoding: aes128gcm\0"), 16);
+  const nonce = await hkdf(ikm, sel, octets("Content-Encoding: nonce\0"), 12);
+
+  const cleAes = await crypto.subtle.importKey("raw", cleContenu, "AES-GCM", false, ["encrypt"]);
+  // 0x02 marque la fin du contenu : c'est le délimiteur de remplissage.
+  const clair = coller(octets(message), new Uint8Array([0x02]));
+  const chiffre = new Uint8Array(await crypto.subtle.encrypt(
+    { name: "AES-GCM", iv: nonce, tagLength: 128 }, cleAes, clair));
+
+  const entete = new Uint8Array(5);
+  new DataView(entete.buffer).setUint32(0, 4096);   // taille d'enregistrement
+  entete[4] = clePubliqueServeur.length;            // 65
+  return coller(sel, entete, clePubliqueServeur, chiffre);
+}
+
+/** Jeton signé prouvant l'identité du serveur émetteur. */
+async function jetonVapid(env, audience) {
+  const { kty, crv, x, y, d } = JSON.parse(env.VAPID_JWK);
+  const cle = await crypto.subtle.importKey(
+    "jwk", { kty, crv, x, y, d, ext: true, key_ops: ["sign"] },
+    { name: "ECDSA", namedCurve: "P-256" }, false, ["sign"]);
+
+  const entete = b64url(octets(JSON.stringify({ typ: "JWT", alg: "ES256" })));
+  const charge = b64url(octets(JSON.stringify({
+    aud: audience,
+    exp: Math.floor(Date.now() / 1000) + 12 * 3600,
+    sub: env.CONTACT || "mailto:contact@brief.local",
+  })));
+  const signature = await crypto.subtle.sign(
+    { name: "ECDSA", hash: "SHA-256" }, cle, octets(`${entete}.${charge}`));
+  return `${entete}.${charge}.${b64url(signature)}`;
+}
+
+async function envoyerPush(env, abonne, contenu) {
+  const corps = await chiffrer(abonne.p256dh, abonne.auth, JSON.stringify(contenu));
+  const jwt = await jetonVapid(env, new URL(abonne.endpoint).origin);
+
+  return fetch(abonne.endpoint, {
+    method: "POST",
+    headers: {
+      "Authorization": `vapid t=${jwt}, k=${env.VAPID_PUBLIC}`,
+      "Content-Encoding": "aes128gcm",
+      "Content-Type": "application/octet-stream",
+      "TTL": "86400",
+      "Urgency": "normal",
+    },
+    body: corps,
+  });
+}
+
+/** Met à jour des enregistrements par lots de 10, la limite de l'API. */
+async function majLot(env, table, lignes) {
+  for (let i = 0; i < lignes.length; i += 10) {
+    await airtable(env, table, {}, {
+      method: "PATCH",
+      body: { records: lignes.slice(i, i + 10), typecast: true },
+    }).catch(() => {});
+  }
+}
+
+async function diffuser(requete, env) {
+  if (!env.DIFFUSION_SECRET ||
+      requete.headers.get("X-Diffusion") !== env.DIFFUSION_SECRET) {
+    throw erreur("Diffusion non autorisée", 401);
+  }
+  if (!env.VAPID_JWK || !env.VAPID_PUBLIC) {
+    throw erreur("Clés VAPID non configurées : VAPID_JWK et VAPID_PUBLIC.", 500);
+  }
+
+  const demande = await requete.json().catch(() => ({}));
+
+  const trouvees = await tout(env, "editions", demande.slug
+    ? { filterByFormula: `{Slug} = '${echapper(demande.slug)}'`, maxRecords: 1 }
+    : { filterByFormula: "{Statut} = 'Publiée'", maxRecords: 1,
+        "sort[0][field]": "Date", "sort[0][direction]": "desc" });
+  if (!trouvees.length) throw erreur("Aucune édition à annoncer", 404);
+
+  const ed = trouvees[0].fields;
+  if (ed["Notification envoyée"] && !demande.forcer) {
+    return json({ ignore: "notification déjà envoyée pour cette édition",
+                  edition: ed["Slug"] });
+  }
+
+  const reglagesLus = Object.fromEntries((await tout(env, "reglages"))
+    .filter(r => r.fields["Clé"])
+    .map(r => [r.fields["Clé"], (r.fields["Valeur"] || "").trim()]));
+
+  const contenu = {
+    titre: demande.titre || reglagesLus.notification_titre
+           || "Votre brief du soir est arrivé",
+    corps: demande.corps || ed["Résumé"] || ed["Titre"] || "",
+    slug: ed["Slug"] || ed["Date"],
+  };
+
+  const abonnes = (await tout(env, "push", { filterByFormula: "{Active}" }))
+    .filter(r => r.fields["Endpoint"] && r.fields["Clé p256dh"] && r.fields["Clé auth"]);
+
+  let envoyes = 0, expires = 0, echecs = 0;
+  const perimes = [], servis = [];
+
+  for (const a of abonnes) {
+    try {
+      const r = await envoyerPush(env, {
+        endpoint: a.fields["Endpoint"],
+        p256dh: a.fields["Clé p256dh"],
+        auth: a.fields["Clé auth"],
+      }, contenu);
+
+      if (r.status === 404 || r.status === 410) {
+        // Le navigateur a révoqué l'abonnement : inutile de le réessayer.
+        expires++;
+        perimes.push({ id: a.id, fields: { "Active": false } });
+      } else if (r.ok) {
+        envoyes++;
+        servis.push({ id: a.id,
+                      fields: { "Dernière notification": new Date().toISOString() } });
+      } else {
+        echecs++;
+      }
+    } catch { echecs++; }
+  }
+
+  if (perimes.length) await majLot(env, "push", perimes);
+  if (servis.length) await majLot(env, "push", servis);
+
+  if (envoyes) {
+    await majLot(env, "editions",
+                 [{ id: trouvees[0].id, fields: { "Notification envoyée": true } }]);
+  }
+
+  return json({
+    edition: contenu.slug,
+    destinataires: abonnes.length,
+    envoyes, expires, echecs,
+  });
 }
 
 // ───────────────────────────────────────────────────────────────────────────

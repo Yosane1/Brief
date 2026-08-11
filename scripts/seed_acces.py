@@ -119,6 +119,8 @@ REGLAGES = [
     ("portail_label_identifiant", "Identifiant", "Libellé du premier champ"),
     ("portail_label_jeton", "Mot de passe", "Libellé du second champ"),
     ("portail_bouton", "Accéder au brief", "Libellé du bouton de connexion"),
+    ("bouton_ecouter", "Écouter le brief",
+     "Libellé du bouton de lecture audio, sous l'édito"),
 
     # — Divers ——————————————————————————————————————————————————
     ("heure_publication", "18:30",

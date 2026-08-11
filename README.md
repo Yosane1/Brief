@@ -247,31 +247,62 @@ pas de brief du tout.
 
 ### Les notifications
 
-L'application compare, toutes les dix minutes et à chaque retour sur l'onglet,
-la dernière édition publiée à la dernière vue par le lecteur. Quand un nouveau
-brief paraît, elle affiche une notification système et un bandeau cliquable.
-L'activation se fait dans le menu de compte, « Alerte nouveau brief ».
+Le brief est annoncé par une vraie notification *push* : elle arrive même
+application fermée, téléphone en veille. Le lecteur l'active dans le menu de
+compte, « Alerte nouveau brief ».
 
-Les notifications passent obligatoirement par
+L'enchaînement, chaque soir :
+
+1. `publication.yml` publie l'édition dans Airtable
+2. le même workflow appelle `POST /diffuser` sur la passerelle
+3. le Worker chiffre puis signe une notification par abonné, et la remet au
+   service de push du navigateur — Google pour Chrome, Mozilla pour Firefox
+4. le service de push réveille `sw.js` sur l'appareil, qui affiche l'alerte
+
+La passerelle n'annonce jamais deux fois la même édition : relancer le workflow
+est sans conséquence. Les abonnements révoqués côté navigateur (réponse 404 ou
+410) sont automatiquement décochés dans la table **Abonnements push**.
+
+Deux normes se combinent dans `worker/brief-worker.js`, et aucune n'est
+optionnelle : **RFC 8291** chiffre le contenu, pour que le service de push
+relaie sans jamais pouvoir lire la notification ; **RFC 8292** signe l'envoi,
+pour prouver qu'il vient bien du serveur déclaré lors de l'abonnement.
+
+L'affichage passe obligatoirement par
 `ServiceWorkerRegistration.showNotification()` : **Chrome Android refuse
 `new Notification()`**, il lève une exception et n'affiche rien. C'est la cause
 la plus fréquente de « les notifications ne marchent pas sur Android ».
 
-**Deux conditions à respecter :**
+**Une condition demeure :** service worker, installation et notifications
+exigent une origine sécurisée — HTTPS, ou `localhost` en développement. En
+`file://` ou en HTTP simple, l'application fonctionne mais ne notifie pas, et
+le navigateur n'affiche aucune erreur pour le signaler.
 
-1. **Une origine sécurisée.** Service worker, installation et notifications
-   exigent HTTPS — ou `localhost` en développement. Ouverte en `file://` ou
-   servie en HTTP simple sur le réseau local, l'application fonctionne mais
-   n'est ni installable ni capable de notifier. C'est silencieux : le navigateur
-   n'affiche aucune erreur.
-2. **L'application doit avoir été ouverte au moins une fois** depuis la
-   parution. La vérification est faite par le client, pas par un serveur.
+### La version audio
 
-Une vraie notification *push*, reçue application fermée, suppose un serveur qui
-signe ses envois avec des clés VAPID. Les appareils sont déjà collectés dans la
-table **Abonnements push** en prévision, et `sw.js` contient déjà le gestionnaire
-d'événement `push` : le jour où ce serveur existera, la page n'aura pas à
-changer. Cela ira naturellement avec la migration Firebase décrite plus bas.
+Un bouton « Écouter le brief » sous l'édito lance la lecture à voix haute par
+la synthèse vocale du navigateur. Un lecteur flottant permet de mettre en
+pause, de sauter d'un article à l'autre et de régler la vitesse ; l'article en
+cours est mis en évidence et suit le défilement.
+
+Deux particularités de Chrome dictent la forme du code dans `LECTEUR` :
+
+- Il **interrompt un énoncé qui dépasse une quinzaine de secondes**. Le texte
+  est donc découpé en fragments de 200 caractères au plus, de préférence sur
+  une ponctuation faible, à défaut entre deux mots — une phrase peut être
+  longue sans contenir la moindre virgule.
+- Il **suspend la synthèse au bout d'un moment**, sans raison apparente. Un
+  appel périodique à `resume()` la relance ; c'est le contournement admis.
+
+**La limite qu'aucun contournement ne lève : la lecture s'arrête quand l'écran
+se verrouille.** L'application demande un verrou d'écran (`wakeLock`) pendant
+la lecture, ce qui suffit pour un téléphone posé sur un support de voiture,
+au prix de la batterie. Une écoute écran éteint supposerait de vrais fichiers
+audio, générés chaque soir par un service de synthèse — donc payants.
+
+La qualité de la voix dépend entièrement de l'appareil. L'application
+privilégie les voix françaises distantes de Google, nettement plus naturelles
+que les voix embarquées.
 
 ---
 
@@ -342,8 +373,26 @@ régénéré sur [airtable.com/create/tokens](https://airtable.com/create/tokens
    |---|---|---|
    | Secret | `AIRTABLE_TOKEN` | le jeton Airtable |
    | Secret | `SESSION_SECRET` | une longue chaîne aléatoire, au choix |
+   | Secret | `VAPID_JWK` | la clé privée, produite par `generer_vapid.py` |
+   | Secret | `DIFFUSION_SECRET` | une chaîne aléatoire, partagée avec GitHub |
+   | Text | `VAPID_PUBLIC` | la clé publique, produite par `generer_vapid.py` |
    | Text | `BASE_ID` | `appzxFhyARS0LjDFc` |
    | Text | `ORIGINES` | `https://filedn.com` |
+
+   Les clés VAPID se génèrent une fois pour toutes :
+
+   ```bash
+   python scripts/generer_vapid.py
+   ```
+
+   **Elles ne se régénèrent pas à la légère** : changer de clé publique
+   invalide tous les abonnements déjà enregistrés, et chaque lecteur devrait
+   réactiver les notifications.
+
+   `DIFFUSION_SECRET` doit aussi être déclaré côté GitHub — *Settings →
+   Secrets and variables → Actions* — sous le même nom : c'est lui qui autorise
+   le workflow de publication à déclencher l'envoi. Sans lui, la publication se
+   fait normalement mais aucune notification ne part, et le workflow le signale.
 
    `ORIGINES` liste les sites autorisés à appeler la passerelle, séparés par des
    virgules. En ajoutant `http://localhost:8765`, le développement local
