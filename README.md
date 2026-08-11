@@ -25,16 +25,20 @@ python -m http.server 8765
 Puis <http://localhost:8765>. (L'ouvrir directement en `file://` fonctionne
 aussi, mais un serveur local évite les surprises de cache.)
 
-### Jetons de test
+### Se connecter
 
-| Jeton | Cas couvert |
-|---|---|
-| `BRIEF-DEMO-2026` | Accès valide, utilisateurs illimités, rôle Admin |
-| `BRIEF-EDU-9K4T` | Abonnement qui ne démarre que le 1ᵉʳ septembre 2026 |
-| `BRIEF-EXPIRE-1` | Abonnement expiré le 30 juin 2026 |
-| `BRIEF-OFF-1` | Dates valides mais case « Actif » décochée |
+La connexion demande **un identifiant et un mot de passe**. L'identifiant est
+l'adresse e-mail du client, ou le champ `Identifiant` de la table Clients s'il
+est renseigné — ce qui permet un login qui ne soit pas une adresse. Le mot de
+passe est le champ `Jeton`.
 
-Chaque jeton produit un message d'erreur différent et explicite.
+Les comptes de test livrés avec le projet utilisent des adresses en
+`@exemple.fr` et couvrent les quatre refus possibles : abonnement pas encore
+commencé, expiré, désactivé, et couple invalide.
+
+Un couple faux renvoie toujours le même message, quelle que soit la partie
+erronée : distinguer « identifiant inconnu » de « mot de passe incorrect »
+permettrait de découvrir quels comptes existent.
 
 ---
 
@@ -74,6 +78,8 @@ s'applique au rechargement suivant, sans déploiement.
 |---|---|
 | `app_nom`, `app_point` | Le logo de l'en-tête. Le second est le signe coloré accolé au nom |
 | `app_baseline` | L'accroche de l'écran de connexion |
+| `app_description` | La description de l'application installée |
+| `portail_label_identifiant`, `portail_label_jeton` | Les libellés des deux champs de connexion |
 | `couleur_accent` | Couleur principale : logo, boutons, liens, rubrique « On rembobine » |
 | `couleur_accent_weekend` | Couleur des éditions « Extra du samedi » |
 | `theme_defaut` | `clair`, `sombre` ou `auto` au premier lancement |
@@ -88,6 +94,30 @@ s'applique au rechargement suivant, sans déploiement.
 nécessaire : créez la clé dans Airtable, et posez `data-reglage="votre_cle"` sur
 l'élément HTML concerné. Son contenu sera remplacé au chargement.
 
+### Trois réglages qui ne s'appliquent pas tout seuls
+
+`app_nom`, `app_description` et `couleur_accent` pilotent aussi **l'identité de
+l'application installée** : son nom sous l'icône, sa description dans le
+sélecteur d'applications, la couleur de son écran de démarrage. Ces
+informations-là ne sont pas lues par la page mais par le système
+d'exploitation, dans `manifest.webmanifest`, **avant** que le moindre
+JavaScript ne s'exécute. Aucun code de la page ne peut les changer après coup.
+
+Il faut donc régénérer le fichier :
+
+```bash
+python scripts/generer_manifeste.py
+```
+
+Le script relit les réglages, réécrit `manifest.webmanifest`, redessine les
+icônes à la couleur d'accent et met à jour le titre et la description dans
+`index.html`. Re-téléversez ensuite ces trois éléments.
+
+**Sur un téléphone où l'application est déjà installée, il faut la désinstaller
+puis la réinstaller** : le système ne relit le manifeste qu'à l'installation.
+C'est la raison pour laquelle un changement de nom semble « ne pas être pris en
+compte sur mobile » alors qu'il l'est parfaitement dans le navigateur.
+
 ---
 
 ## Comment fonctionne l'accès
@@ -98,7 +128,8 @@ attendre d'expiration de session.
 
 Les contrôles, dans l'ordre :
 
-1. Le jeton existe-t-il ? (comparaison insensible à la casse et aux espaces)
+1. Le couple identifiant / mot de passe correspond-il à une ligne de la table
+   Clients ? (comparaison insensible à la casse et aux espaces)
 2. La case **Actif** est-elle cochée ? — c'est le coupe-circuit immédiat
 3. La **date de début** est-elle passée ?
 4. La **date de fin** est-elle à venir ?
@@ -106,9 +137,14 @@ Les contrôles, dans l'ordre :
    nombre d'appareils distincts déjà connectés avec ce jeton est compté dans le
    Journal, et l'accès est refusé au-delà de *N*.
 
-Pour accorder un accès : ajouter une ligne dans **Clients**, remplir `Jeton`,
-`Date début`, `Date fin`, cocher `Actif`. Pour le révoquer : décocher `Actif`,
-ou avancer la date de fin.
+Pour accorder un accès : ajouter une ligne dans **Clients**, remplir `Email`
+(ou `Identifiant`), `Jeton`, `Date début`, `Date fin`, et cocher `Actif`. Pour
+le révoquer : décocher `Actif`, ou avancer la date de fin.
+
+`scripts/seed_acces.py` n'ajoute que ce qui manque et ne réécrit jamais une
+ligne existante : le relancer ne réactivera pas un abonnement suspendu, ni ne
+remettra une couleur choisie à sa valeur d'usine. `--ecraser` force la
+réinitialisation, quand c'est vraiment ce que l'on veut.
 
 ---
 

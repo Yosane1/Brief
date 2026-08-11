@@ -209,20 +209,31 @@ async function verifierSession(requete, env) {
 // ───────────────────────────────────────────────────────────────────────────
 
 async function connexion(requete, env) {
-  const { jeton = "", appareil = "" } = await requete.json().catch(() => ({}));
+  const { identifiant = "", jeton = "", appareil = "" } =
+    await requete.json().catch(() => ({}));
+  const login = String(identifiant).trim().toLowerCase();
   const propre = String(jeton).trim().toUpperCase();
-  if (!propre) throw erreur("Saisissez un jeton d'accès.", 400);
 
+  if (!login) throw erreur("Saisissez votre identifiant.", 400);
+  if (!propre) throw erreur("Saisissez votre mot de passe.", 400);
+
+  // L'identifiant est l'adresse e-mail, ou le champ Identifiant s'il est
+  // renseigné — ce qui permet un login qui ne soit pas une adresse.
   const trouves = await tout(env, "clients", {
-    filterByFormula: `UPPER(TRIM({Jeton})) = '${echapper(propre)}'`,
+    filterByFormula: `AND(
+      UPPER(TRIM({Jeton})) = '${echapper(propre)}',
+      OR(
+        LOWER(TRIM({Email})) = '${echapper(login)}',
+        LOWER(TRIM({Identifiant})) = '${echapper(login)}'
+      ))`.replace(/\s+/g, " "),
     maxRecords: 1,
   });
 
-  // Message volontairement identique à celui d'un jeton inexistant : inutile
-  // de confirmer à un inconnu qu'un jeton donné existe.
+  // Message unique, quelle que soit la partie fausse : distinguer « identifiant
+  // inconnu » de « mot de passe incorrect » révélerait quels comptes existent.
   if (!trouves.length) {
-    await tracer(env, null, propre, "Échec connexion", "Jeton inconnu", appareil);
-    throw erreur("Ce jeton n'existe pas. Vérifiez la saisie.", 403);
+    await tracer(env, null, login, "Échec connexion", "Couple invalide", appareil);
+    throw erreur("Identifiant ou mot de passe incorrect.", 403);
   }
 
   const f = trouves[0].fields;
@@ -236,8 +247,9 @@ async function connexion(requete, env) {
       ? `Cet abonnement a expiré le ${enFrancais(f["Date fin"])}. Renouvelez-le pour retrouver l'accès.`
     : null;
 
+  // Le journal enregistre l'identifiant, jamais le mot de passe.
   if (refus) {
-    await tracer(env, trouves[0].id, propre, "Échec connexion", refus, appareil);
+    await tracer(env, trouves[0].id, login, "Échec connexion", refus, appareil);
     throw erreur(refus, 403);
   }
 
@@ -245,13 +257,13 @@ async function connexion(requete, env) {
   const places = f["Places"] || 0;
   if (!f["Utilisateurs illimités"] && places > 0 && appareil) {
     const passages = await tout(env, "journal", {
-      filterByFormula: `AND({Jeton saisi} = '${echapper(propre)}', {Type} = 'Connexion')`,
+      filterByFormula: `AND({Jeton saisi} = '${echapper(login)}', {Type} = 'Connexion')`,
       "fields[]": ["Appareil"],
     });
     const connus = new Set(passages.map(r => r.fields["Appareil"]).filter(Boolean));
     if (!connus.has(appareil) && connus.size >= places) {
       const motif = `Cet abonnement autorise ${places} appareil(s) et la limite est atteinte.`;
-      await tracer(env, trouves[0].id, propre, "Échec connexion", motif, appareil);
+      await tracer(env, trouves[0].id, login, "Échec connexion", motif, appareil);
       throw erreur(motif, 403);
     }
   }
@@ -283,7 +295,7 @@ async function connexion(requete, env) {
     }}], typecast: true },
   }).catch(() => {});
 
-  await tracer(env, trouves[0].id, propre, "Connexion", appareil, appareil);
+  await tracer(env, trouves[0].id, login, "Connexion", appareil, appareil);
 
   return json({ session, profil, expire: maintenant + DUREE_SESSION });
 }

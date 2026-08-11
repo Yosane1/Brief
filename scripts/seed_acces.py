@@ -83,6 +83,9 @@ REGLAGES = [
      "Signe coloré accolé au nom. Un point « . » pour un logo sobre, vide pour rien"),
     ("app_baseline", "L'essentiel de l'actualité, chaque soir.",
      "Accroche de l'écran de connexion"),
+    ("app_description",
+     "Le brief quotidien : l'actualité résumée, contextualisée et expliquée en moins de sept minutes.",
+     "Description de l'application installée. Nécessite generer_manifeste.py"),
 
     # — Couleurs ————————————————————————————————————————————————
     ("couleur_accent", "#ff4a59",
@@ -111,8 +114,10 @@ REGLAGES = [
 
     # — Écran de connexion ——————————————————————————————————————
     ("portail_intro",
-     "Cette édition est réservée aux abonnés. Saisissez le jeton d'accès qui vous a été communiqué.",
+     "Cette édition est réservée aux abonnés. Identifiez-vous avec l'adresse et le mot de passe qui vous ont été communiqués.",
      "Paragraphe d'explication sur l'écran de connexion"),
+    ("portail_label_identifiant", "Identifiant", "Libellé du premier champ"),
+    ("portail_label_jeton", "Mot de passe", "Libellé du second champ"),
     ("portail_bouton", "Accéder au brief", "Libellé du bouton de connexion"),
 
     # — Divers ——————————————————————————————————————————————————
@@ -128,31 +133,43 @@ REGLAGES = [
 ]
 
 
-def upsert(table, cle, lignes):
-    """Insère ou met à jour selon la valeur du champ `cle`."""
+def semer(table, cle, lignes, ecraser=False):
+    """
+    N'ajoute que ce qui manque.
+
+    Ces deux tables sont éditées à la main : la table Réglages porte les
+    personnalisations d'apparence, la table Clients l'état réel des accès.
+    Réécrire une ligne existante remettrait une couleur choisie à sa valeur
+    d'usine, ou réactiverait un abonnement volontairement suspendu. Relancer ce
+    script doit rester sans effet de bord.
+    """
     existants = {
         r["fields"].get(cle): r["id"]
         for r in select(table, fields=[cle])
         if r["fields"].get(cle)
     }
     a_creer = [l for l in lignes if l[cle] not in existants]
-    a_majer = [
-        {"id": existants[l[cle]], "fields": l} for l in lignes if l[cle] in existants
-    ]
+    ignores = len(lignes) - len(a_creer)
     if a_creer:
         create(table, a_creer)
-    if a_majer:
-        update(table, a_majer)
-    return len(a_creer), len(a_majer)
+    if ecraser:
+        update(table, [{"id": existants[l[cle]], "fields": l}
+                       for l in lignes if l[cle] in existants])
+    return len(a_creer), ignores
 
 
 if __name__ == "__main__":
-    c, m = upsert("clients", "Jeton", CLIENTS)
-    print(f"Clients : {c} créé(s), {m} mis à jour")
+    import sys
+    ecraser = "--ecraser" in sys.argv
+    if ecraser:
+        print("⚠ Mode --ecraser : les valeurs existantes seront réinitialisées.\n")
+
+    c, i = semer("clients", "Jeton", CLIENTS, ecraser)
+    print(f"Clients  : {c} créé(s), {i} déjà présent(s){'' if ecraser else ' et laissé(s) intact(s)'}")
 
     lignes = [{"Clé": k, "Valeur": v, "Description": d} for k, v, d in REGLAGES]
-    c, m = upsert("reglages", "Clé", lignes)
-    print(f"Réglages : {c} créé(s), {m} mis à jour")
+    c, i = semer("reglages", "Clé", lignes, ecraser)
+    print(f"Réglages : {c} créé(s), {i} déjà présent(s){'' if ecraser else ' et laissé(s) intact(s)'}")
 
     print("\nJetons de test :")
     for cl in CLIENTS:

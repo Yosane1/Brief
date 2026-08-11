@@ -235,6 +235,7 @@ def tables_spec(existing):
         "fields": [
             text("Nom"),
             email("Email"),
+            text("Identifiant"),   # login alternatif ; l'e-mail fait foi s'il est vide
             text("Jeton"),
             date("Date début"),
             date("Date fin"),

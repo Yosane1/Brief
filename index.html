@@ -3,9 +3,9 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="description" content="L'essentiel de l'actualité, chaque soir.">
+<meta name="description" content="Le brief quotidien : l'actualité résumée, contextualisée et expliquée en moins de sept minutes.">
 <meta name="theme-color" content="#ffffff">
-<title>Brief — L'essentiel de l'actualité</title>
+<title>Actus• — L'essentiel de l'actualité, chaque soir.</title>
 
 <!-- Installation en application autonome (Android, iOS, bureau) -->
 <link rel="manifest" href="manifest.webmanifest">
@@ -13,7 +13,7 @@
 <link rel="apple-touch-icon" href="icones/apple-touch-icon.png">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="default">
-<meta name="apple-mobile-web-app-title" content="Brief">
+<meta name="apple-mobile-web-app-title" content="Actus">
 <meta name="mobile-web-app-capable" content="yes">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -451,11 +451,17 @@ mark{background:color-mix(in srgb, var(--accent) 22%, transparent); color:inheri
     <h1 data-reglage="app_baseline">L'essentiel de l'actualité, chaque soir.</h1>
     <p class="intro" data-reglage="portail_intro">Cette édition est réservée aux abonnés. Saisissez le jeton d'accès qui vous a été communiqué.</p>
     <div id="portail-erreur"></div>
-    <form id="form-acces" autocomplete="off">
+    <form id="form-acces">
       <label class="champ">
-        <span>Jeton d'accès</span>
-        <input type="text" id="saisie-jeton" placeholder="BRIEF-XXXX-XXXX" required
-               spellcheck="false" autocapitalize="characters" autocomplete="one-time-code">
+        <span data-reglage="portail_label_identifiant">Identifiant</span>
+        <input type="text" id="saisie-identifiant" placeholder="votre@adresse.fr" required
+               spellcheck="false" autocapitalize="none" autocorrect="off"
+               inputmode="email" autocomplete="username">
+      </label>
+      <label class="champ">
+        <span data-reglage="portail_label_jeton">Mot de passe</span>
+        <input type="password" id="saisie-jeton" required
+               spellcheck="false" autocapitalize="none" autocomplete="current-password">
       </label>
       <button class="bouton accent" id="btn-acces" type="submit" data-reglage="portail_bouton">Accéder au brief</button>
     </form>
@@ -658,7 +664,7 @@ const API = {
       return await this.appel(chemin, options);
     } catch (e) {
       if (!e.session || !SESSION.jeton) throw e;
-      await this.connexion(SESSION.jeton);
+      await this.connexion(SESSION.identifiant, SESSION.jeton);
       return this.appel(chemin, options);
     }
   },
@@ -676,16 +682,16 @@ const API = {
    * Valide un jeton. Renvoie le profil du client, ou lève une erreur dont le
    * message est directement affichable au lecteur.
    */
-  async connexion(jeton) {
+  async connexion(identifiant, jeton) {
     if (this.passerelle) {
       const r = await this.appel("/connexion", {
-        methode: "POST", corps: { jeton, appareil: SESSION.appareil },
+        methode: "POST", corps: { identifiant, jeton, appareil: SESSION.appareil },
       });
       this.session = r.session;
       LOCAL.ecrire("passerelle", { session: r.session, expire: r.expire });
       return r.profil;
     }
-    return connexionDirecte(jeton);
+    return connexionDirecte(identifiant, jeton);
   },
 
   // — Contenus ————————————————————————————————————————————————————
@@ -857,6 +863,7 @@ function markdown(src) {
    Session et contrôle d'accès
    ══════════════════════════════════════════════════════════════════════════ */
 const SESSION = {
+  identifiant: null,
   jeton: null,
   client: null,
   appareil: LOCAL.lire("appareil") || (() => {
@@ -871,12 +878,11 @@ const reglage = (cle, defaut = "") => (REGLAGES[cle] ?? "").trim() || defaut;
 
 async function chargerReglages() {
   try {
-    const recs = await airtableTout("reglages");
-    REGLAGES = Object.fromEntries(
-      recs.filter(r => r.fields["Clé"])
-          .map(r => [r.fields["Clé"], (r.fields["Valeur"] ?? "").trim()])
-    );
-  } catch { REGLAGES = {}; }
+    REGLAGES = await API.reglages();
+  } catch (e) {
+    console.warn("Réglages indisponibles, valeurs par défaut :", e.message);
+    REGLAGES = {};
+  }
   appliquerReglages();
 }
 
@@ -905,15 +911,15 @@ function appliquerReglages() {
 }
 
 /**
- * Vérifie un jeton d'accès.
+ * Vérifie un couple identifiant / mot de passe.
  * Retourne {ok:true, client} ou {ok:false, motif} — le motif étant directement
  * affichable au lecteur.
  */
-async function verifierJeton(jeton) {
-  const propre = jeton.trim().toUpperCase();
-  if (!propre) return { ok: false, motif: "Saisissez un jeton d'accès." };
+async function verifierAcces(identifiant, jeton) {
+  if (!identifiant.trim()) return { ok: false, motif: "Saisissez votre identifiant." };
+  if (!jeton.trim()) return { ok: false, motif: "Saisissez votre mot de passe." };
   try {
-    return { ok: true, client: await API.connexion(propre) };
+    return { ok: true, client: await API.connexion(identifiant.trim(), jeton.trim()) };
   } catch (e) {
     return { ok: false, motif: e.message };
   }
@@ -924,17 +930,24 @@ async function verifierJeton(jeton) {
  * Mode de développement : les mêmes règles sont appliquées côté serveur par le
  * Worker dès que `CONF.api` est renseignée.
  */
-async function connexionDirecte(jetonPropre) {
+async function connexionDirecte(identifiant, jeton) {
+  const login = identifiant.trim().toLowerCase();
+  const jetonPropre = jeton.trim().toUpperCase();
   let recs;
   try {
     recs = await airtableTout("clients", {
-      filterByFormula: `UPPER(TRIM({Jeton})) = '${echappeFormule(jetonPropre)}'`,
+      filterByFormula: `AND(
+        UPPER(TRIM({Jeton})) = '${echappeFormule(jetonPropre)}',
+        OR(
+          LOWER(TRIM({Email})) = '${echappeFormule(login)}',
+          LOWER(TRIM({Identifiant})) = '${echappeFormule(login)}'
+        ))`.replace(/\s+/g, " "),
       maxRecords: 1,
     });
   } catch {
     throw new Error("Impossible de joindre le service d'authentification. Vérifiez votre connexion.");
   }
-  if (!recs.length) throw new Error("Ce jeton n'existe pas. Vérifiez la saisie.");
+  if (!recs.length) throw new Error("Identifiant ou mot de passe incorrect.");
 
   const f = recs[0].fields;
   const nom = f["Nom"] || "Abonné";
@@ -981,10 +994,11 @@ async function connexionDirecte(jetonPropre) {
   return client;
 }
 
-async function ouvrirSession(jeton, client) {
+async function ouvrirSession(identifiant, jeton, client) {
+  SESSION.identifiant = identifiant;
   SESSION.jeton = jeton;
   SESSION.client = client;
-  LOCAL.ecrire("session", { jeton, client, verifiee: Date.now() });
+  LOCAL.ecrire("session", { identifiant, jeton, client, verifiee: Date.now() });
 
   // En mode passerelle, le Worker a déjà daté la connexion et journalisé.
   if (API.passerelle) return;
@@ -1003,7 +1017,9 @@ async function ouvrirSession(jeton, client) {
 function fermerSession() {
   journaliser("Déconnexion");
   LOCAL.vider("session");
-  SESSION.jeton = SESSION.client = null;
+  LOCAL.vider("passerelle");
+  SESSION.identifiant = SESSION.jeton = SESSION.client = null;
+  API.session = null;
   location.hash = "";
   location.reload();
 }
@@ -1691,7 +1707,11 @@ function router() {
   // le double clic nécessaire sur ordinateur et l'absence d'effet sur mobile.
   if (location.hash && !location.hash.startsWith("#/")) return;
 
-  const brut = location.hash.replace(/^#\/?/, "");
+  // Une adresse profonde porte deux dièses : #/edition/2026-08-11#article-recXYZ.
+  // Découper sur « # » sépare la route de l'ancre — sans quoi l'ancre reste
+  // collée au slug, et l'édition demandée devient introuvable.
+  const morceaux = location.hash.split("#");
+  const brut = (morceaux[1] || "").replace(/^\//, "");
   const [chemin, requete] = brut.split("?");
   const params = new URLSearchParams(requete || "");
   const segments = chemin.split("/").filter(Boolean);
@@ -1737,6 +1757,13 @@ const SW = {
     try {
       const reg = await navigator.serviceWorker.register("sw.js", { scope: "./" });
       this.pret = true;
+
+      // Une application installée ne se recharge jamais d'elle-même : on
+      // vérifie la présence d'une nouvelle version à chaque retour au premier
+      // plan, sans quoi elle peut tourner indéfiniment sur du code périmé.
+      document.addEventListener("visibilitychange", () => {
+        if (!document.hidden) reg.update().catch(() => {});
+      });
       // Une version plus récente prend la main dès le rechargement suivant.
       reg.addEventListener("updatefound", () => {
         const nouveau = reg.installing;
@@ -1862,41 +1889,47 @@ async function demarrer() {
     const btn = $("#btn-acces");
     btn.disabled = true;
     btn.textContent = "Vérification…";
-    const saisi = $("#saisie-jeton").value.trim().toUpperCase();
-    const res = await verifierJeton(saisi);
+    const identifiant = $("#saisie-identifiant").value;
+    const motDePasse = $("#saisie-jeton").value;
+    const res = await verifierAcces(identifiant, motDePasse);
     btn.disabled = false;
     btn.textContent = reglage("portail_bouton", "Accéder au brief");
+
     if (!res.ok) {
       $("#portail-erreur").innerHTML = `<div class="alerte">${echappe(res.motif)}</div>`;
-      $("#saisie-jeton").select();
-      airtable("journal", {}, { method: "POST", body: { records: [{ fields: {
-        "Événement": "Échec de connexion",
-        "Type": "Échec connexion",
-        "Jeton saisi": saisi.slice(0, 60),
-        "Détail": res.motif.slice(0, 250),
-        "Horodatage": new Date().toISOString(),
-        "Appareil": SESSION.appareil,
-      }}], typecast: true } }).catch(() => {});
+      $("#saisie-jeton").value = "";
+      $("#saisie-jeton").focus();
+      // En mode passerelle, l'échec est déjà journalisé côté serveur.
+      if (!API.passerelle) {
+        airtable("journal", {}, { method: "POST", body: { records: [{ fields: {
+          "Événement": "Échec de connexion",
+          "Type": "Échec connexion",
+          "Jeton saisi": identifiant.trim().slice(0, 60),
+          "Détail": res.motif.slice(0, 250),
+          "Horodatage": new Date().toISOString(),
+          "Appareil": SESSION.appareil,
+        }}], typecast: true } }).catch(() => {});
+      }
       return;
     }
-    await ouvrirSession(saisi, res.client);
+    await ouvrirSession(identifiant.trim(), motDePasse.trim(), res.client);
     montrerApplication();
   });
 
   // Reprise de session : le jeton est revérifié à chaque démarrage, de sorte
   // qu'une révocation dans Airtable coupe l'accès dès le rechargement suivant.
   const memo = LOCAL.lire("session");
-  if (memo?.jeton) {
-    const res = await verifierJeton(memo.jeton);
+  if (memo?.jeton && memo?.identifiant) {
+    const res = await verifierAcces(memo.identifiant, memo.jeton);
     if (res.ok) {
-      SESSION.jeton = memo.jeton;
-      SESSION.client = res.client;
-      LOCAL.ecrire("session", { jeton: memo.jeton, client: res.client, verifiee: Date.now() });
+      await ouvrirSession(memo.identifiant, memo.jeton, res.client);
       return montrerApplication();
     }
     LOCAL.vider("session");
+    LOCAL.vider("passerelle");
     return montrerPortail(res.motif);
   }
+  LOCAL.vider("session");   // ancienne session à jeton seul : devenue invalide
   montrerPortail();
 }
 

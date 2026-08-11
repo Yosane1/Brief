@@ -8,7 +8,9 @@
  *   3. la lecture hors ligne du dernier brief consulté.
  */
 
-const VERSION = "brief-v1";
+// Incrémenter à chaque déploiement : l'activation purge les caches des versions
+// précédentes.
+const VERSION = "brief-v2";
 const COQUILLE = [
   "./",
   "./index.html",
@@ -53,10 +55,18 @@ self.addEventListener("fetch", e => {
   if (e.request.method !== "GET") return;
   if (url.origin !== self.location.origin) return;
 
+  // Le document et le manifeste sont demandés en contournant le cache HTTP du
+  // navigateur. Sans cela, une page mise à jour peut rester invisible pendant
+  // des heures — c'est particulièrement visible dans une application installée,
+  // qui n'offre aucun moyen de forcer un rechargement.
+  const toujoursFrais = e.request.mode === "navigate"
+    || url.pathname.endsWith(".html")
+    || url.pathname.endsWith(".webmanifest");
+
   // Réseau d'abord, cache en repli : une mise à jour de l'app est visible au
   // rechargement suivant, et l'app reste lisible hors ligne.
   e.respondWith(
-    fetch(e.request)
+    fetch(e.request, toujoursFrais ? { cache: "no-store" } : undefined)
       .then(rep => {
         if (rep && rep.ok) {
           const copie = rep.clone();

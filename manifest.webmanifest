@@ -1,6 +1,6 @@
 {
-  "name": "Brief — L'essentiel de l'actualité",
-  "short_name": "Brief",
+  "name": "Actus• — L'essentiel de l'actualité, chaque soir.",
+  "short_name": "Actus",
   "description": "Le brief quotidien : l'actualité résumée, contextualisée et expliquée en moins de sept minutes.",
   "lang": "fr",
   "dir": "ltr",
@@ -8,11 +8,18 @@
   "scope": "./",
   "id": "./",
   "display": "standalone",
-  "display_override": ["standalone", "minimal-ui"],
+  "display_override": [
+    "standalone",
+    "minimal-ui"
+  ],
   "orientation": "portrait-primary",
   "background_color": "#ffffff",
-  "theme_color": "#ff4a59",
-  "categories": ["news", "magazines", "education"],
+  "theme_color": "#31bda2",
+  "categories": [
+    "news",
+    "magazines",
+    "education"
+  ],
   "icons": [
     {
       "src": "icones/icone-192.png",
@@ -37,7 +44,12 @@
     {
       "name": "Le brief du jour",
       "url": "./index.html#/",
-      "icons": [{ "src": "icones/icone-192.png", "sizes": "192x192" }]
+      "icons": [
+        {
+          "src": "icones/icone-192.png",
+          "sizes": "192x192"
+        }
+      ]
     },
     {
       "name": "Archives",
