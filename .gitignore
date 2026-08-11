@@ -1,6 +1,9 @@
 # Matière brute de la collecte du soir : régénérée à chaque exécution
 veille.json
 
+# Réglages propres au poste, pas au projet
+.claude/settings.local.json
+
 __pycache__/
 *.pyc
 .DS_Store
