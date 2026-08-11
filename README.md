@@ -161,7 +161,7 @@ Il enchaîne quatre étapes :
 | Étape | Script | Ce qu'elle fait |
 |---|---|---|
 | 1. Collecter | `scripts/fetch_news.py` | Agrège 11 flux RSS (Le Monde, franceinfo, France 24, Libération, BBC, Futura…), dédoublonne, filtre sur 26 h |
-| 2. Écrire | *(Claude)* | Sélectionne les sujets, rédige, produit `editions/AAAA-MM-JJ.json` |
+| 2. Écrire | *(Claude)* | Sélectionne les sujets, rédige, produit `editions/AAAA/AAAA-MM-JJ.json` |
 | 3. Publier | `scripts/push_edition.py` | Upsert dans Airtable — relancer sur la même date ne crée pas de doublon |
 | 4. Vérifier | `scripts/verifier_edition.py` | Relit l'édition avec la requête de l'app et signale ce qui s'afficherait mal |
 
@@ -194,7 +194,7 @@ Le réseau est pris en charge par GitHub Actions, qui encadre la routine :
 | Heure (Paris) | Qui | Quoi |
 |---|---|---|
 | 17h50 | `.github/workflows/collecte.yml` | Collecte les flux, dépose `veille.jsonl` dans le dépôt |
-| 18h30 | Routine Claude Code cloud | Lit la veille, rédige, commite `editions/AAAA-MM-JJ.json` |
+| 18h30 | Routine Claude Code cloud | Lit la veille, rédige, commite `editions/AAAA/AAAA-MM-JJ.json` |
 | 18h32 | `.github/workflows/publication.yml` | Écrit dans Airtable et vérifie l'édition |
 
 GitHub Actions est gratuit sur dépôt privé (2 000 min/mois, ce pipeline en
@@ -231,7 +231,7 @@ tard y retrouve ses sources. Il grossit de ~50 Ko par jour et n'est lu que par
 
 ```bash
 python scripts/fetch_news.py --hours 48
-python scripts/push_edition.py editions/2026-08-12.json --brouillon
+python scripts/push_edition.py editions/2026/2026-08-12.json --brouillon
 python scripts/verifier_edition.py 2026-08-12
 ```
 
@@ -243,7 +243,7 @@ dans l'application, le temps d'une relecture.
 Modifier un article directement dans Airtable fonctionne, mais **la retouche est
 perdue à la première republication** : `push_edition.py` supprime tous les
 articles de la date avant de les réécrire. Pour une correction durable, éditez
-`editions/AAAA-MM-JJ.json` et republiez-le.
+`editions/AAAA/AAAA-MM-JJ.json` et republiez-le.
 
 ---
 
@@ -448,9 +448,9 @@ veille/
   2026-08-11.json                   les URL, jamais lues par Claude ni écrasées
 editions/
   _modele.json                      le format documenté champ par champ
-  2026-08-08.json                   les éditions parues, une par jour
-  2026-08-10.json
-  2026-08-11.json
+  2026/                             les éditions parues, rangées par année
+    2026-08-08.json
+    2026-08-10.json
 scripts/
   airtable.py                       client Airtable partagé
   setup_airtable.py                 crée le schéma (idempotent)

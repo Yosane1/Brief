@@ -8,9 +8,10 @@ name: Publication vers Airtable
 on:
   push:
     paths:
-      # Le motif commence par un chiffre : _modele.json n'est pas une édition
-      # et ne doit jamais déclencher de publication.
-      - "editions/[0-9]*.json"
+      # Les éditions sont rangées par année : editions/2026/2026-08-11.json.
+      # Le motif du fichier commence par un chiffre, si bien que _modele.json —
+      # resté à la racine du dossier — ne déclenche jamais de publication.
+      - "editions/*/[0-9]*.json"
   workflow_dispatch:
     inputs:
       edition:
@@ -34,9 +35,10 @@ jobs:
         id: cibles
         run: |
           if [ -n "${{ github.event.inputs.edition }}" ]; then
-            fichiers="editions/${{ github.event.inputs.edition }}.json"
+            jour="${{ github.event.inputs.edition }}"
+            fichiers="editions/${jour%%-*}/${jour}.json"   # l'année préfixe la date
           else
-            fichiers=$(git diff --name-only HEAD~1 HEAD -- 'editions/[0-9]*.json' || true)
+            fichiers=$(git diff --name-only HEAD~1 HEAD -- 'editions/*/[0-9]*.json' || true)
           fi
           if [ -z "$fichiers" ]; then
             echo "Aucune édition modifiée."

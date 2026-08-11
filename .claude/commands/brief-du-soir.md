@@ -103,7 +103,8 @@ Mise en forme du champ `contenu` (Markdown restreint géré par l'app) :
 
 ## Étape 4 — Construire le fichier
 
-Écris `editions/AAAA-MM-JJ.json` (date du jour, fuseau Europe/Paris), en un
+Écris `editions/AAAA/AAAA-MM-JJ.json` — la date du jour, fuseau Europe/Paris,
+rangée dans le dossier de son année : `editions/2026/2026-08-11.json`. En un
 seul `Write`. Le format tient ici — n'ouvre aucun autre fichier du dossier :
 les voisins sont des éditions parues, pas des gabarits.
 
@@ -160,7 +161,7 @@ veille entière en mémoire : trois commandes séparées, c'est trois fois le pr
 **En LOCAL**, écris directement dans Airtable puis vérifie :
 
 ```bash
-python scripts/push_edition.py editions/AAAA-MM-JJ.json && python scripts/verifier_edition.py AAAA-MM-JJ
+python scripts/push_edition.py editions/AAAA/AAAA-MM-JJ.json && python scripts/verifier_edition.py AAAA-MM-JJ
 ```
 
 L'opération est un *upsert* : relancer sur la même date remplace l'édition et
@@ -171,7 +172,7 @@ prend le relais et écrit dans Airtable dans la minute. Cette commande exacte,
 sans rien y ajouter :
 
 ```bash
-git add editions/AAAA-MM-JJ.json && git -c user.name="Brief Bot" -c user.email="brief@users.noreply.github.com" commit -m "Édition du AAAA-MM-JJ" && git push origin HEAD:main
+git add editions/AAAA/AAAA-MM-JJ.json && git -c user.name="Brief Bot" -c user.email="brief@users.noreply.github.com" commit -m "Édition du AAAA-MM-JJ" && git push origin HEAD:main
 ```
 
 Trois règles sur ce commit, pour éviter d'emporter autre chose au passage :
