@@ -1,0 +1,183 @@
+{
+  "edition": {
+    "titre": "Séisme en Colombie, le chômage repart à la hausse",
+    "date": "2026-08-10",
+    "numero": 1248,
+    "type": "Quotidienne",
+    "statut": "Publiée",
+    "slug": "2026-08-10",
+    "resume": "Un puissant séisme frappe l'ouest de la Colombie. Le chômage français atteint 8,3 %, son plus haut niveau depuis 2020. Et la Turquie tourne une page de quarante ans de conflit avec le PKK.",
+    "edito": "Deux nouvelles venues d'ailleurs éclairent des mécaniques très différentes : en Colombie, la brutalité d'un sol qui bouge ; en Turquie, la lenteur d'un conflit qui se dénoue par le droit. Entre les deux, la France regarde son thermomètre — et son parc nucléaire.",
+    "genere_par": "Claude Code Cloud"
+  },
+  "articles": [
+    {
+      "titre": "Un séisme de magnitude 7,4 frappe l'ouest de la Colombie",
+      "rubrique": "On rembobine",
+      "thematique": "International",
+      "a_la_une": true,
+      "chapo": "Le gouvernement décrète l'état de catastrophe. Le premier bilan fait état d'au moins 111 morts.",
+      "contenu": "Un tremblement de terre de **magnitude 7,4** a frappé lundi l'ouest de la Colombie, touchant Cali, Manizales et plusieurs villes de la région. Il a été ressenti jusqu'à Bogota.\n\nLe premier bilan officiel fait état d'**au moins 111 morts**, un chiffre appelé à s'alourdir à mesure que les secours accèdent aux immeubles effondrés. Le président **Abelardo de la Espriella** a décrété l'état de catastrophe.\n\nC'est le séisme le plus puissant qu'ait connu le pays depuis une décennie.",
+      "mots_cles": "Colombie, séisme, Cali, Manizales, Bogota, catastrophe",
+      "sources": [
+        "Le Monde — Séisme en Colombie : au moins 111 morts | https://www.lemonde.fr/planete/article/2026/08/10/seisme-en-colombie-au-moins-111-morts-le-gouvernement-decrete-l-etat-d",
+        "Libération — Le pays en état d'urgence après un puissant séisme | https://www.liberation.fr/international/amerique/colombie-un-fort-seisme-de-magnitude-66-ressenti-a-bogota-20260810_RE3Y"
+      ]
+    },
+    {
+      "titre": "Le chômage grimpe à 8,3 %, au plus haut depuis l'automne 2020",
+      "rubrique": "On rembobine",
+      "thematique": "Économie",
+      "a_la_une": true,
+      "chapo": "Sébastien Lecornu défend le bilan économique du macronisme, sans « déni » mais en rejetant la « caricature ».",
+      "contenu": "Le taux de chômage a augmenté de **0,2 point au deuxième trimestre**, à **8,3 %** de la population active. Il faut remonter à l'automne 2020, en plein Covid, pour trouver un niveau équivalent — et avant cela à l'automne 2019.\n\n**Sébastien Lecornu** a réagi en défendant le bilan du macronisme, appelant à écarter à la fois le « déni » et la « caricature ».",
+      "chiffre": "8,3 %",
+      "legende_chiffre": "de la population active au chômage au 2ᵉ trimestre 2026",
+      "mots_cles": "chômage, emploi, Lecornu, économie, INSEE",
+      "sources": [
+        "Le Monde — Sébastien Lecornu défend le bilan du macronisme | https://www.lemonde.fr/economie/"
+      ]
+    },
+    {
+      "titre": "La Turquie vote la réintégration des combattants du PKK",
+      "rubrique": "On rembobine",
+      "thematique": "International",
+      "chapo": "Une loi qualifiée d'historique, un an après l'appel d'Abdullah Öcalan à déposer les armes.",
+      "contenu": "Le Parlement turc a adopté une loi organisant le **retour à la vie civile des combattants du PKK**. Le fondateur de la guérilla kurde, **Abdullah Öcalan**, 77 ans, condamné à la prison à vie, avait appelé l'an passé ses combattants à renoncer à la lutte armée.\n\nLe sort personnel d'Öcalan n'est pas tranché par le texte : il reste le principal point de friction politique.",
+      "mots_cles": "Turquie, PKK, Öcalan, Kurdes, réintégration",
+      "sources": [
+        "Le Monde — La Turquie adopte une loi historique | https://www.lemonde.fr/international/article/2026/08/10/la-turquie-adopte-une-loi-historique-sur-la-reintegration-des-co"
+      ]
+    },
+    {
+      "titre": "Le nucléaire français bridé par la chaleur",
+      "rubrique": "Tout s'explique",
+      "thematique": "Environnement",
+      "chapo": "Dimanche, EDF a enregistré un record de puissance indisponible. Explication d'un paradoxe qui va se répéter chaque été.",
+      "contenu": "### Le fait\n\nDimanche, le parc nucléaire d'EDF a atteint un **record de puissance indisponible**. Cinq réacteurs ont dû adapter leur puissance à la baisse à cause des fortes chaleurs ; quatre autres étaient à l'arrêt et le sont restés lundi.\n\n### Le mécanisme\n\nUne centrale nucléaire chauffe de l'eau pour produire de la vapeur, puis doit évacuer la chaleur résiduelle. Une partie du parc le fait en prélevant de l'eau dans un fleuve et en la rejetant plus chaude.\n\nPour protéger la faune et la flore aquatiques, la réglementation fixe une **température maximale de rejet**. Quand le fleuve est déjà anormalement chaud et son débit faible, la marge disparaît : la centrale doit réduire sa production, voire s'arrêter.\n\n### Pourquoi ça compte\n\nLa demande électrique estivale augmente avec la climatisation, au moment précis où l'offre nucléaire se contracte. Ce n'est pas une défaillance technique, c'est un **couplage structurel entre climat et production** — appelé à se resserrer à mesure que les étés se réchauffent.",
+      "temps_lecture": 3,
+      "chiffre": "5",
+      "legende_chiffre": "réacteurs contraints de baisser leur puissance dimanche",
+      "mots_cles": "EDF, nucléaire, canicule, électricité, réacteurs, climat",
+      "sources": [
+        "Le Monde — Record de puissance indisponible pour le parc nucléaire d'EDF | https://www.lemonde.fr/planete/article/2026/08/10/fortes-chaleurs-record-de-puissance-indisponible-pour-le-parc-nucleair"
+      ]
+    },
+    {
+      "titre": "Revolut décroche sa licence bancaire française",
+      "rubrique": "On rembobine",
+      "thematique": "Économie",
+      "chapo": "La néobanque britannique, déjà agréée en Lituanie et au Royaume-Uni, s'installe durablement sur le marché français.",
+      "contenu": "**Revolut** a annoncé l'obtention d'une licence bancaire en France. L'établissement britannique, dont la croissance a été fulgurante ces dernières années, disposait déjà d'agréments en Lituanie et au Royaume-Uni.\n\nUne licence locale change la nature de la relation client : elle permet notamment de proposer des produits réglementés en propre plutôt que sous passeport européen.",
+      "mots_cles": "Revolut, banque, licence bancaire, fintech, France",
+      "sources": [
+        "Le Monde — Revolut annonce l'obtention d'une licence bancaire en France | https://www.lemonde.fr/economie/"
+      ]
+    },
+    {
+      "titre": "Face à la falaise des brevets, les géants pharmaceutiques rachètent des biotechs",
+      "rubrique": "On fait le point",
+      "thematique": "Santé",
+      "chapo": "Les opérations s'accélèrent depuis 2025, à l'approche d'une expiration massive de brevets.",
+      "contenu": "L'industrie pharmaceutique s'apprête à affronter ce qu'elle appelle sa **falaise des brevets** : dans les prochaines années, une série de traitements vedettes va tomber dans le domaine public, ouvrant la voie aux génériques et effondrant les marges associées.\n\nLa parade est mécanique : racheter des **biotechs** détenant les molécules de la décennie suivante. Les opérations de rachat s'accélèrent depuis 2025.\n\nEn arrière-plan, une question d'organisation industrielle : la recherche pharmaceutique de rupture se fait de moins en moins dans les laboratoires des grands groupes, et de plus en plus dans de petites structures qu'ils achètent une fois le risque scientifique levé.",
+      "temps_lecture": 2,
+      "mots_cles": "pharmacie, brevets, biotechs, Big Pharma, médicaments, rachats",
+      "sources": [
+        "Le Monde — Les Big Pharma multiplient les acquisitions de biotechs | https://www.lemonde.fr/economie/"
+      ]
+    },
+    {
+      "titre": "Airbus et Boeing face à 16 000 avions à construire",
+      "rubrique": "Ça se voit",
+      "thematique": "Économie",
+      "chapo": "Les deux avionneurs engagent des plans industriels massifs pour tenir des carnets de commandes records.",
+      "contenu": "Plus de **16 000 appareils** restent à fabriquer pour Airbus et Boeing réunis. Les deux géants déploient des plans industriels d'ampleur pour augmenter leurs cadences de production.\n\nLe constructeur européen paraît en mesure de **dépasser en 2026 son propre record** de livraisons annuelles.\n\nLe goulot d'étranglement de l'aéronautique n'est plus la demande : c'est la capacité de la chaîne d'approvisionnement à suivre.",
+      "chiffre": "16 000",
+      "legende_chiffre": "avions restant à produire dans les carnets d'Airbus et Boeing",
+      "mots_cles": "Airbus, Boeing, aéronautique, production, carnet de commandes",
+      "sources": [
+        "Le Monde — Airbus et Boeing sur la voie d'une montée en cadence record | https://www.lemonde.fr/economie/"
+      ]
+    },
+    {
+      "titre": "Un somnifère courant ouvre une piste contre Alzheimer",
+      "rubrique": "Ça alors",
+      "thematique": "Santé",
+      "chapo": "Une étude suggère qu'un médicament prescrit contre l'insomnie réduirait l'accumulation de protéines nocives dans le cerveau.",
+      "contenu": "Des chercheurs ont observé qu'un **somnifère d'usage courant** pourrait réduire l'accumulation des protéines associées à la maladie d'Alzheimer.\n\nLa piste est cohérente avec ce que l'on sait du rôle du sommeil profond dans le « nettoyage » cérébral : c'est pendant la nuit que le cerveau évacue une partie de ses déchets métaboliques.\n\nPrudence toutefois — il s'agit d'un signal préliminaire, pas d'un traitement.",
+      "mots_cles": "Alzheimer, sommeil, somnifère, recherche, cerveau, santé",
+      "sources": [
+        "Futura Sciences — Ce médicament pris contre l'insomnie pourrait ouvrir une nouvelle piste contre Alzheimer | https://www.futura-sciences.com/sante/actualites/"
+      ]
+    },
+    {
+      "titre": "Le TDAH, largement sous-diagnostiqué chez les femmes",
+      "rubrique": "Ça peut servir",
+      "thematique": "Santé",
+      "chapo": "Longtemps considéré comme un trouble de « petits garçons turbulents », il passe inaperçu chez les filles.",
+      "contenu": "Le trouble du déficit de l'attention avec ou sans hyperactivité a été décrit, historiquement, à partir de garçons agités. Résultat : chez les filles et les femmes, il reste **massivement sous-diagnostiqué**.\n\nLes symptômes y prennent souvent une forme plus intérieure — inattention plutôt qu'agitation — et sont masqués par des stratégies de compensation développées très tôt : sur-préparation, hypervigilance sociale, perfectionnisme.\n\nD'où un profil trompeur : des personnes qui « semblent aller bien » tout en s'épuisant en silence. Un diagnostic tardif, à l'âge adulte, reste utile : il réoriente la prise en charge et lève souvent des années de culpabilité.",
+      "mots_cles": "TDAH, femmes, diagnostic, santé mentale, neurodiversité",
+      "sources": [
+        "Futura Sciences — Pourquoi le TDAH passe inaperçu chez les femmes | https://www.futura-sciences.com/sante/actualites/"
+      ]
+    },
+    {
+      "titre": "Meredith Whittaker, la voix qui veut tenir l'IA loin de vos messages",
+      "rubrique": "C'est qui ?",
+      "thematique": "Tech",
+      "chapo": "Passée par Google, devenue une figure de la défense de la vie privée, elle alerte sur l'accès des systèmes d'IA aux conversations privées.",
+      "contenu": "Discrète sur sa vie personnelle, **Meredith Whittaker** s'est imposée comme l'une des critiques les plus écoutées des dérives de l'intelligence artificielle.\n\nSon parcours lui donne une autorité particulière : elle a travaillé chez Google avant d'en devenir l'une des contestataires internes les plus visibles, puis s'est engagée dans la défense de la vie privée.\n\nSon combat actuel porte sur un point précis : empêcher que les assistants d'IA n'obtiennent un accès de routine au **contenu des messageries privées**, au nom du confort d'usage.",
+      "mots_cles": "Meredith Whittaker, IA, vie privée, chiffrement, messageries, Signal",
+      "sources": [
+        "Futura Sciences — Pourquoi Meredith Whittaker veut empêcher l'IA de fouiller dans vos messages | https://www.futura-sciences.com/tech/actualites/"
+      ]
+    },
+    {
+      "titre": "Ebola en RDC : l'OMS pousse pour un essai clinique du vaccin Ervebo",
+      "rubrique": "On rembobine",
+      "thematique": "Santé",
+      "chapo": "L'organisation appelle à structurer la réponse vaccinale face à la résurgence de l'épidémie.",
+      "contenu": "L'Organisation mondiale de la santé appelle à organiser un **essai clinique avec le vaccin Ervebo** en République démocratique du Congo, face à la résurgence d'Ebola.\n\nErvebo est déjà homologué, mais un essai encadré permet de documenter son efficacité dans les conditions réelles d'une épidémie — et de justifier son déploiement à grande échelle.",
+      "mots_cles": "Ebola, RDC, OMS, Ervebo, vaccin, épidémie",
+      "sources": [
+        "France 24 — L'OMS appelle à organiser un essai clinique avec le vaccin Ervebo | https://www.france24.com/fr/%C3%A9missions/journal-de-l-afrique/20260810-ebola-en-rdc-l-oms-appelle-%C3%A0-organiser-un-"
+      ]
+    },
+    {
+      "titre": "Le pont qui devait accélérer le commerce et qui symbolise sa crispation",
+      "rubrique": "C'est leur avis",
+      "thematique": "Économie",
+      "chapo": "Ouvert le 27 juillet entre Detroit et Windsor, le pont Gordie-Howe est né au pire moment des tensions commerciales nord-américaines.",
+      "contenu": "Le **pont Gordie-Howe** relie depuis le 27 juillet Detroit (Michigan) à Windsor (Ontario). Conçu pour fluidifier des échanges transfrontaliers massifs, il est entré en service au moment où ces échanges se tendent.\n\nAu Canada, le premier ministre **Mark Carney**, arrivé au pouvoir en 2025 sur la promesse de tenir tête à Washington, est désormais accusé de multiplier les concessions à la Maison Blanche.\n\nUne infrastructure met dix ans à sortir de terre ; une politique commerciale peut se retourner en dix semaines. Le pont est le monument involontaire de ce décalage.",
+      "mots_cles": "Canada, États-Unis, commerce, Gordie-Howe, Carney, douanes, Detroit",
+      "sources": [
+        "Le Monde — Le nouveau pont Gordie-Howe pris au piège des tensions commerciales | https://www.lemonde.fr/economie/",
+        "Le Monde — Au Canada, Mark Carney tempère ses critiques contre Donald Trump | https://www.lemonde.fr/international/"
+      ]
+    },
+    {
+      "titre": "Le « deuxième estomac » à dessert existe vraiment",
+      "rubrique": "Ça alors",
+      "thematique": "Sciences",
+      "chapo": "Une étude allemande explique pourquoi il reste toujours de la place pour la mousse au chocolat.",
+      "contenu": "Vous n'avez plus faim, et pourtant le dessert passe sans difficulté. Une étude allemande apporte une explication : ce fameux « deuxième estomac » ne relève pas du folklore, mais d'un mécanisme cérébral de **satiété sensorielle spécifique**.\n\nLe cerveau se lasse d'un goût donné — c'est ce qui vous arrête devant le plat principal — mais cette lassitude est propre à ce goût. Un aliment sucré, nouveau sur le plan sensoriel, réactive le circuit de la récompense comme si le repas commençait.",
+      "mots_cles": "alimentation, dessert, satiété, cerveau, étude, insolite",
+      "sources": [
+        "Futura Sciences — Pourquoi il reste presque toujours une place pour le dessert | https://www.futura-sciences.com/sante/actualites/"
+      ]
+    },
+    {
+      "titre": "Deux séries et une exposition",
+      "rubrique": "Ça vaut un clic",
+      "thematique": "Culture",
+      "chapo": "Tahar Rahim en ancien tueur à gages, des livres de photos pour enfants à Arles, un jardin-atlas à Montpellier.",
+      "contenu": "**Séries.** *La Matinale* du *Monde* propose sa sélection de première quinzaine d'août : *Tip Toe*, *Furious*, *Prisoner* — avec notamment **Tahar Rahim** en ancien tueur à gages.\n\n**Photo.** Aux **Rencontres d'Arles**, l'exposition « R comme regarder » réunit une centaine de livres de photographie destinés aux enfants, publiés dans différents pays des années 1930 à aujourd'hui. Curiosités et signatures prestigieuses s'y répondent.\n\n**Jardin.** Au « jardin du MoCo » à Montpellier, le plasticien **Bertrand Lavier** a planté des espèces venues de toute la planète : un atlas de verdure qui met en scène la mondialisation du vivant.",
+      "mots_cles": "séries, Tahar Rahim, Rencontres d'Arles, photographie, Bertrand Lavier, MoCo, Montpellier",
+      "sources": [
+        "Le Monde — Nos idées de séries | https://www.lemonde.fr/culture/",
+        "Le Monde — Rencontres d'Arles : les livres de photos pour enfants | https://www.lemonde.fr/culture/",
+        "Le Monde — Le Jardin des cinq continents de Bertrand Lavier | https://www.lemonde.fr/culture/"
+      ]
+    }
+  ]
+}

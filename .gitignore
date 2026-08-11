@@ -1,0 +1,7 @@
+# Matière brute de la collecte du soir : régénérée à chaque exécution
+veille.json
+
+__pycache__/
+*.pyc
+.DS_Store
+Thumbs.db

@@ -1,0 +1,1406 @@
+<!doctype html>
+<html lang="fr" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="L'essentiel de l'actualité, chaque soir.">
+<meta name="theme-color" content="#ffffff">
+<title>Brief — L'essentiel de l'actualité</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Radio+Canada+Big:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&display=swap" rel="stylesheet">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%23ff4a59'/%3E%3Ctext x='16' y='23' font-family='Helvetica,Arial' font-size='20' font-weight='700' fill='%23fff' text-anchor='middle'%3EB%3C/text%3E%3C/svg%3E">
+
+<style>
+/* ══════════════════════════════════════════════════════════════════════
+   Palette — reprise des tokens de design de brief.me
+   ══════════════════════════════════════════════════════════════════════ */
+:root{
+  --rouge:#ff4a59; --violet:#7070f5; --bleu:#0954c0; --rose:#ef4568;
+  --cyan:#54c1c9;  --orange:#ff6a1a; --vert:#23c46e; --or:#de9c03;
+  --magenta:#d955a6; --sarcelle:#47ad88;
+
+  --fond:#fff; --fond-2:#fafafa; --fond-3:#f2f2f0;
+  --texte:#222; --texte-2:#5b5966; --texte-3:#8b8895;
+  --bord:#e4e3e6; --bord-fort:#d0cfd4;
+  --ombre:0 1px 2px rgba(20,18,30,.05), 0 8px 24px -12px rgba(20,18,30,.14);
+  --accent:var(--rouge);
+
+  --serif:"Radio Canada Big", ui-sans-serif, system-ui, "Segoe UI", Roboto, sans-serif;
+  --lg:min(680px, 100% - 2.5rem);
+  --lg-large:min(1120px, 100% - 2.5rem);
+}
+:root[data-theme="dark"]{
+  --fond:#1f1f1f; --fond-2:#282929; --fond-3:#323233;
+  --texte:#e8e6ea; --texte-2:#a5a2b1; --texte-3:#807d8b;
+  --bord:#3a3a3c; --bord-fort:#4d4d50;
+  --ombre:0 1px 2px rgba(0,0,0,.4), 0 8px 24px -12px rgba(0,0,0,.7);
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --fond:#1f1f1f; --fond-2:#282929; --fond-3:#323233;
+    --texte:#e8e6ea; --texte-2:#a5a2b1; --texte-3:#807d8b;
+    --bord:#3a3a3c; --bord-fort:#4d4d50;
+    --ombre:0 1px 2px rgba(0,0,0,.4), 0 8px 24px -12px rgba(0,0,0,.7);
+  }
+}
+
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{
+  margin:0; background:var(--fond); color:var(--texte);
+  font-family:var(--serif); font-size:17px; line-height:1.62;
+  -webkit-font-smoothing:antialiased; overflow-wrap:break-word;
+}
+a{color:inherit}
+button{font:inherit; color:inherit; cursor:pointer; border:0; background:none}
+[hidden]{display:none !important}
+::selection{background:var(--accent); color:#fff}
+
+/* ── En-tête ─────────────────────────────────────────────────────────── */
+.entete{
+  position:sticky; top:0; z-index:60; background:color-mix(in srgb, var(--fond) 88%, transparent);
+  backdrop-filter:saturate(1.6) blur(14px); border-bottom:1px solid var(--bord);
+}
+.entete-in{
+  width:var(--lg-large); margin-inline:auto; height:60px;
+  display:flex; align-items:center; gap:1.25rem;
+}
+.logo{display:flex; align-items:baseline; gap:.1rem; font-weight:700; font-size:1.4rem; letter-spacing:-.03em; text-decoration:none}
+.logo span{color:var(--accent)}
+.nav{display:flex; gap:.25rem; margin-left:auto}
+.nav a{
+  text-decoration:none; font-size:.875rem; font-weight:500; color:var(--texte-2);
+  padding:.4rem .7rem; border-radius:99px; white-space:nowrap;
+}
+.nav a:hover{background:var(--fond-3); color:var(--texte)}
+.nav a[aria-current]{background:var(--texte); color:var(--fond)}
+.icone-btn{
+  width:34px; height:34px; border-radius:99px; display:grid; place-items:center;
+  color:var(--texte-2); flex:none;
+}
+.icone-btn:hover{background:var(--fond-3); color:var(--texte)}
+.icone-btn svg{width:18px; height:18px; fill:none; stroke:currentColor; stroke-width:1.7; stroke-linecap:round; stroke-linejoin:round}
+.progression{height:2px; background:var(--accent); width:0; transition:width .1s linear}
+
+/* ── Blocs génériques ────────────────────────────────────────────────── */
+main{width:var(--lg); margin-inline:auto; padding:2.5rem 0 5rem}
+.large{width:var(--lg-large)}
+.chapeau-page{margin:0 0 2rem}
+.chapeau-page h1{font-size:clamp(1.7rem,4.5vw,2.2rem); letter-spacing:-.03em; margin:0 0 .3rem; line-height:1.15}
+.chapeau-page p{color:var(--texte-2); margin:0; font-size:.95rem}
+
+.surtitre{
+  display:inline-flex; align-items:center; gap:.4rem; font-size:.68rem; font-weight:700;
+  letter-spacing:.11em; text-transform:uppercase; color:var(--texte-3);
+}
+
+/* ── Une d'édition ───────────────────────────────────────────────────── */
+.une{border-bottom:1px solid var(--bord); padding-bottom:2rem; margin-bottom:2.5rem}
+.une-meta{
+  display:flex; flex-wrap:wrap; align-items:center; gap:.5rem .75rem; margin-bottom:1rem;
+  font-size:.72rem; font-weight:600; letter-spacing:.08em; text-transform:uppercase; color:var(--texte-3);
+}
+.puce{width:3px; height:3px; border-radius:99px; background:currentColor; opacity:.5}
+.badge-type{
+  background:var(--accent); color:#fff; padding:.2rem .55rem; border-radius:4px; letter-spacing:.06em;
+}
+.une h1{
+  font-size:clamp(2rem,6vw,2.9rem); line-height:1.08; letter-spacing:-.035em;
+  margin:0 0 1.25rem; text-wrap:balance;
+}
+.edito{
+  border-left:3px solid var(--accent); padding:.15rem 0 .15rem 1.1rem;
+  color:var(--texte-2); font-style:italic; font-size:1.02rem; line-height:1.6;
+}
+
+/* ── Sommaire ────────────────────────────────────────────────────────── */
+.sommaire{
+  background:var(--fond-2); border:1px solid var(--bord); border-radius:12px;
+  padding:1.1rem 1.25rem; margin-bottom:3rem;
+}
+.sommaire summary{
+  cursor:pointer; font-size:.72rem; font-weight:700; letter-spacing:.11em;
+  text-transform:uppercase; color:var(--texte-3); list-style:none;
+}
+.sommaire summary::-webkit-details-marker{display:none}
+.sommaire summary::after{content:" ▾"; opacity:.6}
+.sommaire[open] summary::after{content:" ▴"}
+.sommaire ol{margin:1rem 0 0; padding:0; list-style:none; counter-reset:s}
+.sommaire li{counter-increment:s; margin-bottom:.55rem; display:flex; gap:.7rem; align-items:baseline}
+.sommaire li::before{
+  content:counter(s,decimal-leading-zero); font-size:.7rem; font-weight:700;
+  color:var(--texte-3); flex:none; font-variant-numeric:tabular-nums;
+}
+.sommaire a{text-decoration:none; font-size:.94rem; font-weight:500; line-height:1.4}
+.sommaire a:hover{color:var(--accent)}
+
+/* ── Rubriques ───────────────────────────────────────────────────────── */
+.rubrique{margin:0 0 3.5rem; scroll-margin-top:80px}
+.rubrique-tete{display:flex; align-items:center; gap:.75rem; margin-bottom:1.5rem}
+.kicker{
+  display:inline-block; background:var(--c,var(--accent)); color:#fff;
+  font-size:.7rem; font-weight:700; letter-spacing:.1em; text-transform:uppercase;
+  padding:.32rem .65rem; border-radius:4px; white-space:nowrap;
+}
+.rubrique-trait{flex:1; height:1px; background:var(--bord)}
+.rubrique-legende{font-size:.78rem; color:var(--texte-3); font-style:italic; white-space:nowrap}
+
+/* ── Article ─────────────────────────────────────────────────────────── */
+.article{margin-bottom:2.75rem; scroll-margin-top:80px}
+.article:last-child{margin-bottom:0}
+.article h3{
+  font-size:clamp(1.25rem,3.4vw,1.55rem); line-height:1.22; letter-spacing:-.025em;
+  margin:0 0 .6rem; text-wrap:balance;
+}
+.chapo{color:var(--texte-2); font-size:1.04rem; line-height:1.55; margin:0 0 1.1rem}
+.corps{font-size:1.02rem}
+.corps p{margin:0 0 1.05rem}
+.corps h4{
+  font-size:.74rem; font-weight:700; letter-spacing:.1em; text-transform:uppercase;
+  color:var(--c,var(--accent)); margin:2rem 0 .7rem;
+}
+.corps ul{margin:0 0 1.05rem; padding-left:1.1rem; list-style:none}
+.corps ul li{position:relative; margin-bottom:.45rem}
+.corps ul li::before{
+  content:""; position:absolute; left:-1rem; top:.68em;
+  width:5px; height:5px; border-radius:99px; background:var(--c,var(--accent));
+}
+.corps strong{font-weight:700}
+.corps a{color:var(--accent); text-decoration-thickness:1px; text-underline-offset:2px}
+.corps hr{border:0; border-top:1px solid var(--bord); margin:1.5rem 0}
+.corps > *:last-child{margin-bottom:0}
+
+.chiffre{
+  display:flex; align-items:baseline; gap:1rem; flex-wrap:wrap;
+  background:var(--fond-2); border-left:3px solid var(--c,var(--accent));
+  border-radius:0 10px 10px 0; padding:1.1rem 1.3rem; margin:1.5rem 0;
+}
+.chiffre b{
+  font-size:clamp(1.9rem,5.5vw,2.5rem); font-weight:700; letter-spacing:-.04em;
+  line-height:1; color:var(--c,var(--accent));
+}
+.chiffre span{font-size:.92rem; color:var(--texte-2); line-height:1.4}
+
+.citation{margin:1.5rem 0; padding-left:1.2rem; border-left:3px solid var(--c,var(--accent))}
+.citation p{font-size:1.15rem; font-style:italic; line-height:1.45; margin:0 0 .5rem; letter-spacing:-.01em}
+.citation cite{font-style:normal; font-size:.82rem; font-weight:600; color:var(--texte-3)}
+
+.illustration{margin:1.4rem 0}
+.illustration img{width:100%; border-radius:10px; display:block; background:var(--fond-3)}
+.illustration figcaption{font-size:.78rem; color:var(--texte-3); margin-top:.5rem}
+
+.sources{margin-top:1.1rem; font-size:.82rem}
+.sources summary{
+  cursor:pointer; color:var(--texte-3); font-weight:600; list-style:none;
+  font-size:.72rem; letter-spacing:.07em; text-transform:uppercase;
+}
+.sources summary::-webkit-details-marker{display:none}
+.sources summary::after{content:" +"; }
+.sources[open] summary::after{content:" −"}
+.sources ul{margin:.7rem 0 0; padding:0; list-style:none}
+.sources li{margin-bottom:.35rem; color:var(--texte-2)}
+.sources a{color:var(--texte-2)}
+.sources a:hover{color:var(--accent)}
+
+.etiquettes{display:flex; flex-wrap:wrap; gap:.35rem; margin-top:1rem}
+.etiquette{
+  font-size:.72rem; color:var(--texte-2); background:var(--fond-3);
+  padding:.2rem .55rem; border-radius:99px; text-decoration:none;
+}
+.etiquette:hover{background:var(--accent); color:#fff}
+
+/* ── Pied d'édition ──────────────────────────────────────────────────── */
+.pagination{
+  display:flex; gap:1rem; border-top:1px solid var(--bord); padding-top:1.75rem; margin-top:3rem;
+}
+.pagination a{
+  flex:1; text-decoration:none; padding:1rem 1.1rem; border:1px solid var(--bord);
+  border-radius:12px; transition:border-color .15s, transform .15s;
+}
+.pagination a:hover{border-color:var(--accent); transform:translateY(-1px)}
+.pagination small{display:block; font-size:.68rem; letter-spacing:.1em; text-transform:uppercase; color:var(--texte-3); margin-bottom:.3rem}
+.pagination b{font-size:.93rem; font-weight:600; line-height:1.3; display:block}
+.pagination .suiv{text-align:right}
+
+/* ── Archives ────────────────────────────────────────────────────────── */
+.barre-outils{
+  display:flex; flex-wrap:wrap; gap:.6rem; align-items:center;
+  margin-bottom:2rem; padding-bottom:1.25rem; border-bottom:1px solid var(--bord);
+}
+input[type="search"], input[type="date"], input[type="text"], select{
+  font:inherit; font-size:.92rem; color:var(--texte); background:var(--fond-2);
+  border:1px solid var(--bord); border-radius:9px; padding:.6rem .85rem;
+}
+input:focus-visible, select:focus-visible, button:focus-visible, a:focus-visible{
+  outline:2px solid var(--accent); outline-offset:2px;
+}
+.mois{margin-bottom:2.5rem}
+.mois h2{
+  font-size:.72rem; font-weight:700; letter-spacing:.12em; text-transform:uppercase;
+  color:var(--texte-3); margin:0 0 1rem; padding-bottom:.6rem; border-bottom:1px solid var(--bord);
+}
+.carte{
+  display:block; text-decoration:none; padding:1.15rem 0; border-bottom:1px solid var(--bord);
+}
+.carte:hover h3{color:var(--accent)}
+.carte-meta{
+  display:flex; align-items:center; gap:.5rem; font-size:.7rem; font-weight:600;
+  letter-spacing:.08em; text-transform:uppercase; color:var(--texte-3); margin-bottom:.4rem;
+}
+.carte h3{font-size:1.15rem; line-height:1.25; letter-spacing:-.02em; margin:0 0 .35rem; transition:color .15s}
+.carte p{margin:0; font-size:.93rem; color:var(--texte-2); line-height:1.5}
+.pastille{width:7px; height:7px; border-radius:99px; background:var(--c,var(--accent)); flex:none}
+
+/* ── Résultats de recherche ──────────────────────────────────────────── */
+mark{background:color-mix(in srgb, var(--accent) 22%, transparent); color:inherit; padding:0 .1em; border-radius:2px}
+.resultat{padding:1.25rem 0; border-bottom:1px solid var(--bord)}
+.resultat h3{font-size:1.1rem; line-height:1.3; margin:.35rem 0 .4rem; letter-spacing:-.02em}
+.resultat h3 a{text-decoration:none}
+.resultat h3 a:hover{color:var(--accent)}
+.resultat p{margin:0; font-size:.93rem; color:var(--texte-2); line-height:1.5}
+
+/* ── Connexion ───────────────────────────────────────────────────────── */
+.portail{
+  position:fixed; inset:0; z-index:200; background:var(--fond);
+  display:grid; place-items:center; padding:1.5rem; overflow-y:auto;
+}
+.portail-carte{width:100%; max-width:400px}
+.portail .logo{font-size:2rem; margin-bottom:.4rem}
+.portail h1{font-size:1.45rem; letter-spacing:-.03em; margin:1.5rem 0 .4rem; line-height:1.2}
+.portail p.intro{color:var(--texte-2); font-size:.95rem; margin:0 0 1.75rem}
+.champ{display:block; margin-bottom:.9rem}
+.champ span{
+  display:block; font-size:.7rem; font-weight:700; letter-spacing:.1em;
+  text-transform:uppercase; color:var(--texte-3); margin-bottom:.45rem;
+}
+.champ input{width:100%; font-size:1rem; letter-spacing:.06em; text-align:center; padding:.85rem}
+.bouton{
+  width:100%; background:var(--texte); color:var(--fond); font-weight:600; font-size:.98rem;
+  padding:.85rem; border-radius:9px; transition:opacity .15s;
+}
+.bouton:hover{opacity:.85}
+.bouton:disabled{opacity:.45; cursor:progress}
+.bouton.accent{background:var(--accent); color:#fff}
+.alerte{
+  background:color-mix(in srgb, var(--rouge) 12%, transparent); color:var(--rouge);
+  border:1px solid color-mix(in srgb, var(--rouge) 30%, transparent);
+  padding:.75rem .9rem; border-radius:9px; font-size:.88rem; margin-bottom:1rem; line-height:1.45;
+}
+.aide{font-size:.8rem; color:var(--texte-3); margin-top:1.5rem; line-height:1.6}
+.aide code{
+  background:var(--fond-3); padding:.12rem .4rem; border-radius:4px;
+  font-family:ui-monospace,Menlo,Consolas,monospace; font-size:.9em;
+}
+
+/* ── Divers ──────────────────────────────────────────────────────────── */
+.vide{text-align:center; padding:4rem 1rem; color:var(--texte-3)}
+.vide b{display:block; font-size:1.1rem; color:var(--texte); margin-bottom:.4rem}
+.squelette{animation:pulse 1.4s ease-in-out infinite; background:var(--fond-3); border-radius:8px}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.45}}
+.bandeau{
+  position:fixed; left:50%; transform:translateX(-50%); bottom:1.25rem; z-index:150;
+  width:min(440px, calc(100% - 2rem)); background:var(--texte); color:var(--fond);
+  border-radius:12px; padding:.9rem 1.1rem; box-shadow:var(--ombre);
+  display:flex; align-items:center; gap:.9rem; font-size:.9rem; line-height:1.4;
+  animation:monte .3s cubic-bezier(.2,.9,.3,1);
+}
+@keyframes monte{from{opacity:0; transform:translate(-50%,14px)}}
+.bandeau a{color:inherit; font-weight:700; text-decoration:none; white-space:nowrap; border-bottom:1.5px solid}
+.bandeau button{opacity:.6; flex:none; font-size:1.2rem; line-height:1}
+.menu{
+  position:absolute; right:0; top:calc(100% + 8px); background:var(--fond); z-index:70;
+  border:1px solid var(--bord); border-radius:12px; box-shadow:var(--ombre);
+  min-width:250px; padding:.5rem; font-size:.9rem;
+}
+.menu-tete{padding:.6rem .7rem; border-bottom:1px solid var(--bord); margin-bottom:.4rem}
+.menu-tete b{display:block; font-size:.92rem}
+.menu-tete small{color:var(--texte-3); font-size:.78rem}
+.menu button, .menu a{
+  display:flex; align-items:center; justify-content:space-between; gap:.6rem;
+  width:100%; text-align:left; padding:.55rem .7rem; border-radius:8px; text-decoration:none;
+}
+.menu button:hover, .menu a:hover{background:var(--fond-3)}
+.interrupteur{
+  width:34px; height:20px; border-radius:99px; background:var(--bord-fort);
+  position:relative; flex:none; transition:background .18s;
+}
+.interrupteur::after{
+  content:""; position:absolute; top:2px; left:2px; width:16px; height:16px;
+  border-radius:99px; background:#fff; transition:transform .18s;
+}
+.interrupteur[data-on="1"]{background:var(--vert)}
+.interrupteur[data-on="1"]::after{transform:translateX(14px)}
+
+.court{display:none}
+
+@media (max-width:640px){
+  :root{--lg:calc(100% - 2rem); --lg-large:calc(100% - 2rem)}
+  body{font-size:16px}
+  .entete-in{height:54px; gap:.15rem}
+  .logo{font-size:1.15rem}
+  .nav{gap:0}
+  .nav a{padding:.35rem .45rem; font-size:.8rem}
+  .long{display:none}
+  .court{display:inline}
+  .icone-btn{width:30px; height:30px}
+  main{padding-top:1.75rem}
+  .pagination{flex-direction:column}
+  .pagination .suiv{text-align:left}
+  .chiffre{gap:.5rem}
+}
+@media print{
+  .entete,.pagination,.sommaire,.etiquettes{display:none}
+  body{font-size:11pt}
+}
+</style>
+</head>
+<body>
+
+<!-- ════════════════ Portail d'accès ════════════════ -->
+<div class="portail" id="portail" hidden>
+  <div class="portail-carte">
+    <span class="logo">brief<span>.</span></span>
+    <h1 id="portail-titre">L'essentiel de l'actualité, chaque soir.</h1>
+    <p class="intro">Cette édition est réservée aux abonnés. Saisissez le jeton d'accès qui vous a été communiqué.</p>
+    <div id="portail-erreur"></div>
+    <form id="form-acces" autocomplete="off">
+      <label class="champ">
+        <span>Jeton d'accès</span>
+        <input type="text" id="saisie-jeton" placeholder="BRIEF-XXXX-XXXX" required
+               spellcheck="false" autocapitalize="characters" autocomplete="one-time-code">
+      </label>
+      <button class="bouton accent" id="btn-acces" type="submit">Accéder au brief</button>
+    </form>
+    <p class="aide">
+      Votre accès est vérifié à chaque connexion&nbsp;: il dépend des dates de validité
+      enregistrées pour votre abonnement. En cas de difficulté, écrivez à
+      <a id="lien-contact" href="#">notre contact</a>.
+    </p>
+  </div>
+</div>
+
+<!-- ════════════════ Application ════════════════ -->
+<header class="entete" id="entete" hidden>
+  <div class="entete-in">
+    <a class="logo" href="#/" aria-label="Accueil">brief<span>.</span></a>
+    <nav class="nav">
+      <a href="#/" data-vue="edition"><span class="long">Aujourd'hui</span><span class="court">Le brief</span></a>
+      <a href="#/archives" data-vue="archives">Archives</a>
+      <a href="#/recherche" data-vue="recherche"><span class="long">Recherche</span><span class="court">Chercher</span></a>
+    </nav>
+    <button class="icone-btn" id="btn-theme" title="Changer de thème" aria-label="Changer de thème">
+      <svg viewBox="0 0 24 24"><path id="icone-theme" d="M12 3v1m0 16v1m9-10h-1M4 12H3m15.36-6.36l-.7.7M6.34 17.66l-.7.7m12.72 0l-.7-.7M6.34 6.34l-.7-.7"/><circle cx="12" cy="12" r="4"/></svg>
+    </button>
+    <div style="position:relative">
+      <button class="icone-btn" id="btn-compte" title="Mon accès" aria-label="Mon accès" aria-expanded="false">
+        <svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="3.4"/><path d="M4.5 20a7.5 7.5 0 0 1 15 0"/></svg>
+      </button>
+      <div class="menu" id="menu-compte" hidden></div>
+    </div>
+  </div>
+  <div class="progression" id="progression"></div>
+</header>
+
+<main id="vue" hidden></main>
+
+<script>
+"use strict";
+/* ══════════════════════════════════════════════════════════════════════════
+   Brief — application de lecture
+   Données : Airtable (base « Brief - actualité du jour »)
+
+   ⚠ Le jeton Airtable est ici en clair dans le code, comme convenu pour la
+   phase de développement. Quiconque ouvre la page peut lire ET écrire dans
+   toute la base. Voir la section « Passage en production » du README pour
+   le basculement derrière une fonction Firebase.
+   ══════════════════════════════════════════════════════════════════════════ */
+
+const CONF = {
+  jetonAirtable: "patDnefT5sQlQc2L1.7388f732d1cac15a74705c77a61c2d0be78892cb5594d5ee6d0e9d0bf1683b01",
+  base: "appzxFhyARS0LjDFc",
+  tables: {
+    reglages: "tbl0n9LTnbmLWArwu",
+    editions: "tbl3iBc69xGDR5Sg8",
+    articles: "tblBCSPDzwOWv1oMn",
+    clients:  "tbl7g2e6qkj89IApu",
+    push:     "tblD3A0snPC239bgo",
+    journal:  "tblKOTUxKjS6IgOOj",
+  },
+  // Fréquence de vérification d'une nouvelle édition (ms)
+  intervalleVeille: 10 * 60 * 1000,
+};
+
+/* Ordre et couleur des rubriques — modifiable sans toucher aux données. */
+const RUBRIQUES = [
+  ["On rembobine",            "var(--rouge)",    "L'essentiel du jour"],
+  ["Tout s'explique",         "var(--violet)",   "Le décryptage"],
+  ["On fait le point",        "var(--bleu)",     "La synthèse"],
+  ["C'est leur avis",         "var(--rose)",     "Analyses et opinions"],
+  ["Ça se voit",              "var(--cyan)",     "En chiffres"],
+  ["C'est qui ?",             "var(--orange)",   "Le portrait"],
+  ["On revient au début",     "var(--violet)",   "La perspective historique"],
+  ["On rembobine la semaine", "var(--rouge)",    "Le récapitulatif"],
+  ["C'est quoi ?",            "var(--bleu)",     "La définition"],
+  ["Ça alors",                "var(--vert)",     "L'étonnant"],
+  ["Ça peut servir",          "var(--or)",       "Le pratique"],
+  ["Ça vaut un clic",         "var(--magenta)",  "Nos recommandations"],
+  ["À vous de jouer",         "var(--sarcelle)", "Le jeu du jour"],
+];
+const couleurDe = r => (RUBRIQUES.find(x => x[0] === r) || [, "var(--accent)"])[1];
+const legendeDe  = r => (RUBRIQUES.find(x => x[0] === r) || [, , ""])[2];
+const rangDe     = r => { const i = RUBRIQUES.findIndex(x => x[0] === r); return i < 0 ? 99 : i; };
+
+/* ── Utilitaires ───────────────────────────────────────────────────────── */
+const $  = (s, r = document) => r.querySelector(s);
+const $$ = (s, r = document) => [...r.querySelectorAll(s)];
+
+const echappe = s => String(s ?? "").replace(/[&<>"']/g,
+  c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+
+const LOCAL = {
+  lire(k, def = null) { try { return JSON.parse(localStorage.getItem("brief." + k)) ?? def; } catch { return def; } },
+  ecrire(k, v) { try { localStorage.setItem("brief." + k, JSON.stringify(v)); } catch {} },
+  vider(k) { try { localStorage.removeItem("brief." + k); } catch {} },
+};
+
+const MOIS = ["janvier","février","mars","avril","mai","juin","juillet","août","septembre","octobre","novembre","décembre"];
+// Abréviations conformes à l'usage typographique français : les mois courts
+// ne s'abrègent pas, et « mars » ne prend donc pas de point.
+const MOIS_COURT = ["janv.","févr.","mars","avr.","mai","juin","juil.","août","sept.","oct.","nov.","déc."];
+const JOURS = ["dimanche","lundi","mardi","mercredi","jeudi","vendredi","samedi"];
+
+function dateLongue(iso) {
+  const d = new Date(iso + "T12:00:00");
+  return `${JOURS[d.getDay()]} ${d.getDate()} ${MOIS[d.getMonth()]} ${d.getFullYear()}`;
+}
+function dateCourte(iso) {
+  const d = new Date(iso + "T12:00:00");
+  return `${d.getDate()} ${MOIS_COURT[d.getMonth()]} ${d.getFullYear()}`;
+}
+const aujourdhui = () => new Date().toISOString().slice(0, 10);
+
+/* ── Client Airtable ───────────────────────────────────────────────────── */
+async function airtable(table, params = {}, options = {}) {
+  const url = new URL(`https://api.airtable.com/v0/${CONF.base}/${CONF.tables[table] || table}`);
+  for (const [k, v] of Object.entries(params)) {
+    Array.isArray(v) ? v.forEach(x => url.searchParams.append(k, x)) : url.searchParams.set(k, v);
+  }
+  const r = await fetch(url, {
+    method: options.method || "GET",
+    headers: {
+      Authorization: "Bearer " + CONF.jetonAirtable,
+      "Content-Type": "application/json",
+    },
+    body: options.body ? JSON.stringify(options.body) : undefined,
+  });
+  if (!r.ok) {
+    const detail = await r.text().catch(() => "");
+    throw new Error(`Airtable ${r.status} — ${detail.slice(0, 200)}`);
+  }
+  return r.json();
+}
+
+/** Récupère tous les enregistrements en suivant la pagination. */
+async function airtableTout(table, params = {}) {
+  let sortie = [], offset;
+  do {
+    const p = { ...params, pageSize: 100 };
+    if (offset) p.offset = offset;
+    const rep = await airtable(table, p);
+    sortie = sortie.concat(rep.records);
+    offset = rep.offset;
+  } while (offset);
+  return sortie;
+}
+
+const echappeFormule = v => String(v).replace(/\\/g, "\\\\").replace(/'/g, "\\'");
+
+async function journaliser(type, detail = "") {
+  if (!SESSION.client) return;
+  try {
+    await airtable("journal", {}, {
+      method: "POST",
+      body: {
+        records: [{ fields: {
+          "Événement": `${type} — ${SESSION.client.nom}`.slice(0, 250),
+          "Type": type,
+          "Client": [SESSION.client.id],
+          "Jeton saisi": SESSION.jeton,
+          "Détail": String(detail).slice(0, 250),
+          "Horodatage": new Date().toISOString(),
+          "Appareil": SESSION.appareil,
+        }}],
+        typecast: true,
+      },
+    });
+  } catch (e) { console.warn("Journal indisponible :", e.message); }
+}
+
+/* ── Rendu Markdown (sous-ensemble volontairement restreint) ───────────── */
+function markdown(src) {
+  if (!src) return "";
+  const lignes = echappe(src).split("\n");
+  let html = "", listeOuverte = false;
+
+  const fermerListe = () => { if (listeOuverte) { html += "</ul>"; listeOuverte = false; } };
+  const enligne = t => t
+    .replace(/\[([^\]]+)\]\(((?:https?:)?\/\/[^)\s]+)\)/g,
+             '<a href="$2" target="_blank" rel="noopener noreferrer">$1</a>')
+    .replace(/\*\*([^*]+)\*\*/g, "<strong>$1</strong>")
+    .replace(/(^|[\s(«"])\*([^*\n]+)\*/g, "$1<em>$2</em>")
+    .replace(/`([^`]+)`/g, "<code>$1</code>");
+
+  for (const brute of lignes) {
+    const l = brute.trim();
+    if (!l) { fermerListe(); continue; }
+    if (/^---+$/.test(l)) { fermerListe(); html += "<hr>"; continue; }
+    if (/^#{2,4}\s+/.test(l)) {
+      fermerListe();
+      html += `<h4>${enligne(l.replace(/^#{2,4}\s+/, ""))}</h4>`;
+      continue;
+    }
+    if (/^[-*]\s+/.test(l)) {
+      if (!listeOuverte) { html += "<ul>"; listeOuverte = true; }
+      html += `<li>${enligne(l.replace(/^[-*]\s+/, ""))}</li>`;
+      continue;
+    }
+    fermerListe();
+    html += `<p>${enligne(l)}</p>`;
+  }
+  fermerListe();
+  return html;
+}
+
+/* ══════════════════════════════════════════════════════════════════════════
+   Session et contrôle d'accès
+   ══════════════════════════════════════════════════════════════════════════ */
+const SESSION = {
+  jeton: null,
+  client: null,
+  appareil: LOCAL.lire("appareil") || (() => {
+    const id = "app-" + Math.random().toString(36).slice(2, 10);
+    LOCAL.ecrire("appareil", id);
+    return id;
+  })(),
+};
+
+let REGLAGES = {};
+
+async function chargerReglages() {
+  try {
+    const recs = await airtableTout("reglages");
+    REGLAGES = Object.fromEntries(
+      recs.filter(r => r.fields["Clé"]).map(r => [r.fields["Clé"], r.fields["Valeur"] || ""])
+    );
+  } catch { REGLAGES = {}; }
+}
+
+/**
+ * Vérifie un jeton auprès d'Airtable.
+ * Retourne {ok:true, client} ou {ok:false, motif}.
+ */
+async function verifierJeton(jeton) {
+  const propre = jeton.trim().toUpperCase();
+  if (!propre) return { ok: false, motif: "Saisissez un jeton d'accès." };
+
+  let recs;
+  try {
+    recs = await airtableTout("clients", {
+      filterByFormula: `UPPER(TRIM({Jeton})) = '${echappeFormule(propre)}'`,
+      maxRecords: 1,
+    });
+  } catch (e) {
+    return { ok: false, motif: "Impossible de joindre le service d'authentification. Vérifiez votre connexion." };
+  }
+  if (!recs.length) return { ok: false, motif: "Ce jeton n'existe pas. Vérifiez la saisie." };
+
+  const f = recs[0].fields;
+  const nom = f["Nom"] || "Abonné";
+  const jour = aujourdhui();
+
+  if (!f["Actif"])
+    return { ok: false, motif: `L'accès « ${nom} » a été désactivé. Contactez-nous pour le réactiver.` };
+
+  if (f["Date début"] && jour < f["Date début"])
+    return { ok: false, motif: `Cet abonnement ne démarre que le ${dateLongue(f["Date début"])}.` };
+
+  if (f["Date fin"] && jour > f["Date fin"])
+    return { ok: false, motif: `Cet abonnement a expiré le ${dateLongue(f["Date fin"])}. Renouvelez-le pour retrouver l'accès.` };
+
+  const client = {
+    id: recs[0].id,
+    nom,
+    email: f["Email"] || "",
+    plan: f["Plan"] || "",
+    role: f["Rôle"] || "Lecteur",
+    fin: f["Date fin"] || null,
+    illimite: !!f["Utilisateurs illimités"],
+    places: f["Places"] || 0,
+    notifications: !!f["Notifications"],
+    connexions: f["Connexions"] || 0,
+  };
+
+  // Limite de postes : seuls les abonnements non illimités sont contraints.
+  if (!client.illimite && client.places > 0) {
+    try {
+      const journal = await airtableTout("journal", {
+        filterByFormula: `AND({Jeton saisi} = '${echappeFormule(propre)}', {Type} = 'Connexion')`,
+        "fields[]": ["Appareil"],
+      });
+      const appareils = new Set(journal.map(r => r.fields["Appareil"]).filter(Boolean));
+      if (!appareils.has(SESSION.appareil) && appareils.size >= client.places) {
+        return { ok: false, motif:
+          `Cet abonnement autorise ${client.places} appareil(s) et la limite est atteinte. ` +
+          `Contactez-nous pour libérer un poste.` };
+      }
+    } catch { /* en cas d'indisponibilité du journal, on n'empêche pas la lecture */ }
+  }
+
+  return { ok: true, client };
+}
+
+async function ouvrirSession(jeton, client) {
+  SESSION.jeton = jeton;
+  SESSION.client = client;
+  LOCAL.ecrire("session", { jeton, client, verifiee: Date.now() });
+
+  airtable("clients", {}, {
+    method: "PATCH",
+    body: { records: [{ id: client.id, fields: {
+      "Dernière connexion": new Date().toISOString(),
+      "Connexions": (client.connexions || 0) + 1,
+    }}], typecast: true },
+  }).catch(() => {});
+
+  journaliser("Connexion", navigator.userAgent.slice(0, 120));
+}
+
+function fermerSession() {
+  journaliser("Déconnexion");
+  LOCAL.vider("session");
+  SESSION.jeton = SESSION.client = null;
+  location.hash = "";
+  location.reload();
+}
+
+/* ══════════════════════════════════════════════════════════════════════════
+   Accès aux contenus
+   ══════════════════════════════════════════════════════════════════════════ */
+const CACHE = { editions: null, parDate: new Map() };
+
+async function listerEditions(force = false) {
+  if (CACHE.editions && !force) return CACHE.editions;
+  const recs = await airtableTout("editions", {
+    filterByFormula: `{Statut} = 'Publiée'`,
+    "sort[0][field]": "Date",
+    "sort[0][direction]": "desc",
+  });
+  CACHE.editions = recs.map(r => ({
+    id: r.id,
+    date: r.fields["Date"],
+    slug: r.fields["Slug"] || r.fields["Date"],
+    titre: r.fields["Titre"] || "Édition du jour",
+    numero: r.fields["Numéro"],
+    type: r.fields["Type"] || "Quotidienne",
+    resume: r.fields["Résumé"] || "",
+    edito: r.fields["Édito"] || "",
+    minutes: r.fields["Temps de lecture"] || null,
+    image: r.fields["Image de une"] || "",
+  })).filter(e => e.date);
+  LOCAL.ecrire("cache.editions", CACHE.editions.slice(0, 40));
+  return CACHE.editions;
+}
+
+async function chargerEdition(slug) {
+  if (CACHE.parDate.has(slug)) return CACHE.parDate.get(slug);
+  const editions = await listerEditions();
+  const edition = editions.find(e => e.slug === slug || e.date === slug);
+  if (!edition) return null;
+
+  // DATESTR() est indispensable : comparer un champ date à une chaîne
+  // avec « = » ne renvoie jamais rien côté Airtable.
+  const recs = await airtableTout("articles", {
+    filterByFormula: `DATESTR({Date}) = '${echappeFormule(edition.date)}'`,
+    "sort[0][field]": "Ordre",
+    "sort[0][direction]": "asc",
+  });
+  edition.articles = recs.map(lireArticle);
+  CACHE.parDate.set(slug, edition);
+  return edition;
+}
+
+function lireArticle(r) {
+  const f = r.fields;
+  return {
+    id: r.id,
+    titre: f["Titre"] || "",
+    rubrique: f["Rubrique"] || "On rembobine",
+    thematique: f["Thématique"] || "",
+    chapo: f["Chapô"] || "",
+    contenu: f["Contenu"] || "",
+    chiffre: f["Chiffre clé"] || "",
+    legendeChiffre: f["Légende chiffre"] || "",
+    citation: f["Citation"] || "",
+    auteurCitation: f["Auteur citation"] || "",
+    image: f["Image"] || "",
+    legendeImage: f["Légende image"] || "",
+    sources: (f["Sources"] || "").split("\n").filter(Boolean).map(l => {
+      const [titre, url] = l.split("|").map(s => (s || "").trim());
+      return { titre: titre || url, url: url || "" };
+    }),
+    motsCles: (f["Mots-clés"] || "").split(",").map(s => s.trim()).filter(Boolean),
+    date: f["Date"] || "",
+    ordre: f["Ordre"] || 0,
+  };
+}
+
+async function rechercher(q, filtres = {}) {
+  const terme = echappeFormule(q.trim().toLowerCase());
+  const conditions = [
+    `SEARCH('${terme}', LOWER({Titre} & ''))`,
+    `SEARCH('${terme}', LOWER({Chapô} & ''))`,
+    `SEARCH('${terme}', LOWER({Contenu} & ''))`,
+    `SEARCH('${terme}', LOWER({Mots-clés} & ''))`,
+  ];
+  let formule = `OR(${conditions.join(",")})`;
+  const et = [formule];
+  if (filtres.rubrique)   et.push(`{Rubrique} = '${echappeFormule(filtres.rubrique)}'`);
+  if (filtres.thematique) et.push(`{Thématique} = '${echappeFormule(filtres.thematique)}'`);
+  if (filtres.depuis)     et.push(`IS_AFTER({Date}, '${echappeFormule(filtres.depuis)}')`);
+  if (filtres.jusqua)     et.push(`IS_BEFORE({Date}, '${echappeFormule(filtres.jusqua)}')`);
+  if (et.length > 1) formule = `AND(${et.join(",")})`;
+
+  const recs = await airtableTout("articles", {
+    filterByFormula: formule,
+    "sort[0][field]": "Date",
+    "sort[0][direction]": "desc",
+  });
+  return recs.map(lireArticle);
+}
+
+/* ══════════════════════════════════════════════════════════════════════════
+   Vues
+   ══════════════════════════════════════════════════════════════════════════ */
+const vue = () => $("#vue");
+
+function chargement(message = "Chargement de l'édition…") {
+  vue().className = "";
+  vue().innerHTML = `
+    <div style="padding-top:1rem">
+      <div class="squelette" style="height:14px;width:190px;margin-bottom:1.5rem"></div>
+      <div class="squelette" style="height:42px;margin-bottom:.7rem"></div>
+      <div class="squelette" style="height:42px;width:70%;margin-bottom:2rem"></div>
+      <div class="squelette" style="height:90px;margin-bottom:2.5rem"></div>
+      <div class="squelette" style="height:16px;width:120px;margin-bottom:1.2rem"></div>
+      <div class="squelette" style="height:13px;margin-bottom:.6rem"></div>
+      <div class="squelette" style="height:13px;margin-bottom:.6rem"></div>
+      <div class="squelette" style="height:13px;width:80%"></div>
+      <p class="vide" style="padding-top:2.5rem">${echappe(message)}</p>
+    </div>`;
+}
+
+function erreur(titre, detail) {
+  vue().className = "";
+  vue().innerHTML = `<div class="vide"><b>${echappe(titre)}</b>${echappe(detail || "")}</div>`;
+}
+
+/* ── Vue : une édition ─────────────────────────────────────────────────── */
+async function vueEdition(slug) {
+  chargement();
+  const editions = await listerEditions();
+  if (!editions.length) {
+    return erreur("Aucune édition publiée",
+      "Le premier brief apparaîtra ici dès sa publication.");
+  }
+
+  const cible = slug || editions[0].slug;
+  const ed = await chargerEdition(cible);
+  if (!ed) {
+    return erreur("Édition introuvable",
+      `Aucun brief n'a été publié le ${dateLongue(cible)}.`);
+  }
+
+  const i = editions.findIndex(e => e.slug === ed.slug);
+  const precedente = editions[i + 1], suivante = editions[i - 1];
+  const accent = ed.type === "Extra du samedi" ? "var(--violet)" : "var(--rouge)";
+
+  // Regroupement par rubrique, dans l'ordre éditorial
+  const groupes = new Map();
+  for (const a of ed.articles) {
+    if (!groupes.has(a.rubrique)) groupes.set(a.rubrique, []);
+    groupes.get(a.rubrique).push(a);
+  }
+  const ordonnees = [...groupes.entries()].sort((a, b) => rangDe(a[0]) - rangDe(b[0]));
+
+  const minutes = ed.minutes || Math.max(2, Math.round(
+    ed.articles.reduce((n, a) => n + (a.contenu + a.chapo).split(/\s+/).length, 0) / 220));
+
+  vue().className = "";
+  vue().innerHTML = `
+    <article style="--accent:${accent}">
+      <div class="une">
+        <div class="une-meta">
+          <span class="badge-type" style="background:${accent}">${echappe(ed.type)}</span>
+          <span>${dateLongue(ed.date)}</span>
+          ${ed.numero ? `<i class="puce"></i><span>N° ${ed.numero}</span>` : ""}
+          <i class="puce"></i><span>${minutes} min de lecture</span>
+        </div>
+        <h1>${echappe(ed.titre)}</h1>
+        ${ed.edito ? `<div class="edito" style="border-color:${accent}">${markdown(ed.edito)}</div>` : ""}
+      </div>
+
+      ${ordonnees.length > 1 ? `
+      <details class="sommaire" open>
+        <summary>Au sommaire</summary>
+        <ol>${ed.articles.map(a =>
+          `<li><a href="#article-${a.id}">${echappe(a.titre)}</a></li>`).join("")}</ol>
+      </details>` : ""}
+
+      ${ordonnees.map(([rubrique, articles]) => `
+        <section class="rubrique" id="rub-${encodeURIComponent(rubrique)}" style="--c:${couleurDe(rubrique)}">
+          <div class="rubrique-tete">
+            <span class="kicker">${echappe(rubrique)}</span>
+            <span class="rubrique-trait"></span>
+            <span class="rubrique-legende">${echappe(legendeDe(rubrique))}</span>
+          </div>
+          ${articles.map(rendreArticle).join("")}
+        </section>`).join("")}
+
+      <nav class="pagination">
+        ${precedente ? `<a href="#/edition/${precedente.slug}">
+            <small>← Édition précédente</small><b>${echappe(precedente.titre)}</b>
+          </a>` : `<span></span>`}
+        ${suivante ? `<a class="suiv" href="#/edition/${suivante.slug}">
+            <small>Édition suivante →</small><b>${echappe(suivante.titre)}</b>
+          </a>` : `<span></span>`}
+      </nav>
+    </article>`;
+
+  LOCAL.ecrire("derniereLue", ed.slug);
+  journaliser("Lecture", `Édition ${ed.slug} — ${ed.articles.length} articles`);
+  document.title = `${ed.titre} — Brief du ${dateCourte(ed.date)}`;
+}
+
+function rendreArticle(a) {
+  return `
+  <div class="article" id="article-${a.id}">
+    <h3>${echappe(a.titre)}</h3>
+    ${a.chapo ? `<p class="chapo">${echappe(a.chapo)}</p>` : ""}
+    ${a.image ? `<figure class="illustration">
+        <img src="${echappe(a.image)}" alt="${echappe(a.legendeImage || a.titre)}" loading="lazy">
+        ${a.legendeImage ? `<figcaption>${echappe(a.legendeImage)}</figcaption>` : ""}
+      </figure>` : ""}
+    ${a.citation ? `<blockquote class="citation">
+        <p>« ${echappe(a.citation)} »</p>
+        ${a.auteurCitation ? `<cite>— ${echappe(a.auteurCitation)}</cite>` : ""}
+      </blockquote>` : ""}
+    <div class="corps">${markdown(a.contenu)}</div>
+    ${a.chiffre ? `<div class="chiffre">
+        <b>${echappe(a.chiffre)}</b><span>${echappe(a.legendeChiffre)}</span>
+      </div>` : ""}
+    ${a.sources.length ? `<details class="sources">
+        <summary>${a.sources.length} source${a.sources.length > 1 ? "s" : ""}</summary>
+        <ul>${a.sources.map(s => `<li>${s.url
+          ? `<a href="${echappe(s.url)}" target="_blank" rel="noopener noreferrer">${echappe(s.titre)}</a>`
+          : echappe(s.titre)}</li>`).join("")}</ul>
+      </details>` : ""}
+    ${a.motsCles.length ? `<div class="etiquettes">${a.motsCles.slice(0, 8).map(m =>
+      `<a class="etiquette" href="#/recherche?q=${encodeURIComponent(m)}">${echappe(m)}</a>`).join("")}</div>` : ""}
+  </div>`;
+}
+
+/* ── Vue : archives ────────────────────────────────────────────────────── */
+async function vueArchives() {
+  chargement("Chargement des archives…");
+  const editions = await listerEditions();
+
+  const parMois = new Map();
+  for (const e of editions) {
+    const cle = e.date.slice(0, 7);
+    if (!parMois.has(cle)) parMois.set(cle, []);
+    parMois.get(cle).push(e);
+  }
+
+  const bornes = editions.length
+    ? { min: editions[editions.length - 1].date, max: editions[0].date }
+    : { min: "", max: "" };
+
+  vue().className = "";
+  vue().innerHTML = `
+    <div class="chapeau-page">
+      <h1>Archives</h1>
+      <p>${editions.length} édition${editions.length > 1 ? "s" : ""} disponible${editions.length > 1 ? "s" : ""},
+         de ${dateCourte(bornes.min)} à ${dateCourte(bornes.max)}.</p>
+    </div>
+
+    <div class="barre-outils">
+      <label class="surtitre" for="saut-date">Aller au</label>
+      <input type="date" id="saut-date" min="${bornes.min}" max="${bornes.max}" value="${bornes.max}">
+      <select id="filtre-type">
+        <option value="">Tous les formats</option>
+        <option value="Quotidienne">La quotidienne</option>
+        <option value="Extra du samedi">L'extra du samedi</option>
+        <option value="Édition spéciale">Éditions spéciales</option>
+      </select>
+    </div>
+
+    <div id="liste-archives">${rendreArchives(parMois)}</div>`;
+
+  $("#saut-date").addEventListener("change", e => {
+    const d = e.target.value;
+    if (editions.some(x => x.date === d)) location.hash = `#/edition/${d}`;
+    else alerte(`Aucune édition publiée le ${dateLongue(d)}.`);
+  });
+
+  $("#filtre-type").addEventListener("change", e => {
+    const t = e.target.value;
+    const filtre = new Map();
+    for (const [mois, liste] of parMois) {
+      const gardees = t ? liste.filter(x => x.type === t) : liste;
+      if (gardees.length) filtre.set(mois, gardees);
+    }
+    $("#liste-archives").innerHTML = filtre.size
+      ? rendreArchives(filtre)
+      : `<div class="vide"><b>Aucune édition</b>Aucun brief ne correspond à ce format.</div>`;
+  });
+
+  document.title = "Archives — Brief";
+}
+
+function rendreArchives(parMois) {
+  return [...parMois.entries()].map(([cle, liste]) => {
+    const [an, m] = cle.split("-");
+    return `
+      <section class="mois">
+        <h2>${MOIS[+m - 1]} ${an}</h2>
+        ${liste.map(e => `
+          <a class="carte" href="#/edition/${e.slug}" style="--c:${e.type === "Extra du samedi" ? "var(--violet)" : "var(--rouge)"}">
+            <div class="carte-meta">
+              <i class="pastille"></i>
+              <span>${dateLongue(e.date)}</span>
+              ${e.numero ? `<i class="puce"></i><span>N° ${e.numero}</span>` : ""}
+              ${e.minutes ? `<i class="puce"></i><span>${e.minutes} min</span>` : ""}
+            </div>
+            <h3>${echappe(e.titre)}</h3>
+            ${e.resume ? `<p>${echappe(e.resume)}</p>` : ""}
+          </a>`).join("")}
+      </section>`;
+  }).join("");
+}
+
+/* ── Vue : recherche ───────────────────────────────────────────────────── */
+async function vueRecherche(params) {
+  const q = params.get("q") || "";
+  const rubrique = params.get("rubrique") || "";
+  const thematique = params.get("thematique") || "";
+
+  vue().className = "";
+  vue().innerHTML = `
+    <div class="chapeau-page">
+      <h1>Recherche</h1>
+      <p>Cherchez dans l'ensemble des briefs publiés : titres, résumés, contenus et mots-clés.</p>
+    </div>
+
+    <form class="barre-outils" id="form-recherche">
+      <input type="search" id="q" placeholder="Mot-clé, nom, sujet…" value="${echappe(q)}"
+             style="flex:1; min-width:190px" autocomplete="off">
+      <select id="f-rubrique">
+        <option value="">Toutes rubriques</option>
+        ${RUBRIQUES.map(([r]) =>
+          `<option value="${echappe(r)}"${r === rubrique ? " selected" : ""}>${echappe(r)}</option>`).join("")}
+      </select>
+      <select id="f-thematique">
+        <option value="">Toutes thématiques</option>
+        ${["France","International","Économie","Environnement","Sciences","Tech","Culture","Sport","Société","Santé"]
+          .map(t => `<option value="${t}"${t === thematique ? " selected" : ""}>${t}</option>`).join("")}
+      </select>
+      <button class="bouton accent" type="submit" style="width:auto; padding:.6rem 1.2rem">Chercher</button>
+    </form>
+
+    <div id="resultats"></div>`;
+
+  $("#form-recherche").addEventListener("submit", e => {
+    e.preventDefault();
+    const p = new URLSearchParams();
+    if ($("#q").value.trim())    p.set("q", $("#q").value.trim());
+    if ($("#f-rubrique").value)  p.set("rubrique", $("#f-rubrique").value);
+    if ($("#f-thematique").value) p.set("thematique", $("#f-thematique").value);
+    location.hash = "#/recherche?" + p.toString();
+  });
+
+  document.title = q ? `« ${q} » — Recherche` : "Recherche — Brief";
+
+  if (!q && !rubrique && !thematique) {
+    $("#resultats").innerHTML = `
+      <div class="vide">
+        <b>Que cherchez-vous ?</b>
+        Tapez un mot-clé, ou filtrez par rubrique et par thématique.
+      </div>`;
+    return;
+  }
+
+  $("#resultats").innerHTML = `<p class="vide">Recherche en cours…</p>`;
+  let trouves;
+  try {
+    trouves = q ? await rechercher(q, { rubrique, thematique })
+                : await filtrerSansTerme({ rubrique, thematique });
+  } catch (e) {
+    return void ($("#resultats").innerHTML =
+      `<div class="vide"><b>La recherche a échoué</b>${echappe(e.message)}</div>`);
+  }
+
+  journaliser("Recherche", `« ${q} » → ${trouves.length} résultat(s)`);
+
+  if (!trouves.length) {
+    $("#resultats").innerHTML = `
+      <div class="vide">
+        <b>Aucun résultat</b>
+        Aucun article ne correspond${q ? ` à « ${echappe(q)} »` : ""}.
+      </div>`;
+    return;
+  }
+
+  $("#resultats").innerHTML = `
+    <p class="surtitre" style="display:block; margin-bottom:1rem">
+      ${trouves.length} résultat${trouves.length > 1 ? "s" : ""}
+    </p>
+    ${trouves.map(a => rendreResultat(a, q)).join("")}`;
+}
+
+async function filtrerSansTerme({ rubrique, thematique }) {
+  const et = [];
+  if (rubrique)   et.push(`{Rubrique} = '${echappeFormule(rubrique)}'`);
+  if (thematique) et.push(`{Thématique} = '${echappeFormule(thematique)}'`);
+  const recs = await airtableTout("articles", {
+    filterByFormula: et.length > 1 ? `AND(${et.join(",")})` : et[0],
+    "sort[0][field]": "Date",
+    "sort[0][direction]": "desc",
+  });
+  return recs.map(lireArticle);
+}
+
+function rendreResultat(a, q) {
+  const surligne = t => {
+    const clair = echappe(t);
+    if (!q) return clair;
+    return clair.replace(
+      new RegExp(`(${q.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")})`, "gi"), "<mark>$1</mark>");
+  };
+  // Extrait centré sur la première occurrence du terme, recadré sur des mots
+  // entiers pour ne pas couper au milieu d'une syllabe.
+  let extrait = a.chapo || a.contenu.replace(/[#*`>-]/g, "");
+  if (q) {
+    const pos = a.contenu.toLowerCase().indexOf(q.toLowerCase());
+    if (pos > -1) {
+      let debut = Math.max(0, pos - 90);
+      if (debut > 0) {
+        const espace = a.contenu.indexOf(" ", debut);
+        if (espace > -1 && espace < pos) debut = espace + 1;
+      }
+      let bout = a.contenu.slice(debut, debut + 260);
+      const dernier = bout.lastIndexOf(" ");
+      if (dernier > 160) bout = bout.slice(0, dernier);
+      extrait = (debut ? "… " : "") + bout.replace(/[#*`>]/g, "").trim() + " …";
+    }
+  }
+  return `
+    <div class="resultat" style="--c:${couleurDe(a.rubrique)}">
+      <div class="carte-meta">
+        <i class="pastille"></i>
+        <span>${echappe(a.rubrique)}</span>
+        <i class="puce"></i><span>${dateCourte(a.date)}</span>
+        ${a.thematique ? `<i class="puce"></i><span>${echappe(a.thematique)}</span>` : ""}
+      </div>
+      <h3><a href="#/edition/${a.date}#article-${a.id}">${surligne(a.titre)}</a></h3>
+      <p>${surligne(extrait.slice(0, 280))}</p>
+    </div>`;
+}
+
+/* ══════════════════════════════════════════════════════════════════════════
+   Notifications « nouveau brief »
+   ══════════════════════════════════════════════════════════════════════════ */
+const NOTIF = {
+  actif: () => LOCAL.lire("notifications", false) === true,
+
+  async activer() {
+    if (!("Notification" in window)) {
+      alerte("Votre navigateur ne gère pas les notifications.");
+      return false;
+    }
+    const perm = Notification.permission === "granted"
+      ? "granted" : await Notification.requestPermission();
+    if (perm !== "granted") {
+      alerte("Les notifications ont été refusées. Réactivez-les dans les réglages du navigateur.");
+      return false;
+    }
+    LOCAL.ecrire("notifications", true);
+    this.enregistrer();
+    alerte("C'est noté : vous serez prévenu dès la parution du prochain brief.");
+    return true;
+  },
+
+  desactiver() {
+    LOCAL.ecrire("notifications", false);
+    if (SESSION.client) {
+      airtable("clients", {}, { method: "PATCH", body: {
+        records: [{ id: SESSION.client.id, fields: { "Notifications": false } }], typecast: true },
+      }).catch(() => {});
+    }
+  },
+
+  /** Trace l'appareil dans Airtable, pour un futur envoi push côté serveur. */
+  async enregistrer() {
+    if (!SESSION.client) return;
+    try {
+      const existants = await airtableTout("push", {
+        filterByFormula: `{Identifiant} = '${echappeFormule(SESSION.appareil)}'`,
+        maxRecords: 1,
+      });
+      const champs = {
+        "Identifiant": SESSION.appareil,
+        "Client": [SESSION.client.id],
+        "Appareil": navigator.userAgent.slice(0, 200),
+        "Active": true,
+        "Créé le": new Date().toISOString(),
+      };
+      if (existants.length) {
+        await airtable("push", {}, { method: "PATCH", body: {
+          records: [{ id: existants[0].id, fields: champs }], typecast: true } });
+      } else {
+        await airtable("push", {}, { method: "POST", body: {
+          records: [{ fields: champs }], typecast: true } });
+      }
+      await airtable("clients", {}, { method: "PATCH", body: {
+        records: [{ id: SESSION.client.id, fields: { "Notifications": true } }], typecast: true } });
+    } catch (e) { console.warn("Abonnement push non enregistré :", e.message); }
+  },
+
+  /** Compare la dernière édition publiée à la dernière vue par ce lecteur. */
+  async verifier() {
+    let editions;
+    try { editions = await listerEditions(true); } catch { return; }
+    if (!editions.length) return;
+
+    const derniere = editions[0];
+    const connue = LOCAL.lire("derniereConnue");
+    if (connue === derniere.slug) return;
+
+    LOCAL.ecrire("derniereConnue", derniere.slug);
+    if (!connue) return;                       // première visite : rien à annoncer
+    if (derniere.slug === LOCAL.lire("derniereLue")) return;
+
+    const titre = REGLAGES.notification_titre || "Votre brief du soir est arrivé";
+    if (this.actif() && Notification.permission === "granted") {
+      try {
+        const n = new Notification(titre, {
+          body: derniere.titre,
+          tag: "brief-" + derniere.slug,
+          icon: "data:image/svg+xml," + encodeURIComponent(
+            `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><rect width="64" height="64" rx="14" fill="#ff4a59"/><text x="32" y="45" font-family="Helvetica,Arial" font-size="38" font-weight="700" fill="#fff" text-anchor="middle">B</text></svg>`),
+        });
+        n.onclick = () => { window.focus(); location.hash = `#/edition/${derniere.slug}`; n.close(); };
+      } catch {}
+    }
+    alerte(`${titre} — ${derniere.titre}`,
+           { texte: "Lire", href: `#/edition/${derniere.slug}` });
+    CACHE.parDate.delete(derniere.slug);
+  },
+};
+
+/* ── Bandeau d'information ─────────────────────────────────────────────── */
+let minuteurBandeau;
+function alerte(message, action = null) {
+  $("#bandeau")?.remove();
+  clearTimeout(minuteurBandeau);
+  const el = document.createElement("div");
+  el.className = "bandeau";
+  el.id = "bandeau";
+  el.innerHTML = `
+    <span style="flex:1">${echappe(message)}</span>
+    ${action ? `<a href="${echappe(action.href)}">${echappe(action.texte)}</a>` : ""}
+    <button aria-label="Fermer">×</button>`;
+  el.querySelector("button").onclick = () => el.remove();
+  el.querySelector("a")?.addEventListener("click", () => el.remove());
+  document.body.appendChild(el);
+  minuteurBandeau = setTimeout(() => el.remove(), action ? 15000 : 6000);
+}
+
+/* ══════════════════════════════════════════════════════════════════════════
+   Thème, menu, navigation
+   ══════════════════════════════════════════════════════════════════════════ */
+function appliquerTheme(t) {
+  document.documentElement.setAttribute("data-theme", t);
+  LOCAL.ecrire("theme", t);
+  $('meta[name="theme-color"]').content = t === "dark" ? "#1f1f1f" : "#ffffff";
+  $("#icone-theme")?.setAttribute("d", t === "dark"
+    ? "M20 14.5A8.5 8.5 0 0 1 9.5 4a8.5 8.5 0 1 0 10.5 10.5z"
+    : "M12 3v1m0 16v1m9-10h-1M4 12H3m15.36-6.36l-.7.7M6.34 17.66l-.7.7m12.72 0l-.7-.7M6.34 6.34l-.7-.7");
+  $("#icone-theme")?.parentElement.querySelector("circle")
+    ?.setAttribute("r", t === "dark" ? "0" : "4");
+}
+
+function rendreMenuCompte() {
+  const c = SESSION.client;
+  if (!c) return;
+  const notifs = NOTIF.actif();
+  $("#menu-compte").innerHTML = `
+    <div class="menu-tete">
+      <b>${echappe(c.nom)}</b>
+      <small>
+        ${echappe(c.plan || "Abonnement")}${c.fin ? ` · valable jusqu'au ${dateCourte(c.fin)}` : ""}
+        ${c.illimite ? " · utilisateurs illimités" : c.places ? ` · ${c.places} poste(s)` : ""}
+      </small>
+    </div>
+    <button id="bascule-notifs">
+      <span>Alerte nouveau brief</span>
+      <i class="interrupteur" data-on="${notifs ? 1 : 0}"></i>
+    </button>
+    <a href="#/archives">Parcourir les archives</a>
+    <button id="btn-deconnexion">Se déconnecter</button>`;
+
+  $("#bascule-notifs").onclick = async () => {
+    if (NOTIF.actif()) { NOTIF.desactiver(); }
+    else if (!await NOTIF.activer()) { rendreMenuCompte(); return; }
+    rendreMenuCompte();
+  };
+  $("#btn-deconnexion").onclick = fermerSession;
+}
+
+function router() {
+  const brut = location.hash.replace(/^#\/?/, "");
+  const [chemin, requete] = brut.split("?");
+  const params = new URLSearchParams(requete || "");
+  const segments = chemin.split("/").filter(Boolean);
+
+  $$(".nav a").forEach(a => a.removeAttribute("aria-current"));
+  const marquer = v => $(`.nav a[data-vue="${v}"]`)?.setAttribute("aria-current", "page");
+
+  const rendu = (() => {
+    switch (segments[0]) {
+      case "archives":  marquer("archives");  return vueArchives();
+      case "recherche": marquer("recherche"); return vueRecherche(params);
+      case "edition":   marquer("edition");   return vueEdition(segments[1]);
+      default:          marquer("edition");   return vueEdition(null);
+    }
+  })();
+
+  Promise.resolve(rendu)
+    .then(() => {
+      // Ancre interne éventuelle (#/edition/2026-08-11#article-recXXX)
+      const ancre = location.hash.split("#")[2];
+      if (ancre) {
+        requestAnimationFrame(() => {
+          const el = document.getElementById(ancre);
+          el ? el.scrollIntoView({ behavior: "smooth", block: "start" }) : window.scrollTo(0, 0);
+        });
+      } else window.scrollTo(0, 0);
+    })
+    .catch(e => erreur("Une erreur est survenue", e.message));
+}
+
+/* ══════════════════════════════════════════════════════════════════════════
+   Démarrage
+   ══════════════════════════════════════════════════════════════════════════ */
+function montrerPortail(motif = "") {
+  $("#portail").hidden = false;
+  $("#entete").hidden = $("#vue").hidden = true;
+  $("#portail-erreur").innerHTML = motif ? `<div class="alerte">${echappe(motif)}</div>` : "";
+  $("#saisie-jeton").focus();
+}
+
+function montrerApplication() {
+  $("#portail").hidden = true;
+  $("#entete").hidden = $("#vue").hidden = false;
+  rendreMenuCompte();
+  router();
+
+  NOTIF.verifier();
+  setInterval(() => NOTIF.verifier(), CONF.intervalleVeille);
+  document.addEventListener("visibilitychange", () => {
+    if (!document.hidden) NOTIF.verifier();
+  });
+}
+
+async function demarrer() {
+  appliquerTheme(LOCAL.lire("theme") ||
+    (matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light"));
+
+  $("#btn-theme").onclick = () =>
+    appliquerTheme(document.documentElement.getAttribute("data-theme") === "dark" ? "light" : "dark");
+
+  $("#btn-compte").onclick = e => {
+    e.stopPropagation();
+    const m = $("#menu-compte");
+    m.hidden = !m.hidden;
+    $("#btn-compte").setAttribute("aria-expanded", String(!m.hidden));
+  };
+  document.addEventListener("click", e => {
+    if (!e.target.closest("#menu-compte") && !e.target.closest("#btn-compte"))
+      $("#menu-compte").hidden = true;
+  });
+
+  window.addEventListener("hashchange", router);
+  window.addEventListener("scroll", () => {
+    const h = document.documentElement.scrollHeight - innerHeight;
+    $("#progression").style.width = h > 0 ? (scrollY / h) * 100 + "%" : "0";
+  }, { passive: true });
+
+  await chargerReglages();
+  if (REGLAGES.app_baseline) $("#portail-titre").textContent = REGLAGES.app_baseline;
+  if (REGLAGES.contact_email) {
+    $("#lien-contact").href = "mailto:" + REGLAGES.contact_email;
+    $("#lien-contact").textContent = REGLAGES.contact_email;
+  }
+
+  // Formulaire d'accès
+  $("#form-acces").addEventListener("submit", async e => {
+    e.preventDefault();
+    const btn = $("#btn-acces");
+    btn.disabled = true;
+    btn.textContent = "Vérification…";
+    const saisi = $("#saisie-jeton").value.trim().toUpperCase();
+    const res = await verifierJeton(saisi);
+    btn.disabled = false;
+    btn.textContent = "Accéder au brief";
+    if (!res.ok) {
+      $("#portail-erreur").innerHTML = `<div class="alerte">${echappe(res.motif)}</div>`;
+      $("#saisie-jeton").select();
+      airtable("journal", {}, { method: "POST", body: { records: [{ fields: {
+        "Événement": "Échec de connexion",
+        "Type": "Échec connexion",
+        "Jeton saisi": saisi.slice(0, 60),
+        "Détail": res.motif.slice(0, 250),
+        "Horodatage": new Date().toISOString(),
+        "Appareil": SESSION.appareil,
+      }}], typecast: true } }).catch(() => {});
+      return;
+    }
+    await ouvrirSession(saisi, res.client);
+    montrerApplication();
+  });
+
+  // Reprise de session : le jeton est revérifié à chaque démarrage, de sorte
+  // qu'une révocation dans Airtable coupe l'accès dès le rechargement suivant.
+  const memo = LOCAL.lire("session");
+  if (memo?.jeton) {
+    const res = await verifierJeton(memo.jeton);
+    if (res.ok) {
+      SESSION.jeton = memo.jeton;
+      SESSION.client = res.client;
+      LOCAL.ecrire("session", { jeton: memo.jeton, client: res.client, verifiee: Date.now() });
+      return montrerApplication();
+    }
+    LOCAL.vider("session");
+    return montrerPortail(res.motif);
+  }
+  montrerPortail();
+}
+
+demarrer().catch(e => {
+  document.body.innerHTML =
+    `<div class="vide" style="padding-top:20vh"><b>Le service est indisponible</b>${echappe(e.message)}</div>`;
+});
+</script>
+</body>
+</html>

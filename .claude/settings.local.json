@@ -1,0 +1,8 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(curl -s -H \"Authorization: Bearer patDnefT5sQlQc2L1.7388f732d1cac15a74705c77a61c2d0be78892cb5594d5ee6d0e9d0bf1683b01\" \"https://api.airtable.com/v0/meta/bases\")",
+      "Bash(curl -s -H \"Authorization: Bearer patDnefT5sQlQc2L1.7388f732d1cac15a74705c77a61c2d0be78892cb5594d5ee6d0e9d0bf1683b01\" \"https://api.airtable.com/v0/meta/whoami\")"
+    ]
+  }
+}

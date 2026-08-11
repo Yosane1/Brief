@@ -1,0 +1,91 @@
+{
+  "edition": {
+    "titre": "L'extra du samedi : quatre-vingt-dix ans après la guerre d'Espagne",
+    "date": "2026-08-08",
+    "numero": 1247,
+    "type": "Extra du samedi",
+    "statut": "Publiée",
+    "slug": "2026-08-08",
+    "resume": "Prendre de la hauteur : les disparus de la guerre d'Espagne, la brouille fondatrice d'Adidas et Puma, le théâtre sous l'Occupation. Et le mot de la semaine : le sarking.",
+    "edito": "Le samedi, on ralentit. Cette semaine, trois histoires qui ont en commun de montrer combien le passé met du temps à se refermer — quatre-vingt-dix ans pour les fosses espagnoles, quatre générations pour une brouille entre deux frères allemands.",
+    "genere_par": "Claude Code Cloud"
+  },
+  "articles": [
+    {
+      "titre": "Les disparus de la guerre d'Espagne, quatre-vingt-dix ans après",
+      "rubrique": "On revient au début",
+      "thematique": "International",
+      "a_la_une": true,
+      "chapo": "Plus de 100 000 personnes n'ont jamais été retrouvées. Des milliers de familles cherchent encore leurs morts.",
+      "contenu": "### Le conflit\n\nLa guerre d'Espagne éclate en juillet 1936, lorsqu'une partie de l'armée se soulève contre le gouvernement républicain. Elle dure près de trois ans, fait des centaines de milliers de morts et s'achève en 1939 par la victoire de Franco et l'installation d'une dictature qui durera jusqu'en 1975.\n\n### Ce qui reste ouvert\n\nQuatre-vingt-dix ans après son déclenchement, le conflit n'est toujours pas soldé sur un point précis : **plus de 100 000 disparus n'ont jamais été localisés**. Beaucoup ont été exécutés puis enterrés dans des fosses communes, souvent en bord de route, sans registre.\n\nDes milliers de familles continuent de chercher, avec les moyens de l'archéologie médico-légale : exhumations, analyses ADN, croisement de témoignages recueillis auprès de témoins désormais très âgés.\n\n### Pourquoi c'est si long\n\nLa transition démocratique espagnole s'est construite sur un compromis de silence — le « pacte de l'oubli » — qui a longtemps découragé toute politique publique de recherche. Les exhumations ont d'abord reposé sur des associations et des financements privés.\n\nLe titre de la série que France 24 consacre au sujet dit bien l'enjeu : **« Pour ne plus baisser la tête »**. Il ne s'agit pas seulement de retrouver des restes, mais de rendre à des familles le droit de nommer publiquement ce qui leur est arrivé.",
+      "temps_lecture": 4,
+      "chiffre": "100 000",
+      "legende_chiffre": "disparus de la guerre d'Espagne jamais retrouvés",
+      "mots_cles": "guerre d'Espagne, Franco, disparus, fosses communes, mémoire, Espagne, histoire",
+      "sources": [
+        "France 24 — « Pour ne plus baisser la tête » : à la recherche des disparus de la guerre d'Espagne (série 3/4) | https://www.france24.com/fr/"
+      ]
+    },
+    {
+      "titre": "Adolf et Rudolf Dassler, les frères ennemis de la basket",
+      "rubrique": "On revient au début",
+      "thematique": "Économie",
+      "chapo": "Unis par la passion du sport, ils ont fondé ensemble une entreprise de chaussures — puis deux marques rivales installées face à face.",
+      "contenu": "Ils fabriquaient des chaussures de sport dans la buanderie de leur mère, à Herzogenaurach, en Bavière. Dans les années 1920 et 1930, l'entreprise des frères **Dassler** prospère au point de chausser des athlètes olympiques.\n\nPuis la relation se déchire. Les raisons exactes de la brouille restent disputées — rivalité personnelle, soupçons de dénonciation pendant la guerre, désaccords sur la conduite de l'entreprise. Le résultat, lui, est net : à la fin des années 1940, les frères se séparent.\n\n**Adolf**, dit « Adi », fonde **Adidas**. **Rudolf** fonde **Puma**, de l'autre côté de la rivière qui traverse la ville. Herzogenaurach devient une ville coupée en deux, où l'on savait à quelle marque appartenait un habitant en regardant ses pieds.\n\nLes deux frères ne se sont jamais réconciliés. Ils sont enterrés dans le même cimetière, aux extrémités opposées.",
+      "temps_lecture": 3,
+      "mots_cles": "Adidas, Puma, Dassler, Herzogenaurach, sport, marques, histoire économique",
+      "sources": [
+        "Le Monde — « Couture et déchirures » (6/6) : Adolf et Rudolf Dassler | https://www.lemonde.fr/economie/"
+      ]
+    },
+    {
+      "titre": "Jouer sans se compromettre : le théâtre d'art sous l'Occupation",
+      "rubrique": "On revient au début",
+      "thematique": "Culture",
+      "chapo": "Le Cartel des quatre — Jouvet, Pitoëff, Dullin, Baty — avait refondé le théâtre français dans les années 1920. La guerre a posé une question sans bonne réponse.",
+      "contenu": "À partir de la fin des années 1920, quatre metteurs en scène — **Louis Jouvet, Georges Pitoëff, Charles Dullin et Gaston Baty** — s'associent au sein du « Cartel des quatre ». Leur ambition : arracher le théâtre au boulevard commercial et en faire un art de recherche.\n\nL'Occupation transforme ce projet en dilemme. Continuer à jouer, c'est accepter la censure allemande, les contraintes de programmation et une forme de caution donnée à la normalité apparente de la vie culturelle sous l'occupant. Cesser de jouer, c'est laisser la scène à d'autres, et laisser des troupes entières sans ressources.\n\nChacun a tranché différemment — exil, repli, poursuite de l'activité. Aucune de ces réponses n'a été à l'abri du reproche, ni sur le moment ni après.",
+      "temps_lecture": 3,
+      "mots_cles": "théâtre, Occupation, Jouvet, Dullin, Pitoëff, Baty, Cartel des quatre, histoire",
+      "sources": [
+        "Le Monde — « Le théâtre sous l'Occupation » (2/5) | https://www.lemonde.fr/culture/"
+      ]
+    },
+    {
+      "titre": "C'est quoi, le sarking ?",
+      "rubrique": "C'est quoi ?",
+      "thematique": "Environnement",
+      "chapo": "Une technique d'isolation par le dessus de la toiture, au cœur d'un conflit entre adaptation climatique et protection du patrimoine.",
+      "contenu": "Le **sarking** consiste à poser l'isolant **au-dessus** de la charpente, sous la couverture, plutôt qu'en dessous depuis les combles.\n\n**Avantages.** L'isolation est continue, sans les ponts thermiques créés par les chevrons ; on ne perd pas de volume habitable ; et l'on peut isoler sans vider les combles.\n\n**Inconvénient.** La technique **rehausse légèrement le toit** — de quelques centimètres à une dizaine. C'est là que le conflit commence.\n\nÀ Paris, le Plan local d'urbanisme bioclimatique autorise le sarking. Mais les **architectes des bâtiments de France**, garants de l'aspect patrimonial des toitures en zinc, émettent régulièrement des avis négatifs sur les projets, au motif que la surélévation modifie la silhouette des immeubles.\n\nDeux objectifs publics légitimes — adapter le bâti aux canicules, préserver un paysage urbain — se retrouvent en concurrence directe sur le même mètre carré de toiture.",
+      "temps_lecture": 2,
+      "mots_cles": "sarking, isolation, toiture, rénovation énergétique, patrimoine, ABF, Paris, canicule",
+      "sources": [
+        "Le Monde — Quand l'architecte des bâtiments de France s'oppose à des projets d'isolation par rehaussement | https://www.lemonde.fr/economie/"
+      ]
+    },
+    {
+      "titre": "La semaine en cinq points",
+      "rubrique": "On rembobine la semaine",
+      "thematique": "France",
+      "chapo": "Chaleur, sécheresse, chômage, régulation du démarchage et vaccination américaine.",
+      "contenu": "**1. La chaleur s'installe.** L'ouest de l'Europe a connu ses températures les plus élevées jamais mesurées, et 95 % du territoire français manquait d'eau en juillet.\n\n**2. Le nucléaire se bride.** Les fortes chaleurs ont contraint plusieurs réacteurs d'EDF à réduire leur puissance ou à s'arrêter.\n\n**3. Le chômage remonte.** 8,3 % de la population active au deuxième trimestre, plus haut niveau depuis l'automne 2020.\n\n**4. Le démarchage change de régime.** À partir du 11 août, une entreprise devra obtenir un consentement explicite avant tout appel de prospection.\n\n**5. Washington relance l'offensive antivaccins.** Un décret présidentiel recommande de réduire le nombre de vaccins administrés aux enfants.",
+      "temps_lecture": 2,
+      "mots_cles": "récapitulatif, semaine, canicule, chômage, démarchage, vaccins",
+      "sources": [
+        "Le Monde, franceinfo, France 24, Libération — revue de la semaine | https://www.brief.me/"
+      ]
+    },
+    {
+      "titre": "Trois choses à regarder ce week-end",
+      "rubrique": "Ça vaut un clic",
+      "thematique": "Culture",
+      "chapo": "Un opéra d'apocalypse, un château troglodytique réinventé, et des cannibales dans la Sierra Nevada.",
+      "contenu": "**À écouter.** Au Festival de Salzbourg, **Romeo Castellucci** met en scène *Saint François d'Assise*, l'unique opéra d'Olivier Messiaen. Le prêche aux oiseaux y est adressé à des oiseaux morts.\n\n**À visiter.** Au château de **La Roche-Guyon**, dans le Val-d'Oise, une « expérience de visite complètement repensée » fait dialoguer l'histoire du lieu troglodytique et son mobilier retrouvé avec des œuvres contemporaines.\n\n**À lire.** *Le Monde* consacre une série d'été aux « Sept nuances de cannibalisme ». L'épisode 5 raconte 1846 : des pionniers en route pour la Californie, bloqués par la neige dans la Sierra Nevada, contraints de manger certains membres du convoi.",
+      "mots_cles": "Salzbourg, Castellucci, Messiaen, La Roche-Guyon, série d'été, cannibalisme, culture",
+      "sources": [
+        "Le Monde — Romeo Castellucci au Festival de Salzbourg | https://www.lemonde.fr/culture/",
+        "Le Monde — À La Roche-Guyon, une expérience de visite repensée | https://www.lemonde.fr/culture/",
+        "Le Monde — « Sept nuances de cannibalisme » (5/7) | https://www.lemonde.fr/"
+      ]
+    }
+  ]
+}
