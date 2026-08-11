@@ -51,20 +51,51 @@ Le fichier tient en une ligne d'en-tête suivie d'**une dépêche par ligne**,
 classées par date décroissante :
 
 ```json
-{"id":"lm042","date":"08-11 21:56","source":"Le Monde","rubrique":"France","titre":"…","resume":"…"}
+{"id":"lm042","date":"08-11 21:56","source":"Le Monde","rubrique":"France","titre":"…"}
 ```
 
-**Les URL n'y sont pas, et tu n'en as pas besoin.** Chaque dépêche porte un
-identifiant : c'est lui que tu citeras à l'étape 4, et `push_edition.py`
-retrouvera l'adresse réelle au moment de publier. N'ouvre jamais le dossier
-`veille/` — il ne contient que ces adresses, il ne t'apprendrait rien et il est
-volumineux.
+**Ni résumés ni URL : seulement de quoi choisir.** Sur les quelque 190 dépêches
+d'une journée, une trentaine finit citée — les charger toutes en entier pour en
+utiliser trente dépenserait la moitié de ton contexte en pure perte, et ce
+contexte t'est renvoyé à chaque appel d'outil.
+
+Le reste vient à la demande, et jamais autrement :
+
+- les **résumés**, à l'étape 2, avec `scripts/depeches.py` ;
+- les **URL**, jamais — tu cites des identifiants, `push_edition.py` résout.
+
+N'ouvre pas le dossier `veille/` directement : c'est le fichier complet, il ne
+t'apprendrait rien de plus que ces deux chemins et il est volumineux.
 
 ## Étape 2 — Choisir les sujets
 
-Sélectionne **12 à 15 articles**, pour un total de **6 à 8 minutes de lecture**
-(le calcul se fait à 220 mots/minute). C'est une contrainte ferme : au-delà, la
-promesse du format n'est plus tenue. En respectant ces équilibres :
+En deux temps : tu présélectionnes sur les titres, puis tu lis les résumés de
+ce que tu as retenu.
+
+**a. Présélection.** Parcours les titres et retiens tout ce qui pourrait entrer
+dans l'édition — **40 à 60 dépêches**, largement plus que les 12 à 15 articles
+finaux. Un titre suffit à écarter un résultat sportif ou un marronnier, pas à
+juger si un sujet mérite le décryptage.
+
+**b. Lecture.** Récupère leurs résumés en **une seule commande** :
+
+```bash
+python scripts/depeches.py lm042 fi017 bbc003 lib021 …
+```
+
+Sois large : un résumé pèse 250 octets, un article écrit sur la foi d'un titre
+se paie en crédibilité. Si un titre est ambigu, mets-le dans le lot — c'est
+exactement à ça que sert cette étape. Tu peux relancer la commande si la
+lecture te fait revenir sur un sujet d'abord écarté.
+
+**Règle ferme : tu n'écris jamais un article dont tu n'as pas lu le résumé.**
+Un titre de dépêche annonce le sujet, pas les faits ; il ne porte ni chiffre
+vérifiable, ni attribution, ni nuance. Sans le résumé, tu inventerais.
+
+**c. Arbitrage.** Sélectionne alors **12 à 15 articles**, pour un total de
+**6 à 8 minutes de lecture** (le calcul se fait à 220 mots/minute). C'est une
+contrainte ferme : au-delà, la promesse du format n'est plus tenue. En
+respectant ces équilibres :
 
 - 5 à 7 sujets en **On rembobine** — l'essentiel du jour, formats courts
   (150 à 250 mots), un mélange France / international / économie.
@@ -83,8 +114,9 @@ produits, les vidéos sans contenu propre, les live-blogs sans information neuve
 
 Les règles éditoriales, dans l'ordre d'importance :
 
-1. **Factuel et sourcé.** Chaque affirmation doit être adossée à au moins une
-   dépêche de `veille.jsonl`. Aucun chiffre, nom ou date qui n'y figure pas.
+1. **Factuel et sourcé.** Chaque affirmation doit être adossée à un résumé que
+   tu as lu à l'étape 2. Aucun chiffre, nom ou date qui n'y figure pas — et
+   surtout rien de tiré d'un titre seul.
 2. **Sans parti pris.** Rapporte les positions, ne les arbitre pas. Attribue
    explicitement : « selon le président ukrainien », « d'après *Le Monde* ».
 3. **Explique le mécanisme.** L'intérêt du brief n'est pas de dire ce qui s'est

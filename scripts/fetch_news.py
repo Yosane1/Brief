@@ -8,18 +8,24 @@ brute. C'est Claude qui la lit ensuite pour écrire le brief.
 
 Deux fichiers en sortie, et la séparation est le cœur du script :
 
-    veille.jsonl            ce que Claude lit — une dépêche par ligne, sans URL
-    veille/AAAA-MM-JJ.json  les URL, que Claude ne lit jamais
+    veille.jsonl            ce que Claude lit d'emblée — titres seuls
+    veille/AAAA-MM-JJ.json  résumés et URL, servis à la demande
 
-Les liens pesaient 26 % de la matière alors qu'une douzaine de dépêches
-seulement finit citée, et Claude les recopiait ensuite à la main dans le champ
-`sources` — 38 % de ce qu'il écrivait. Chaque dépêche porte donc un identifiant
-court (« lm042 ») qu'il cite à la place ; push_edition.py retrouve l'URL au
-moment de publier. Moins de contexte chargé, moins de texte réécrit, et plus
-aucune URL ne peut être inventée ou tronquée.
+Sur 188 dépêches collectées, une trentaine finit citée. Charger d'avance les
+188 résumés et les 188 URL pour en utiliser trente, c'était les trois quarts du
+contexte de la session dépensés en pure perte — et ce contexte est renvoyé au
+modèle à chaque appel d'outil.
 
-Le fichier de liens n'est jamais écrasé : une édition republiée des mois plus
-tard retrouve ses sources.
+D'où la coupure. `veille.jsonl` porte de quoi *choisir* : identifiant, date,
+source, rubrique, titre. Les résumés viennent ensuite, uniquement pour les
+dépêches retenues, via `depeches.py` ; les URL ne viennent jamais, c'est
+`push_edition.py` qui les résout à la publication depuis le même fichier.
+
+Bénéfice annexe : plus aucune URL ne peut être inventée ou tronquée, puisque
+Claude ne cite que des identifiants.
+
+Le fichier du dossier `veille/` n'est jamais écrasé : une édition republiée des
+mois plus tard y retrouve ses sources.
 
 Usage :
     python scripts/fetch_news.py                        # dernières 24 h
@@ -202,12 +208,12 @@ def ecrire(items, chemin_veille, dossier_liens, heures):
         "fuseau": "Europe/Paris",
         "fenetre_heures": heures,
         "depeches": len(items),
-        "liens": chemin_liens,
-        "format": "une dépêche par ligne ; cite une dépêche par son id, jamais par son URL",
+        "detail": chemin_liens,
+        "format": "titres seuls — résumés via « python scripts/depeches.py id1 id2 … »",
     }
 
     lignes = [json.dumps(entete, ensure_ascii=False, separators=(",", ":"))]
-    liens = {}
+    detail = {}
     for it in items:
         d = it["date"]
         lignes.append(json.dumps({
@@ -216,9 +222,10 @@ def ecrire(items, chemin_veille, dossier_liens, heures):
             "source": it["source"],
             "rubrique": it["rubrique"],
             "titre": it["titre"],
-            "resume": it["resume"],
         }, ensure_ascii=False, separators=(",", ":")))
-        liens[it["id"]] = [it["source"], it["titre"], it["lien"]]
+        # Ordre figé : source, titre, url, résumé. push_edition.py ne lit que
+        # les trois premiers, depeches.py que le dernier.
+        detail[it["id"]] = [it["source"], it["titre"], it["lien"], it["resume"]]
 
     with open(chemin_veille, "w", encoding="utf-8") as f:
         f.write("\n".join(lignes) + "\n")
@@ -230,7 +237,7 @@ def ecrire(items, chemin_veille, dossier_liens, heures):
         corps = ",\n".join(
             f' {json.dumps(k, ensure_ascii=False)}: '
             f'{json.dumps(v, ensure_ascii=False, separators=(", ", ": "))}'
-            for k, v in liens.items()
+            for k, v in detail.items()
         )
         f.write("{\n" + corps + "\n}\n")
 

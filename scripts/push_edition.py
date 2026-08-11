@@ -49,7 +49,11 @@ CHAMPS_ARTICLE = {
 }
 
 
-ID_DEPECHE = re.compile(r"^[a-z]{2,4}\d{3}$")
+# Un préfixe de source peut contenir des chiffres — « f24 » pour France 24 —
+# d'où la première lettre isolée. Ce motif ne sert qu'à distinguer un
+# identifiant introuvable d'une source écrite à la main : la résolution, elle,
+# se fait par recherche dans la table.
+ID_DEPECHE = re.compile(r"^[a-z][a-z0-9]{1,3}\d{3}$")
 
 
 def mappe(source, table):
@@ -96,12 +100,12 @@ def resoudre_sources(sources, liens, titre_article):
             lignes.append(f"{s.get('titre', '')} | {s.get('url', '')}")
             continue
         s = str(s).strip()
-        if ID_DEPECHE.match(s):
-            if s in liens:
-                lignes.append(liens[s])
-                continue
-            manquants.append(s)            # gardé tel quel : mieux vaut une
-        lignes.append(s)                   # trace qu'une source effacée
+        if s in liens:                     # la table tranche, pas le motif
+            lignes.append(liens[s])
+            continue
+        if ID_DEPECHE.match(s):            # gardé tel quel : mieux vaut une
+            manquants.append(s)            # trace qu'une source effacée
+        lignes.append(s)
     if manquants:
         print(f"  ⚠ « {titre_article[:45]} » : {', '.join(manquants)} "
               f"introuvable(s) dans veille/")

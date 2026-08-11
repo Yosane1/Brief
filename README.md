@@ -156,14 +156,15 @@ Le pipeline se lance avec une seule commande dans Claude Code :
 /brief-du-soir
 ```
 
-Il enchaîne quatre étapes :
+Il enchaîne cinq étapes :
 
 | Étape | Script | Ce qu'elle fait |
 |---|---|---|
 | 1. Collecter | `scripts/fetch_news.py` | Agrège 11 flux RSS (Le Monde, franceinfo, France 24, Libération, BBC, Futura…), dédoublonne, filtre sur 26 h |
-| 2. Écrire | *(Claude)* | Sélectionne les sujets, rédige, produit `editions/AAAA/AAAA-MM-JJ.json` |
-| 3. Publier | `scripts/push_edition.py` | Upsert dans Airtable — relancer sur la même date ne crée pas de doublon |
-| 4. Vérifier | `scripts/verifier_edition.py` | Relit l'édition avec la requête de l'app et signale ce qui s'afficherait mal |
+| 2. Choisir | `scripts/depeches.py` | Claude présélectionne sur les titres, puis lit les résumés des seuls candidats retenus |
+| 3. Écrire | *(Claude)* | Rédige et produit `editions/AAAA/AAAA-MM-JJ.json` |
+| 4. Publier | `scripts/push_edition.py` | Upsert dans Airtable — relancer sur la même date ne crée pas de doublon |
+| 5. Vérifier | `scripts/verifier_edition.py` | Relit l'édition avec la requête de l'app et signale ce qui s'afficherait mal |
 
 Les règles éditoriales — équilibre des rubriques, longueur, sourçage, ton,
 format du week-end — sont dans `.claude/commands/brief-du-soir.md`. Le format
@@ -211,21 +212,35 @@ d'une heure (`50 16` et `30 17`) pour conserver les mêmes horaires à Paris.
 
 ### Pourquoi la veille tient en deux fichiers
 
-La collecte écrit `veille.jsonl` — une dépêche par ligne, **sans les URL** — et
-`veille/AAAA-MM-JJ.json`, qui ne contient que les URL. Claude ne lit que le
-premier.
+Sur les quelque 190 dépêches d'une journée, **une trentaine finit citée**. Les
+charger toutes en entier pour en utiliser trente dépensait les trois quarts du
+contexte de la session en pure perte — et ce contexte est renvoyé au modèle à
+chaque appel d'outil.
 
-Les liens pesaient un quart de la matière alors qu'une douzaine de dépêches
-seulement finit citée, et Claude les recopiait ensuite à la main dans le champ
-`sources` : plus d'un tiers de ce qu'il écrivait. Chaque dépêche porte donc un
-identifiant court — `lm042` — qu'il cite à la place, et `push_edition.py`
-retrouve l'adresse au moment de publier. La veille passe de 121 à 81 Ko, le
-champ `sources` de 8 Ko à 700 octets, et **plus aucune URL ne peut être inventée
-ou tronquée** : un identifiant inconnu est signalé par `verifier_edition.py`.
+La collecte écrit donc deux fichiers :
+
+| Fichier | Contenu | Qui le lit |
+|---|---|---|
+| `veille.jsonl` | identifiant, date, source, rubrique, **titre** | Claude, en entier |
+| `veille/AAAA-MM-JJ.json` | les mêmes, plus **URL** et **résumé** | jamais Claude |
+
+Claude choisit ses sujets sur les titres, puis réclame les résumés des seuls
+candidats retenus — `python scripts/depeches.py lm042 fi017 …`. Les URL, il ne
+les voit jamais : il cite des identifiants, et `push_edition.py` les résout à
+la publication.
+
+Le contexte d'une session passe de 133 à 60 Ko, dont 13 Ko de résumés
+réellement utiles. **Et plus aucune URL ne peut être inventée ou tronquée** :
+`verifier_edition.py` refuse de laisser passer une source non résolue.
+
+La contrepartie est une règle éditoriale ferme, inscrite dans la procédure :
+*ne jamais écrire un article dont le résumé n'a pas été lu*. Un titre annonce
+un sujet, il ne porte ni chiffre vérifiable, ni attribution, ni nuance. La
+présélection vise donc large — 40 à 60 dépêches — et un résumé de plus ne coûte
+que 250 octets.
 
 Le dossier `veille/` n'est jamais écrasé : une édition republiée des mois plus
-tard y retrouve ses sources. Il grossit de ~50 Ko par jour et n'est lu que par
-`push_edition.py`.
+tard y retrouve ses sources. Il grossit d'environ 100 Ko par jour.
 
 ### Chaque étape est utilisable seule
 
@@ -443,9 +458,9 @@ index.html                          l'application
 manifest.webmanifest                description de l'app installable
 sw.js                               service worker : install, notifications, hors ligne
 icones/                             icônes générées, référencées par le manifeste
-veille.jsonl                        matière lue par Claude — sans URL, réécrite chaque soir
+veille.jsonl                        titres seuls — ce que Claude lit, réécrit chaque soir
 veille/
-  2026-08-11.json                   les URL, jamais lues par Claude ni écrasées
+  2026-08-11.json                   résumés et URL, servis à la demande, jamais écrasés
 editions/
   _modele.json                      le format documenté champ par champ
   2026/                             les éditions parues, rangées par année
@@ -456,6 +471,7 @@ scripts/
   setup_airtable.py                 crée le schéma (idempotent)
   seed_acces.py                     jetons de test et réglages (idempotent)
   fetch_news.py                     collecte RSS
+  depeches.py                       sert les résumés des dépêches demandées
   push_edition.py                   publication (upsert)
   verifier_edition.py               contrôle de cohérence
   generer_icones.py                 icônes PNG, sans dépendance

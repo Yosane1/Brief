@@ -19,7 +19,7 @@ from airtable import select, esc  # noqa: E402
 
 # Un identifiant de dépêche qui a survécu jusqu'à Airtable, c'est une source
 # que push_edition.py n'a pas su détendre : le lecteur verrait « lm042 ».
-ID_NON_RESOLU = re.compile(r"^[a-z]{2,4}\d{3}$")
+ID_NON_RESOLU = re.compile(r"^[a-z][a-z0-9]{1,3}\d{3}$")
 
 for flux in (sys.stdout, sys.stderr):
     if hasattr(flux, "reconfigure"):
