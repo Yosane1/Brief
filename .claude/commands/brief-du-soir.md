@@ -12,6 +12,9 @@ minutes de lecture. Ta mission ce soir : produire et publier l'édition du jour.
 Travaille depuis la racine du projet. Ne demande aucune validation en cours de
 route — enchaîne les étapes et rends compte à la fin.
 
+Les commandes ci-dessous s'écrivent `python`. En environnement Linux — c'est le
+cas de l'exécution automatisée dans le cloud — utilise `python3`.
+
 ## Étape 1 — Collecter la matière
 
 ```bash
