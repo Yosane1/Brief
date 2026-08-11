@@ -518,6 +518,14 @@ mark{background:color-mix(in srgb, var(--accent) 22%, transparent); color:inheri
    ══════════════════════════════════════════════════════════════════════════ */
 
 const CONF = {
+  /* Adresse de la passerelle Cloudflare. Une fois renseignée, l'application ne
+     touche plus jamais Airtable directement : c'est le Worker qui détient le
+     jeton, et le champ `jetonAirtable` ci-dessous peut être vidé.
+     Exemple : "https://brief.votre-compte.workers.dev" */
+  api: "",
+
+  /* Utilisé uniquement si `api` est vide — pratique en développement local,
+     à proscrire dès que la page est accessible publiquement. */
   jetonAirtable: "patDnefT5sQlQc2L1.7388f732d1cac15a74705c77a61c2d0be78892cb5594d5ee6d0e9d0bf1683b01",
   base: "appzxFhyARS0LjDFc",
   tables: {
@@ -617,25 +625,199 @@ async function airtableTout(table, params = {}) {
 
 const echappeFormule = v => String(v).replace(/\\/g, "\\\\").replace(/'/g, "\\'");
 
+/* ══════════════════════════════════════════════════════════════════════════
+   Accès aux données
+   ══════════════════════════════════════════════════════════════════════════ */
+const API = {
+  session: LOCAL.lire("passerelle")?.session || null,
+  get passerelle() { return (CONF.api || "").replace(/\/+$/, ""); },
+
+  async appel(chemin, { methode = "GET", corps = null, params = null } = {}) {
+    const url = new URL(this.passerelle + chemin);
+    if (params) {
+      for (const [k, v] of Object.entries(params)) if (v) url.searchParams.set(k, v);
+    }
+    const r = await fetch(url, {
+      method: methode,
+      headers: {
+        "Content-Type": "application/json",
+        ...(this.session ? { Authorization: "Bearer " + this.session } : {}),
+      },
+      body: corps ? JSON.stringify(corps) : undefined,
+    });
+    const donnees = await r.json().catch(() => ({}));
+    if (r.status === 401) {
+      this.session = null;
+      throw Object.assign(new Error(donnees.erreur || "Session expirée"), { session: true });
+    }
+    if (!r.ok) throw new Error(donnees.erreur || `La passerelle a répondu ${r.status}.`);
+    return donnees;
+  },
+
+  /** Une session dure une heure : on la renouvelle en silence à l'expiration. */
+  async appelAuth(chemin, options) {
+    try {
+      return await this.appel(chemin, options);
+    } catch (e) {
+      if (!e.session || !SESSION.jeton) throw e;
+      await this.connexion(SESSION.jeton);
+      return this.appel(chemin, options);
+    }
+  },
+
+  // — Réglages ————————————————————————————————————————————————————
+  async reglages() {
+    if (this.passerelle) return this.appel("/reglages");
+    const recs = await airtableTout("reglages");
+    return Object.fromEntries(
+      recs.filter(r => r.fields["Clé"])
+          .map(r => [r.fields["Clé"], (r.fields["Valeur"] ?? "").trim()]));
+  },
+
+  /**
+   * Valide un jeton. Renvoie le profil du client, ou lève une erreur dont le
+   * message est directement affichable au lecteur.
+   */
+  async connexion(jeton) {
+    if (this.passerelle) {
+      const r = await this.appel("/connexion", {
+        methode: "POST", corps: { jeton, appareil: SESSION.appareil },
+      });
+      this.session = r.session;
+      LOCAL.ecrire("passerelle", { session: r.session, expire: r.expire });
+      return r.profil;
+    }
+    return connexionDirecte(jeton);
+  },
+
+  // — Contenus ————————————————————————————————————————————————————
+  async editions() {
+    if (this.passerelle) return this.appelAuth("/editions");
+    const recs = await airtableTout("editions", {
+      filterByFormula: "{Statut} = 'Publiée'",
+      "sort[0][field]": "Date",
+      "sort[0][direction]": "desc",
+    });
+    return recs.map(r => ({
+      id: r.id,
+      date: r.fields["Date"],
+      slug: r.fields["Slug"] || r.fields["Date"],
+      titre: r.fields["Titre"] || "Édition du jour",
+      numero: r.fields["Numéro"],
+      type: r.fields["Type"] || "Quotidienne",
+      resume: r.fields["Résumé"] || "",
+      edito: r.fields["Édito"] || "",
+      minutes: r.fields["Temps de lecture"] || null,
+      image: r.fields["Image de une"] || "",
+    })).filter(e => e.date);
+  },
+
+  async articlesDuJour(slug, date) {
+    if (this.passerelle) {
+      return (await this.appelAuth("/edition", { params: { slug } })).articles;
+    }
+    // DATESTR est indispensable : comparer un champ date à une chaîne avec
+    // « = » ne renvoie jamais rien côté Airtable.
+    const recs = await airtableTout("articles", {
+      filterByFormula: `DATESTR({Date}) = '${echappeFormule(date)}'`,
+      "sort[0][field]": "Ordre",
+      "sort[0][direction]": "asc",
+    });
+    return recs.map(lireArticle);
+  },
+
+  async articles(filtres) {
+    if (this.passerelle) return this.appelAuth("/articles", { params: filtres });
+
+    const conditions = [];
+    if (filtres.q) {
+      const t = echappeFormule(filtres.q.trim().toLowerCase());
+      conditions.push(`OR(${[
+        `SEARCH('${t}', LOWER({Titre} & ''))`,
+        `SEARCH('${t}', LOWER({Chapô} & ''))`,
+        `SEARCH('${t}', LOWER({Contenu} & ''))`,
+        `SEARCH('${t}', LOWER({Mots-clés} & ''))`,
+      ].join(",")})`);
+    }
+    if (filtres.rubrique)   conditions.push(`{Rubrique} = '${echappeFormule(filtres.rubrique)}'`);
+    if (filtres.thematique) conditions.push(`{Thématique} = '${echappeFormule(filtres.thematique)}'`);
+    if (filtres.depuis)     conditions.push(`IS_AFTER({Date}, '${echappeFormule(filtres.depuis)}')`);
+    if (filtres.jusqua)     conditions.push(`IS_BEFORE({Date}, '${echappeFormule(filtres.jusqua)}')`);
+    if (!conditions.length) return [];
+
+    const recs = await airtableTout("articles", {
+      filterByFormula: conditions.length > 1 ? `AND(${conditions.join(",")})` : conditions[0],
+      "sort[0][field]": "Date",
+      "sort[0][direction]": "desc",
+    });
+    return recs.map(lireArticle);
+  },
+
+  async vivier() {
+    if (this.passerelle) return this.appelAuth("/vivier");
+    const recs = await airtableTout("articles", {
+      "fields[]": ["Titre", "Rubrique", "Thématique", "Mots-clés", "Date", "Chapô"],
+      "sort[0][field]": "Date",
+      "sort[0][direction]": "desc",
+    });
+    return recs.map(lireArticle);
+  },
+
+  // — Écritures ———————————————————————————————————————————————————
+  async journal(type, detail = "") {
+    if (this.passerelle) {
+      return this.appelAuth("/journal", {
+        methode: "POST",
+        corps: { type, detail: String(detail).slice(0, 250), appareil: SESSION.appareil },
+      });
+    }
+    if (!SESSION.client) return;
+    return airtable("journal", {}, {
+      method: "POST",
+      body: { records: [{ fields: {
+        "Événement": `${type} — ${SESSION.client.nom}`.slice(0, 250),
+        "Type": type,
+        "Client": [SESSION.client.id],
+        "Jeton saisi": SESSION.jeton,
+        "Détail": String(detail).slice(0, 250),
+        "Horodatage": new Date().toISOString(),
+        "Appareil": SESSION.appareil,
+      }}], typecast: true },
+    });
+  },
+
+  async abonnement(active, description = "") {
+    if (this.passerelle) {
+      return this.appelAuth("/abonnement", {
+        methode: "POST",
+        corps: { appareil: SESSION.appareil, active, description },
+      });
+    }
+    if (!SESSION.client) return;
+    const champs = {
+      "Identifiant": SESSION.appareil,
+      "Client": [SESSION.client.id],
+      "Appareil": description.slice(0, 200),
+      "Active": active,
+      "Créé le": new Date().toISOString(),
+    };
+    const existants = await airtableTout("push", {
+      filterByFormula: `{Identifiant} = '${echappeFormule(SESSION.appareil)}'`, maxRecords: 1,
+    });
+    await airtable("push", {}, existants.length
+      ? { method: "PATCH", body: { records: [{ id: existants[0].id, fields: champs }], typecast: true } }
+      : { method: "POST",  body: { records: [{ fields: champs }], typecast: true } });
+    return airtable("clients", {}, {
+      method: "PATCH",
+      body: { records: [{ id: SESSION.client.id, fields: { "Notifications": active } }], typecast: true },
+    });
+  },
+};
+
 async function journaliser(type, detail = "") {
   if (!SESSION.client) return;
-  try {
-    await airtable("journal", {}, {
-      method: "POST",
-      body: {
-        records: [{ fields: {
-          "Événement": `${type} — ${SESSION.client.nom}`.slice(0, 250),
-          "Type": type,
-          "Client": [SESSION.client.id],
-          "Jeton saisi": SESSION.jeton,
-          "Détail": String(detail).slice(0, 250),
-          "Horodatage": new Date().toISOString(),
-          "Appareil": SESSION.appareil,
-        }}],
-        typecast: true,
-      },
-    });
-  } catch (e) { console.warn("Journal indisponible :", e.message); }
+  try { await API.journal(type, detail); }
+  catch (e) { console.warn("Journal indisponible :", e.message); }
 }
 
 /* ── Rendu Markdown (sous-ensemble volontairement restreint) ───────────── */
@@ -725,36 +907,47 @@ function appliquerReglages() {
 }
 
 /**
- * Vérifie un jeton auprès d'Airtable.
- * Retourne {ok:true, client} ou {ok:false, motif}.
+ * Vérifie un jeton d'accès.
+ * Retourne {ok:true, client} ou {ok:false, motif} — le motif étant directement
+ * affichable au lecteur.
  */
 async function verifierJeton(jeton) {
   const propre = jeton.trim().toUpperCase();
   if (!propre) return { ok: false, motif: "Saisissez un jeton d'accès." };
+  try {
+    return { ok: true, client: await API.connexion(propre) };
+  } catch (e) {
+    return { ok: false, motif: e.message };
+  }
+}
 
+/**
+ * Contrôle d'accès effectué dans le navigateur, faute de passerelle.
+ * Mode de développement : les mêmes règles sont appliquées côté serveur par le
+ * Worker dès que `CONF.api` est renseignée.
+ */
+async function connexionDirecte(jetonPropre) {
   let recs;
   try {
     recs = await airtableTout("clients", {
-      filterByFormula: `UPPER(TRIM({Jeton})) = '${echappeFormule(propre)}'`,
+      filterByFormula: `UPPER(TRIM({Jeton})) = '${echappeFormule(jetonPropre)}'`,
       maxRecords: 1,
     });
-  } catch (e) {
-    return { ok: false, motif: "Impossible de joindre le service d'authentification. Vérifiez votre connexion." };
+  } catch {
+    throw new Error("Impossible de joindre le service d'authentification. Vérifiez votre connexion.");
   }
-  if (!recs.length) return { ok: false, motif: "Ce jeton n'existe pas. Vérifiez la saisie." };
+  if (!recs.length) throw new Error("Ce jeton n'existe pas. Vérifiez la saisie.");
 
   const f = recs[0].fields;
   const nom = f["Nom"] || "Abonné";
   const jour = aujourdhui();
 
   if (!f["Actif"])
-    return { ok: false, motif: `L'accès « ${nom} » a été désactivé. Contactez-nous pour le réactiver.` };
-
+    throw new Error(`L'accès « ${nom} » a été désactivé. Contactez-nous pour le réactiver.`);
   if (f["Date début"] && jour < f["Date début"])
-    return { ok: false, motif: `Cet abonnement ne démarre que le ${dateLongue(f["Date début"])}.` };
-
+    throw new Error(`Cet abonnement ne démarre que le ${dateLongue(f["Date début"])}.`);
   if (f["Date fin"] && jour > f["Date fin"])
-    return { ok: false, motif: `Cet abonnement a expiré le ${dateLongue(f["Date fin"])}. Renouvelez-le pour retrouver l'accès.` };
+    throw new Error(`Cet abonnement a expiré le ${dateLongue(f["Date fin"])}. Renouvelez-le pour retrouver l'accès.`);
 
   const client = {
     id: recs[0].id,
@@ -772,26 +965,31 @@ async function verifierJeton(jeton) {
   // Limite de postes : seuls les abonnements non illimités sont contraints.
   if (!client.illimite && client.places > 0) {
     try {
-      const journal = await airtableTout("journal", {
-        filterByFormula: `AND({Jeton saisi} = '${echappeFormule(propre)}', {Type} = 'Connexion')`,
+      const passages = await airtableTout("journal", {
+        filterByFormula: `AND({Jeton saisi} = '${echappeFormule(jetonPropre)}', {Type} = 'Connexion')`,
         "fields[]": ["Appareil"],
       });
-      const appareils = new Set(journal.map(r => r.fields["Appareil"]).filter(Boolean));
+      const appareils = new Set(passages.map(r => r.fields["Appareil"]).filter(Boolean));
       if (!appareils.has(SESSION.appareil) && appareils.size >= client.places) {
-        return { ok: false, motif:
-          `Cet abonnement autorise ${client.places} appareil(s) et la limite est atteinte. ` +
-          `Contactez-nous pour libérer un poste.` };
+        throw new Error(
+          `Cet abonnement autorise ${client.places} appareil(s) et la limite est atteinte. `
+          + `Contactez-nous pour libérer un poste.`);
       }
-    } catch { /* en cas d'indisponibilité du journal, on n'empêche pas la lecture */ }
+    } catch (e) {
+      // Un journal indisponible ne doit pas bloquer la lecture ; un refus, si.
+      if (/limite est atteinte/.test(e.message)) throw e;
+    }
   }
-
-  return { ok: true, client };
+  return client;
 }
 
 async function ouvrirSession(jeton, client) {
   SESSION.jeton = jeton;
   SESSION.client = client;
   LOCAL.ecrire("session", { jeton, client, verifiee: Date.now() });
+
+  // En mode passerelle, le Worker a déjà daté la connexion et journalisé.
+  if (API.passerelle) return;
 
   airtable("clients", {}, {
     method: "PATCH",
@@ -820,34 +1018,13 @@ const CACHE = { editions: null, parDate: new Map(), vivier: null };
 /** Tous les articles parus, allégés : de quoi alimenter la vue Explorer. */
 async function chargerVivier(force = false) {
   if (CACHE.vivier && !force) return CACHE.vivier;
-  const recs = await airtableTout("articles", {
-    "fields[]": ["Titre", "Rubrique", "Thématique", "Mots-clés", "Date", "Chapô"],
-    "sort[0][field]": "Date",
-    "sort[0][direction]": "desc",
-  });
-  CACHE.vivier = recs.map(lireArticle);
+  CACHE.vivier = await API.vivier();
   return CACHE.vivier;
 }
 
 async function listerEditions(force = false) {
   if (CACHE.editions && !force) return CACHE.editions;
-  const recs = await airtableTout("editions", {
-    filterByFormula: `{Statut} = 'Publiée'`,
-    "sort[0][field]": "Date",
-    "sort[0][direction]": "desc",
-  });
-  CACHE.editions = recs.map(r => ({
-    id: r.id,
-    date: r.fields["Date"],
-    slug: r.fields["Slug"] || r.fields["Date"],
-    titre: r.fields["Titre"] || "Édition du jour",
-    numero: r.fields["Numéro"],
-    type: r.fields["Type"] || "Quotidienne",
-    resume: r.fields["Résumé"] || "",
-    edito: r.fields["Édito"] || "",
-    minutes: r.fields["Temps de lecture"] || null,
-    image: r.fields["Image de une"] || "",
-  })).filter(e => e.date);
+  CACHE.editions = await API.editions();
   LOCAL.ecrire("cache.editions", CACHE.editions.slice(0, 40));
   return CACHE.editions;
 }
@@ -857,15 +1034,7 @@ async function chargerEdition(slug) {
   const editions = await listerEditions();
   const edition = editions.find(e => e.slug === slug || e.date === slug);
   if (!edition) return null;
-
-  // DATESTR() est indispensable : comparer un champ date à une chaîne
-  // avec « = » ne renvoie jamais rien côté Airtable.
-  const recs = await airtableTout("articles", {
-    filterByFormula: `DATESTR({Date}) = '${echappeFormule(edition.date)}'`,
-    "sort[0][field]": "Ordre",
-    "sort[0][direction]": "asc",
-  });
-  edition.articles = recs.map(lireArticle);
+  edition.articles = await API.articlesDuJour(edition.slug, edition.date);
   CACHE.parDate.set(slug, edition);
   return edition;
 }
@@ -895,29 +1064,7 @@ function lireArticle(r) {
   };
 }
 
-async function rechercher(q, filtres = {}) {
-  const terme = echappeFormule(q.trim().toLowerCase());
-  const conditions = [
-    `SEARCH('${terme}', LOWER({Titre} & ''))`,
-    `SEARCH('${terme}', LOWER({Chapô} & ''))`,
-    `SEARCH('${terme}', LOWER({Contenu} & ''))`,
-    `SEARCH('${terme}', LOWER({Mots-clés} & ''))`,
-  ];
-  let formule = `OR(${conditions.join(",")})`;
-  const et = [formule];
-  if (filtres.rubrique)   et.push(`{Rubrique} = '${echappeFormule(filtres.rubrique)}'`);
-  if (filtres.thematique) et.push(`{Thématique} = '${echappeFormule(filtres.thematique)}'`);
-  if (filtres.depuis)     et.push(`IS_AFTER({Date}, '${echappeFormule(filtres.depuis)}')`);
-  if (filtres.jusqua)     et.push(`IS_BEFORE({Date}, '${echappeFormule(filtres.jusqua)}')`);
-  if (et.length > 1) formule = `AND(${et.join(",")})`;
-
-  const recs = await airtableTout("articles", {
-    filterByFormula: formule,
-    "sort[0][field]": "Date",
-    "sort[0][direction]": "desc",
-  });
-  return recs.map(lireArticle);
-}
+const rechercher = (q, filtres = {}) => API.articles({ q, ...filtres });
 
 /* ══════════════════════════════════════════════════════════════════════════
    Vues
@@ -1341,17 +1488,7 @@ async function vueRecherche(params) {
     ${trouves.map(a => rendreResultat(a, q)).join("")}`;
 }
 
-async function filtrerSansTerme({ rubrique, thematique }) {
-  const et = [];
-  if (rubrique)   et.push(`{Rubrique} = '${echappeFormule(rubrique)}'`);
-  if (thematique) et.push(`{Thématique} = '${echappeFormule(thematique)}'`);
-  const recs = await airtableTout("articles", {
-    filterByFormula: et.length > 1 ? `AND(${et.join(",")})` : et[0],
-    "sort[0][field]": "Date",
-    "sort[0][direction]": "desc",
-  });
-  return recs.map(lireArticle);
-}
+const filtrerSansTerme = filtres => API.articles(filtres);
 
 function rendreResultat(a, q) {
   const surligne = t => {
@@ -1457,38 +1594,14 @@ const NOTIF = {
 
   desactiver() {
     LOCAL.ecrire("notifications", false);
-    if (SESSION.client) {
-      airtable("clients", {}, { method: "PATCH", body: {
-        records: [{ id: SESSION.client.id, fields: { "Notifications": false } }], typecast: true },
-      }).catch(() => {});
-    }
+    API.abonnement(false).catch(() => {});
   },
 
-  /** Trace l'appareil dans Airtable, pour un futur envoi push côté serveur. */
+  /** Trace l'appareil, pour un futur envoi push signé côté serveur. */
   async enregistrer() {
     if (!SESSION.client) return;
-    try {
-      const existants = await airtableTout("push", {
-        filterByFormula: `{Identifiant} = '${echappeFormule(SESSION.appareil)}'`,
-        maxRecords: 1,
-      });
-      const champs = {
-        "Identifiant": SESSION.appareil,
-        "Client": [SESSION.client.id],
-        "Appareil": navigator.userAgent.slice(0, 200),
-        "Active": true,
-        "Créé le": new Date().toISOString(),
-      };
-      if (existants.length) {
-        await airtable("push", {}, { method: "PATCH", body: {
-          records: [{ id: existants[0].id, fields: champs }], typecast: true } });
-      } else {
-        await airtable("push", {}, { method: "POST", body: {
-          records: [{ fields: champs }], typecast: true } });
-      }
-      await airtable("clients", {}, { method: "PATCH", body: {
-        records: [{ id: SESSION.client.id, fields: { "Notifications": true } }], typecast: true } });
-    } catch (e) { console.warn("Abonnement push non enregistré :", e.message); }
+    try { await API.abonnement(true, navigator.userAgent); }
+    catch (e) { console.warn("Abonnement push non enregistré :", e.message); }
   },
 
   /** Compare la dernière édition publiée à la dernière vue par ce lecteur. */

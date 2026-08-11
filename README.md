@@ -239,36 +239,78 @@ changer. Cela ira naturellement avec la migration Firebase décrite plus bas.
 
 ---
 
-## Passage en production
+## La passerelle d'accès
 
-### Le sujet à traiter en premier
+### Le problème qu'elle résout
 
-Le jeton Airtable est **en clair dans `index.html`**, comme convenu pour la phase
-de développement. Conséquence concrète : toute personne qui ouvre la page peut
-lire le code source, récupérer le jeton, et **lire comme écrire l'intégralité de
-la base** — y compris la table Clients. Le contrôle d'accès par jeton protège
-l'interface, pas les données.
+Tant que `CONF.api` est vide, l'application interroge Airtable directement avec
+le jeton inscrit dans `index.html`. Conséquence : **toute personne qui ouvre la
+page peut en extraire le jeton et lire comme écrire l'intégralité de la base**,
+y compris les adresses et les jetons de tous les abonnés. L'écran de connexion
+protège l'interface, pas les données.
 
-C'est acceptable tant que l'application n'est pas publiée. Ça ne l'est plus le
-jour où une URL est partagée.
+Acceptable en développement local. Plus du tout dès qu'une URL est partagée.
 
-### La migration
+`worker/brief-worker.js` règle la question. Ce n'est volontairement pas un
+relais transparent : un relais qui accepterait n'importe quelle requête
+Airtable déplacerait le problème sans le résoudre, puisque l'adresse du Worker
+rouvrirait la base entière. Chaque route ne renvoie que ce qui est nécessaire,
+et la table Clients n'est jamais exposée — elle ne sert qu'à valider un jeton.
 
-1. Créer un projet Firebase et deux Cloud Functions :
-   - `POST /connexion` — reçoit un jeton, applique les cinq contrôles de
-     validité, renvoie un jeton de session court (JWT, quelques heures)
-   - `GET /contenu` — vérifie le JWT, interroge Airtable côté serveur, renvoie
-     éditions et articles
-2. Déplacer le jeton Airtable dans la configuration de la fonction
-   (`firebase functions:secrets:set AIRTABLE_TOKEN`). Il ne quitte plus le serveur.
-3. Dans `index.html`, remplacer les fonctions `airtable()` et `airtableTout()`
-   par des appels aux deux endpoints. C'est le seul point de contact avec
-   Airtable : tout le reste du code est inchangé.
-4. **Régénérer le jeton Airtable**, l'ancien ayant circulé.
-5. Ajouter Firebase Cloud Messaging pour les notifications push réelles.
+| Route | Rôle |
+|---|---|
+| `GET /reglages` | Les réglages d'affichage (accessible avant connexion) |
+| `POST /connexion` | Valide un jeton, renvoie une session signée d'une heure |
+| `GET /editions` | La liste des éditions publiées |
+| `GET /edition?slug=` | Les articles d'une édition |
+| `GET /articles?q=…` | Recherche et filtres |
+| `GET /vivier` | Les articles allégés, pour la vue Explorer |
+| `POST /journal` | Trace une lecture ou une recherche |
+| `POST /abonnement` | Enregistre l'appareil pour les notifications |
+
+Toutes les routes sauf les deux premières exigent une session valide. Une
+session dure une heure : c'est le délai maximal entre une révocation dans
+Airtable et la perte effective de l'accès. Le renouvellement est transparent
+pour le lecteur.
+
+### Déployer, en dix minutes
+
+1. Créer un compte sur [dash.cloudflare.com](https://dash.cloudflare.com) —
+   gratuit, sans carte bancaire.
+2. **Workers & Pages → Create → Workers → Create Worker**. Le nommer `brief`,
+   puis **Deploy** (le code d'exemple sera remplacé).
+3. **Edit code**, tout sélectionner, coller le contenu de
+   `worker/brief-worker.js`, puis **Deploy**.
+4. **Settings → Variables and Secrets**, ajouter :
+
+   | Type | Nom | Valeur |
+   |---|---|---|
+   | Secret | `AIRTABLE_TOKEN` | le jeton Airtable |
+   | Secret | `SESSION_SECRET` | une longue chaîne aléatoire, au choix |
+   | Text | `BASE_ID` | `appzxFhyARS0LjDFc` |
+   | Text | `ORIGINES` | `https://filedn.com` |
+
+   `ORIGINES` liste les sites autorisés à appeler la passerelle, séparés par des
+   virgules. En ajoutant `http://localhost:8765`, le développement local
+   continue de fonctionner à travers elle.
+
+5. Relever l'adresse du Worker, de la forme
+   `https://brief.votre-compte.workers.dev`. La visiter doit afficher
+   `{"service":"brief","etat":"ok"}`.
+6. Dans `index.html`, renseigner `CONF.api` avec cette adresse **et vider
+   `CONF.jetonAirtable`**. Le jeton ne se trouve alors plus nulle part côté
+   navigateur.
+7. **Régénérer le jeton Airtable** et reporter le nouveau dans le secret du
+   Worker : l'ancien a circulé, il doit être révoqué.
 
 Les scripts Python continuent d'utiliser le jeton directement — ils tournent
 côté serveur, c'est leur place.
+
+### Ce qu'il reste possible d'ajouter
+
+Les notifications *push* reçues application fermée demandent un serveur qui
+signe ses envois avec des clés VAPID. Le Worker est l'endroit naturel pour cela,
+et `sw.js` contient déjà le gestionnaire `push` correspondant.
 
 ---
 
