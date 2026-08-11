@@ -241,13 +241,16 @@ changer. Cela ira naturellement avec la migration Firebase décrite plus bas.
 
 ## La passerelle d'accès
 
+**Déployée** sur `https://brief.jamet-aymeric-pro.workers.dev`.
+`index.html` ne contient plus aucun jeton.
+
 ### Le problème qu'elle résout
 
-Tant que `CONF.api` est vide, l'application interroge Airtable directement avec
-le jeton inscrit dans `index.html`. Conséquence : **toute personne qui ouvre la
-page peut en extraire le jeton et lire comme écrire l'intégralité de la base**,
-y compris les adresses et les jetons de tous les abonnés. L'écran de connexion
-protège l'interface, pas les données.
+Sans passerelle, l'application interroge Airtable directement avec un jeton
+inscrit dans `index.html`. Conséquence : **toute personne qui ouvre la page peut
+en extraire le jeton et lire comme écrire l'intégralité de la base**, y compris
+les adresses et les jetons de tous les abonnés. L'écran de connexion protège
+l'interface, pas les données.
 
 Acceptable en développement local. Plus du tout dès qu'une URL est partagée.
 
@@ -272,6 +275,22 @@ Toutes les routes sauf les deux premières exigent une session valide. Une
 session dure une heure : c'est le délai maximal entre une révocation dans
 Airtable et la perte effective de l'accès. Le renouvellement est transparent
 pour le lecteur.
+
+### Où vit le jeton Airtable
+
+Il ne doit exister qu'à deux endroits, tous deux chiffrés :
+
+| Emplacement | Pour quoi faire |
+|---|---|
+| Secret Cloudflare `AIRTABLE_TOKEN` | La lecture par l'application |
+| Secret GitHub `AIRTABLE_TOKEN` | La publication du soir par `publication.yml` |
+
+`scripts/airtable.py` conserve une valeur de repli en clair, pratique pour un
+usage local mais présente dans le dépôt. Une fois le secret GitHub renseigné,
+la vider est le bon réflexe : les workflows le liront depuis le secret.
+
+**En cas de fuite, remplacer le jeton aux deux endroits** après l'avoir
+régénéré sur [airtable.com/create/tokens](https://airtable.com/create/tokens).
 
 ### Déployer, en dix minutes
 

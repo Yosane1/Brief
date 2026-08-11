@@ -518,15 +518,13 @@ mark{background:color-mix(in srgb, var(--accent) 22%, transparent); color:inheri
    ══════════════════════════════════════════════════════════════════════════ */
 
 const CONF = {
-  /* Adresse de la passerelle Cloudflare. Une fois renseignée, l'application ne
-     touche plus jamais Airtable directement : c'est le Worker qui détient le
-     jeton, et le champ `jetonAirtable` ci-dessous peut être vidé.
-     Exemple : "https://brief.votre-compte.workers.dev" */
-  api: "",
+  /* Passerelle Cloudflare : elle seule détient le jeton Airtable, et n'expose
+     que la lecture du brief. Rien de sensible ne subsiste dans cette page. */
+  api: "https://brief.jamet-aymeric-pro.workers.dev",
 
-  /* Utilisé uniquement si `api` est vide — pratique en développement local,
-     à proscrire dès que la page est accessible publiquement. */
-  jetonAirtable: "patDnefT5sQlQc2L1.7388f732d1cac15a74705c77a61c2d0be78892cb5594d5ee6d0e9d0bf1683b01",
+  /* Repli de développement, sans passerelle. Y remettre un jeton rouvrirait la
+     base entière à quiconque ouvre la page : à ne faire qu'en local. */
+  jetonAirtable: "",
   base: "appzxFhyARS0LjDFc",
   tables: {
     reglages: "tbl0n9LTnbmLWArwu",
