@@ -1,5 +1,6 @@
-# Matière brute de la collecte du soir : régénérée à chaque exécution
-veille.json
+# veille.json est volontairement suivi : c'est par le dépôt que la matière
+# collectée par GitHub Actions parvient à la session Claude, qui n'a pas accès
+# au réseau extérieur.
 
 # Réglages propres au poste, pas au projet
 .claude/settings.local.json

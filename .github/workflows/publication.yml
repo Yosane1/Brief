@@ -1,0 +1,58 @@
+# Étape 3 du pipeline du soir : pousser l'édition rédigée vers Airtable.
+#
+# Se déclenche dès que la routine Claude dépose un fichier dans editions/.
+# La session Claude ne peut pas joindre api.airtable.com ; GitHub, si.
+
+name: Publication vers Airtable
+
+on:
+  push:
+    paths:
+      - "editions/**.json"
+  workflow_dispatch:
+    inputs:
+      edition:
+        description: "Date de l'édition à republier (AAAA-MM-JJ)"
+        required: false
+
+jobs:
+  publier:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 2      # nécessaire pour comparer au commit précédent
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Identifier les éditions à publier
+        id: cibles
+        run: |
+          if [ -n "${{ github.event.inputs.edition }}" ]; then
+            fichiers="editions/${{ github.event.inputs.edition }}.json"
+          else
+            fichiers=$(git diff --name-only HEAD~1 HEAD -- 'editions/*.json' || true)
+          fi
+          if [ -z "$fichiers" ]; then
+            echo "Aucune édition modifiée."
+          fi
+          echo "fichiers<<EOF" >> $GITHUB_OUTPUT
+          echo "$fichiers" >> $GITHUB_OUTPUT
+          echo "EOF" >> $GITHUB_OUTPUT
+
+      - name: Publier dans Airtable
+        if: steps.cibles.outputs.fichiers != ''
+        env:
+          # Renseignez le secret AIRTABLE_TOKEN pour sortir le jeton du code.
+          # S'il est absent, les scripts retombent sur la valeur du dépôt.
+          AIRTABLE_TOKEN: ${{ secrets.AIRTABLE_TOKEN }}
+        run: |
+          for f in ${{ steps.cibles.outputs.fichiers }}; do
+            [ -f "$f" ] || continue
+            echo "── $f"
+            python scripts/push_edition.py "$f"
+            python scripts/verifier_edition.py "$(basename "$f" .json)"
+          done

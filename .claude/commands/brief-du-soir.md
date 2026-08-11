@@ -15,17 +15,28 @@ route — enchaîne les étapes et rends compte à la fin.
 Les commandes ci-dessous s'écrivent `python`. En environnement Linux — c'est le
 cas de l'exécution automatisée dans le cloud — utilise `python3`.
 
-## Étape 1 — Collecter la matière
+## Étape 1 — Récupérer la matière
 
-```bash
-python scripts/fetch_news.py --hours 26 --out veille.json
-```
+Commence par regarder si `veille.json` est déjà présent à la racine et si le
+champ `collecte` qu'il contient date de moins de douze heures.
 
-Lis ensuite `veille.json`. Il contient les dépêches des dernières 26 heures,
-déjà dédoublonnées et classées par date décroissante, avec pour chacune :
-titre, résumé, lien, source et rubrique d'origine.
+- **Il est présent et récent** — c'est le cas en exécution automatisée : GitHub
+  Actions l'a déposé un peu avant toi. Utilise-le tel quel, ne relance rien.
+- **Il est absent ou périmé** — c'est le cas en exécution manuelle depuis un
+  poste. Régénère-le :
 
-Si moins de 20 dépêches remontent, relance avec `--hours 48` avant de continuer.
+  ```bash
+  python scripts/fetch_news.py --hours 26 --out veille.json
+  ```
+
+  Si moins de 20 dépêches remontent, relance avec `--hours 48`.
+
+Le fichier contient les dépêches des dernières 26 heures, dédoublonnées et
+classées par date décroissante, avec pour chacune : titre, résumé, lien, source
+et rubrique d'origine.
+
+Si `veille.json` est absent **et** que la collecte échoue faute d'accès réseau,
+arrête-toi et signale-le : sans matière, il n'y a pas d'édition.
 
 ## Étape 2 — Choisir les sujets
 
@@ -88,18 +99,34 @@ Ne renseigne pas `numero` : il est attribué automatiquement.
 
 ## Étape 5 — Publier
 
+Deux chemins, selon que tu peux joindre Airtable ou non. Tente le direct :
+
 ```bash
 python scripts/push_edition.py editions/AAAA-MM-JJ.json
 ```
 
-L'opération est un *upsert* : relancer sur la même date remplace l'édition et
-ses articles sans créer de doublon. En cas d'échec, corrige le JSON et relance.
-
-Vérifie ensuite que l'édition est bien lisible :
+**Si ça passe** — exécution depuis un poste — vérifie dans la foulée :
 
 ```bash
 python scripts/verifier_edition.py AAAA-MM-JJ
 ```
+
+L'opération est un *upsert* : relancer sur la même date remplace l'édition et
+ses articles sans créer de doublon. Si le JSON est invalide, corrige et relance.
+
+**Si le réseau refuse la connexion** — c'est le cas en exécution automatisée,
+le proxy de la session cloud n'autorise pas `api.airtable.com` — ne t'acharne
+pas. Dépose l'édition dans le dépôt : un workflow GitHub prend le relais et
+publie vers Airtable dans la minute.
+
+```bash
+git add editions/AAAA-MM-JJ.json
+git -c user.name="Brief Bot" -c user.email="brief@users.noreply.github.com" \
+    commit -m "Édition du AAAA-MM-JJ"
+git push
+```
+
+C'est la seule situation où tu commites : le JSON de l'édition, rien d'autre.
 
 ## Étape 6 — Rendre compte
 

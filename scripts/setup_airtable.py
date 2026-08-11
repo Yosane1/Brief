@@ -18,11 +18,9 @@ for flux in (sys.stdout, sys.stderr):
     if hasattr(flux, "reconfigure"):
         flux.reconfigure(encoding="utf-8", errors="replace")
 
-TOKEN = os.environ.get(
-    "AIRTABLE_TOKEN",
-    "patDnefT5sQlQc2L1.7388f732d1cac15a74705c77a61c2d0be78892cb5594d5ee6d0e9d0bf1683b01",
-)
-BASE_ID = os.environ.get("AIRTABLE_BASE_ID", "appzxFhyARS0LjDFc")
+TOKEN = os.environ.get("AIRTABLE_TOKEN") or \
+    "patDnefT5sQlQc2L1.7388f732d1cac15a74705c77a61c2d0be78892cb5594d5ee6d0e9d0bf1683b01"
+BASE_ID = os.environ.get("AIRTABLE_BASE_ID") or "appzxFhyARS0LjDFc"
 API = "https://api.airtable.com/v0"
 
 # --------------------------------------------------------------------------- #
