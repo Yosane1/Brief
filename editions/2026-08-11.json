@@ -1,206 +1,184 @@
 {
   "edition": {
-    "titre": "La canicule s'installe, la Colombie compte ses morts",
+    "titre": "Ebola franchit les 2 000 morts en RDC, Assad condamné à mort, la canicule s'étend",
     "date": "2026-08-11",
-    "numero": 1249,
     "type": "Quotidienne",
     "statut": "Publiée",
     "slug": "2026-08-11",
-    "resume": "Un séisme de magnitude 7,4 a fait au moins 132 morts en Colombie. En France, 43 départements passent en vigilance orange canicule. Et le démarchage téléphonique change de règles aujourd'hui.",
-    "edito": "L'été 2026 continue d'écrire ses records par le mauvais bout : jamais l'ouest de l'Europe n'avait connu de telles températures, et 95 % du territoire français manquait d'eau en juillet. Nous consacrons notre décryptage à ce que cette chaleur fait concrètement à un pays — à son réseau électrique, à ses villes, à ses hôpitaux. Bonne lecture.",
+    "resume": "L'épidémie d'Ebola en République démocratique du Congo a dépassé les 2 000 morts en seulement trois mois. Bachar al-Assad a été condamné à mort par contumace en Syrie. En France, 43 départements sont en vigilance orange canicule, et 24 de plus le seront dès demain.",
+    "edito": "Ce mardi, un chiffre nous a arrêtés plus que les autres : trois mois. C'est le temps qu'il a fallu à la nouvelle épidémie d'Ebola en République démocratique du Congo pour approcher le bilan le plus lourd jamais enregistré dans le pays — un niveau qu'il avait fallu vingt-deux mois à atteindre lors de la précédente vague la plus meurtrière. Notre décryptage du jour revient sur ce qui rend cette épidémie différente des précédentes. Bonne lecture.",
     "genere_par": "Claude Code Cloud"
   },
   "articles": [
     {
-      "titre": "Au moins 132 morts dans le séisme le plus puissant qu'ait connu la Colombie depuis dix ans",
-      "rubrique": "On rembobine",
-      "thematique": "International",
-      "a_la_une": true,
-      "chapo": "Le tremblement de terre de magnitude 7,4 a frappé l'ouest du pays lundi. Les secours fouillent encore les décombres à Manizales et à Cali.",
-      "contenu": "Le bilan s'alourdit d'heure en heure. Au lendemain du séisme qui a frappé l'ouest de la Colombie lundi 10 août, les autorités recensaient **au moins 132 morts et 570 blessés**, et redoutaient de trouver d'autres victimes sous les immeubles effondrés.\n\nÀ Manizales, où plusieurs bâtiments se sont écroulés, secouristes et bénévoles se relaient pour dégager les gravats. « Le tremblement de terre a duré une minute qui a semblé une éternité », raconte un habitant à *Libération*.\n\nLe président **Abelardo de la Espriella**, en fonction depuis trois jours seulement, a décrété l'état d'urgence et promis une opération de sauvetage coordonnée. C'est la première épreuve majeure d'un mandat qui commence à peine.",
-      "mots_cles": "Colombie, séisme, Manizales, Cali, catastrophe naturelle, Espriella",
-      "sources": [
-        "franceinfo — Le bilan du séisme s'alourdit en Colombie | https://www.franceinfo.fr/environnement/catastrophes-naturelles/seismes/le-bilan-du-seisme-s-alourdit-en-colombie-132-mo",
-        "Le Monde — Après un puissant séisme, la recherche de survivants | https://www.lemonde.fr/planete/article/2026/08/11/apres-un-puissant-seisme-en-colombie-la-recherche-de-survivants-et-le-",
-        "France 24 — Une course contre la montre pour retrouver les survivants | https://www.france24.com/fr/am%C3%A9riques/20260811-en-colombie-une-course-contre-la-montre-pour-retrouver-les-survivant"
-      ]
-    },
-    {
-      "titre": "Zelensky accuse la Russie d'avoir tiré des missiles nord-coréens sur Zaporijjia",
-      "rubrique": "On rembobine",
-      "thematique": "International",
-      "chapo": "Neuf personnes ont été tuées dans les frappes russes de la nuit. Kiev a de son côté visé un site pétrochimique à 1 300 km du front.",
-      "contenu": "Le président ukrainien a affirmé mardi que l'armée russe avait employé des **missiles balistiques nord-coréens** pour frapper Zaporijjia, dans le sud-est du pays, où au moins six personnes ont été tuées et une vingtaine blessées pendant la nuit. Volodymyr Zelensky assure également que Moscou s'apprête à déployer davantage de soldats nord-coréens sur son territoire.\n\nAu total, neuf personnes ont péri dans les attaques russes de la nuit de lundi à mardi, à Zaporijjia et à Kharkiv.\n\nDans le même temps, un drone ukrainien a frappé un **site pétrochimique au Tatarstan**, à 1 300 kilomètres de la ligne de front — une démonstration de la portée croissante des frappes de Kiev en profondeur.",
-      "mots_cles": "Ukraine, Russie, Zelensky, Zaporijjia, Corée du Nord, drones, Tatarstan",
-      "sources": [
-        "Le Monde — En direct, guerre en Ukraine | https://www.lemonde.fr/international/live/2026/08/11/en-direct-guerre-en-ukraine-volodymyr-zelensky-affirme-que-la-russi",
-        "France 24 — Zelensky affirme que la Russie a utilisé des missiles nord-coréens | https://www.france24.com/fr/europe/20260810-en-direct-ukraine-guerre-explosions-attaque-kiev-missiles-russie"
-      ]
-    },
-    {
-      "titre": "Trump signe un décret qui recommande de réduire le nombre de vaccins chez l'enfant",
-      "rubrique": "On rembobine",
-      "thematique": "Santé",
-      "chapo": "Le texte préconise notamment de fractionner le vaccin ROR. L'Académie américaine de pédiatrie juge la recommandation « dangereuse ».",
-      "contenu": "Donald Trump a signé un décret recommandant de **réduire le nombre de vaccins administrés aux enfants** et de séparer les injections du ROR (rougeole, oreillons, rubéole) en trois vaccins distincts.\n\nLe président américain et son ministre de la Santé, **Robert F. Kennedy Jr.**, continuent d'établir un lien entre autisme et vaccination, alors qu'aucune étude médicale n'a jamais démontré une telle association.\n\nL'American Academy of Pediatrics a immédiatement qualifié la recommandation de « dangereuse ». Fractionner le ROR rallonge le calendrier vaccinal et multiplie les occasions de rendez-vous manqués, à l'heure où la rougeole reprend du terrain aux États-Unis.",
-      "mots_cles": "États-Unis, Trump, vaccins, ROR, rougeole, RFK Jr, santé publique",
-      "sources": [
-        "BBC News — Trump signs order to limit childhood vaccines | https://www.bbc.co.uk/news/articles/ce3q5vl581wo",
-        "Le Monde — Donald Trump relance son offensive contre la vaccination | https://www.lemonde.fr/international/article/2026/08/11/aux-etats-unis-donald-trump-relance-son-offensive-contre-la-vacc"
-      ]
-    },
-    {
-      "titre": "Un record de 230 migrants sur une seule embarcation dans la Manche",
-      "rubrique": "On rembobine",
-      "thematique": "Société",
-      "chapo": "Au large de Berck-sur-Mer, les sauveteurs décrivent une « sidération générale » devant l'afflux de candidats à l'exil.",
-      "contenu": "Dans la nuit de dimanche à lundi, une seule embarcation a transporté **230 personnes** depuis les côtes françaises vers l'Angleterre — un nombre jamais atteint jusqu'ici.\n\n« C'est une sidération générale », résume un sauveteur au large de Berck-sur-Mer, où les moyens de secours se retrouvent dimensionnés pour des canots de quelques dizaines de passagers, pas pour des bateaux surchargés de plus de deux cents personnes.\n\nLa concentration d'un tel nombre de passagers sur une embarcation unique augmente mécaniquement le risque de naufrage de masse.",
-      "mots_cles": "migrants, Manche, Berck-sur-Mer, sauvetage, immigration",
-      "sources": [
-        "franceinfo — Les sauveteurs dépassés par l'afflux de candidats à l'exil | https://www.franceinfo.fr/monde/"
-      ]
-    },
-    {
-      "titre": "La Turquie adopte une loi historique sur la réintégration des combattants du PKK",
-      "rubrique": "On rembobine",
-      "thematique": "International",
-      "chapo": "Le texte organise le retour à la vie civile des membres de la guérilla kurde. Le sort d'Abdullah Öcalan, lui, reste en suspens.",
-      "contenu": "Le Parlement turc a voté une loi encadrant la **réintégration des combattants du Parti des travailleurs du Kurdistan (PKK)**, un an après l'appel de son fondateur à déposer les armes.\n\n**Abdullah Öcalan**, 77 ans, condamné à la prison à vie et détenu depuis 1999, avait exhorté l'an passé les combattants à mettre fin à la lutte armée. Son propre sort n'est pas réglé par le texte — c'est le point qui reste le plus sensible politiquement.\n\nQuarante ans de conflit ont fait plus de 40 000 morts.",
-      "mots_cles": "Turquie, PKK, Öcalan, Kurdes, paix",
-      "sources": [
-        "Le Monde — La Turquie adopte une loi historique sur la réintégration des combattants du PKK | https://www.lemonde.fr/international/article/2026/08/10/la-turquie-adopte-une-loi-historique-sur-la-reintegration-des-co",
-        "France 24 — Loi historique sur la réintégration des combattants du PKK | https://www.france24.com/fr/moyen-orient/20260810-turquie-adopte-loi-historique-reint%C3%A9gration-combattants-pkk-abdul"
-      ]
-    },
-    {
-      "titre": "Feux et typhon : trois continents sous le choc météorologique",
-      "rubrique": "On rembobine",
-      "thematique": "Environnement",
-      "chapo": "Cent feux dans l'ouest canadien, 107 000 hectares brûlés en Indonésie, un million d'évacués en Chine.",
-      "contenu": "**Canada.** La Colombie-Britannique a décrété l'état d'urgence face à une centaine d'incendies, dont plusieurs hors de contrôle. Plus de 20 000 personnes ont été évacuées. Le pays compte 612 feux actifs.\n\n**Indonésie.** Plus de 48 000 agents ont été déployés dans six provinces, où les incendies ont déjà parcouru plus de 107 000 hectares. Des écoles ont fermé.\n\n**Chine.** Le typhon Dolphin a touché la côte orientale avec des vents à 150 km/h, provoquant l'évacuation d'un million de personnes. À Shanghai, les pluies torrentielles ont transformé les rues en rivières.",
-      "mots_cles": "incendies, Canada, Indonésie, typhon, Dolphin, Shanghai, climat",
-      "sources": [
-        "Le Monde — Incendies : état d'urgence dans l'ouest du Canada | https://www.lemonde.fr/planete/article/2026/08/11/incendies-etat-d-urgence-et-evacuations-par-milliers-dans-l-ouest-du-c",
-        "Le Monde — En Indonésie, des écoles fermées face aux feux de forêt | https://www.lemonde.fr/international/article/2026/08/11/en-indonesie-des-ecoles-fermees-et-des-milliers-de-pompiers-mobi",
-        "franceinfo — Typhon Dolphin : des inondations importantes à Shanghai | https://www.franceinfo.fr/environnement/catastrophes-naturelles/typhon-dolphin-des-inondations-importantes-a-shangai_814"
-      ]
-    },
-    {
-      "titre": "Ce que la chaleur fait vraiment à un pays",
+      "titre": "En RDC, l'épidémie d'Ebola franchit les 2 000 morts en un temps record",
       "rubrique": "Tout s'explique",
+      "thematique": "Santé",
+      "a_la_une": true,
+      "chapo": "Le bilan de la 17ᵉ vague épidémique dépasse les 2 000 morts. Selon le virologue qui a codécouvert le virus en 1976, la maladie se propage « à une vitesse jamais observée ».",
+      "contenu": "### Ce que dit le bilan\nMardi, l'épidémie d'Ebola qui touche la République démocratique du Congo (RDC) a franchi le cap des **2 000 morts**, confirment franceinfo, *Le Monde* et *Libération*. Il s'agit de la **17ᵉ vague épidémique** recensée dans le pays depuis la découverte du virus.\n\n### Un rythme inédit\nCe bilan rapproche l'épidémie actuelle de la plus meurtrière jamais enregistrée en RDC : celle de 2018-2020, qui avait fait près de **2 300 morts** — mais en vingt-deux mois. La vague en cours a atteint un niveau comparable en seulement **trois mois**.\n\nInterrogé par *Le Monde*, le virologue congolais **Jean-Jacques Muyembe** — qui a codécouvert le virus Ebola en 1976 — alerte : « Ebola se propage à une vitesse que nous n'avions encore jamais observée. »\n\n### Le repère\nDepuis sa découverte, la maladie a tué plus de **15 000 personnes** en Afrique en cinquante ans, selon franceinfo. Les dépêches disponibles ne précisent pas, à ce stade, les raisons exactes de cette accélération.\n\n### Ce qui est en jeu\nSi le rythme actuel se maintient, cette 17ᵉ vague pourrait dépasser le bilan de 2018-2020 et devenir la plus meurtrière de l'histoire du pays — en une fraction du temps qu'il avait fallu la dernière fois. C'est cette vitesse, plus que le chiffre brut, qui inquiète le médecin qui a vu naître toutes les vagues précédentes.",
+      "chiffre": "3 mois",
+      "legende_chiffre": "pour dépasser 2 000 morts, contre 22 mois lors de la précédente épidémie la plus meurtrière",
+      "temps_lecture": 3,
+      "mots_cles": "Ebola, RDC, épidémie, Muyembe, santé publique, Afrique, épidémiologie, virus",
+      "sources": [
+        "franceinfo — La nouvelle épidémie d'Ebola a franchi le cap des 2 000 morts en RDC | https://www.franceinfo.fr/sante/maladie/ebola/l-epidemie-d-ebola-a-franchi-le-cap-des-2-000-morts-en-republique-democratique-du-congo_8143049.html",
+        "Le Monde — Ebola : l'épidémie a fait plus de 2 000 morts en RDC | https://www.lemonde.fr/international/article/2026/08/11/ebola-l-epidemie-a-fait-plus-de-2-000-morts-en-rdc_6743790_3210.html",
+        "Le Monde — « Ebola se propage à une vitesse que nous n'avions encore jamais observée » : l'alerte de Jean-Jacques Muyembe | https://www.lemonde.fr/afrique/article/2026/08/11/jean-jacques-muyembe-virologue-congolais-ebola-se-propage-a-une-vitesse-que-nous-n-avions-encore-jamais-observee_6743759_3212.html",
+        "Libération — En RDC, l'épidémie d'Ebola franchit le cap des 2 000 morts | https://www.liberation.fr/international/afrique/en-rdc-lepidemie-debola-franchit-le-cap-des-2-000-morts-20260811_GTSMHW2OMNA45E72GQCGYSME2E/"
+      ]
+    },
+    {
+      "titre": "Bachar al-Assad condamné à mort par contumace en Syrie",
+      "rubrique": "On rembobine",
+      "thematique": "International",
+      "a_la_une": true,
+      "chapo": "L'ex-président déchu, réfugié à Moscou, a été reconnu coupable de « crimes de guerre » et de « crimes contre l'humanité » par un tribunal syrien.",
+      "contenu": "Un tribunal syrien a condamné mardi **Bachar al-Assad** à la peine de mort par contumace, pour « crimes de guerre » et « crimes contre l'humanité » commis durant les treize années de guerre civile déclenchée en 2011, rapportent franceinfo, *Le Monde* et la BBC.\n\nL'ex-dirigeant a fui vers Moscou avec sa famille lors de la prise de Damas par une coalition menée par des islamistes, en décembre 2024. Il est jugé en son absence.",
+      "mots_cles": "Syrie, Bachar al-Assad, condamnation, peine de mort, crimes de guerre, justice",
+      "sources": [
+        "franceinfo — Bachar al-Assad condamné à la peine de mort par contumace par un tribunal syrien | https://www.franceinfo.fr/monde/revolte-en-syrie/bachar-al-assad-condamne-a-la-peine-de-mort-par-contumace-par-un-tribunal-syrien_8143022.html",
+        "Le Monde — Bachar Al-Assad condamné, en son absence, à la peine de mort en Syrie | https://www.lemonde.fr/international/article/2026/08/11/bachar-al-assad-condamne-a-la-peine-de-mort-par-contumace-en-syrie-pour-crimes-de-guerre-et-crimes-contre-l-humanite_6743778_3210.html",
+        "BBC News — Ousted Syrian dictator Bashar al-Assad sentenced to death in absentia | https://www.bbc.co.uk/news/articles/ce34dkpnyg7o"
+      ]
+    },
+    {
+      "titre": "Séisme en Colombie : le bilan grimpe à 132 morts",
+      "rubrique": "On rembobine",
+      "thematique": "International",
+      "chapo": "Trois jours après son investiture, le nouveau président Abelardo de la Espriella gère la pire catastrophe naturelle qu'ait connue le pays depuis dix ans.",
+      "contenu": "Le bilan du séisme de magnitude 7,4 qui a frappé l'ouest de la Colombie lundi s'est alourdi : les autorités recensent désormais **au moins 132 morts et 570 blessés**, contre 111 morts dans un premier bilan, selon franceinfo. À Manizales et Cali, où plusieurs bâtiments se sont effondrés, les secours poursuivent leurs recherches de survivants.\n\nLe président **Abelardo de la Espriella**, en fonction depuis trois jours seulement, a décrété l'état d'urgence.",
+      "mots_cles": "Colombie, séisme, Manizales, Cali, Espriella, catastrophe naturelle",
+      "sources": [
+        "franceinfo — Le bilan du séisme s'alourdit en Colombie, avec au moins 132 morts et 570 blessés | https://www.franceinfo.fr/environnement/catastrophes-naturelles/seismes/le-bilan-du-seisme-s-alourdit-en-colombie-132-morts-recenses_8142809.html",
+        "franceinfo — Au moins 132 morts, 86 bâtiments effondrés : les dégâts du séisme en Colombie | https://www.franceinfo.fr/environnement/catastrophes-naturelles/seismes/en-images-au-moins-132-morts-86-batiments-effondres-recherche-de-survivants-les-degats-du-seisme-en-colombie_8142965.html"
+      ]
+    },
+    {
+      "titre": "Ukraine : Zelensky accuse la Russie d'avoir tiré des missiles nord-coréens sur Zaporijjia",
+      "rubrique": "On rembobine",
+      "thematique": "International",
+      "chapo": "Neuf personnes ont été tuées dans les frappes russes de la nuit. Kiev revendique de son côté une frappe de drone à 1 400 km à l'intérieur du territoire russe.",
+      "contenu": "Le président ukrainien **Volodymyr Zelensky** affirme que l'armée russe a utilisé des **missiles balistiques nord-coréens** pour frapper Zaporijjia dans la nuit de lundi à mardi, un assaut qui a fait au moins six morts et dix-neuf blessés selon la BBC. Au total, neuf personnes ont été tuées par des frappes russes en Ukraine cette même nuit, précise franceinfo.\n\nZelensky affirme également que la Russie s'apprête à déployer davantage de soldats nord-coréens sur son territoire.\n\nDans le même temps, l'armée ukrainienne revendique une frappe de drone sur la raffinerie russe d'Orsk, à 1 400 kilomètres de la frontière, où un incendie a été signalé sans faire de victime, rapporte *Le Monde*.",
+      "mots_cles": "Ukraine, Russie, Zelensky, Zaporijjia, Corée du Nord, missiles, drones, Orsk",
+      "sources": [
+        "BBC News — Russia using North Korean missiles to strike Ukraine, Zelensky says | https://www.bbc.co.uk/news/articles/c151dpzwnvxo",
+        "franceinfo — Neuf personnes sont mortes en Ukraine dans des attaques russes | https://www.franceinfo.fr/monde/europe/manifestations-en-ukraine/neuf-personnes-sont-mortes-en-ukraine-dans-des-attaques-russes_8142740.html",
+        "Le Monde — En direct, guerre en Ukraine : Kiev revendique une attaque sur la raffinerie russe d'Orsk | https://www.lemonde.fr/international/live/2026/08/11/en-direct-guerre-en-ukraine-volodymyr-zelensky-affirme-que-la-russie-a-utilise-des-missiles-balistiques-nord-coreens-contre-zaporijia_6741928_3210.html"
+      ]
+    },
+    {
+      "titre": "Trump signe un décret pour réduire le nombre de vaccins chez l'enfant",
+      "rubrique": "On rembobine",
+      "thematique": "International",
+      "chapo": "Le texte préconise de fractionner le vaccin ROR en trois injections distinctes. L'Académie américaine de pédiatrie juge la mesure « dangereuse ».",
+      "contenu": "**Donald Trump** a signé un décret recommandant de réduire le nombre de vaccins administrés aux enfants et de scinder le vaccin combiné contre la rougeole, les oreillons et la rubéole (**ROR**) en trois injections distinctes, rapportent la BBC et France 24.\n\nLe président américain et son ministre de la Santé **Robert F. Kennedy Jr.** continuent d'établir un lien entre autisme et vaccination, alors qu'aucune étude médicale n'a démontré une telle association, précise franceinfo.\n\nL'**American Academy of Pediatrics** a qualifié la recommandation de « dangereuse ».",
+      "mots_cles": "États-Unis, Trump, vaccins, ROR, RFK Jr, santé publique, autisme",
+      "sources": [
+        "BBC News — Trump signs order to limit childhood vaccines and split MMR shots | https://www.bbc.co.uk/news/articles/ce3q5vl581wo",
+        "franceinfo — Donald Trump poursuit son offensive antivax avec un nouveau décret | https://www.franceinfo.fr/monde/usa/aux-etats-unis-donald-trump-poursuit-son-offensive-antivax-avec-un-nouveau-decret-qui-recommande-de-reduire-le-nombre-de-vaccins-pour-les-enfants_8142773.html",
+        "France 24 — États-Unis : Trump signe un décret recommandant d'espacer les vaccins infantiles | https://www.france24.com/fr/vid%C3%A9o/20260811-%C3%A9tats-unis-trump-signe-un-d%C3%A9cret-recommandant-d-espacer-les-vaccins-infantiles"
+      ]
+    },
+    {
+      "titre": "Thaïlande : les permis d'armes à feu suspendus après une fusillade dans un lycée",
+      "rubrique": "On rembobine",
+      "thematique": "International",
+      "chapo": "Un adolescent de 14 ans avait tué huit personnes le 7 août avant de retourner l'arme de son grand-père contre lui. Les autorités réagissent en gelant la délivrance de nouveaux permis.",
+      "contenu": "Les autorités thaïlandaises ont suspendu la délivrance de permis d'armes à feu après la fusillade survenue vendredi 7 août dans un collège-lycée, rapporte *Le Monde*. Un adolescent de 14 ans avait abattu ses grands-parents à leur domicile avant de tuer six autres personnes dans son établissement scolaire avec le pistolet de son grand-père, puis de retourner l'arme contre lui.",
+      "mots_cles": "Thaïlande, fusillade, armes à feu, lycée, régulation",
+      "sources": [
+        "Le Monde — En Thaïlande, les permis d'armes à feu suspendus après une fusillade dans un lycée | https://www.lemonde.fr/international/article/2026/08/11/en-thailande-les-permis-d-armes-a-feu-suspendus-apres-une-fusillade-dans-un-lycee_6743795_3210.html"
+      ]
+    },
+    {
+      "titre": "Résumés IA de Google : la presse française saisit l'Autorité de la concurrence",
+      "rubrique": "On rembobine",
+      "thematique": "Économie",
+      "chapo": "Les quotidiens redoutent que la fonctionnalité prive leurs sites de trafic et de revenus publicitaires en répondant directement aux internautes.",
+      "contenu": "L'**Alliance de la presse d'information générale (APIG)**, qui regroupe près de 300 quotidiens français dont *Le Monde*, a saisi l'Autorité de la concurrence au sujet des résumés générés par l'intelligence artificielle de Google, rapporte *Le Monde*. Elle demande au régulateur de faire respecter les engagements pris par Google en 2022.\n\nSelon franceinfo, les médias redoutent que cette fonctionnalité dissuade les internautes de cliquer sur leurs liens une fois la réponse obtenue via l'IA, ce qui les priverait de trafic et de revenus publicitaires.",
+      "mots_cles": "Google, intelligence artificielle, presse, Autorité de la concurrence, APIG, médias",
+      "sources": [
+        "Le Monde — Résumés IA de Google : l'Alliance de la presse d'information générale saisit l'Autorité de la concurrence | https://www.lemonde.fr/actualite-medias/article/2026/08/11/resumes-ia-de-google-l-alliance-de-la-presse-d-information-generale-dont-le-monde-est-membre-saisit-l-autorite-de-la-concurrence_6743786_3236.html",
+        "franceinfo — Résumés IA de Google : les quotidiens français saisissent l'Autorité de la concurrence | https://www.franceinfo.fr/internet/google/resumes-ia-de-google-les-quotidiens-francais-saisissent-l-autorite-de-la-concurrence_8143079.html"
+      ]
+    },
+    {
+      "titre": "Canicule : l'alerte s'étend, la sécheresse s'aggrave",
+      "rubrique": "On fait le point",
       "thematique": "Environnement",
       "a_la_une": true,
-      "chapo": "Jamais il n'a fait aussi chaud dans l'ouest de l'Europe. Derrière les cartes rouges de Météo-France, une canicule agit sur l'eau, l'électricité et le bâti — trois systèmes qui se fragilisent en même temps.",
-      "contenu": "### Ce qui se passe cette semaine\n\nUn nouvel épisode de fortes chaleurs s'est installé sur la France mardi. **43 départements** sont placés en vigilance orange, et Météo-France prévoit d'y ajouter **24 départements supplémentaires** à partir de mercredi midi, dont Paris et sa petite couronne. Le pic est attendu vers le milieu de la semaine.\n\nÀ l'échelle continentale, l'observatoire européen Copernicus est formel : il n'a **jamais fait aussi chaud dans l'ouest de l'Europe**, et les vagues de chaleur s'installent désormais sur des durées « inhabituelles ».\n\n### Premier effet : l'eau\n\nEn juillet 2026, **95 % du territoire français** était touché par un manque d'eau. Ce n'est plus un épisode de sécheresse, c'est un état de fait quasi national. Les nappes phréatiques n'ont pas eu le temps de se recharger, et les restrictions d'usage arrivent désormais en début d'été plutôt qu'en fin de saison.\n\n### Deuxième effet : l'électricité\n\nDimanche, le parc nucléaire d'EDF a enregistré un **record de puissance indisponible**. Cinq réacteurs ont dû baisser leur puissance à cause des fortes chaleurs, et quatre étaient à l'arrêt.\n\nLe mécanisme est simple et paradoxal : les centrales rejettent leur eau de refroidissement dans les fleuves, avec des seuils de température à ne pas dépasser pour protéger les écosystèmes. Quand le fleuve est déjà chaud, la centrale doit se brider. Autrement dit, **le pays produit moins d'électricité au moment précis où la climatisation en réclame le plus**.\n\n### Troisième effet : le bâti\n\nC'est le point aveugle. Adapter les logements suppose d'isoler les toitures — notamment par « sarking », une technique qui surélève légèrement les toits. Elle est autorisée par le Plan local d'urbanisme bioclimatique de Paris, mais se heurte régulièrement aux avis négatifs des architectes des bâtiments de France, gardiens de l'aspect patrimonial des toits en zinc.\n\nDeux politiques publiques légitimes — protéger le patrimoine, adapter au climat — entrent frontalement en collision sur le même mètre carré de toiture.\n\n### Ce qu'il faut retenir\n\nUne canicule n'est pas seulement un problème de santé publique. Elle teste simultanément la ressource en eau, le réseau électrique et le parc immobilier. Ces trois systèmes ont été dimensionnés pour un climat qui n'existe plus.",
-      "chiffre": "95 %",
-      "legende_chiffre": "du territoire français touché par le manque d'eau en juillet 2026",
-      "temps_lecture": 4,
-      "mots_cles": "canicule, sécheresse, climat, EDF, nucléaire, Copernicus, Météo-France, adaptation",
+      "chapo": "43 départements sont en vigilance orange mardi, 24 de plus le seront dès mercredi. Deux tiers des nappes phréatiques sont sous les normales.",
+      "contenu": "**43 départements**, dont la Manche et la pointe bretonne, sont placés en vigilance orange canicule depuis mardi midi, selon *Libération*. Météo-France prévoit d'y ajouter **24 départements supplémentaires** à partir de mercredi midi, dont Paris et sa petite couronne, avec un pic de l'épisode attendu en milieu de semaine, précise franceinfo.\n\nConséquence de cette chaleur prolongée : deux tiers des nappes phréatiques sont sous les normales et **70 % du territoire** français fait désormais l'objet de mesures de restriction d'eau, selon France 24.",
+      "mots_cles": "canicule, sécheresse, Météo-France, restrictions d'eau, climat",
       "sources": [
-        "franceinfo — Il n'a jamais fait aussi chaud dans l'Ouest de l'Europe | https://www.franceinfo.fr/environnement/evenements-meteorologiques-extremes/vagues-de-chaleur-canicules/canicule-il-n-a-",
-        "Le Monde — 43 départements en vigilance orange mardi | https://www.lemonde.fr/planete/article/2026/08/11/canicule-43-departements-en-vigilance-orange-mardi-et-des-temperatures",
-        "Le Monde — Record de puissance indisponible pour le parc nucléaire d'EDF | https://www.lemonde.fr/planete/article/2026/08/10/fortes-chaleurs-record-de-puissance-indisponible-pour-le-parc-nucleair"
+        "Libération — Canicule : 43 départements en vigilance orange mardi à partir de midi | https://www.liberation.fr/environnement/climat/en-direct-canicule-22-departements-en-vigilance-orange-des-incendies-en-cours-dans-la-drome-et-en-lozere-20260810_F5XEKZLHD5BJRA42V6PENSF2ME/",
+        "franceinfo — Canicule : un nouvel épisode de fortes chaleurs s'installe en France ce mardi | https://www.franceinfo.fr/environnement/evenements-meteorologiques-extremes/vagues-de-chaleur-canicules/en-direct-canicule-un-nouvel-episode-de-fortes-chaleurs-s-installe-en-france_8142731.html",
+        "France 24 — Sécheresse en France : des restrictions d'eau sur 70 % du territoire | https://www.france24.com/fr/vid%C3%A9o/20260811-s%C3%A9cheresse-en-france-des-restrictions-d-eau-sur-70-du-territoire"
       ]
     },
     {
-      "titre": "Démarchage téléphonique : ce qui change à partir d'aujourd'hui",
-      "rubrique": "On fait le point",
-      "thematique": "Économie",
-      "chapo": "Depuis le 11 août, une entreprise doit avoir votre accord explicite avant de vous appeler. Au Maroc, 40 000 emplois sont menacés.",
-      "contenu": "### La nouvelle règle\n\nJusqu'ici, le démarchage téléphonique fonctionnait sur un principe d'**opposition** : vous étiez appelable par défaut, à charge pour vous de vous inscrire sur Bloctel.\n\nDepuis aujourd'hui, le principe s'inverse. Les entreprises doivent recueillir votre **consentement préalable**, défini comme « une manifestation de volonté libre, spécifique, éclairée et univoque ». Sans accord explicite de votre part, l'appel est illégal.\n\n### L'effet de bord\n\nUne large partie des centres d'appels qui prospectent le marché français sont installés au Maroc. Le secteur y emploie des dizaines de milliers de personnes, et **plus de 40 000 emplois** sont désormais menacés par l'extinction de cette activité.\n\nC'est le cas d'école d'une régulation nationale dont l'onde de choc est intégralement supportée par un pays tiers.",
-      "temps_lecture": 2,
-      "mots_cles": "démarchage téléphonique, Bloctel, consentement, RGPD, Maroc, centres d'appels",
-      "sources": [
-        "Le Monde — Les nouvelles mesures qui entrent en vigueur le 11 août | https://www.lemonde.fr/pixels/article/2026/08/11/demarchage-telephonique-les-nouvelles-mesures-qui-entrent-en-vigueur-le",
-        "Le Monde — Au Maroc, la fin du démarchage vers la France menace 40 000 emplois | https://www.lemonde.fr/afrique/article/2026/08/11/au-maroc-la-fin-du-demarchage-telephonique-vers-la-france-menace-plus-"
-      ]
-    },
-    {
-      "titre": "Le chômage au plus haut depuis 2020",
-      "rubrique": "Ça se voit",
-      "thematique": "Économie",
-      "chapo": "8,3 % de la population active au deuxième trimestre, soit 0,2 point de plus qu'au trimestre précédent.",
-      "contenu": "Le taux de chômage français a progressé de **0,2 point au deuxième trimestre 2026**, pour atteindre **8,3 %** de la population active. C'est son plus haut niveau depuis l'automne 2020, en plein Covid — et, avant cela, depuis l'automne 2019.\n\nInterrogé sur ce chiffre, **Sébastien Lecornu** a défendu le bilan économique du macronisme, disant refuser à la fois le « déni » et la « caricature ».\n\nÀ mettre en regard d'un autre chantier budgétaire : dans une revue de dépenses publiée fin juillet, l'inspection générale des finances et l'inspection générale de l'administration recommandent d'accélérer la rationalisation des **primes des agents publics**.",
-      "chiffre": "8,3 %",
-      "legende_chiffre": "taux de chômage au 2ᵉ trimestre 2026, + 0,2 point sur un trimestre",
-      "mots_cles": "chômage, emploi, économie, Lecornu, INSEE, fonction publique",
-      "sources": [
-        "Le Monde — Sébastien Lecornu défend le bilan du macronisme | https://www.lemonde.fr/economie/",
-        "Le Monde — L'État appelé à faire le ménage dans les primes de ses agents | https://www.lemonde.fr/economie/"
-      ]
-    },
-    {
-      "titre": "Abelardo de la Espriella, un président colombien à l'épreuve dès son troisième jour",
-      "rubrique": "C'est qui ?",
-      "thematique": "International",
-      "chapo": "Investi il y a quelques jours à peine, le chef de l'État colombien affronte la pire catastrophe naturelle qu'ait connue son pays depuis dix ans.",
-      "contenu": "On ne le connaissait pas encore, et il gère déjà une catastrophe nationale.\n\n**Abelardo de la Espriella** a pris ses fonctions à la tête de la Colombie il y a trois jours. Lundi, un séisme de magnitude 7,4 frappait l'ouest du pays, faisant au moins 132 morts et 570 blessés.\n\nSa première décision d'ampleur a été de décréter l'**état d'urgence** — puis l'état de catastrophe — et de s'engager sur une opération de sauvetage coordonnée entre l'armée, la protection civile et les autorités locales.\n\nLa gestion d'une catastrophe est un révélateur brutal pour un exécutif neuf : elle expose en quelques jours la capacité réelle de coordination d'un appareil d'État que le nouveau président n'a pas encore eu le temps de façonner.",
-      "mots_cles": "Colombie, Espriella, président, séisme, état d'urgence, portrait",
-      "sources": [
-        "Le Monde — Le président Abelardo de la Espriella décrète l'état de catastrophe | https://www.lemonde.fr/planete/article/2026/08/10/seisme-en-colombie-au-moins-111-morts-le-gouvernement-decrete-l-etat-d"
-      ]
-    },
-    {
-      "titre": "Cinq ans après leur retour au pouvoir, les Talibans jouent la carte diplomatique",
-      "rubrique": "C'est leur avis",
-      "thematique": "International",
-      "chapo": "Toujours non reconnues officiellement, les autorités de Kaboul ont patiemment tissé un réseau de relations bilatérales.",
-      "contenu": "Cinq ans jour pour jour après leur reprise de Kaboul, les Talibans n'ont obtenu la reconnaissance officielle de presque aucune capitale. Ils ont pourtant construit, méthodiquement, un réseau de relations de fait : accords commerciaux, coopération sécuritaire, représentations diplomatiques officieuses.\n\nLa thèse défendue par plusieurs analystes est que la **non-reconnaissance formelle est devenue un statu quo confortable** pour tout le monde : elle permet aux États de traiter avec Kaboul sans avaliser publiquement sa politique — notamment l'exclusion des femmes de l'enseignement et de l'espace public.\n\nCinq ans, c'est aussi la durée à partir de laquelle un régime cesse d'être une parenthèse pour devenir une donnée.",
-      "mots_cles": "Afghanistan, Talibans, diplomatie, Kaboul, droits des femmes",
-      "sources": [
-        "France 24 — Cinq ans après, les Talibans misent sur la diplomatie | https://www.france24.com/fr/asie-pacifique/20260811-afghanistan-comment-le-gouvernement-taliban-tisse-progressivement-de"
-      ]
-    },
-    {
-      "titre": "Éclipse et étoiles filantes : comment regarder le ciel demain sans s'abîmer les yeux",
-      "rubrique": "Ça peut servir",
-      "thematique": "Sciences",
-      "a_la_une": true,
-      "chapo": "Le 12 août réunit une éclipse solaire et le pic des Perséides. Deux spectacles, une seule précaution vraiment importante.",
-      "contenu": "### L'éclipse, mercredi en journée\n\nLe phénomène sera visible à **100 % dans une large partie de l'Espagne**, où les autorités anticipent un afflux touristique massif, y compris dans des zones rurales peu équipées. En France, l'éclipse sera partielle.\n\n**La règle absolue :** ne jamais regarder le Soleil sans lunettes spécifiques certifiées, même partiellement éclipsé, même à travers des lunettes de soleil, un négatif photo ou un smartphone. La rétine n'a pas de récepteur à la douleur — la brûlure est indolore et irréversible.\n\nEn France, la prévention en amont a été jugée insuffisante : une foire aux questions a été mise en ligne sur les sites ministériels, relayée jusqu'au jour J.\n\n### Les Perséides, mercredi soir\n\nNe rangez pas votre programme après le coucher du Soleil. La pluie d'étoiles filantes des **Perséides** atteint son pic la même nuit, et les conditions de 2026 s'annoncent les meilleures depuis plusieurs années.\n\nLà, aucune protection n'est nécessaire : il suffit de s'éloigner des lumières de ville, de laisser vingt minutes à ses yeux pour s'adapter à l'obscurité, et de regarder vers le nord-est.",
-      "temps_lecture": 3,
-      "mots_cles": "éclipse, Perséides, astronomie, 12 août, sécurité, rétine, Espagne",
-      "sources": [
-        "Le Monde — Éclipse solaire : les précautions à respecter | https://www.lemonde.fr/societe/article/2026/08/11/eclipse-solaire-peu-de-prevention-en-amont-mais-des-precautions-a-resp",
-        "franceinfo — En Espagne, l'éclipse représente un défi logistique | https://www.franceinfo.fr/sciences/astronomie/eclipse-solaire/en-espagne-l-eclipse-solaire-represente-un-veritable-defi-",
-        "Futura Sciences — Perséides 2026 | https://www.futura-sciences.com/sciences/actualites/etoiles-filantes-perseides-etoiles-filantes-annoncent-plus-impressio"
-      ]
-    },
-    {
-      "titre": "Wall Street confie 500 milliards de dollars à Nvidia",
-      "rubrique": "On rembobine",
-      "thematique": "Tech",
-      "chapo": "La somme servira à bâtir les centres de données qui hébergent, alimentent et refroidissent les puces d'intelligence artificielle.",
-      "contenu": "Des géants de Wall Street ont engagé **500 milliards de dollars** aux côtés de Nvidia pour financer la construction de nouveaux centres de données, destinés à héberger et refroidir des kilomètres de puces empilées.\n\nDans le même mouvement, **Meta** a relancé ses modèles d'intelligence artificielle en libre accès. Mark Zuckerberg défend cette stratégie face à une Chine qui domine le secteur de l'ouverture des modèles, en soutenant que la diffusion libre reste le meilleur moyen de conserver un avantage.\n\nÀ l'inverse du mouvement général, **Trump Media & Technology Group**, maison mère de Truth Social, a déclaré près de **240 millions de dollars de pertes** au deuxième trimestre, après plus de 400 millions au trimestre précédent.",
-      "chiffre": "500 Md$",
-      "legende_chiffre": "engagés par Wall Street pour les centres de données de Nvidia",
-      "mots_cles": "Nvidia, IA, intelligence artificielle, Meta, Zuckerberg, centres de données, Truth Social",
-      "sources": [
-        "BBC News — Wall Street giants hand Nvidia $500bn | https://www.bbc.co.uk/news/articles/c78gr0jv0mdo",
-        "France 24 — Meta mise sur l'IA en libre accès | https://www.france24.com/fr/%C3%A9co-tech/20260811-ia-intelligence-artificielle-meta-mark-zuckerberg-libre-acces-modeles"
-      ]
-    },
-    {
-      "titre": "Les microplastiques pourraient réduire la capacité des océans à absorber le CO₂",
+      "titre": "Des méduses forcent l'arrêt de trois réacteurs nucléaires à Gravelines",
       "rubrique": "Ça alors",
       "thematique": "Environnement",
-      "chapo": "On les savait mauvais pour la biodiversité marine. Ils s'attaqueraient aussi au principal amortisseur du réchauffement.",
-      "contenu": "Les océans absorbent environ un quart du CO₂ que nous émettons. C'est, de très loin, le plus gros service climatique rendu gratuitement à l'humanité.\n\nUne étude récente suggère que les **microplastiques** pourraient dégrader cette capacité d'absorption, en perturbant les mécanismes biologiques et physico-chimiques par lesquels le carbone atmosphérique passe dans l'eau puis vers les profondeurs.\n\nLa conséquence serait vicieuse : une pollution que l'on traitait comme un problème de biodiversité deviendrait un facteur aggravant du réchauffement lui-même.",
-      "mots_cles": "microplastiques, océans, CO2, climat, pollution, puits de carbone",
+      "chapo": "Un afflux massif de méduses a perturbé les systèmes de refroidissement de la centrale nordiste lundi.",
+      "contenu": "EDF a dû arrêter **trois réacteurs** de la centrale nucléaire de Gravelines (Nord) lundi, et réduire de moitié la production d'un quatrième, après un « afflux massif de méduses » ayant perturbé les systèmes de pompage d'eau de refroidissement, rapporte franceinfo. Un incident sans lien direct avec la chaleur, mais qui illustre la vulnérabilité du parc nucléaire aux aléas environnementaux en plein été.",
+      "mots_cles": "EDF, Gravelines, méduses, nucléaire, réacteurs, environnement",
       "sources": [
-        "Futura Sciences — Un nouveau danger des microplastiques | https://www.futura-sciences.com/sciences/actualites/"
+        "franceinfo — Des méduses obligent EDF à arrêter trois réacteurs de la centrale nucléaire de Gravelines | https://www.franceinfo.fr/environnement/energie/nucleaire/des-meduses-obligent-edf-a-arreter-trois-reacteurs-de-la-centrale-nucleaire-de-gravelines_8143100.html"
       ]
     },
     {
-      "titre": "Léon Marchand relance les Bleus sur le relais 4 × 200 m",
-      "rubrique": "On rembobine",
-      "thematique": "Sport",
-      "chapo": "Argent pour le relais français aux championnats d'Europe de natation, porté par le meilleur temps de la course.",
-      "contenu": "Le relais 4 × 200 mètres nage libre masculin français a décroché l'**argent** aux championnats d'Europe de natation 2026.\n\nPour son retour à la compétition en France, **Léon Marchand** a signé la meilleure performance du relais. « Je ne pensais pas pouvoir nager aussi vite », a-t-il réagi.",
-      "mots_cles": "natation, Léon Marchand, championnats d'Europe, relais, sport",
+      "titre": "Jean-Jacques Muyembe, le médecin qui a vu naître toutes les vagues d'Ebola",
+      "rubrique": "C'est qui ?",
+      "thematique": "Santé",
+      "chapo": "Le virologue congolais qui a codécouvert le virus en 1976 tire la sonnette d'alarme sur la vitesse de l'épidémie en cours.",
+      "contenu": "**Jean-Jacques Muyembe** fait partie de l'équipe qui a identifié le virus Ebola en 1976, en République démocratique du Congo. Cinquante ans plus tard, il continue de suivre l'évolution de la maladie qu'il a contribué à découvrir.\n\nDans un entretien accordé au *Monde*, ce virologue congolais s'alarme de la vitesse de propagation de l'épidémie actuelle, qu'il juge « jamais observée » jusqu'ici. Sa parole pèse : il a suivi, depuis le début, chacune des dix-sept vagues épidémiques recensées dans le pays.",
+      "mots_cles": "Muyembe, Ebola, RDC, virologue, santé publique",
       "sources": [
-        "France 24 — Le relais français prend l'argent sur 4 × 200 m | https://www.france24.com/fr/sports/20260810-euro-de-natation-propuls%C3%A9s-par-l%C3%A9on-marchand-les-bleus-d%C3%A9croc",
-        "Libération — Le relais français médaillé d'argent | https://www.liberation.fr/sports/euro-de-natation-le-relais-francais-du-4x200-m-medaille-dargent-avec-leon-marchand-2026"
+        "Le Monde — « Ebola se propage à une vitesse que nous n'avions encore jamais observée » : l'alerte de Jean-Jacques Muyembe | https://www.lemonde.fr/afrique/article/2026/08/11/jean-jacques-muyembe-virologue-congolais-ebola-se-propage-a-une-vitesse-que-nous-n-avions-encore-jamais-observee_6743759_3212.html"
+      ]
+    },
+    {
+      "titre": "Yannick Jadot : « Climatosceptiques et climato-arrangeants sont des capitulards »",
+      "rubrique": "C'est leur avis",
+      "thematique": "France",
+      "chapo": "Dans une tribune au Monde, le sénateur écologiste dénonce ceux qui, selon lui, minimisent le changement climatique après avoir ignoré les alertes.",
+      "citation": "Climatosceptiques et climato-arrangeants sont des capitulards qui nous condamnent au pire.",
+      "auteur_citation": "Yannick Jadot, sénateur écologiste de Paris",
+      "contenu": "Dans une tribune publiée par *Le Monde*, le sénateur écologiste **Yannick Jadot** dénonce ceux qu'il appelle les « climatosceptiques » et les « climato-arrangeants », qu'il accuse de faire porter aux écologistes la responsabilité d'une catastrophe qu'ils avaient pourtant annoncée depuis des années.\n\nCette tribune, qui relève de l'opinion et non du constat factuel, s'inscrit dans le débat sur la responsabilité politique de l'adaptation au changement climatique, alors que la France traverse un nouvel épisode de canicule.",
+      "mots_cles": "Yannick Jadot, climat, tribune, écologie, politique",
+      "sources": [
+        "Le Monde — Yannick Jadot : « Climatosceptiques et climato-arrangeants sont des capitulards qui nous condamnent au pire » | https://www.lemonde.fr/idees/article/2026/08/11/yannick-jadot-climatosceptiques-et-climato-arrangeants-sont-des-capitulards-qui-nous-condamnent-au-pire_6743755_3232.html"
+      ]
+    },
+    {
+      "titre": "Éclipse et étoiles filantes : comment observer le ciel du 12 août sans risque",
+      "rubrique": "Ça peut servir",
+      "thematique": "Sciences",
+      "chapo": "Une éclipse solaire totale en Espagne, partielle en France, suivie du pic des Perséides le même soir. Le mode d'emploi pour ne rien manquer et ne pas s'abîmer les yeux.",
+      "contenu": "### L'éclipse, mercredi en journée\nUne éclipse solaire sera visible en France mercredi 12 août — une première depuis 1999, selon *Le Monde*. Le phénomène y sera partiel, avec un taux d'occultation variant de près de 90 % dans l'Est à 99,5 % à Biarritz, précise Futura Sciences. En Espagne, en revanche, l'éclipse sera totale et visible à 100 % dans une large partie du pays, où les autorités anticipent un afflux touristique massif, selon franceinfo.\n\n**La règle à retenir :** ne jamais regarder le Soleil sans lunettes spécifiques certifiées, même partiellement éclipsé. La rétine n'a pas de récepteur à la douleur — une brûlure y est indolore et irréversible, rappelle *Le Monde*. Les lunettes de protection se font déjà rares chez certains revendeurs, selon France 24.\n\n### Les Perséides, mercredi soir\nNe rangez pas votre matériel après le coucher du Soleil : la pluie d'étoiles filantes des **Perséides** atteint son pic la même nuit, et 2026 s'annonce comme l'une des meilleures années depuis longtemps pour les observer, selon Futura Sciences. Aucune protection n'est nécessaire ici : il suffit de s'éloigner des lumières de ville et de laisser vingt minutes à ses yeux pour s'adapter à l'obscurité.",
+      "temps_lecture": 2,
+      "mots_cles": "éclipse, Perséides, astronomie, 12 août, sécurité, Espagne, étoiles filantes",
+      "sources": [
+        "Le Monde — Avant de regarder l'éclipse solaire du 12 août, neuf questions pour bien se préparer | https://www.lemonde.fr/sciences/article/2026/08/11/avant-de-regarder-l-eclipse-solaire-du-12-aout-neuf-questions-pour-bien-se-preparer_6739357_1650685.html",
+        "Futura Sciences — Éclipse du 12 août : 4 objets indispensables à préparer chez vous | https://www.futura-sciences.com/sciences/actualites/eclipse-soleil-12-aout-eclipse-12-aout-4-objets-indispensables-preparer-chez-vous-etre-prets-19-heures-136636/",
+        "franceinfo — En Espagne, l'éclipse solaire représente un véritable défi logistique | https://www.franceinfo.fr/sciences/astronomie/eclipse-solaire/en-espagne-l-eclipse-solaire-represente-un-veritable-defi-logistique_8142737.html",
+        "France 24 — Éclipse solaire en France : les lunettes de protection en rupture de stock | https://www.france24.com/fr/vid%C3%A9o/20260811-%C3%A9clipse-solaire-en-france-les-lunettes-de-protection-en-rupture-de-stock",
+        "Futura Sciences — Perséides 2026 : pourquoi la pluie d'étoiles filantes du 12 août va être la plus belle depuis longtemps | https://www.futura-sciences.com/sciences/actualites/etoiles-filantes-perseides-etoiles-filantes-annoncent-plus-impressionnantes-habitude-cette-annee-voici-136723/"
+      ]
+    },
+    {
+      "titre": "Les océans ont connu leur juillet le plus chaud jamais enregistré",
+      "rubrique": "Ça se voit",
+      "thematique": "Environnement",
+      "chapo": "Un record alimenté par le développement de conditions El Niño, alors que des feux de forêt continuent de ravager l'ouest de l'Europe.",
+      "contenu": "Les océans du globe ont enregistré en juillet leurs **températures les plus élevées jamais mesurées**, en partie sous l'effet du développement de conditions El Niño, rapporte la BBC. Le constat intervient alors que des feux de forêt continuent de ravager l'ouest de l'Europe.",
+      "chiffre": "Record",
+      "legende_chiffre": "juillet le plus chaud jamais enregistré pour les océans du globe",
+      "mots_cles": "océans, climat, El Niño, réchauffement, record",
+      "sources": [
+        "BBC News — World's oceans hit record-high July temperatures | https://www.bbc.co.uk/news/articles/cpvw8vmmgrwo"
       ]
     },
     {
@@ -208,37 +186,12 @@
       "rubrique": "Ça vaut un clic",
       "thematique": "Culture",
       "chapo": "Un film japonais primé à Cannes, la fin d'une saga sur HBO, un opéra d'apocalypse à Salzbourg.",
-      "contenu": "**« Soudain », en salles mercredi.** Ryusuke Hamaguchi filme l'amitié naissante entre deux femmes — **Virginie Efira** et **Tao Okamoto**, toutes deux récompensées au Festival de Cannes — et en fait une méditation sur ce qui reste possible entre deux êtres. *Le Monde* parle d'une « conversation d'humanité ».\n\n**« House of the Dragon », saison 3, sur HBO Max.** En approchant de sa conclusion, le prologue de *Game of Thrones* trouve enfin son équilibre entre spectacle guerrier et tragédie familiale. « Un grand spectacle au goût de cendres. »\n\n**« Saint François d'Assise », au Festival de Salzbourg.** Romeo Castellucci met en scène l'unique opéra d'Olivier Messiaen : le prêche aux oiseaux, ici adressé à des oiseaux morts, dans une vision d'apocalypse qui a laissé le public entre joie et sidération.",
-      "mots_cles": "cinéma, Hamaguchi, Virginie Efira, House of the Dragon, Salzbourg, Castellucci, Messiaen, culture",
+      "contenu": "**« Soudain », en salles mercredi.** Ryusuke Hamaguchi filme l'amitié naissante entre deux femmes — **Virginie Efira** et **Tao Okamoto**, toutes deux récompensées au Festival de Cannes — et en fait une méditation sur la finitude et le désir de faire du bien, selon *Le Monde*.\n\n**« House of the Dragon », saison 3, sur HBO Max.** En approchant de sa conclusion, le prologue de *Game of Thrones* trouve son équilibre entre spectacle guerrier et tragédie familiale, écrit *Le Monde*.\n\n**« Saint François d'Assise », au Festival de Salzbourg.** Romeo Castellucci met en scène l'unique opéra d'Olivier Messiaen, porté par Philippe Sly et Lauranne Oliva — une vision d'apocalypse qui a laissé le public « entre joie et sidération ».",
+      "mots_cles": "cinéma, Hamaguchi, Virginie Efira, House of the Dragon, Salzbourg, Messiaen, culture",
       "sources": [
-        "Le Monde — « Soudain » : Virginie Efira et Tao Okamoto | https://www.lemonde.fr/culture/article/2026/08/11/soudain-virginie-efira-et-tao-okamoto-en-pleine-conversation-d-humanit",
-        "Le Monde — « House of the Dragon », saison 3 | https://www.lemonde.fr/culture/",
-        "Le Monde — Romeo Castellucci au Festival de Salzbourg | https://www.lemonde.fr/culture/article/2026/08/11/au-festival-de-salzbourg-romeo-castellucci-met-en-scene-le-preche-de-s"
-      ]
-    },
-    {
-      "titre": "La question du jour",
-      "rubrique": "À vous de jouer",
-      "thematique": "France",
-      "chapo": "Une question, trois réponses possibles. La bonne est en bas.",
-      "contenu": "**En juillet 2026, quelle part du territoire français était touchée par un manque d'eau ?**\n\n- A. 45 %\n- B. 70 %\n- C. 95 %\n\n---\n\n**Réponse : C.** Selon les relevés cités par franceinfo, **95 %** du territoire était concerné en juillet 2026 — un niveau qui fait basculer la sécheresse d'un épisode saisonnier à un état quasi permanent.",
-      "mots_cles": "quiz, jeu, sécheresse, eau",
-      "sources": [
-        "franceinfo — Canicule et sécheresse | https://www.franceinfo.fr/environnement/"
-      ]
-    },
-    {
-      "titre": "« Construire une maison, c'est assembler des résistances pour créer du temps long »",
-      "rubrique": "C'est leur avis",
-      "thematique": "Société",
-      "chapo": "Le charpentier et philosophe Arthur Lochmann sur ce que le travail du bois dit de notre rapport à l'autonomie.",
-      "citation": "Construire une maison, c'est assembler des résistances pour créer du temps long.",
-      "auteur_citation": "Arthur Lochmann, charpentier et philosophe",
-      "contenu": "Charpentier de métier et philosophe de formation, **Arthur Lochmann** insiste sur la dimension charnelle du travail manuel du bois : le matériau résiste, impose son rythme, interdit le raccourci.\n\nIl y voit le symptôme d'un besoin croissant : dans une époque marquée par l'accélération et la dépossession technique, construire son chez-soi redevient une façon de reprendre une part d'autonomie.\n\nUn écho, dans un autre registre, à la sociologue **Camille Dormoy**, pour qui « l'économie circulaire demande de reprendre le temps qu'on nous a appris à ne plus perdre » : trier, réparer et valoriser suppose une ressource que les politiques publiques ne prévoient jamais — du temps disponible.",
-      "mots_cles": "philosophie, artisanat, Lochmann, économie circulaire, Dormoy, société",
-      "sources": [
-        "Libération — Arthur Lochmann, philosophe | https://www.liberation.fr/idees-et-debats/",
-        "Le Monde — Camille Dormoy, sociologue | https://www.lemonde.fr/economie/"
+        "Le Monde — « Soudain » : Virginie Efira et Tao Okamoto en pleine conversation d'humanité | https://www.lemonde.fr/culture/article/2026/08/11/soudain-virginie-efira-et-tao-okamoto-en-pleine-conversation-d-humanite_6743752_3246.html",
+        "Le Monde — « House of the Dragon », saison 3, sur HBO Max | https://www.lemonde.fr/culture/article/2026/08/10/house-of-the-dragon-saison-3-sur-hbo-max-un-grand-spectacle-au-gout-de-cendres_6743418_3246.html",
+        "Le Monde — Au Festival de Salzbourg, Romeo Castellucci met en scène le prêche de « Saint François d'Assise » | https://www.lemonde.fr/culture/article/2026/08/11/au-festival-de-salzbourg-romeo-castellucci-met-en-scene-le-preche-de-saint-francois-d-assise-aux-oiseaux-morts-dans-une-vision-d-apocalypse_6743762_3246.html"
       ]
     }
   ]
