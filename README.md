@@ -101,7 +101,7 @@ Le pipeline se lance avec une seule commande dans Claude Code :
 /brief-du-soir
 ```
 
-Elle enchaîne quatre étapes :
+Il enchaîne quatre étapes :
 
 | Étape | Script | Ce qu'elle fait |
 |---|---|---|
@@ -111,8 +111,48 @@ Elle enchaîne quatre étapes :
 | 4. Vérifier | `scripts/verifier_edition.py` | Relit l'édition avec la requête de l'app et signale ce qui s'afficherait mal |
 
 Les règles éditoriales — équilibre des rubriques, longueur, sourçage, ton,
-format du week-end — sont dans `.claude/commands/brief-du-soir.md`. C'est là
-qu'il faut intervenir pour infléchir la ligne éditoriale.
+format du week-end — sont dans `.claude/commands/brief-du-soir.md`. Le format
+du JSON attendu est documenté champ par champ dans `editions/_modele.json`.
+Ce sont ces deux fichiers qu'il faut modifier pour infléchir la ligne
+éditoriale : ni la routine, ni les workflows.
+
+### Deux contextes d'exécution, une seule procédure
+
+La procédure commence par tester si Airtable est joignable, et se comporte
+différemment selon la réponse :
+
+- **Depuis un poste** — accès réseau complet : elle collecte et publie en direct.
+- **Depuis la routine cloud** — le proxy des sessions Claude Code n'autorise que
+  GitHub, les registres de paquets et l'API Anthropic. Ni les flux RSS ni
+  `api.airtable.com` ne répondent. La procédure lit alors la veille déposée dans
+  le dépôt et publie en committant l'édition.
+
+Cette limite est délibérée et n'est pas configurable : la demande de l'ouvrir
+depuis un dépôt a été fermée en « not planned »
+([issue #52982](https://github.com/anthropics/claude-code/issues/52982)).
+D'où le montage qui suit.
+
+### L'enchaînement automatisé
+
+Le réseau est pris en charge par GitHub Actions, qui encadre la routine :
+
+| Heure (Paris) | Qui | Quoi |
+|---|---|---|
+| 17h50 | `.github/workflows/collecte.yml` | Collecte les flux, dépose `veille.json` dans le dépôt |
+| 18h30 | Routine Claude Code cloud | Lit la veille, rédige, commite `editions/AAAA-MM-JJ.json` |
+| 18h32 | `.github/workflows/publication.yml` | Écrit dans Airtable et vérifie l'édition |
+
+GitHub Actions est gratuit sur dépôt privé (2 000 min/mois, ce pipeline en
+consomme une centaine) et la rédaction reste sur l'abonnement Claude : aucune
+clé API, aucune facturation supplémentaire.
+
+Les deux workflows se lancent aussi à la main depuis l'onglet **Actions** du
+dépôt — `publication.yml` accepte une date en paramètre pour republier une
+édition passée.
+
+**Les crons sont en UTC.** `50 15` et `30 16` correspondent à 17h50 et 18h30 en
+heure d'été ; au passage à l'heure d'hiver, fin octobre, il faut les avancer
+d'une heure (`50 16` et `30 17`) pour conserver les mêmes horaires à Paris.
 
 ### Chaque étape est utilisable seule
 
@@ -125,15 +165,12 @@ python scripts/verifier_edition.py 2026-08-12
 Le drapeau `--brouillon` publie en statut Brouillon : l'édition reste invisible
 dans l'application, le temps d'une relecture.
 
-### Programmer l'exécution quotidienne
+### Corriger une édition déjà parue
 
-L'automatisation n'est **pas encore programmée**. Pour l'activer, demander dans
-Claude Code :
-
-> Programme `/brief-du-soir` tous les jours à 18h30, du lundi au samedi.
-
-Le dimanche est traité par la commande elle-même : elle constate le jour et
-s'arrête sans publier.
+Modifier un article directement dans Airtable fonctionne, mais **la retouche est
+perdue à la première republication** : `push_edition.py` supprime tous les
+articles de la date avant de les réécrire. Pour une correction durable, éditez
+`editions/AAAA-MM-JJ.json` et republiez-le.
 
 ---
 
@@ -192,10 +229,12 @@ côté serveur, c'est leur place.
 
 ```
 index.html                          l'application (autonome)
-editions/                           les éditions au format JSON
-  2026-08-08.json                   extra du samedi
-  2026-08-10.json                   quotidienne
-  2026-08-11.json                   quotidienne — modèle de référence
+veille.json                         matière collectée, déposée par GitHub Actions
+editions/
+  _modele.json                      le format documenté champ par champ
+  2026-08-08.json                   les éditions parues, une par jour
+  2026-08-10.json
+  2026-08-11.json
 scripts/
   airtable.py                       client Airtable partagé
   setup_airtable.py                 crée le schéma (idempotent)
@@ -204,9 +243,15 @@ scripts/
   push_edition.py                   publication (upsert)
   verifier_edition.py               contrôle de cohérence
 .claude/
-  commands/brief-du-soir.md         la commande de publication du soir
+  commands/brief-du-soir.md         la procédure et les règles éditoriales
   launch.json                       serveur local pour la prévisualisation
+.github/workflows/
+  collecte.yml                      17h50 — dépose la veille dans le dépôt
+  publication.yml                   sur commit d'édition — écrit dans Airtable
 ```
+
+Seuls `_modele.json` et `brief-du-soir.md` sont à toucher pour faire évoluer la
+ligne éditoriale. Le reste est de la plomberie.
 
 ---
 

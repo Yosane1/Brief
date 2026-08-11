@@ -1,0 +1,69 @@
+{
+  "_lisez_moi": [
+    "Modèle de référence pour la rédaction d'une édition. Ce fichier n'est jamais publié :",
+    "il commence par un souligné, et la procédure ne traite que les fichiers AAAA-MM-JJ.json.",
+    "Les clés commençant par « _ » sont ignorées à la publication.",
+    "Un article n'utilise que les champs qui lui servent : seuls titre, rubrique et contenu",
+    "sont vraiment obligatoires. Les autres sont là pour montrer ce qui est disponible."
+  ],
+
+  "edition": {
+    "titre": "Deux ou trois faits marquants, en une ligne qui apprend quelque chose",
+    "date": "AAAA-MM-JJ",
+    "type": "Quotidienne",
+    "statut": "Publiée",
+    "slug": "AAAA-MM-JJ",
+    "resume": "Deux ou trois phrases. C'est ce texte qui sert de corps à la notification « nouveau brief », et de chapô dans la liste des archives.",
+    "edito": "Trois à cinq lignes, ton personnel. Dit pourquoi cette édition est ce qu'elle est et annonce le décryptage. Se termine souvent par « Bonne lecture. »",
+    "genere_par": "Claude Code Cloud",
+
+    "_numero": "Ne pas renseigner : attribué automatiquement à la création, jamais modifié ensuite.",
+    "_temps_lecture": "Ne pas renseigner : calculé à 220 mots/minute.",
+    "_champs_facultatifs": {
+      "image": "https://exemple.org/une.jpg",
+      "credit_image": "Nom du photographe / agence"
+    }
+  },
+
+  "articles": [
+    {
+      "_role": "Format court de « On rembobine » : 150 à 250 mots, l'essentiel du jour.",
+      "titre": "Un titre informatif, jamais racoleur, qui apprend quelque chose lu seul",
+      "rubrique": "On rembobine",
+      "thematique": "International",
+      "a_la_une": true,
+      "chapo": "Une ou deux phrases qui donnent le fait principal et son enjeu.",
+      "contenu": "Le corps de l'article en Markdown restreint.\n\nSeuls ces éléments sont rendus par l'application : **gras**, *italique*, listes commençant par un tiret, séparateur `---`, sous-titres `###`, et liens `[texte](url)`.\n\nChaque affirmation doit être adossée à une dépêche de veille.json. Attribuer explicitement : « selon le président ukrainien », « d'après *Le Monde* ».",
+      "mots_cles": "six à huit mots, séparés par des virgules, ce sont eux qui rendent l'article trouvable en recherche",
+      "sources": [
+        "Titre de l'article — Support | https://url-reelle-issue-de-veille.json",
+        "Deuxième source si le sujet le mérite | https://exemple.org"
+      ]
+    },
+    {
+      "_role": "Le décryptage : un seul par édition, 400 à 600 mots, structuré en sous-titres.",
+      "titre": "La pièce maîtresse — un sujet qui gagne à être expliqué, pas le plus gros titre",
+      "rubrique": "Tout s'explique",
+      "thematique": "Environnement",
+      "a_la_une": true,
+      "chapo": "Pose la question à laquelle l'article répond.",
+      "contenu": "### Le fait\n\nCe qui s'est passé, en quelques lignes.\n\n### Le mécanisme\n\nPourquoi ça se produit. C'est ici que se joue l'intérêt du brief : expliquer le rouage, pas répéter la nouvelle.\n\n### Ce qu'il faut retenir\n\nCe qui est réellement en jeu, au-delà de l'événement.",
+      "chiffre": "95 %",
+      "legende_chiffre": "ce que ce nombre mesure, formulé pour être lu seul",
+      "mots_cles": "climat, sécheresse, adaptation",
+      "sources": ["Support — titre | https://exemple.org"]
+    },
+    {
+      "_role": "Un article qui repose sur une citation : « C'est leur avis » ou « C'est qui ? ».",
+      "titre": "Le propos rapporté sert d'accroche",
+      "rubrique": "C'est leur avis",
+      "thematique": "Société",
+      "chapo": "Qui parle, et de quoi.",
+      "citation": "La phrase, sans les guillemets — l'application les ajoute.",
+      "auteur_citation": "Prénom Nom, qualité",
+      "contenu": "Le contexte du propos, ce qu'il éclaire, et éventuellement ce qui lui répond ailleurs dans l'actualité.",
+      "mots_cles": "trois à huit mots",
+      "sources": ["Support — titre | https://exemple.org"]
+    }
+  ]
+}

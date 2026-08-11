@@ -15,28 +15,41 @@ route — enchaîne les étapes et rends compte à la fin.
 Les commandes ci-dessous s'écrivent `python`. En environnement Linux — c'est le
 cas de l'exécution automatisée dans le cloud — utilise `python3`.
 
+## Étape 0 — Déterminer où tu tournes
+
+Une seule commande, dont la réponse commande tout le reste :
+
+```bash
+curl -sS -m 8 -o /dev/null https://api.airtable.com/v0/meta/whoami && echo LOCAL || echo CLOUD
+```
+
+- **LOCAL** — tu as accès au réseau. Tu collectes toi-même et tu publies
+  directement dans Airtable.
+- **CLOUD** — le proxy de la session bloque tout sauf GitHub. La matière est
+  déjà dans le dépôt et tu publieras en committant.
+
+Note le résultat, tu le réutilises aux étapes 1 et 5. Ne refais pas ce test et
+ne tente jamais l'autre chemin « pour voir » : les refus du proxy ne sont pas
+des erreurs passagères.
+
 ## Étape 1 — Récupérer la matière
 
-Commence par regarder si `veille.json` est déjà présent à la racine et si le
-champ `collecte` qu'il contient date de moins de douze heures.
+**En CLOUD**, `veille.json` est déjà à la racine — GitHub Actions l'y a déposé
+un peu avant toi. Lis-le tel quel. S'il est absent, ou si son champ `collecte`
+date de plus de douze heures, arrête-toi et signale que le workflow de collecte
+a échoué : sans matière fraîche, il n'y a pas d'édition.
 
-- **Il est présent et récent** — c'est le cas en exécution automatisée : GitHub
-  Actions l'a déposé un peu avant toi. Utilise-le tel quel, ne relance rien.
-- **Il est absent ou périmé** — c'est le cas en exécution manuelle depuis un
-  poste. Régénère-le :
+**En LOCAL**, régénère-le :
 
-  ```bash
-  python scripts/fetch_news.py --hours 26 --out veille.json
-  ```
+```bash
+python scripts/fetch_news.py --hours 26 --out veille.json
+```
 
-  Si moins de 20 dépêches remontent, relance avec `--hours 48`.
+Si moins de 20 dépêches remontent, relance avec `--hours 48`.
 
 Le fichier contient les dépêches des dernières 26 heures, dédoublonnées et
 classées par date décroissante, avec pour chacune : titre, résumé, lien, source
 et rubrique d'origine.
-
-Si `veille.json` est absent **et** que la collecte échoue faute d'accès réseau,
-arrête-toi et signale-le : sans matière, il n'y a pas d'édition.
 
 ## Étape 2 — Choisir les sujets
 
@@ -82,7 +95,9 @@ Mise en forme du champ `contenu` (Markdown restreint géré par l'app) :
 ## Étape 4 — Construire le fichier
 
 Écris `editions/AAAA-MM-JJ.json` (date du jour, fuseau Europe/Paris).
-Prends `editions/2026-08-11.json` comme modèle de référence.
+Le format est décrit champ par champ dans **`editions/_modele.json`** : lis-le
+avant d'écrire. Les autres fichiers du dossier sont des éditions déjà parues,
+pas des gabarits — n'y touche pas.
 
 Champs de l'édition : `titre` (accroche des deux ou trois faits marquants),
 `date`, `type`, `statut: "Publiée"`, `slug` (= la date), `resume` (2 ou
@@ -99,34 +114,36 @@ Ne renseigne pas `numero` : il est attribué automatiquement.
 
 ## Étape 5 — Publier
 
-Deux chemins, selon que tu peux joindre Airtable ou non. Tente le direct :
+**En LOCAL**, écris directement dans Airtable puis vérifie :
 
 ```bash
 python scripts/push_edition.py editions/AAAA-MM-JJ.json
-```
-
-**Si ça passe** — exécution depuis un poste — vérifie dans la foulée :
-
-```bash
 python scripts/verifier_edition.py AAAA-MM-JJ
 ```
 
 L'opération est un *upsert* : relancer sur la même date remplace l'édition et
 ses articles sans créer de doublon. Si le JSON est invalide, corrige et relance.
 
-**Si le réseau refuse la connexion** — c'est le cas en exécution automatisée,
-le proxy de la session cloud n'autorise pas `api.airtable.com` — ne t'acharne
-pas. Dépose l'édition dans le dépôt : un workflow GitHub prend le relais et
-publie vers Airtable dans la minute.
+**En CLOUD**, dépose l'édition dans le dépôt — le workflow `publication.yml`
+prend le relais et écrit dans Airtable dans la minute. Cette séquence exacte,
+sans rien y ajouter :
 
 ```bash
 git add editions/AAAA-MM-JJ.json
 git -c user.name="Brief Bot" -c user.email="brief@users.noreply.github.com" \
     commit -m "Édition du AAAA-MM-JJ"
-git push
+git push origin HEAD:main
 ```
 
-C'est la seule situation où tu commites : le JSON de l'édition, rien d'autre.
+Trois règles sur ce commit, pour éviter d'emporter autre chose au passage :
+
+- **Un seul fichier**, celui de l'édition du jour. Rien d'autre, jamais.
+- Si `git status` montre d'autres fichiers modifiés — `veille.json` typiquement
+  — laisse-les tels quels, ne les ajoute pas.
+- Si le dépôt est dans un état inattendu (HEAD détachée, commits locaux que tu
+  n'as pas faits), **ne cherche pas à le réparer** : `git push origin HEAD:main`
+  suffit tant que l'avance est en fast-forward. Si le push est rejeté,
+  arrête-toi et signale-le plutôt que de forcer.
 
 ## Étape 6 — Rendre compte
 
