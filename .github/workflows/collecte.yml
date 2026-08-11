@@ -27,22 +27,25 @@ jobs:
           python-version: "3.12"
 
       - name: Collecter les dépêches
-        run: python scripts/fetch_news.py --hours 26 --out veille.json
+        run: python scripts/fetch_news.py --hours 26
 
       - name: Vérifier que la collecte a ramené quelque chose
         run: |
-          nb=$(python -c "import json;print(len(json.load(open('veille.json',encoding='utf-8'))['depeches']))")
+          # Une ligne d'en-tête, puis une dépêche par ligne.
+          nb=$(( $(wc -l < veille.jsonl) - 1 ))
           echo "$nb dépêches collectées."
           if [ "$nb" -lt 20 ]; then
             echo "::warning::Seulement $nb dépêches — nouvelle tentative sur 48 h."
-            python scripts/fetch_news.py --hours 48 --out veille.json
+            python scripts/fetch_news.py --hours 48
           fi
 
       - name: Déposer la veille dans le dépôt
         run: |
           git config user.name "Brief Bot"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add veille.json
+          # veille.jsonl est réécrit chaque soir ; veille/ ne l'est jamais —
+          # c'est lui qui permet de republier une vieille édition avec ses URL.
+          git add veille.jsonl veille/
           if git diff --staged --quiet; then
             echo "Veille inchangée, rien à committer."
           else

@@ -11,11 +11,15 @@ Usage :
     python scripts/verifier_edition.py              # la dernière publiée
     python scripts/verifier_edition.py 2026-08-11
 """
+import re
 import sys
-from datetime import date
 
 sys.path.insert(0, __file__.rsplit("\\", 1)[0].rsplit("/", 1)[0])
 from airtable import select, esc  # noqa: E402
+
+# Un identifiant de dépêche qui a survécu jusqu'à Airtable, c'est une source
+# que push_edition.py n'a pas su détendre : le lecteur verrait « lm042 ».
+ID_NON_RESOLU = re.compile(r"^[a-z]{2,4}\d{3}$")
 
 for flux in (sys.stdout, sys.stderr):
     if hasattr(flux, "reconfigure"):
@@ -83,6 +87,11 @@ def verifier(jour=None):
             avertissements.append(f"« {titre} » : pas de chapô")
         if not f.get("Sources"):
             avertissements.append(f"« {titre} » : aucune source")
+        else:
+            bruts = [l for l in f["Sources"].splitlines() if ID_NON_RESOLU.match(l.strip())]
+            if bruts:
+                alertes.append(f"« {titre} » : source(s) non résolue(s) "
+                               f"{', '.join(bruts)} — dépêche absente de veille/")
         if not f.get("Mots-clés"):
             avertissements.append(f"« {titre} » : aucun mot-clé (invisible en recherche)")
         if r not in RUBRIQUES_CONNUES:

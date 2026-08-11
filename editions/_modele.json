@@ -1,8 +1,11 @@
 {
   "_lisez_moi": [
-    "Modèle de référence pour la rédaction d'une édition. Ce fichier n'est jamais publié :",
+    "Documentation humaine du format d'une édition. Ce fichier n'est jamais publié :",
     "il commence par un souligné, et la procédure ne traite que les fichiers AAAA-MM-JJ.json.",
     "Les clés commençant par « _ » sont ignorées à la publication.",
+    "La routine du soir ne lit PAS ce fichier — le format qu'elle suit est décrit à",
+    "l'étape 4 de .claude/commands/brief-du-soir.md, pour lui épargner une lecture",
+    "de plus. Si vous modifiez l'un, pensez à l'autre.",
     "Un article n'utilise que les champs qui lui servent : seuls titre, rubrique et contenu",
     "sont vraiment obligatoires. Les autres sont là pour montrer ce qui est disponible."
   ],
@@ -33,12 +36,14 @@
       "thematique": "International",
       "a_la_une": true,
       "chapo": "Une ou deux phrases qui donnent le fait principal et son enjeu.",
-      "contenu": "Le corps de l'article en Markdown restreint.\n\nSeuls ces éléments sont rendus par l'application : **gras**, *italique*, listes commençant par un tiret, séparateur `---`, sous-titres `###`, et liens `[texte](url)`.\n\nChaque affirmation doit être adossée à une dépêche de veille.json. Attribuer explicitement : « selon le président ukrainien », « d'après *Le Monde* ».",
+      "contenu": "Le corps de l'article en Markdown restreint.\n\nSeuls ces éléments sont rendus par l'application : **gras**, *italique*, listes commençant par un tiret, séparateur `---`, sous-titres `###`, et liens `[texte](url)`.\n\nChaque affirmation doit être adossée à une dépêche de veille.jsonl. Attribuer explicitement : « selon le président ukrainien », « d'après *Le Monde* ».",
       "mots_cles": "six à huit mots, séparés par des virgules, ce sont eux qui rendent l'article trouvable en recherche",
-      "sources": [
-        "Titre de l'article — Support | https://url-reelle-issue-de-veille.json",
-        "Deuxième source si le sujet le mérite | https://exemple.org"
-      ]
+      "_sources": [
+        "Des identifiants de dépêche, pas des URL : push_edition.py va chercher l'adresse",
+        "réelle dans veille/AAAA-MM-JJ.json et écrit « Support — titre | url » dans Airtable.",
+        "Une URL écrite en toutes lettres passe quand même : utile pour une édition faite à la main."
+      ],
+      "sources": ["lm042", "fi017"]
     },
     {
       "_role": "Le décryptage : un seul par édition, 400 à 600 mots, structuré en sous-titres.",
@@ -51,7 +56,7 @@
       "chiffre": "95 %",
       "legende_chiffre": "ce que ce nombre mesure, formulé pour être lu seul",
       "mots_cles": "climat, sécheresse, adaptation",
-      "sources": ["Support — titre | https://exemple.org"]
+      "sources": ["lm008", "f24011", "bbc003"]
     },
     {
       "_role": "Un article qui repose sur une citation : « C'est leur avis » ou « C'est qui ? ».",
@@ -63,7 +68,7 @@
       "auteur_citation": "Prénom Nom, qualité",
       "contenu": "Le contexte du propos, ce qu'il éclaire, et éventuellement ce qui lui répond ailleurs dans l'actualité.",
       "mots_cles": "trois à huit mots",
-      "sources": ["Support — titre | https://exemple.org"]
+      "sources": ["lib021"]
     }
   ]
 }

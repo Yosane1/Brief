@@ -193,7 +193,7 @@ Le réseau est pris en charge par GitHub Actions, qui encadre la routine :
 
 | Heure (Paris) | Qui | Quoi |
 |---|---|---|
-| 17h50 | `.github/workflows/collecte.yml` | Collecte les flux, dépose `veille.json` dans le dépôt |
+| 17h50 | `.github/workflows/collecte.yml` | Collecte les flux, dépose `veille.jsonl` dans le dépôt |
 | 18h30 | Routine Claude Code cloud | Lit la veille, rédige, commite `editions/AAAA-MM-JJ.json` |
 | 18h32 | `.github/workflows/publication.yml` | Écrit dans Airtable et vérifie l'édition |
 
@@ -209,10 +209,28 @@ dépôt — `publication.yml` accepte une date en paramètre pour republier une
 heure d'été ; au passage à l'heure d'hiver, fin octobre, il faut les avancer
 d'une heure (`50 16` et `30 17`) pour conserver les mêmes horaires à Paris.
 
+### Pourquoi la veille tient en deux fichiers
+
+La collecte écrit `veille.jsonl` — une dépêche par ligne, **sans les URL** — et
+`veille/AAAA-MM-JJ.json`, qui ne contient que les URL. Claude ne lit que le
+premier.
+
+Les liens pesaient un quart de la matière alors qu'une douzaine de dépêches
+seulement finit citée, et Claude les recopiait ensuite à la main dans le champ
+`sources` : plus d'un tiers de ce qu'il écrivait. Chaque dépêche porte donc un
+identifiant court — `lm042` — qu'il cite à la place, et `push_edition.py`
+retrouve l'adresse au moment de publier. La veille passe de 121 à 81 Ko, le
+champ `sources` de 8 Ko à 700 octets, et **plus aucune URL ne peut être inventée
+ou tronquée** : un identifiant inconnu est signalé par `verifier_edition.py`.
+
+Le dossier `veille/` n'est jamais écrasé : une édition republiée des mois plus
+tard y retrouve ses sources. Il grossit de ~50 Ko par jour et n'est lu que par
+`push_edition.py`.
+
 ### Chaque étape est utilisable seule
 
 ```bash
-python scripts/fetch_news.py --hours 48 --out veille.json
+python scripts/fetch_news.py --hours 48
 python scripts/push_edition.py editions/2026-08-12.json --brouillon
 python scripts/verifier_edition.py 2026-08-12
 ```
@@ -425,7 +443,9 @@ index.html                          l'application
 manifest.webmanifest                description de l'app installable
 sw.js                               service worker : install, notifications, hors ligne
 icones/                             icônes générées, référencées par le manifeste
-veille.json                         matière collectée, déposée par GitHub Actions
+veille.jsonl                        matière lue par Claude — sans URL, réécrite chaque soir
+veille/
+  2026-08-11.json                   les URL, jamais lues par Claude ni écrasées
 editions/
   _modele.json                      le format documenté champ par champ
   2026-08-08.json                   les éditions parues, une par jour

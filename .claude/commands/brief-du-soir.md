@@ -34,7 +34,7 @@ des erreurs passagères.
 
 ## Étape 1 — Récupérer la matière
 
-**En CLOUD**, `veille.json` est déjà à la racine — GitHub Actions l'y a déposé
+**En CLOUD**, `veille.jsonl` est déjà à la racine — GitHub Actions l'y a déposé
 un peu avant toi. Lis-le tel quel. S'il est absent, ou si son champ `collecte`
 date de plus de douze heures, arrête-toi et signale que le workflow de collecte
 a échoué : sans matière fraîche, il n'y a pas d'édition.
@@ -42,14 +42,23 @@ a échoué : sans matière fraîche, il n'y a pas d'édition.
 **En LOCAL**, régénère-le :
 
 ```bash
-python scripts/fetch_news.py --hours 26 --out veille.json
+python scripts/fetch_news.py --hours 26
 ```
 
 Si moins de 20 dépêches remontent, relance avec `--hours 48`.
 
-Le fichier contient les dépêches des dernières 26 heures, dédoublonnées et
-classées par date décroissante, avec pour chacune : titre, résumé, lien, source
-et rubrique d'origine.
+Le fichier tient en une ligne d'en-tête suivie d'**une dépêche par ligne**,
+classées par date décroissante :
+
+```json
+{"id":"lm042","date":"08-11 21:56","source":"Le Monde","rubrique":"France","titre":"…","resume":"…"}
+```
+
+**Les URL n'y sont pas, et tu n'en as pas besoin.** Chaque dépêche porte un
+identifiant : c'est lui que tu citeras à l'étape 4, et `push_edition.py`
+retrouvera l'adresse réelle au moment de publier. N'ouvre jamais le dossier
+`veille/` — il ne contient que ces adresses, il ne t'apprendrait rien et il est
+volumineux.
 
 ## Étape 2 — Choisir les sujets
 
@@ -75,7 +84,7 @@ produits, les vidéos sans contenu propre, les live-blogs sans information neuve
 Les règles éditoriales, dans l'ordre d'importance :
 
 1. **Factuel et sourcé.** Chaque affirmation doit être adossée à au moins une
-   dépêche de `veille.json`. Aucun chiffre, nom ou date qui n'y figure pas.
+   dépêche de `veille.jsonl`. Aucun chiffre, nom ou date qui n'y figure pas.
 2. **Sans parti pris.** Rapporte les positions, ne les arbitre pas. Attribue
    explicitement : « selon le président ukrainien », « d'après *Le Monde* ».
 3. **Explique le mécanisme.** L'intérêt du brief n'est pas de dire ce qui s'est
@@ -94,51 +103,81 @@ Mise en forme du champ `contenu` (Markdown restreint géré par l'app) :
 
 ## Étape 4 — Construire le fichier
 
-Écris `editions/AAAA-MM-JJ.json` (date du jour, fuseau Europe/Paris).
-Le format est décrit champ par champ dans **`editions/_modele.json`** : lis-le
-avant d'écrire. Les autres fichiers du dossier sont des éditions déjà parues,
-pas des gabarits — n'y touche pas.
+Écris `editions/AAAA-MM-JJ.json` (date du jour, fuseau Europe/Paris), en un
+seul `Write`. Le format tient ici — n'ouvre aucun autre fichier du dossier :
+les voisins sont des éditions parues, pas des gabarits.
 
-Champs de l'édition : `titre` (accroche des deux ou trois faits marquants),
-`date`, `type`, `statut: "Publiée"`, `slug` (= la date), `resume` (2 ou
-3 phrases, c'est le texte de la notification), `edito` (3 à 5 lignes, ton
-personnel, annonce le décryptage).
+```json
+{
+  "edition": {
+    "titre": "Accroche des deux ou trois faits marquants du jour",
+    "date": "AAAA-MM-JJ",
+    "slug": "AAAA-MM-JJ",
+    "type": "Quotidienne",
+    "statut": "Publiée",
+    "resume": "Deux ou trois phrases — c'est le texte de la notification.",
+    "edito": "Trois à cinq lignes, ton personnel, qui annonce le décryptage."
+  },
+  "articles": [
+    {
+      "titre": "Titre informatif",
+      "rubrique": "On rembobine",
+      "thematique": "International",
+      "chapo": "Une ou deux phrases de mise en bouche.",
+      "contenu": "Le corps de l'article, en Markdown restreint.",
+      "mots_cles": ["otan", "ukraine", "défense"],
+      "sources": ["lm042", "fi017"],
+      "a_la_une": true,
+      "chiffre": "2 000",
+      "legende_chiffre": "morts depuis janvier",
+      "citation": "La phrase citée, sans guillemets.",
+      "auteur_citation": "Prénom Nom, fonction"
+    }
+  ]
+}
+```
 
-Champs par article : `titre`, `rubrique`, `thematique`, `chapo` (1 ou
-2 phrases), `contenu`, `mots_cles` (6 à 8, pour la recherche), `sources`
-(liste de `"Titre — support | URL"`, URL réelles issues de `veille.json`).
-Optionnels selon le sujet : `chiffre` + `legende_chiffre`, `citation` +
-`auteur_citation`, `a_la_une` sur les 2 ou 3 articles majeurs.
+**`sources` ne contient que des identifiants de dépêche**, ceux de
+`veille.jsonl` — jamais d'URL, jamais de titre. Deux ou trois par article. Ne
+cite que des identifiants que tu as réellement lus : un identifiant inventé
+n'aboutira nulle part et sera signalé à la vérification.
 
-Ne renseigne pas `numero` : il est attribué automatiquement.
+`mots_cles` : 6 à 8, ils font vivre la recherche.
+
+Facultatifs, selon ce que le sujet offre — ne les force pas : `a_la_une` (sur
+les 2 ou 3 articles majeurs seulement), `chiffre` + `legende_chiffre`,
+`citation` + `auteur_citation`.
+
+Ne renseigne ni `numero` ni `temps_lecture` : ils sont calculés à la
+publication.
 
 ## Étape 5 — Publier
+
+Dans les deux cas, **enchaîne tout en une seule commande**. Chaque appel
+supplémentaire renvoie l'intégralité de ton contexte au modèle, et tu as la
+veille entière en mémoire : trois commandes séparées, c'est trois fois le prix.
 
 **En LOCAL**, écris directement dans Airtable puis vérifie :
 
 ```bash
-python scripts/push_edition.py editions/AAAA-MM-JJ.json
-python scripts/verifier_edition.py AAAA-MM-JJ
+python scripts/push_edition.py editions/AAAA-MM-JJ.json && python scripts/verifier_edition.py AAAA-MM-JJ
 ```
 
 L'opération est un *upsert* : relancer sur la même date remplace l'édition et
 ses articles sans créer de doublon. Si le JSON est invalide, corrige et relance.
 
 **En CLOUD**, dépose l'édition dans le dépôt — le workflow `publication.yml`
-prend le relais et écrit dans Airtable dans la minute. Cette séquence exacte,
+prend le relais et écrit dans Airtable dans la minute. Cette commande exacte,
 sans rien y ajouter :
 
 ```bash
-git add editions/AAAA-MM-JJ.json
-git -c user.name="Brief Bot" -c user.email="brief@users.noreply.github.com" \
-    commit -m "Édition du AAAA-MM-JJ"
-git push origin HEAD:main
+git add editions/AAAA-MM-JJ.json && git -c user.name="Brief Bot" -c user.email="brief@users.noreply.github.com" commit -m "Édition du AAAA-MM-JJ" && git push origin HEAD:main
 ```
 
 Trois règles sur ce commit, pour éviter d'emporter autre chose au passage :
 
 - **Un seul fichier**, celui de l'édition du jour. Rien d'autre, jamais.
-- Si `git status` montre d'autres fichiers modifiés — `veille.json` typiquement
+- Si `git status` montre d'autres fichiers modifiés — `veille.jsonl` typiquement
   — laisse-les tels quels, ne les ajoute pas.
 - Si le dépôt est dans un état inattendu (HEAD détachée, commits locaux que tu
   n'as pas faits), **ne cherche pas à le réparer** : `git push origin HEAD:main`

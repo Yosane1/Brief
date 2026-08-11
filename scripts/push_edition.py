@@ -6,16 +6,22 @@ Publie une édition dans Airtable à partir d'un fichier JSON.
 Étape 3 du pipeline nocturne. L'opération est un *upsert* : relancer le script
 sur la même date remplace proprement l'édition et ses articles, sans doublon.
 
-Usage :
-    python scripts/push_edition.py editions/2026-08-11.json
-    python scripts/push_edition.py editions/2026-08-11.json --brouillon
+Claude ne cite pas les URL : il écrit des identifiants de dépêche (« lm042 »),
+que ce script détend en « source — titre | url » depuis veille/. Les URL
+complètes ne traversent donc jamais son contexte. Voir fetch_news.py.
 
-Format attendu : voir editions/_exemple.json
+Usage :
+    python scripts/push_edition.py editions/2026/2026-08-11.json
+    python scripts/push_edition.py editions/2026/2026-08-11.json --brouillon
+
+Format attendu : voir editions/_modele.json
 """
 import argparse
 import json
+import re
 import sys
 from datetime import datetime, timezone
+from pathlib import Path
 
 # La console Windows est en cp1252 : sans ça, un simple « é » fait planter le script.
 for flux in (sys.stdout, sys.stderr):
@@ -43,8 +49,63 @@ CHAMPS_ARTICLE = {
 }
 
 
+ID_DEPECHE = re.compile(r"^[a-z]{2,4}\d{3}$")
+
+
 def mappe(source, table):
     return {v: source[k] for k, v in table.items() if source.get(k) not in (None, "")}
+
+
+def charger_liens(jour, dossier="veille"):
+    """
+    Table « identifiant de dépêche → source — titre | url ».
+
+    On cherche d'abord le fichier du jour, celui que la collecte a déposé
+    quarante minutes avant la rédaction. S'il manque — édition republiée des
+    mois plus tard, date décalée d'un jour — on relit tout le dossier plutôt
+    que d'abandonner : ces fichiers ne sont jamais écrasés, l'identifiant s'y
+    trouve forcément.
+    """
+    base = Path(dossier)
+    direct = base / f"{jour}.json"
+    fichiers = [direct] if direct.exists() else sorted(base.glob("*.json"))
+
+    table = {}
+    for f in fichiers:
+        try:
+            brut = json.loads(f.read_text(encoding="utf-8"))
+        except (OSError, ValueError) as e:
+            print(f"  ⚠ {f} illisible ({e}) — ignoré")
+            continue
+        for cle, valeur in brut.items():
+            source, titre, url = (list(valeur) + ["", "", ""])[:3]
+            table[cle] = f"{source} — {titre} | {url}"
+    return table
+
+
+def resoudre_sources(sources, liens, titre_article):
+    """
+    Détend les identifiants ; laisse passer tout le reste inchangé.
+
+    Une édition écrite à la main, ou reprise d'avant ce format, cite ses URL
+    directement — elle doit continuer de fonctionner.
+    """
+    lignes, manquants = [], []
+    for s in sources:
+        if isinstance(s, dict):            # {"titre": …, "url": …}
+            lignes.append(f"{s.get('titre', '')} | {s.get('url', '')}")
+            continue
+        s = str(s).strip()
+        if ID_DEPECHE.match(s):
+            if s in liens:
+                lignes.append(liens[s])
+                continue
+            manquants.append(s)            # gardé tel quel : mieux vaut une
+        lignes.append(s)                   # trace qu'une source effacée
+    if manquants:
+        print(f"  ⚠ « {titre_article[:45]} » : {', '.join(manquants)} "
+              f"introuvable(s) dans veille/")
+    return "\n".join(lignes)
 
 
 def numero_suivant():
@@ -95,15 +156,13 @@ def publier(chemin, brouillon=False):
         action = "créée"
 
     # --- Articles ------------------------------------------------------------
+    liens = charger_liens(ed["date"])
     lignes = []
     for i, a in enumerate(articles):
         a.setdefault("ordre", i + 1)
         a.setdefault("date", ed["date"])
         if isinstance(a.get("sources"), list):
-            a["sources"] = "\n".join(
-                s if isinstance(s, str) else f"{s.get('titre', '')} | {s.get('url', '')}"
-                for s in a["sources"]
-            )
+            a["sources"] = resoudre_sources(a["sources"], liens, a.get("titre", ""))
         if isinstance(a.get("mots_cles"), list):
             a["mots_cles"] = ", ".join(a["mots_cles"])
         ligne = mappe(a, CHAMPS_ARTICLE)
