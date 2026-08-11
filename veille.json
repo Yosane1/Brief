@@ -1,7 +1,807 @@
 {
- "collecte": "2026-08-11T11:35:57.312296+00:00",
+ "collecte": "2026-08-11T16:38:07.856031+00:00",
  "fenetre_heures": 26,
  "depeches": [
+  {
+   "titre": "Les files d’attente s’allongent devant les vendeurs de lunettes d’observation de l’éclipse solaire",
+   "resume": "Ils font parfois plus de deux heures de queue pour acheter les lunettes d’observation de l’éclipse solaire. Et les revendeurs ne se privent pas de l’engouement pour faire grimper les prix.",
+   "lien": "https://www.lemonde.fr/sciences/video/2026/08/11/les-files-d-attente-s-allongent-devant-les-vendeurs-de-lunettes-d-observation-de-l-eclipse-solaire_6744018_1650684.html",
+   "source": "Le Monde",
+   "rubrique": "Sciences",
+   "date": "2026-08-11T18:32:28+02:00"
+  },
+  {
+   "titre": "Spotify va lancer un badge permettant d'identifier la musique générée par intelligence artificielle",
+   "resume": "Le badge \"AI Persona\" pourra être appliqué volontairement par les gestionnaires des profils artificiels, ou de force par Spotify. Les profils labellisés n'apparaîtront pas dans les recommandations, sauf s'ils sont déjà suivis par l'utilisateur.",
+   "lien": "https://www.franceinfo.fr/internet/streaming/spotify/spotify-va-lancer-un-badge-permettant-d-identifier-la-musique-generee-par-intelligence-artificielle_8143382.html#xtor=RSS-3-[lestitres]",
+   "source": "franceinfo",
+   "rubrique": "France",
+   "date": "2026-08-11T18:28:57+02:00"
+  },
+  {
+   "titre": "Au moins 11 jeunes Français sont détenus en Thaïlande pour trafic de cannabis depuis le début de l'été",
+   "resume": "En juin 2025, les autorités thaïlandaises ont durci la réglementation, en interdisant la vente et la consommation de cannabis à des fins récréatives.",
+   "lien": "https://www.franceinfo.fr/societe/drogue/au-moins-11-jeunes-francais-sont-detenus-en-thailande-pour-trafic-de-cannabis-depuis-le-debut-de-l-ete_8143367.html#xtor=RSS-3-[lestitres]",
+   "source": "franceinfo",
+   "rubrique": "France",
+   "date": "2026-08-11T18:27:39+02:00"
+  },
+  {
+   "titre": "Le Liban vote l'abolition de la peine de mort, une première au Moyen-Orient",
+   "resume": "Les crimes commis avant l'entrée en vigueur de cette loi seront passibles d'une peine d'emprisonnement à perpétuité.",
+   "lien": "https://www.franceinfo.fr/monde/proche-orient/liban/le-liban-vote-l-abolition-de-la-peine-de-mort-une-premiere-au-moyen-orient_8143175.html#xtor=RSS-3-[lestitres]",
+   "source": "franceinfo",
+   "rubrique": "France",
+   "date": "2026-08-11T18:11:59+02:00"
+  },
+  {
+   "titre": "EN DIRECT, guerre en Ukraine : Kiev confirme une nouvelle attaque contre un centre logistique du géant russe de l’e-commerce Wildberries",
+   "resume": "L’attaque a eu lieu dans l’oblast russe de Voronej. Le chef des forces de système sans pilote de l’armée ukrainienne a dit lundi que les frappes contre les centres logistiques de Wildberries visaient à faire ressentir aux Russes les conséquences de la guerre et qu’elles ne cesseraient que lorsque des réparations rapides du réseau deviendraient impossibles.",
+   "lien": "https://www.lemonde.fr/international/live/2026/08/11/en-direct-guerre-en-ukraine-kiev-confirme-une-nouvelle-attaque-contre-un-centre-logistique-du-geant-russe-de-l-e-commerce-wildberries_6741928_3210.html",
+   "source": "Le Monde",
+   "rubrique": "France",
+   "date": "2026-08-11T18:02:55+02:00"
+  },
+  {
+   "titre": "Mohammed Dahlan, l’ambitieux exilé gazaoui qui a joué de ses relations avec l’administration Trump pour négocier le désarmement du Hamas",
+   "resume": "L’ancien patron de la sécurité intérieure palestinienne à Gaza, qui vit aux Emirats arabes unis, s’est imposé en médiateur du plan de paix américain et cultive ses relations avec les rivaux et successeurs potentiels du président Abbas, son éternel rival.",
+   "lien": "https://www.lemonde.fr/international/article/2026/08/11/mohammed-dahlan-l-ambitieux-exile-gazaoui-qui-a-joue-de-ses-relations-avec-l-administration-trump-pour-negocier-le-desarmement-du-hamas_6744015_3210.html",
+   "source": "Le Monde",
+   "rubrique": "France",
+   "date": "2026-08-11T18:00:22+02:00"
+  },
+  {
+   "titre": "Hugging Face : « Le récit de l’IA “qui s’échappe” dispense de chercher qui répond de la machine »",
+   "resume": "Présentés comme s’étant « emballés », deux modèles d’intelligence artificielle n’ont pourtant fait qu’optimiser un calcul après le retrait de leurs filtres de sécurité. En prêtant une volonté imaginaire à l’outil, médias et entreprises dédouanent ses concepteurs de leur responsabilité, dénonce l’éditeur Cyrille Zola-Place, dans une tribune au « Monde ».",
+   "lien": "https://www.lemonde.fr/idees/article/2026/08/11/hugging-face-le-recit-de-l-ia-qui-s-echappe-dispense-de-chercher-qui-repond-de-la-machine_6744014_3232.html",
+   "source": "Le Monde",
+   "rubrique": "France",
+   "date": "2026-08-11T18:00:17+02:00"
+  },
+  {
+   "titre": "« Mon barbecue s’est transformé en voyage façon Orient-Express » : le pot de départ en train de Françoise, responsable RH",
+   "resume": "« Bon vent ! » (8/18). Françoise, 70 ans, a été responsable RH dans une filiale de la SNCF. Pour son pot de départ, elle a droit à son « dernier train », comme les cheminots. Un train pas comme les autres !",
+   "lien": "https://www.lemonde.fr/series-d-ete/article/2026/08/11/mon-barbecue-s-est-transforme-en-voyage-facon-orient-express-le-pot-de-depart-en-train-de-francoise-responsable-rh_6744013_3451060.html",
+   "source": "Le Monde",
+   "rubrique": "France",
+   "date": "2026-08-11T18:00:07+02:00"
+  },
+  {
+   "titre": "Vieillir moins vite sans changer votre alimentation ? Cette habitude culturelle étonne les scientifiques",
+   "resume": "Un an de moins sur l'horloge biologique, et un rythme de vieillissement ralenti de 4 %. Ce serait le bénéfice associé à une sortie culturelle hebdomadaire, selon une étude britannique portant sur 3 500 adultes. Des chercheurs y voient un comportement de santé à part entière, au même titre que...",
+   "lien": "https://www.futura-sciences.com/sante/actualites/vieillissement-vieillir-moins-vite-changer-votre-alimentation-cette-habitude-culturelle-etonne-scientifiques-k2m6-136849/#xtor%3DRSS-8",
+   "source": "Futura Sciences",
+   "rubrique": "Sciences",
+   "date": "2026-08-11T18:00:00+02:00"
+  },
+  {
+   "titre": "Cette trottinette électrique UrbanGlide avec 20 km d'autonomie passe sous les 200 € sur Amazon",
+   "resume": "La trottinette électrique UrbanGlide 85 EVO profite actuellement d’une remise de 20 % sur Amazon. Son format pliable, ses suspensions avant et son autonomie annoncée jusqu’à 20 km en font une solution destinée aux déplacements urbains.",
+   "lien": "https://www.futura-sciences.com/conso/bons-plans/guides-velos-trottinettes-cette-trottinette-electrique-urbanglide-20-km-autonomie-passe-sous-200-amazon-10985/#xtor%3DRSS-8",
+   "source": "Futura Sciences",
+   "rubrique": "Sciences",
+   "date": "2026-08-11T18:00:00+02:00"
+  },
+  {
+   "titre": "A Narbonne, la chaleur pousse habitants et commerçants à changer leurs horaires",
+   "resume": "À Narbonne, habitants, touristes et commerçants s’adaptent à la chaleur. Face à des températures qui doivent atteindre 35 °C, certains avancent leurs horaires pour profiter de la fraîcheur matinale.",
+   "lien": "https://www.franceinfo.fr/environnement/evenements-meteorologiques-extremes/vagues-de-chaleur-canicules/a-narbonne-la-chaleur-pousse-habitants-et-commercants-a-changer-leurs-horaires_8143154.html#xtor=RSS-3-[lestitres]",
+   "source": "franceinfo",
+   "rubrique": "France",
+   "date": "2026-08-11T17:31:24+02:00"
+  },
+  {
+   "titre": "« Eclipse totale au-dessus de l’Europe », sur Arte.tv : des explications pour se préparer au rendez-vous du Soleil et de la Lune, le 12 août",
+   "resume": "Interrogés par Joby Lubman, des chercheurs passionnés répondent à une infinité de questions, des plus basiques aux plus pointues, sur ce phénomène rare en attendant de le vivre, mercredi.",
+   "lien": "https://www.lemonde.fr/culture/article/2026/08/11/eclipse-totale-au-dessus-de-l-europe-sur-arte-tv-des-explications-pour-se-preparer-au-rendez-vous-du-soleil-et-de-la-lune-le-12-aout_6744012_3246.html",
+   "source": "Le Monde",
+   "rubrique": "France",
+   "date": "2026-08-11T17:30:12+02:00"
+  },
+  {
+   "titre": "\"On s'attendait à avoir moins chaud\" : en Bretagne, les vacanciers surpris par la canicule",
+   "resume": "Face aux fortes chaleurs qui touchent la Bretagne, les vacanciers adaptent leurs journées pour se protéger du soleil. Sur les plages et dans les campings, l'ombre et la baignade sont particulièrement recherchées.",
+   "lien": "https://www.franceinfo.fr/environnement/evenements-meteorologiques-extremes/vagues-de-chaleur-canicules/on-s-attendait-a-avoir-moins-chaud-en-bretagne-les-vacanciers-surpris-par-la-canicule_8143139.html#xtor=RSS-3-[lestitres]",
+   "source": "franceinfo",
+   "rubrique": "France",
+   "date": "2026-08-11T17:25:15+02:00"
+  },
+  {
+   "titre": "Une attaque sur un navire en mer Rouge fait au moins quatre morts",
+   "resume": "Les garde-côtes du Yémen ont attribué cette attaque aux rebelles houthis de ce pays de la péninsule arabique, alliés de l'Iran.",
+   "lien": "https://www.franceinfo.fr/monde/moyen-orient/une-attaque-sur-un-navire-en-mer-rouge-fait-au-moins-deux-morts_8143160.html#xtor=RSS-3-[lestitres]",
+   "source": "franceinfo",
+   "rubrique": "France",
+   "date": "2026-08-11T17:24:03+02:00"
+  },
+  {
+   "titre": "Guerre en Ukraine : Kiev redoute la montée en puissance de l'effort militaire nord-coréen",
+   "resume": "Le président Volodymyr Zelensky a accusé la Russie d'avoir eu recours à des missiles livrés par Pyongyang dans une frappe menée à Zaporijjia. L'allié de Moscou mobilise ses forces dans le cadre d'un accord signé en 2024.",
+   "lien": "https://www.franceinfo.fr/monde/europe/manifestations-en-ukraine/guerre-en-ukraine-kiev-redoute-la-montee-en-puissance-de-l-effort-militaire-nord-coreen_8142938.html#xtor=RSS-3-[lestitres]",
+   "source": "franceinfo",
+   "rubrique": "France",
+   "date": "2026-08-11T17:23:44+02:00"
+  },
+  {
+   "titre": "Les pompiers appelés à la grève le 13 août pour réclamer plus de moyens et de recrutements",
+   "resume": "L'intersyndicale demande également que \"la santé et la sécurité\" des soldats du feu deviennent \"une priorité nationale\". Les pompiers ont dû intervenir sur de nombreux incendies dévastateurs cet été.",
+   "lien": "https://www.franceinfo.fr/societe/mobilisation-des-pompiers/les-pompiers-appeles-a-la-greve-le-13-aout-pour-reclamer-plus-de-moyens-et-de-recrutements_8143268.html#xtor=RSS-3-[lestitres]",
+   "source": "franceinfo",
+   "rubrique": "France",
+   "date": "2026-08-11T17:17:48+02:00"
+  },
+  {
+   "titre": "Plus de 15% du parc nucléaire français indisponible dimanche à cause de la chaleur, un record",
+   "resume": "Les températures élevées contraignent EDF à baisser la puissance de certains réacteurs ou à les arrêter complètement. Des indisponibilités amenées à se multiplier avec le réchauffement climatique.",
+   "lien": "https://www.franceinfo.fr/environnement/energie/nucleaire/plus-de-15-du-parc-nucleaire-francais-indisponible-dimanche-a-cause-de-la-chaleur-un-record_8143136.html#xtor=RSS-3-[lestitres]",
+   "source": "franceinfo",
+   "rubrique": "France",
+   "date": "2026-08-11T17:13:30+02:00"
+  },
+  {
+   "titre": "Deux policiers municipaux ont été blessés à l'arme blanche à Toulouse, le suspect hospitalisé en unité psychiatrique",
+   "resume": "\"Les investigations ont été confiées par le parquet à la police nationale pour déterminer les circonstances et les motivations de cette agression\", a souligné mardi le ministre de l'Intérieur.",
+   "lien": "https://www.franceinfo.fr/faits-divers/deux-policiers-municipaux-ont-ete-blesses-a-l-arme-blanche-a-toulouse_8142941.html#xtor=RSS-3-[lestitres]",
+   "source": "franceinfo",
+   "rubrique": "France",
+   "date": "2026-08-11T17:11:41+02:00"
+  },
+  {
+   "titre": "Les chatbots ne suffisent plus : la « marraine de l’IA » veut lui apprendre à voir le monde en 3D",
+   "resume": "Surnommée la « marraine de l’IA », Fei-Fei Li a joué un rôle majeur dans l’essor de l’intelligence artificielle moderne. De son arrivée aux États-Unis à l’adolescence à ses travaux sur la vision par ordinateur, son parcours l’a progressivement conduite à défendre une autre manière de penser...",
+   "lien": "https://www.futura-sciences.com/sciences/actualites/series-ete-chatbots-ne-suffisent-plus-marraine-ia-veut-lui-apprendre-voir-monde-3d-136927/#xtor%3DRSS-8",
+   "source": "Futura Sciences",
+   "rubrique": "Sciences",
+   "date": "2026-08-11T17:02:37+02:00"
+  },
+  {
+   "titre": "Quatre conseils pour faire de belles photos de l'éclipse solaire en toute sécurité le 12 août",
+   "resume": "Avant de se lancer, il faut s'assurer de disposer d'un filtre solaire et d'avoir le bon équipement.",
+   "lien": "https://www.franceinfo.fr/sciences/astronomie/eclipse-solaire/quatre-conseils-pour-faire-de-belles-photos-de-l-eclipse-solaire-en-toute-securite_8134595.html#xtor=RSS-3-[lestitres]",
+   "source": "franceinfo",
+   "rubrique": "France",
+   "date": "2026-08-11T17:01:32+02:00"
+  },
+  {
+   "titre": "Le Realme 7 5G passe sous les 210 € sur Amazon avec 8 Go de RAM et un écran 120 Hz",
+   "resume": "Le Realme 7 5G profite actuellement d’une remise d’environ 30 % sur Amazon. Une baisse qui place ce smartphone 5G doté de 8 Go de RAM et d’un écran 120 Hz parmi les smartphone qui offrent actuellement le meilleur rapport qualité-prix du marché.",
+   "lien": "https://www.futura-sciences.com/conso/bons-plans/guides-smartphones-realme-7-5g-passe-sous-210-amazon-8-go-ram-ecran-120-hz-10983/#xtor%3DRSS-8",
+   "source": "Futura Sciences",
+   "rubrique": "Sciences",
+   "date": "2026-08-11T17:00:10+02:00"
+  },
+  {
+   "titre": "Au Kenya, le gouvernement veut réconcilier sa jeunesse avec l’agriculture",
+   "resume": "Le secteur, qui représente 22,5 % du produit intérieur brut kényan, est délaissé par les jeunes : l’âge moyen des exploitants est de 64 ans. Alors que la sécurité alimentaire du pays est en jeu, Nairobi promeut les métiers de la filière agricole.",
+   "lien": "https://www.lemonde.fr/afrique/article/2026/08/11/au-kenya-le-gouvernement-veut-reconcilier-sa-jeunesse-avec-l-agriculture_6744011_3212.html",
+   "source": "Le Monde",
+   "rubrique": "France",
+   "date": "2026-08-11T17:00:08+02:00"
+  },
+  {
+   "titre": "\"Je trouve ça un peu abusé\" : à Paris, l’obligation du casque et du gilet pour les trottinettes électriques suscite l’incompréhension des usagers contrôlés",
+   "resume": "La police effectue des contrôles sans verbaliser depuis vendredi afin de privilégier la pédagogie. De nombreux utilisateurs de ces engins ne comprennent pas tous les contours de la nouvelle législation, et l'acceptent parfois à reculons.",
+   "lien": "https://www.franceinfo.fr/societe/reportage-je-trouve-ca-un-peu-abuse-a-paris-l-obligation-du-casque-et-du-gilet-pour-les-trottinettes-electriques-suscite-l-incomprehension-des-usagers-controles_8143163.html#xtor=RSS-3-[lestitres]",
+   "source": "franceinfo",
+   "rubrique": "France",
+   "date": "2026-08-11T16:59:23+02:00"
+  },
+  {
+   "titre": "Pourquoi l'éclipse solaire du 12 août inaugure une rare période de trois éclipses visibles en Europe en trois ans",
+   "resume": "Le 12 août correspond au début de la \"trilogie ibérique\", des éclipses majeures observables en Europe d'ici à 2028.",
+   "lien": "https://www.franceinfo.fr/sciences/astronomie/eclipse-solaire/pourquoi-l-eclipse-du-12-aout-inaugure-une-rare-periode-de-trois-eclipses-visibles-en-europe-en-trois-ans_8132984.html#xtor=RSS-3-[lestitres]",
+   "source": "franceinfo",
+   "rubrique": "France",
+   "date": "2026-08-11T16:59:22+02:00"
+  },
+  {
+   "titre": "Avant les élections sénatoriales, la gauche tente de s’unir pour préserver son statut de deuxième groupe",
+   "resume": "Malgré un accord national, le Parti socialiste, Les Ecologistes et le Parti communiste français peinent à dresser des listes communes. Des blocages subsistent dans plusieurs départements.",
+   "lien": "https://www.lemonde.fr/politique/article/2026/08/11/senatoriales-la-gauche-tente-de-s-unir-pour-preserver-son-statut-de-deuxieme-groupe_6744008_823448.html",
+   "source": "Le Monde",
+   "rubrique": "France",
+   "date": "2026-08-11T16:53:30+02:00"
+  },
+  {
+   "titre": "Au moins 181 morts, 165 bâtiments effondrés, des survivants recherchés… Les dégâts du séisme en Colombie",
+   "resume": "Le pays a été frappé par un séisme de magnitude 7,4, lundi. Les recherches de survivants sont toujours en cours.",
+   "lien": "https://www.franceinfo.fr/environnement/catastrophes-naturelles/seismes/en-images-au-moins-132-morts-86-batiments-effondres-recherche-de-survivants-les-degats-du-seisme-en-colombie_8142965.html#xtor=RSS-3-[lestitres]",
+   "source": "franceinfo",
+   "rubrique": "France",
+   "date": "2026-08-11T16:52:03+02:00"
+  },
+  {
+   "titre": "Comment les éclipses solaires sont perçues par les religions, entre mauvais présages et signes annonciateurs de la fin du monde",
+   "resume": "Judaïsme, christianisme, islam ou hindouisme… Toutes les grandes religions appréhendent les éclipses du Soleil comme des signes divins puissants, à la portée souvent négative.",
+   "lien": "https://www.lemonde.fr/le-monde-des-religions/article/2026/08/11/comment-les-eclipses-solaires-sont-percues-par-les-religions-entre-mauvais-presages-et-signes-annonciateurs-de-la-fin-du-monde_6743975_6038514.html",
+   "source": "Le Monde",
+   "rubrique": "France",
+   "date": "2026-08-11T16:50:26+02:00"
+  },
+  {
+   "titre": "Le gouvernement hongrois dépose une plainte concernant les frais de communication de Viktor Orban",
+   "resume": "Depuis sa victoire aux législatives d’avril, Péter Magyar, qui avait fait de la lutte contre la corruption un axe majeur de sa campagne, a lancé plusieurs initiatives visant à examiner la gestion de l’Etat sous les gouvernements de son prédécesseur.",
+   "lien": "https://www.lemonde.fr/international/article/2026/08/11/le-gouvernement-hongrois-depose-une-plainte-concernant-les-frais-de-communication-de-viktor-orban_6743974_3210.html",
+   "source": "Le Monde",
+   "rubrique": "International",
+   "date": "2026-08-11T16:45:59+02:00"
+  },
+  {
+   "titre": "La vigilance orange canicule étendue à 35 nouveaux départements à partir de mercredi, 78 concernés au total",
+   "resume": "\"Mercredi, la chaleur s'accentue encore et les conditions caniculaires gagnent encore du terrain : les maximales sont de l'ordre de 36 à 39°C dans les départements placés en vigilance orange\", écrit Météo-France dans son bulletin.",
+   "lien": "https://www.franceinfo.fr/environnement/evenements-meteorologiques-extremes/vagues-de-chaleur-canicules/canicule-23-departements-de-la-region-parisienne-du-sud-ouest-et-du-centre-de-la-france-places-a-leur-tour-en-vigilance-orange-a-partir-de-mercredi_8142656.html#xtor=RSS-3-[lestitres]",
+   "source": "franceinfo",
+   "rubrique": "France",
+   "date": "2026-08-11T16:44:25+02:00"
+  },
+  {
+   "titre": "\"Stock fantôme\", documents perdus... Comment expliquer que des dossiers de violences sexuelles sur mineurs n'aient pas été transmis à la justice ?",
+   "resume": "Après les dysfonctionnements judiciaires révélés dans l'affaire Lyhanna, des écarts importants entre le nombre de dossiers dont les parquets ont connaissance et ceux détenus par les services de police et de gendarmerie ont été constatés.",
+   "lien": "https://www.franceinfo.fr/faits-divers/disparition-de-lyhanna-dans-le-gers/stock-fantome-documents-perdus-comment-expliquer-que-des-dossiers-de-violences-sexuelles-sur-mineurs-n-aient-pas-ete-transmis-a-la-justice_8141738.html#xtor=RSS-3-[lestitres]",
+   "source": "franceinfo",
+   "rubrique": "France",
+   "date": "2026-08-11T16:44:21+02:00"
+  },
+  {
+   "titre": "André Lévy-Lang, banquier et ancien patron de Paribas, est mort",
+   "resume": "Le polytechnicien qui avait réussi son transfert de l’industrie à la banque n’avait pu empêcher la fusion de son établissement avec la BNP en 1999, au terme d’une bataille boursière de six mois. Il s’est éteint le 8 août à l’âge de 88 ans.",
+   "lien": "https://www.lemonde.fr/disparitions/article/2026/08/11/andre-levy-lang-banquier-et-ancien-patron-de-paribas-est-mort_6743972_3382.html",
+   "source": "Le Monde",
+   "rubrique": "France",
+   "date": "2026-08-11T16:40:24+02:00"
+  },
+  {
+   "titre": "En Italie, le soutien à l’Ukraine, contesté de toutes parts, pourrait devenir un thème de campagne des législatives",
+   "resume": "Alors que des élections doivent se tenir en 2027, l’extrême droite, la Ligue et le parti de Roberto Vannacci, Futur national, veulent interrompre l’aide au pays agressé, tout comme le Mouvement 5 étoiles, dans l’opposition, hostile en outre au réarmement.",
+   "lien": "https://www.lemonde.fr/international/article/2026/08/11/en-italie-le-soutien-a-l-ukraine-conteste-de-toutes-parts-pourrait-devenir-un-theme-de-campagne-des-legislatives_6743939_3210.html",
+   "source": "Le Monde",
+   "rubrique": "France",
+   "date": "2026-08-11T16:30:06+02:00"
+  },
+  {
+   "titre": "Canicule : la vigilance orange s’étendra à 78 départements mercredi, des températures jusqu’à 40 °C attendues, annonce Météo-France",
+   "resume": "La vigilance orange pour fortes chaleurs va s’étendre pour la journée de mercredi et concernera presque toute la France, avec des températures oscillant entre 36 °C et 40 °C.",
+   "lien": "https://www.lemonde.fr/planete/article/2026/08/11/canicule-la-vigilance-orange-s-etendra-a-78-departements-mercredi-des-temperatures-jusqu-a-40-c-attendues-annonce-meteo-france_6743937_3244.html",
+   "source": "Le Monde",
+   "rubrique": "France",
+   "date": "2026-08-11T16:29:12+02:00"
+  },
+  {
+   "titre": "Canicule : l'épisode de fortes chaleurs s'étend encore, 78 départements en vigilance orange demain",
+   "resume": "\"Hormis une fine bordure côtière et en altitude, les températures maximales seront supérieures à 35 degrés\", prévoit Météo-France.",
+   "lien": "https://www.franceinfo.fr/environnement/evenements-meteorologiques-extremes/vagues-de-chaleur-canicules/en-direct-canicule-un-nouvel-episode-de-fortes-chaleurs-s-installe-en-france_8142731.html#xtor=RSS-3-[lestitres]",
+   "source": "franceinfo",
+   "rubrique": "France",
+   "date": "2026-08-11T16:22:13+02:00"
+  },
+  {
+   "titre": "Russia using North Korean missiles to strike Ukraine, Zelensky says",
+   "resume": "Ukraine's president says strikes in Zaporizhzhia - which killed seven people - involved ballistic missiles from Russia's ally.",
+   "lien": "https://www.bbc.co.uk/news/articles/c151dpzwnvxo?at_medium=RSS&at_campaign=rss",
+   "source": "BBC News",
+   "rubrique": "International",
+   "date": "2026-08-11T16:19:44+00:00"
+  },
+  {
+   "titre": "Football : privé de Mondial, le Somalien Omar Artan s'apprête à arbitrer la Supercoupe d'Europe",
+   "resume": "Refoulé des États-Unis en juin alors qu'il devait officier lors de la Coupe du monde, l'arbitre somalien Omar Artan s'apprête à diriger mercredi la finale de la Supercoupe d'Europe entre le PSG et Aston Villa, à l'invitation de l'UEFA. Ce sera son premier match sur le Vieux Continent.",
+   "lien": "https://www.france24.com/fr/sports/20260811-football-priv%C3%A9-mondial-arbitre-somalien-omar-artan-supercoupe-europe-uefa",
+   "source": "France 24",
+   "rubrique": "International",
+   "date": "2026-08-11T16:15:30+00:00"
+  },
+  {
+   "titre": "En Somalie, la moitié des enfants déplacés dans les camps du sud-ouest souffrent de malnutrition aiguë",
+   "resume": "La sécheresse qui sévit en Somalie a provoqué le déplacement de dizaines de milliers de personnes. Dans les camps de déplacés, l’ONG Médecins sans frontières affirme faire face à « une augmentation alarmante du nombre d’enfants mal nourris admis depuis janvier ».",
+   "lien": "https://www.lemonde.fr/afrique/article/2026/08/11/en-somalie-la-moitie-des-enfants-deplaces-dans-les-camps-du-sud-ouest-souffrent-de-malnutrition-aigue_6743904_3212.html",
+   "source": "Le Monde",
+   "rubrique": "International",
+   "date": "2026-08-11T16:13:11+02:00"
+  },
+  {
+   "titre": "Luigi Mangione appears in court as questions remain in case ahead of murder trial",
+   "resume": "Mangione's lawyers have yet to signal their defence strategy, while prosecutors are in a battle over evidence.",
+   "lien": "https://www.bbc.co.uk/news/articles/cgje05wd1v4o?at_medium=RSS&at_campaign=rss",
+   "source": "BBC News",
+   "rubrique": "International",
+   "date": "2026-08-11T16:12:35+00:00"
+  },
+  {
+   "titre": "En Hongrie, Andras Baka, opposant à Viktor Orban, est élu président par le Parlement",
+   "resume": "Connu comme « le juge qui a dit non » à Viktor Orban, Andras Baka succède à Tamas Sulyok, allié de l’ancien dirigeant nationaliste, à la tête du pays.",
+   "lien": "https://www.lemonde.fr/international/article/2026/08/11/en-hongrie-andras-baka-opposant-a-viktor-orban-est-elu-president-par-le-parlement_6743902_3210.html",
+   "source": "Le Monde",
+   "rubrique": "France",
+   "date": "2026-08-11T16:12:27+02:00"
+  },
+  {
+   "titre": "Watch: Tide of rubbish blankets Philippines river",
+   "resume": "Workers in Manila waded through the river, collecting waste that washed in during days of heavy rain.",
+   "lien": "https://www.bbc.co.uk/news/videos/c5y3vzvnnkro?at_medium=RSS&at_campaign=rss",
+   "source": "BBC News",
+   "rubrique": "International",
+   "date": "2026-08-11T16:10:55+00:00"
+  },
+  {
+   "titre": "Un opposant à l'ex-Premier ministre nationaliste Viktor Orban élu président de la Hongrie par le Parlement",
+   "resume": "Andras Baka, ex-président de la Cour suprême de Hongrie, avait été limogé en 2012 après avoir critiqué une réforme du Premier ministre nationaliste, qui voulait abaisser l'âge de départ à la retraite des juges.",
+   "lien": "https://www.franceinfo.fr/monde/europe/un-opposant-a-l-ex-premier-ministre-nationaliste-viktor-orban-elu-president-de-hongrie-par-le-parlement_8143178.html#xtor=RSS-3-[lestitres]",
+   "source": "franceinfo",
+   "rubrique": "France",
+   "date": "2026-08-11T16:10:08+02:00"
+  },
+  {
+   "titre": "Mondial d'esport : dans le jeu vidéo, l'Arabie saoudite \"est dans une logique de conquête\"",
+   "resume": "Pour la première fois, l’Esports World Cup se tient à Paris, du 6 juillet au 23 août, après deux éditions organisées à Riyad, avec une dotation globale de 75 millions de dollars. Alors que l'Arabie saoudite vient de racheter l'éditeur américain Electronic Arts, Olivier Mauco, président de Game in Society et docteur en science politique, décrypte sur France 24 la stratégie saoudienne dans l'industrie du jeu vidéo.",
+   "lien": "https://www.france24.com/fr/culture/20260811-mondial-e-sport-jeu-vid%C3%A9o-arabie-saoudite-dans-logique-conqu%C3%AAte",
+   "source": "France 24",
+   "rubrique": "International",
+   "date": "2026-08-11T16:07:40+00:00"
+  },
+  {
+   "titre": "Le plus beau reste à venir : pourquoi les astronomes parlent déjà de l’éclipse du siècle",
+   "resume": "Le 12 août 2026, le Soleil disparaîtra du ciel d’Espagne. Tout le monde en parle. Mais savez-vous qu’il recommencera moins d’un an plus tard ? Le 2 août 2027 promet une éclipse totale si exceptionnelle que les passionnés l’ont déjà baptisée « l’éclipse du siècle ».",
+   "lien": "https://www.futura-sciences.com/sciences/actualites/eclipse-soleil-plus-beau-reste-venir-astronomes-parlent-deja-eclipse-siecle-136612/#xtor%3DRSS-8",
+   "source": "Futura Sciences",
+   "rubrique": "Sciences",
+   "date": "2026-08-11T16:02:42+02:00"
+  },
+  {
+   "titre": "Incendies, sécheresse, canicules… Comment la question de l’eau s’invite dans la campagne présidentielle",
+   "resume": "Alors que de nombreuses régions de France ont été ravagées par des feux intenses, que la canicule fait son retour et que les sols sont arides dans toute l’Europe, la gestion de l’eau intéresse les candidats pour 2027. Et pas qu’à gauche.",
+   "lien": "https://www.liberation.fr/politique/incendies-secheresse-canicules-comment-la-question-de-leau-sinvite-dans-la-campagne-presidentielle-20260811_UHPFPQTKJNDHXGAFJXFN6JAQGQ/",
+   "source": "Libération",
+   "rubrique": "France",
+   "date": "2026-08-11T16:02:21+00:00"
+  },
+  {
+   "titre": "Mayotte : une femme enceinte et ses deux enfants meurent dans un incendie, la piste accidentelle privilégiée",
+   "resume": "Selon les autorités, «un branchement électrique, positionné sur une poutre, aurait pris feu, provoquant une propagation rapide des flammes et des fumées à l’intérieur du logement» qui se situait dans un bidonville.",
+   "lien": "https://www.liberation.fr/societe/police-justice/mayotte-une-femme-enceinte-et-ses-deux-enfants-meurent-dans-un-incendie-la-piste-accidentelle-privilegiee-20260811_2DVOPASUS5BVRIMKAYYDAXCTRY/",
+   "source": "Libération",
+   "rubrique": "France",
+   "date": "2026-08-11T16:01:39+00:00"
+  },
+  {
+   "titre": "Aux Etats-Unis, des opérations in utero inédites pour sauver des fœtus atteints d’une malformation congénitale",
+   "resume": "Une équipe pionnière, dont fait partie le Français Luc Joyeux, mène actuellement un essai clinique afin d’opérer directement dans l’utérus les bébés atteints d’un laparoschisis complexe. Si la prouesse est saluée, les interrogations demeurent sur le nombre de patients concernés.",
+   "lien": "https://www.liberation.fr/societe/sante/aux-etats-unis-des-operations-in-utero-inedites-pour-sauver-des-foetus-atteints-dune-malformation-congenitale-20260811_GRIJ42JFBJEYFNW2NUY3DP5VSA/",
+   "source": "Libération",
+   "rubrique": "France",
+   "date": "2026-08-11T16:01:36+00:00"
+  },
+  {
+   "titre": "Honor 400 Lite : ce smartphone au rapport qualité-prix imbattable est à moins de 180 € sur ce site",
+   "resume": "Un smartphone efficace au quotidien et doué sur la photo à moins de 180 €, c’est possible avec cette offre à retrouver sur AliExpress. Le site marchand propose en effet ce Honor 400 Lite 5G version européenne à moindre coût avec une remise de plus de 30 €.",
+   "lien": "https://www.futura-sciences.com/conso/bons-plans/guides-smartphones-honor-400-lite-ce-smartphone-rapport-qualite-prix-imbattable-moins-180-ce-site-10973/#xtor%3DRSS-8",
+   "source": "Futura Sciences",
+   "rubrique": "Sciences",
+   "date": "2026-08-11T16:00:00+02:00"
+  },
+  {
+   "titre": "Naïl Ver-Ndoye : «A Argenteuil, on était ultra-sollicités grâce aux colos et aux centres de loisirs»",
+   "resume": "Quels souvenirs garde-t-on de ces «vacances» particulières ? Aujourd’hui, Naïl Ver-Ndoye, délégué général du réseau des Inspe, se souvient avec bonheur des nombreuses activités estivales proposées par sa ville communiste. Avant son déménagement et la découverte de cet «ennui qui peut être dangereux».",
+   "lien": "https://www.liberation.fr/societe/nail-ver-ndoye-a-argenteuil-on-etait-ultra-sollicites-grace-aux-colos-et-aux-centres-de-loisirs-20260811_TQIM5EMP2NA5NKGDM6WXXSTJ4E/",
+   "source": "Libération",
+   "rubrique": "France",
+   "date": "2026-08-11T16:00:00+00:00"
+  },
+  {
+   "titre": "L'IGPN saisie après la collision entre un jeune homme en trottinette et un fourgon de CRS à Rennes",
+   "resume": "Le pronostic vital du jeune homme est engagé. D'après les premières investigations, ce dernier a doublé une voiture et s'est retourné \"pour vérifier qu'il n'était pas suivi\", heurtant le fourgon de CRS qu'il n'avait pas vu.",
+   "lien": "https://www.franceinfo.fr/faits-divers/l-igpn-saisie-apres-la-collision-entre-un-jeune-homme-en-trottinette-et-un-fourgon-de-crs_8143199.html#xtor=RSS-3-[lestitres]",
+   "source": "franceinfo",
+   "rubrique": "France",
+   "date": "2026-08-11T15:57:02+02:00"
+  },
+  {
+   "titre": "Ukraine : Zelensky accuse Moscou d’utiliser des missiles nord-coréens",
+   "resume": "De nouvelles frappes russes ont fait au moins 12 morts et plusieurs dizaines de blessés dans la nuit de lundi à mardi en Ukraine, selon les autorités ukrainiennes. Six personnes ont été tuées à Zaporijjia, où 19 autres ont été blessées, tandis que des attaques ont provoqué des incendies à Kyiv. Récit de Julien Dubois.",
+   "lien": "https://www.france24.com/fr/vid%C3%A9o/20260811-ukraine-zelensky-accuse-moscou-d-utiliser-des-missiles-nord-cor%C3%A9ens",
+   "source": "France 24",
+   "rubrique": "International",
+   "date": "2026-08-11T15:56:36+00:00"
+  },
+  {
+   "titre": "Canicule en France : face aux fortes chaleurs, les vacanciers redoublent de vigilance",
+   "resume": "Face aux fortes chaleurs, les vacanciers cherchent l’ombre et multiplient les précautions pour se protéger du soleil. Parasol, chapeau, lunettes de soleil, vêtements légers et crème solaire sont indispensables. Reportage France 2.",
+   "lien": "https://www.france24.com/fr/vid%C3%A9o/20260811-canicule-en-france-sous-les-parasols-les-vacanciers-redoublent-de-vigilance",
+   "source": "France 24",
+   "rubrique": "International",
+   "date": "2026-08-11T15:54:14+00:00"
+  },
+  {
+   "titre": "Watch: Was Trump smuggled out of Air Force One in a catering truck?",
+   "resume": "US media reports say the president secretly left via a catering truck to avoid a threat to his life from Iran.",
+   "lien": "https://www.bbc.co.uk/news/videos/cj3672ljgzro?at_medium=RSS&at_campaign=rss",
+   "source": "BBC News",
+   "rubrique": "International",
+   "date": "2026-08-11T15:53:53+00:00"
+  },
+  {
+   "titre": "Éclipse solaire quasi totale en France : la chasse aux meilleurs points d’observation",
+   "resume": "Mercredi 12 août, la Lune viendra grignoter progressivement le disque Solaire. À Paris, près de 93 % du soleil sera masqué au maximum de l’éclipse. Un spectacle qui se produira juste avant le coucher du soleil et promet de nous éblouir. Un reportage de Juliette Hirrien et Lilou Bernoville.",
+   "lien": "https://www.france24.com/fr/vid%C3%A9o/20260811-%C3%A9clipse-solaire-quasi-totale-en-france-la-chasse-aux-meilleurs-points-d-observation",
+   "source": "France 24",
+   "rubrique": "International",
+   "date": "2026-08-11T15:51:11+00:00"
+  },
+  {
+   "titre": "Russia releases former US Marine reported in poor health",
+   "resume": "Robert Gilman, who was arrested in 2022 for kicking a police officer while drunk, had reportedly been in a catatonic-like state.",
+   "lien": "https://www.bbc.co.uk/news/articles/cvgj4m8e1ryo?at_medium=RSS&at_campaign=rss",
+   "source": "BBC News",
+   "rubrique": "International",
+   "date": "2026-08-11T15:47:53+00:00"
+  },
+  {
+   "titre": "Ceuta : les migrants pourraient être confinés avant leur expulsion",
+   "resume": "À Ceuta, le sort de milliers de migrants reste au cœur d’un bras de fer politique. Le président de l’enclave espagnole propose de limiter leur liberté de mouvement avant leur éventuelle expulsion, une proposition qui met en lumière les tensions avec le gouvernement central à Madrid.",
+   "lien": "https://www.france24.com/fr/vid%C3%A9o/20260811-ceuta-les-migrants-pourraient-%C3%AAtre-confin%C3%A9s-avant-leur-expulsion",
+   "source": "France 24",
+   "rubrique": "International",
+   "date": "2026-08-11T15:46:49+00:00"
+  },
+  {
+   "titre": "CAN Féminine : le point sur les demi-finalistes",
+   "resume": "On connaît les quatre demi-finalistes de la #CAN féminine, et quoi qu’il arrive, la compétition connaîtra un tout nouveau vainqueur. Le #Maroc, le #Cameroun, l’Algérie ou l’invité surprise le Malawi... Qui va gagner cette CAN ?",
+   "lien": "https://www.france24.com/fr/vid%C3%A9o/20260811-can-f%C3%A9minine-le-point-sur-les-demi-finalistes",
+   "source": "France 24",
+   "rubrique": "International",
+   "date": "2026-08-11T15:43:45+00:00"
+  },
+  {
+   "titre": "EN DIRECT - Fortes chaleurs : la canicule gagne la quasi-totalité du pays, seul le Nord est épargné",
+   "resume": "Météo France a placé 78 départements en vigilance orange mercredi contre 43 ce mardi. Les températures maximales seront supérieures à 35 degrés. Du Centre-Val de Loire à la Nouvelle-Aquitaine, elles seront comprises entre 38 et 40 °C. En Île-de-France elles seront voisines de 38 °C.",
+   "lien": "https://www.liberation.fr/environnement/climat/en-direct-incendies-et-fortes-chaleurs-la-canicule-setend-ce-mardi-jusqua-la-manche-et-la-pointe-bretonne-20260811_H7X62JWD2JHV3IPDO3OY4ET3UM/",
+   "source": "Libération",
+   "rubrique": "France",
+   "date": "2026-08-11T15:43:45+00:00"
+  },
+  {
+   "titre": "Yann Tiersen, Anna Mouglalis, Pierre Lemaitre, Adèle Yon… : La France insoumise dévoile le casting de ses universités d’été",
+   "resume": "Les affiches du rendez-vous estival du mouvement de Jean-Luc Mélenchon seront, cette année, davantage culturelles que politiques. L’occasion de répondre aux critiques d’une formation «verrouillée».",
+   "lien": "https://www.liberation.fr/politique/yann-tiersen-anna-mouglalis-pierre-lemaitre-adele-yon-la-france-insoumise-devoile-le-casting-de-ses-universites-dete-20260811_PCJGZGTBUBCXDGV55Z65ULU5VI/",
+   "source": "Libération",
+   "rubrique": "France",
+   "date": "2026-08-11T15:43:40+00:00"
+  },
+  {
+   "titre": "Houthis reportedly kill four in first deadly attack since start of Iran war",
+   "resume": "The attack was reportedly carried out by Iranian proxy on a small cargo ship, as tensions in region over the US-Iran conflict remain high.",
+   "lien": "https://www.bbc.co.uk/news/articles/ckg9wpmzmlno?at_medium=RSS&at_campaign=rss",
+   "source": "BBC News",
+   "rubrique": "International",
+   "date": "2026-08-11T15:41:13+00:00"
+  },
+  {
+   "titre": "Pas-de-Calais : un père et sa fille de neuf ans retrouvés pendus au domicile familial",
+   "resume": "L’hypothèse privilégiée est un infanticide suivi d’un suicide, a fait savoir le parquet d’Arras ce mardi 11 août. Les pompiers ont découvert les deux corps lundi aux alentours de 19 heures à Biache-Saint-Vaast, selon «la Voix du Nord».",
+   "lien": "https://www.liberation.fr/societe/police-justice/pas-de-calais-un-pere-et-sa-fille-de-neuf-ans-retrouves-pendus-au-domicile-familial-20260811_NITU5LC72VGANENG5J6YEWUYYI/",
+   "source": "Libération",
+   "rubrique": "France",
+   "date": "2026-08-11T15:37:53+00:00"
+  },
+  {
+   "titre": "Médicaments anti-obésité : le comprimé d’Eli Lilly autorisé au Royaume-Uni, une première en Europe",
+   "resume": "L’agence britannique du médicament a approuvé, le 10 août, la mise sur le marché de l’orforglipron, indiqué dans le traitement du diabète de type 2 et l’obésité. Il fait partie de la même famille que l’Ozempic ou le Mounjaro.",
+   "lien": "https://www.liberation.fr/societe/sante/medicaments-anti-obesite-le-comprime-deli-lilly-autorise-au-royaume-uni-une-premiere-en-europe-20260811_DRM2NN64EZC5LFZHQ55AGLE5PM/",
+   "source": "Libération",
+   "rubrique": "France",
+   "date": "2026-08-11T15:37:21+00:00"
+  },
+  {
+   "titre": "Colombie : habitants et sauveteurs à la recherche des disparus",
+   "resume": "En Colombie, les opérations de sauvetage se poursuivent au lendemain du puissant séisme de magnitude 7,4 qui a frappé l’ouest du pays. Les secouristes fouillent les décombres à la recherche de survivants. Reportage d'Anaïs Hanquet (France 2).",
+   "lien": "https://www.france24.com/fr/vid%C3%A9o/20260811-colombie-habitants-et-sauveteurs-%C3%A0-la-recherche-des-disparus",
+   "source": "France 24",
+   "rubrique": "International",
+   "date": "2026-08-11T15:35:36+00:00"
+  },
+  {
+   "titre": "Séisme en Colombie : au moins 169 morts et plus de 600 blessés, selon un nouveau bilan",
+   "resume": "Les villes de Cali, Pereira, Manizales et Quibdo, dans l’ouest du pays, ont été touchées par ce séisme de magnitude 7,4, le plus violent du XXIᵉ siècle dans le pays, selon le Service géologique colombien.",
+   "lien": "https://www.lemonde.fr/international/article/2026/08/11/seisme-en-colombie-au-moins-169-morts-et-plus-de-600-blesses-selon-un-nouveau-bilan_6743869_3210.html",
+   "source": "Le Monde",
+   "rubrique": "France",
+   "date": "2026-08-11T15:35:34+02:00"
+  },
+  {
+   "titre": "Aux Philippines, la vice-présidente, Sara Duterte, inculpée pour « menaces » contre le président Ferdinand Marcos Jr",
+   "resume": "En novembre 2024, la fille de l’ancien président Rodrigo Duterte avait affirmé être la victime d’un complot d’assassinat et avoir ordonné l’élimination de Ferdinand Marcos Jr si elle était tuée en premier.",
+   "lien": "https://www.lemonde.fr/international/article/2026/08/11/aux-philippines-la-vice-presidente-sara-duterte-inculpee-pour-menaces-contre-le-president-ferdinand-marcos-jr_6743868_3210.html",
+   "source": "Le Monde",
+   "rubrique": "International",
+   "date": "2026-08-11T15:29:09+02:00"
+  },
+  {
+   "titre": "Israël détruit la maison familiale d’un Palestinien tué dans un affrontement en Cisjordanie occupée",
+   "resume": "L’Etat hébreu démolit régulièrement les domiciles de Palestiniens impliqués dans des attaques, une pratique à l’effet dissuasif selon le gouvernement, mais dénoncée par ses détracteurs comme une punition collective qui laisse des familles sans abri.",
+   "lien": "https://www.lemonde.fr/international/article/2026/08/11/israel-detruit-la-maison-familiale-d-un-palestinien-tue-dans-un-affrontement-en-cisjordanie-occupee_6743867_3210.html",
+   "source": "Le Monde",
+   "rubrique": "International",
+   "date": "2026-08-11T15:26:31+02:00"
+  },
+  {
+   "titre": "En Egypte, l’accident d’un pick-up fait au moins 18 morts dont des enfants",
+   "resume": "Le véhicule, qui transportait des employés agricoles, s’est renversé mardi sur une route du gouvernorat d’Ismaïlia, dans le nord du pays. Une trentaine de personnes ont également été blessées, selon un premier bilan des autorités.",
+   "lien": "https://www.liberation.fr/international/afrique/en-egypte-laccident-dun-pick-up-fait-au-moins-18-morts-dont-des-enfants-20260811_5HGEVXGBI5BFLMAHJCEAERBFZE/",
+   "source": "Libération",
+   "rubrique": "France",
+   "date": "2026-08-11T15:25:07+00:00"
+  },
+  {
+   "titre": "Lebanon parliament votes to abolish death penalty",
+   "resume": "The new law - which next goes to the cabinet for approval - would make Lebanon the first country in the Middle East to end capital punishment.",
+   "lien": "https://www.bbc.co.uk/news/articles/c8enj8p1xwgo?at_medium=RSS&at_campaign=rss",
+   "source": "BBC News",
+   "rubrique": "International",
+   "date": "2026-08-11T15:24:07+00:00"
+  },
+  {
+   "titre": "Thailand suspends new gun permits after mass shooting",
+   "resume": "Authorities promise tough new laws in the country, which has high levels of firearms ownership.",
+   "lien": "https://www.bbc.co.uk/news/articles/cm2g550v0pvo?at_medium=RSS&at_campaign=rss",
+   "source": "BBC News",
+   "rubrique": "International",
+   "date": "2026-08-11T15:11:54+00:00"
+  },
+  {
+   "titre": "\"Il est prisonnier de l'opinion\" : ce qui se joue derrière le rejet de Benyamin Nétanyahou du plan de Donald Trump pour Gaza",
+   "resume": "A presque deux mois des législatives en Israël, le Premier ministre refuse tout retrait de l'enclave palestinienne avant le désarmement \"complet\" du Hamas.",
+   "lien": "https://www.franceinfo.fr/monde/proche-orient/israel-palestine/il-est-prisonnier-de-l-opinion-ce-qui-se-joue-derriere-le-rejet-de-benyamin-netanyahou-du-plan-de-donald-trump-pour-gaza_8143043.html#xtor=RSS-3-[lestitres]",
+   "source": "franceinfo",
+   "rubrique": "France",
+   "date": "2026-08-11T15:10:14+02:00"
+  },
+  {
+   "titre": "Le Liban adopte l’abolition de la peine de mort, une première au Proche- et au Moyen-Orient",
+   "resume": "Cette décision a été qualifiée d’« historique » par le ministre de la justice libanais, Adel Nassar. Le pays n’avait plus procédé à des exécutions depuis 2004.",
+   "lien": "https://www.lemonde.fr/international/article/2026/08/11/le-liban-adopte-l-abolition-de-la-peine-de-mort-une-premiere-au-proche-et-au-moyen-orient_6743866_3210.html",
+   "source": "Le Monde",
+   "rubrique": "France",
+   "date": "2026-08-11T15:09:57+02:00"
+  },
+  {
+   "titre": "«Plan Thaïlande» : au moins treize Français sont détenus en Asie depuis le début de l’été pour trafic de drogues",
+   "resume": "Selon une source diplomatique, «la situation de nos compatriotes est suivie avec attention par les services compétents du ministère de l’Europe et des Affaires étrangères à Paris, qui sont en contact avec leurs familles».",
+   "lien": "https://www.liberation.fr/societe/police-justice/plan-thailande-onze-francais-sont-detenus-en-asie-depuis-le-debut-de-lete-pour-trafic-de-drogues-20260811_775NOFA3RFDXJB2VPELCVDB4KM/",
+   "source": "Libération",
+   "rubrique": "France",
+   "date": "2026-08-11T15:06:55+00:00"
+  },
+  {
+   "titre": "En rejetant le plan de Trump sur Gaza, Netanyahu offre \"une victoire au Hamas\"",
+   "resume": "Annoncé dimanche soir, le rejet par Israël du plan de paix américain pour Gaza traduit les dissensions au sein de la coalition gouvernementale de Benjamin Netanyahu alors que se profilent des élections législatives décisives en octobre. Selon plusieurs analystes, le Premier ministre israélien offre par ce refus une victoire diplomatique au Hamas.",
+   "lien": "https://www.france24.com/fr/moyen-orient/20260811-en-rejetant-plan-trump-gaza-netanyahu-offre-victoire-hamas",
+   "source": "France 24",
+   "rubrique": "International",
+   "date": "2026-08-11T15:01:51+00:00"
+  },
+  {
+   "titre": "Tests TDAH sur TikTok : le piège du faux diagnostic que dénoncent aujourd’hui les médecins",
+   "resume": "De plus en plus d’enfants et d’adultes reçoivent un diagnostic de TDAH. Faut-il y voir une dérive diagnostique ou, au contraire, le rattrapage d’années de sous-diagnostic ? Entre critères élargis, faux positifs et véritables troubles encore ignorés, les dernières études invitent à dépasser les...",
+   "lien": "https://www.futura-sciences.com/sciences/actualites/series-ete-tests-tdah-tiktok-piege-faux-diagnostic-denoncent-aujourdhui-medecins-136220/#xtor%3DRSS-8",
+   "source": "Futura Sciences",
+   "rubrique": "Sciences",
+   "date": "2026-08-11T15:01:42+02:00"
+  },
+  {
+   "titre": "En Grèce, la prolifération du poisson-ballon, invasif et toxique, est un fléau pour les pêcheurs",
+   "resume": "Les « Lagocephalus sceleratus » se multiplient de façon spectaculaire dans les eaux grecques sous l’effet du réchauffement climatique. Ces poissons, qui détruisent les filets des pêcheurs, doivent être incinérés pour éviter tout risque sanitaire.",
+   "lien": "https://www.lemonde.fr/planete/article/2026/08/11/en-grece-la-proliferation-du-poisson-ballon-invasif-et-toxique-est-un-fleau-pour-les-pecheurs_6743833_3244.html",
+   "source": "Le Monde",
+   "rubrique": "France",
+   "date": "2026-08-11T15:00:03+02:00"
+  },
+  {
+   "titre": "Le PC portable DELL 14 Plus avec Intel Core Ultra 9 et 32 Go de RAM perd 800 € sur le site officiel grâce à une offre inédite",
+   "resume": "Le DELL 14 Plus profite actuellement d’une remise d’environ 38 % sur cette configuration personnalisée, avec un équipement qui associe processeur haut de gamme, 32 Go de RAM et SSD de 1 To.",
+   "lien": "https://www.futura-sciences.com/conso/bons-plans/guides-pc-tablettes-pc-portable-dell-14-plus-intel-core-ultra-9-32-go-ram-perd-800-site-officiel-grace-offre-inedite-10974/#xtor%3DRSS-8",
+   "source": "Futura Sciences",
+   "rubrique": "Sciences",
+   "date": "2026-08-11T15:00:00+02:00"
+  },
+  {
+   "titre": "Des milliers de fichiers pédopornographiques, une poupée sexuelle à l'effigie de mineurs... Un trentenaire piégé par une \"cyberpatrouille\" à Vesoul",
+   "resume": "Un homme né en 1988 a été interpellé à Vesoul (Haute-Saône) après avoir été repéré par une \"cyberpatrouille\" de la police pour détention de contenus pédopornographiques. Plus de 4 000 images et des objets sexuels ont été découverts chez lui. Une information judiciaire a été ouverte le 7 août 2026. Le mis en cause a été placé sous contrôle judiciaire.",
+   "lien": "https://france3-regions.franceinfo.fr/bourgogne-franche-comte/haute-saone/vesoul/4-000-fichiers-pedopornographiques-poupee-sexuelle-a-l-effigie-de-mineurs-un-trentenaire-piege-en-ligne-par-une-cyberpatrouille-enquete-ouverte-a-vesoul-3399838.html#xtor=RSS-3-[lestitres]",
+   "source": "franceinfo",
+   "rubrique": "France",
+   "date": "2026-08-11T14:59:18+02:00"
+  },
+  {
+   "titre": "En mer Rouge, un cargo touché par un « projectile » au large du Yémen ; au moins deux morts",
+   "resume": "L’attaque, qui a tué deux membres d’équipage, un Pakistanais et un Indonésien, n’a pas encore été revendiquée, mais les garde-côtes yéménites l’ont attribuée aux rebelles houthistes du Yémen. Ces alliés de l’Iran ont été les auteurs de plusieurs attaques contre la flotte saoudienne dans la zone depuis juillet.",
+   "lien": "https://www.lemonde.fr/international/article/2026/08/11/un-cargo-touche-par-un-projectile-en-mer-rouge-au-moins-deux-morts_6743832_3210.html",
+   "source": "Le Monde",
+   "rubrique": "France",
+   "date": "2026-08-11T14:56:33+02:00"
+  },
+  {
+   "titre": "«Plan Thaïlande» : quand des jeunes se font piéger par des trafiquants sur Snapchat pour servir de mules contre des vacances gratuites",
+   "resume": "Au moins treize Français sont actuellement détenus en Thaïlande et à Hongkong, où ils encourent jusqu’à la prison à perpétuité après la saisie de cannabis dans leurs bagages à l’aéroport. Certains d’entre eux assurent avoir été recrutés pour déplacer du matériel informatique.",
+   "lien": "https://www.liberation.fr/societe/police-justice/plan-thailande-quand-des-jeunes-se-font-pieger-par-des-trafiquants-sur-snapchat-pour-servir-de-mules-contre-des-vacances-20260810_N2FEV5EPJ5BLVDTBPYC2BUO4PM/",
+   "source": "Libération",
+   "rubrique": "France",
+   "date": "2026-08-11T14:55:29+00:00"
+  },
+  {
+   "titre": "Ousted Syrian dictator Bashar al-Assad sentenced to death in absentia",
+   "resume": "The ex-president is convicted of committing war crimes and crimes against humanity during the country's civil war.",
+   "lien": "https://www.bbc.co.uk/news/articles/ce34dkpnyg7o?at_medium=RSS&at_campaign=rss",
+   "source": "BBC News",
+   "rubrique": "International",
+   "date": "2026-08-11T14:50:10+00:00"
+  },
+  {
+   "titre": "András Baka, président de la Hongrie : la revanche d’un magistrat évincé par le système Orbán",
+   "resume": "Le juriste de 73 ans, passé par la Cour européenne des droits de l’Homme et la Cour suprême de Hongrie, avait été limogé de ce dernier poste par Viktor Orbán. Les députés l’ont élu ce mardi 11 août à la tête de l’Etat, un poste essentiellement honorifique.",
+   "lien": "https://www.liberation.fr/international/europe/andras-baka-president-de-la-hongrie-la-revanche-dun-magistrat-evince-par-le-systeme-orban-20260811_I5HV2DP7LJGJFN5YQKU3OGYHWA/",
+   "source": "Libération",
+   "rubrique": "France",
+   "date": "2026-08-11T14:49:36+00:00"
+  },
+  {
+   "titre": "Trump hid in catering truck in secret plane swap over Iran threat, reports say",
+   "resume": "The US president was reportedly part of a ruse where reporters were falsely told he was with them on Air Force One leaving a Nato summit in Turkey.",
+   "lien": "https://www.bbc.co.uk/news/articles/cm2g90vvy62o?at_medium=RSS&at_campaign=rss",
+   "source": "BBC News",
+   "rubrique": "International",
+   "date": "2026-08-11T14:47:28+00:00"
+  },
+  {
+   "titre": "Souviens-toi l’été d’avant la présidentielle : en 2011, le coup de pouce de Jacques Chirac à François Hollande",
+   "resume": "Le 11 juin, en Corrèze, l’ex-président surprend la droite en assurant que «si Juppé n’y va pas», il votera pour le socialiste en 2012. Inattendu, ce soutien de taille renforce la stature du candidat aux ambitions raillées, qui remportera la primaire du PS puis l’élection suprême.",
+   "lien": "https://www.liberation.fr/politique/souviens-toi-lete-davant-la-presidentielle-en-2011-le-coup-de-pouce-de-jacques-chirac-a-francois-hollande-20260811_SWPJF5TXEJAKPHZHK5SNVSQFQA/",
+   "source": "Libération",
+   "rubrique": "France",
+   "date": "2026-08-11T14:45:36+00:00"
+  },
+  {
+   "titre": "Pénurie de lunettes pour l’éclipse solaire : Marine Tondelier dénonce «l’impréparation» du gouvernement",
+   "resume": "La candidate des Ecologistes à la présidentielle critique le manque de disponibilité de ce dispositif de protection. En 1999, 30 millions de lunettes gratuites avaient été massivement distribuées.",
+   "lien": "https://www.liberation.fr/politique/penurie-de-lunettes-pour-leclipse-solaire-marine-tondelier-denonce-limpreparation-du-gouvernement-20260811_KTO6Y4VWZJDVPFIVBKCGMWPMXM/",
+   "source": "Libération",
+   "rubrique": "France",
+   "date": "2026-08-11T14:42:03+00:00"
+  },
+  {
+   "titre": "Syrie : Bachar al-Assad condamné à mort par contumace",
+   "resume": "Un tribunal syrien a condamné mardi en son absence le président déchu Bachar al-Assad, son frère Maher et plusieurs autres ex-responsables à la peine de mort pour les crimes commis durant la guerre civile, les premières condamnations de membres de l'ancien pouvoir.",
+   "lien": "https://www.france24.com/fr/vid%C3%A9o/20260811-syrie-bachar-al-assad-condamn%C3%A9-%C3%A0-mort-par-contumace",
+   "source": "France 24",
+   "rubrique": "International",
+   "date": "2026-08-11T14:40:03+00:00"
+  },
+  {
+   "titre": "Profession DJ au Pakistan : les femmes se mettent aux platines",
+   "resume": "Le Pakistan, pays réputé pour ses valeurs conservatrices, fait rarement parler de lui pour sa scène musicale et de divertissement. Pourtant, dans les grandes villes comme Karachi et Lahore, une scène DJ discrète mais en plein essor commence à se faire entendre, avec des talents émergents et des artistes qui transforment l’industrie musicale. Au cœur de cette évolution, de plus en plus de femmes s’affirment dans un milieu largement dominé par les hommes.",
+   "lien": "https://www.france24.com/fr/%C3%A9missions/focus/20260811-profession-dj-pakistan-femmes-se-mettent-platines",
+   "source": "France 24",
+   "rubrique": "International",
+   "date": "2026-08-11T14:24:00+00:00"
+  },
+  {
+   "titre": "Sécheresse et canicules : l’Europe connaît sa période juin-juillet la plus chaude jamais enregistrée",
+   "resume": "L’Europe occidentale vient de connaître sa période juin-juillet la plus chaude jamais mesurée, selon le service européen Copernicus. La température moyenne sur ces deux mois a atteint 21,62 °C, dépassant le précédent record établi en 2022. Reportage France 2.",
+   "lien": "https://www.france24.com/fr/vid%C3%A9o/20260811-s%C3%A9cheresse-et-canicules-l-europe-conna%C3%AEt-sa-p%C3%A9riode-juin-juillet-la-plus-chaude-jamais-enregistr%C3%A9e",
+   "source": "France 24",
+   "rubrique": "International",
+   "date": "2026-08-11T14:20:23+00:00"
+  },
+  {
+   "titre": "France bans unsolicited telemarketing calls",
+   "resume": "Cold calling is coming to an end in France, with one consumer group calling the ban a \"small revolution\".",
+   "lien": "https://www.bbc.co.uk/news/articles/cy5d11g72ppo?at_medium=RSS&at_campaign=rss",
+   "source": "BBC News",
+   "rubrique": "International",
+   "date": "2026-08-11T14:19:45+00:00"
+  },
+  {
+   "titre": "Séisme en Colombie : \"Nous sommes à la rue, nous n’avons nulle part où aller\"",
+   "resume": "Un séisme de magnitude 7,4 a frappé lundi la Colombie, dans le département pauvre du Choco, dans l’ouest du pays. Le bilan fait état mardi d'au moins 224 morts, de centaines de blessés, ainsi que de nombreux dégâts matériels. France 24 a recueilli les témoignages de plusieurs habitants de la ville de Quibdo.",
+   "lien": "https://www.france24.com/fr/am%C3%A9riques/20260811-s%C3%A9isme-colombie-nous-sommes-rue-nulle-part-o%C3%B9-aller-victimes-secours-catastrophe-naturelle",
+   "source": "France 24",
+   "rubrique": "International",
+   "date": "2026-08-11T14:18:11+00:00"
+  },
+  {
+   "titre": "Colombie : les opérations de sauvetage se poursuivent après le séisme",
+   "resume": "En Colombie, les opérations de sauvetage se poursuivent dans l'ouest du pays, frappé lundi par un séisme de magnitude 7,4 - le plus puissant que le pays ait subi depuis ​des décennies. Récit de Noémie Roche.",
+   "lien": "https://www.france24.com/fr/vid%C3%A9o/20260811-colombie-les-op%C3%A9rations-de-sauvetage-se-poursuivent-le-bilan-monte-%C3%A0-169-morts",
+   "source": "France 24",
+   "rubrique": "International",
+   "date": "2026-08-11T14:16:51+00:00"
+  },
+  {
+   "titre": "Colombie : le pays en «état d’urgence» après un puissant séisme qui a fait au moins 181 morts et plus de 1 300 blessés dans l’ouest du pays",
+   "resume": "D’intenses secousses ont été ressenties jusqu’à Bogotá lundi. De nombreuses victimes ont été décomptées dans plusieurs régions, notamment à Pereira, Manizales et Cali. Six aéroports ont été mis à l’arrêt.",
+   "lien": "https://www.liberation.fr/international/amerique/colombie-un-fort-seisme-de-magnitude-66-ressenti-a-bogota-20260810_RE3YRNO4P5GHHA5PGOCLU6V5RM/",
+   "source": "Libération",
+   "rubrique": "France",
+   "date": "2026-08-11T14:16:07+00:00"
+  },
+  {
+   "titre": "Drone captures devastating aftermath of Spokane wildfires",
+   "resume": "The aerial footage shows homes destroyed down to their foundations, with burned cars still parked in some driveways.",
+   "lien": "https://www.bbc.co.uk/news/videos/c80nm9melpmo?at_medium=RSS&at_campaign=rss",
+   "source": "BBC News",
+   "rubrique": "International",
+   "date": "2026-08-11T14:02:07+00:00"
+  },
+  {
+   "titre": "«On n’avait pas anticipé que les gens seraient aussi intéressés» : la course aux lunettes de protection avant l’éclipse solaire",
+   "resume": "Trouver ce produit indispensable pour observer le phénomène astrologique, ce mercredi, relève parfois d’une mission impossible. Pharmacies et supermarchés sont en rupture de stock, les prix connaissent une surenchère et les arnaques sont légion.",
+   "lien": "https://www.liberation.fr/economie/on-navait-pas-anticipe-que-les-gens-seraient-aussi-interesses-la-course-aux-lunettes-de-protection-avant-leclipse-solaire-20260811_I62VNGMQLJCTJHLNXACG7PIOWI/",
+   "source": "Libération",
+   "rubrique": "France",
+   "date": "2026-08-11T14:01:17+00:00"
+  },
+  {
+   "titre": "\"On a toujours une façon de gérer notre Etat qui reste centralisée\", déplore le maire d'Arès, après l'incendie en Gironde",
+   "resume": "Comme son confrère de Saumos, il appelle l'exécutif à écouter les élus locaux. \"Nous connaissons nos territoires, et ne serait-ce que pour cela, on doit être entendus\", défend Xavier Daney",
+   "lien": "https://www.franceinfo.fr/environnement/evenements-meteorologiques-extremes/incendies-et-feux-de-foret/incendies-en-gironde/on-a-toujours-une-facon-de-gerer-notre-etat-qui-reste-centralisee-deplore-le-maire-d-ares-apres-l-incendie-en-gironde_8143151.html#xtor=RSS-3-[lestitres]",
+   "source": "franceinfo",
+   "rubrique": "France",
+   "date": "2026-08-11T14:01:09+02:00"
+  },
+  {
+   "titre": "Difficile d'ignorer cette offre sur les nouveaux Galaxy Buds4 Pro",
+   "resume": "Les Samsung Galaxy Buds4 Pro glissent un son immersif dans vos oreilles tout en faisant disparaître les bruits indésirables. Des écouteurs sans fil haut de gamme qui savent autant séduire les mélomanes que les utilisateurs du quotidien.",
+   "lien": "https://www.futura-sciences.com/conso/bons-plans/guides-audio-difficile-ignorer-cette-offre-nouveaux-galaxy-buds4-pro-10981/#xtor%3DRSS-8",
+   "source": "Futura Sciences",
+   "rubrique": "Sciences",
+   "date": "2026-08-11T14:00:00+02:00"
+  },
+  {
+   "titre": "Envers mon endroit (1/8) : La cabane de jardin, par Philippe Claudel : annexe nihilo",
+   "resume": "Exploration de l’abri dans lequel l’écrivain et président de l’académie Goncourt lit, bricole, écrit, entasse et se souvient.",
+   "lien": "https://www.liberation.fr/portraits/envers-mon-endroit-18-la-cabane-de-jardin-par-philippe-claudel-annexe-nihilo-20260811_6FT6KSOBG5DP3KS2TSX5C7UJNA/",
+   "source": "Libération",
+   "rubrique": "France",
+   "date": "2026-08-11T14:00:00+00:00"
+  },
+  {
+   "titre": "France : l'éclipse solaire dope le tourisme, Biarritz se prépare à un spectacle presque total",
+   "resume": "À la veille de l’éclipse solaire du 12 août, Biarritz se prépare à accueillir de nombreux curieux. Dans cette ville du sud de la France, la Lune masquera jusqu’à 99,5% du Soleil, soit le taux d’occultation le plus élevé observé depuis la France métropolitaine. Reportage France 2.",
+   "lien": "https://www.france24.com/fr/vid%C3%A9o/20260811-france-l-%C3%A9clipse-solaire-dope-le-tourisme-biarritz-se-pr%C3%A9pare-%C3%A0-un-spectacle-presque-total",
+   "source": "France 24",
+   "rubrique": "International",
+   "date": "2026-08-11T13:55:46+00:00"
+  },
+  {
+   "titre": "Face aux \"Aperçus IA\" de Google, les quotidiens français saisissent l'Autorité de la concurrence",
+   "resume": "L'Alliance ​de ‌la presse d'information générale, organisme collectif regroupant près de 300 quotidiens français, a annoncé mardi être passée à l'offensive devant l'Autorité de la concurrence après le déploiement fin juillet par Google de résumés réalisés par IA, dont les médias redoutent qu'ils ne les privent de trafic.",
+   "lien": "https://www.france24.com/fr/france/20260811-aper%C3%A7us-ia-google-quotidiens-fran%C3%A7ais-saisissent-autorit%C3%A9-concurrence",
+   "source": "France 24",
+   "rubrique": "International",
+   "date": "2026-08-11T13:51:42+00:00"
+  },
+  {
+   "titre": "Pilule antiobésité : le Foundayo, développé par le laboratoire américain Eli Lilly, autorisé au Royaume-Uni, une première en Europe",
+   "resume": "Cette version en comprimé du médicament contre l’obésité et le diabète sera soumise à prescription médicale. Le groupe danois Novo Nordisk a déjà obtenu l’autorisation pour le comprimé Wegovy au Royaume-Uni, mais aussi aux Etats-Unis et dans l’UE.",
+   "lien": "https://www.lemonde.fr/economie/article/2026/08/11/pilule-antiobesite-le-foundayo-developpe-par-le-laboratoire-americain-eli-lilly-autorise-au-royaume-uni-une-premiere-en-europe_6743797_3234.html",
+   "source": "Le Monde",
+   "rubrique": "Économie",
+   "date": "2026-08-11T13:43:45+02:00"
+  },
+  {
+   "titre": "Aide alimentaire : à Paris, une association au secours des oubliés de l’été",
+   "resume": "Lorsque la plupart des organismes de distributions caritatives baissent le rideau pour la saison, Août Secours alimentaire prend le relais auprès de 20 000 personnes démunies de la capitale.",
+   "lien": "https://www.liberation.fr/societe/aide-alimentaire-a-paris-une-association-au-secours-des-oublies-de-lete-20260811_HWNVZNJDFJAJVEDQVFYBW7OKVQ/",
+   "source": "Libération",
+   "rubrique": "France",
+   "date": "2026-08-11T13:36:01+00:00"
+  },
+  {
+   "titre": "En Malaisie, les réfugiés rohingyas victimes de harcèlement et de menaces d’expulsion",
+   "resume": "Le pays à majorité musulmane est en proie à une vague de colère contre les réfugiés victimes de persécutions en Birmanie. Le Premier ministre malaisien a annoncé vouloir en renvoyer 5 000.",
+   "lien": "https://www.liberation.fr/international/asie-pacifique/en-malaisie-les-refugies-rohingyas-victimes-de-harcelement-et-de-menaces-dexpulsion-20260811_KVD6JTKXUVAPHJSQVW654K3GNE/",
+   "source": "Libération",
+   "rubrique": "France",
+   "date": "2026-08-11T13:33:11+00:00"
+  },
   {
    "titre": "Éclipse du 12 août : 4 objets indispensables à préparer chez vous pour être prêts à 19 heures",
    "resume": "Mercredi 12 août, la France assistera à une éclipse solaire partielle, dont le degré d'occultation variera de près de 90 % dans l’Est à 99,5 % à Biarritz. Horaires, carte, météo, lunettes, événements et direct : voici la check-list de dernière minute avant de vivre cet évènement exceptionnel.",
@@ -9,6 +809,14 @@
    "source": "Futura Sciences",
    "rubrique": "Sciences",
    "date": "2026-08-11T13:32:00+02:00"
+  },
+  {
+   "titre": "Ryusuke Hamaguchi, réalisateur de «Soudain» : «Pourquoi est-ce qu’on est amené à traiter les gens comme des objets ?»",
+   "resume": "Le cinéaste japonais revient sur son attache au cinéma de Rohmer, sur son travail avec ses deux actrices, la place du corps et sur l’importance de l’attention portée à l’autre.",
+   "lien": "https://www.liberation.fr/culture/cinema/ryusuke-hamaguchi-realisateur-de-soudain-pourquoi-est-ce-quon-est-amene-a-traiter-les-gens-comme-des-objets-20260811_XGTGVSNAAZD3BJU2NR422AYKYE/",
+   "source": "Libération",
+   "rubrique": "France",
+   "date": "2026-08-11T13:24:32+00:00"
   },
   {
    "titre": "En Thaïlande, les permis d’armes à feu suspendus après une fusillade dans un lycée",
@@ -19,6 +827,22 @@
    "date": "2026-08-11T13:23:40+02:00"
   },
   {
+   "titre": "Tour de magie grâce à un camion de restauration : comment Trump a quitté en secret un sommet de l’Otan en Turquie par peur de l’Iran",
+   "resume": "Menacé par Téhéran, le président des Etats-Unis a mis en scène le 8 juillet un faux départ à bord d’Air Force One. Une opération minutieusement orchestrée, qui a trompé jusqu’aux journalistes chargés de suivre ses déplacements.",
+   "lien": "https://www.liberation.fr/international/amerique/tour-de-magie-grace-a-un-camion-de-restauration-comment-trump-a-quitte-en-secret-un-sommet-de-lotan-en-turquie-par-peur-de-liran-20260811_QEWRZDUTVNGAPBCUQRRD5KOI74/",
+   "source": "Libération",
+   "rubrique": "France",
+   "date": "2026-08-11T13:20:39+00:00"
+  },
+  {
+   "titre": "En Côte d’Ivoire, Laurent Gbagbo délègue une partie de ses pouvoirs à cinq cadres du PPA-CI",
+   "resume": "En Côte d’Ivoire, Laurent Gbagbo délègue une partie de ses prérogatives à cinq cadres du PPA-CI, tout en conservant la présidence du parti. Une réorganisation qui relance une question : lequel de ces cinq responsables pourrait incarner l’après-Gbagbo ?",
+   "lien": "https://www.france24.com/fr/vid%C3%A9o/20260811-en-c%C3%B4te-d-ivoire-laurent-gbagbo-d%C3%A9l%C3%A8gue-une-partie-de-ses-pouvoirs-%C3%A0-cinq-cadres-du-ppa-ci",
+   "source": "France 24",
+   "rubrique": "International",
+   "date": "2026-08-11T13:20:34+00:00"
+  },
+  {
    "titre": "La nouvelle épidémie d'Ebola a franchi le cap des 2 000 morts en République démocratique du Congo",
    "resume": "La maladie a tué plus de 15 000 personnes en Afrique au cours des 50 dernières années.",
    "lien": "https://www.franceinfo.fr/sante/maladie/ebola/l-epidemie-d-ebola-a-franchi-le-cap-des-2-000-morts-en-republique-democratique-du-congo_8143049.html#xtor=RSS-3-[lestitres]",
@@ -27,8 +851,24 @@
    "date": "2026-08-11T13:19:36+02:00"
   },
   {
+   "titre": "Crise climatique : vous ne souffrez pas d’éco-anxiété, mais de lucidité",
+   "resume": "Christian Lehmann est médecin et écrivain. Pour «Libération», il tient la chronique d’une société touchée par les crises sanitaires et du service public. Aujourd’hui, il dénonce le «je-m’en-foutisme» gouvernemental face aux catastrophes environnementales.",
+   "lien": "https://www.liberation.fr/societe/sante/crise-climatique-vous-ne-souffrez-pas-deco-anxiete-mais-de-lucidite-20260811_F3IEBX2LQBFLXDM7Z3R4SXLSLU/",
+   "source": "Libération",
+   "rubrique": "France",
+   "date": "2026-08-11T13:12:41+00:00"
+  },
+  {
+   "titre": "Et l’éclipse fut… Le récit d’un mercredi noir d’août 1999 sur la Terre",
+   "resume": "Emotion, humour, poésie… Entre les nuages ou sous un ciel pur, du Cotentin au Pakistan, choses vues et entendues sous la Lune en plein jour, il y a vingt-sept ans.",
+   "lien": "https://www.liberation.fr/sciences/espace/et-leclipse-fut-le-recit-dun-mercredi-noir-daout-1999-sur-la-terre-20260811_5DIB7D2U55HD3DAEQCWD5XIAGU/",
+   "source": "Libération",
+   "rubrique": "France",
+   "date": "2026-08-11T13:12:00+00:00"
+  },
+  {
    "titre": "Des méduses obligent EDF à arrêter trois réacteurs de la centrale nucléaire de Gravelines",
-   "resume": "L'énergéticien a dû faire face lundi à un \"afflux massif de méduses\". Trois réacteurs ont été arrêtés et un autre a vu sa production réduite de moitié.",
+   "resume": "L'incident intervient alors que le parc nucléaire français a déjà atteint son record d'indisponibilités liées à la sécheresse et à la canicule, selon des calculs de l'AFP.",
    "lien": "https://www.franceinfo.fr/environnement/energie/nucleaire/des-meduses-obligent-edf-a-arreter-trois-reacteurs-de-la-centrale-nucleaire-de-gravelines_8143100.html#xtor=RSS-3-[lestitres]",
    "source": "franceinfo",
    "rubrique": "France",
@@ -51,44 +891,84 @@
    "date": "2026-08-11T12:59:31+02:00"
   },
   {
-   "titre": "4 000 fichiers pédopornographiques, poupée sexuelle à l'effigie de mineurs : un trentenaire piégé en ligne par une \"cyberpatrouille\", enquête ouverte à Vesoul",
-   "resume": "Un homme né en 1988 a été interpellé à Vesoul (Haute-Saône) après avoir été repéré par une \"cyberpatrouille\" de la police pour détention de contenus pédopornographiques. Plus de 4 000 images et des objets sexuels ont été découverts chez lui. Une information judiciaire a été ouverte le 7 août 2026. Le mis en cause a été placé sous contrôle judiciaire.",
-   "lien": "https://france3-regions.franceinfo.fr/bourgogne-franche-comte/haute-saone/vesoul/4-000-fichiers-pedopornographiques-poupee-sexuelle-a-l-effigie-de-mineurs-un-trentenaire-piege-en-ligne-par-une-cyberpatrouille-enquete-ouverte-a-vesoul-3399838.html#xtor=RSS-3-[lestitres]",
-   "source": "franceinfo",
+   "titre": "Canada : état d'urgence et évacuations par milliers, au moins 612 feux actifs recensés",
+   "resume": "Le Canada fait face à une saison des incendies particulièrement intense. 612 feux de forêt sont actuellement actifs à travers le pays, dont une centaine en Colombie-Britannique, où plusieurs incendies restent hors de contrôle. Pour en parler, France 24 reçoit le commandant Sebti Khadimallah, porte-parole de la Sécurité civile et de la gestion des crises.",
+   "lien": "https://www.france24.com/fr/vid%C3%A9o/20260811-canada-%C3%A9tat-d-urgence-et-%C3%A9vacuations-par-milliers-au-moins-612-feux-actifs-recens%C3%A9s",
+   "source": "France 24",
+   "rubrique": "International",
+   "date": "2026-08-11T12:59:10+00:00"
+  },
+  {
+   "titre": "Une attaque des Houthis sur un navire en mer Rouge fait plusieurs morts",
+   "resume": "⁠Un cargo a ⁠été attaqué ​mardi par les Houthis dans le détroit de Bab el-Mandeb, causant ​la mort dequatre membres d'équipage, ont déclaré mardi les autorités yéménites.",
+   "lien": "https://www.france24.com/fr/moyen-orient/20260811-une-attaque-des-houthis-sur-un-navire-en-mer-rouge-fait-plusieurs-morts",
+   "source": "France 24",
+   "rubrique": "International",
+   "date": "2026-08-11T12:57:01+00:00"
+  },
+  {
+   "titre": "Trump aurait changé d’avion après le sommet de l’Otan à Ankara",
+   "resume": "Le Washington Post rapporte que le président américain Donald Trump a quitté Ankara à bord d'un avion militaire spécial après le sommet de l'OTAN le mois dernier, alors même que la Maison Blanche laissait croire qu'il avait embarqué à bord d'Air Force One. En cause : des menaces iraniennes jugées crédibles. Explications avec Noémie Roche et Delano D'Souza.",
+   "lien": "https://www.france24.com/fr/vid%C3%A9o/20260811-trump-aurait-chang%C3%A9-d-avion-apr%C3%A8s-le-sommet-de-l-otan-%C3%A0-ankara",
+   "source": "France 24",
+   "rubrique": "International",
+   "date": "2026-08-11T12:55:23+00:00"
+  },
+  {
+   "titre": "Sur les réseaux, des tubes de Taylor Swift retirés de posts de campagne de Trump",
+   "resume": "En réponse au Swift bashing auquel se livrent cet été les collaborateurs du président sur TikTok et Instagram, l’artiste a préféré couper le sifflet à ses détracteurs, retirant notamment sa musique «August» d’une publication moqueuse.",
+   "lien": "https://www.liberation.fr/culture/musique/sur-les-reseaux-des-tubes-de-taylor-swift-retires-de-posts-de-campagne-de-trump-20260811_AIPQ2GOXEJFQRMBGD3456N5K4E/",
+   "source": "Libération",
    "rubrique": "France",
-   "date": "2026-08-11T12:58:14+02:00"
+   "date": "2026-08-11T12:52:54+00:00"
+  },
+  {
+   "titre": "Guinée : un \"visa médical\" numérique centralise les données de santé",
+   "resume": "En Guinée, pour améliorer le suivi des patients, une start-up a développé une carte numérique. Baptisée \"Visa médical\", elle centralise l’ensemble des données de santé du patient et les partage avec les soignants. Une innovation qui entend faciliter le suivi médical et renforcer l’efficacité des soins. Reportage de Malick Diakité, Aminatou Diallo et Sarah Sakho.",
+   "lien": "https://www.france24.com/fr/vid%C3%A9o/20260811-guin%C3%A9e-un-visa-m%C3%A9dical-num%C3%A9rique-centralise-les-donn%C3%A9es-de-sant%C3%A9",
+   "source": "France 24",
+   "rubrique": "International",
+   "date": "2026-08-11T12:51:36+00:00"
+  },
+  {
+   "titre": "Côte d'Ivoire : Gbagbo délègue ses pouvoirs pour \"poursuivre le combat politique\"",
+   "resume": "Pour renforcer le fonctionnement du Parti des peuples africains-Côte d’Ivoire, Laurent Gbagbo entend partager certaines responsabilités au sein de la direction. L’ancien chef de l’État déléguera une partie de ses prérogatives à cinq cadres du PPA-CI, tout en restant président du parti. Correspondance de M’ma Camara, à Abidjan.",
+   "lien": "https://www.france24.com/fr/vid%C3%A9o/20260811-c%C3%B4te-d-ivoire-gbagbo-d%C3%A9l%C3%A8gue-ses-pouvoirs-pour-poursuivre-le-combat-politique",
+   "source": "France 24",
+   "rubrique": "International",
+   "date": "2026-08-11T12:45:11+00:00"
   },
   {
    "titre": "Le magazine « VSD » racheté par l’entrepreneur Vianney d’Alançon",
    "resume": "Il s’agit du premier rachat d’un média par l’homme d’affaires de 40 ans, connu pour son parc d’attractions traditionaliste, Rocher Mistral. « VSD » revendique quelque 40 000 ventes mensuelles et affiche un résultat positif.",
    "lien": "https://www.lemonde.fr/economie/article/2026/08/11/le-magazine-vsd-rachete-par-l-entrepreneur-vianney-d-alancon_6743791_3234.html",
    "source": "Le Monde",
-   "rubrique": "France",
+   "rubrique": "Économie",
    "date": "2026-08-11T12:35:07+02:00"
+  },
+  {
+   "titre": "Syrie : le président déchu Bachar al-Assad condamné à la peine de mort par contumace",
+   "resume": "L’ex-dirigeant, qui a fui avec sa famille à Moscou lors de la prise de Damas en décembre 2024, a été reconnu ce mardi coupable de «crimes de guerre» et de «crimes contre l’humanité».",
+   "lien": "https://www.liberation.fr/international/moyen-orient/syrie-le-president-dechu-bachar-al-assad-condamne-a-la-peine-de-mort-par-contumace-20260811_7RGPHXAGZFFSZB6AHZKQNGGVXI/",
+   "source": "Libération",
+   "rubrique": "France",
+   "date": "2026-08-11T12:34:23+00:00"
   },
   {
    "titre": "Avant de regarder l’éclipse solaire du 12 août, neuf questions pour bien se préparer",
    "resume": "Une éclipse solaire sera visible en France mercredi 12 août, pour la première fois depuis 1999. Un phénomène rare et attrayant, mais qui peut être dangereux s’il n’est pas observé dans de bonnes conditions. Mode d’emploi.",
    "lien": "https://www.lemonde.fr/sciences/article/2026/08/11/avant-de-regarder-l-eclipse-solaire-du-12-aout-neuf-questions-pour-bien-se-preparer_6739357_1650685.html",
    "source": "Le Monde",
-   "rubrique": "France",
+   "rubrique": "Sciences",
    "date": "2026-08-11T12:33:42+02:00"
   },
   {
-   "titre": "Quatre conseils pour faire de belles photos de l'éclipse solaire en toute sécurité",
-   "resume": "Avant de se lancer dans la photographie de cet événement astronomique rare, il faut s'assurer de disposer d'un filtre solaire et d'avoir le bon équipement.",
-   "lien": "https://www.franceinfo.fr/sciences/astronomie/eclipse-solaire/quatre-conseils-pour-faire-de-belles-photos-de-l-eclipse-solaire-en-toute-securite_8134595.html#xtor=RSS-3-[lestitres]",
-   "source": "franceinfo",
+   "titre": "En Colombie, «le tremblement de terre a duré une minute qui a semblé une éternité»",
+   "resume": "Le puissant séisme qui a frappé l’ouest du pays lundi 10 août a fait au moins 169 morts et 600 blessés, laissant une impression de désolation et des habitants hébétés.",
+   "lien": "https://www.liberation.fr/international/en-colombie-le-tremblement-de-terre-a-dure-une-minute-qui-a-semble-une-eternite-20260811_H4WEF56FPBA7ZBERVHN6QDF3V4/",
+   "source": "Libération",
    "rubrique": "France",
-   "date": "2026-08-11T12:31:49+02:00"
-  },
-  {
-   "titre": "\"On essaie de proposer des supports différents\" : à quelques mois de l'élection présidentielle, Renaissance et LFI misent sur les cahiers de vacances pour faire campagne durant l'été",
-   "resume": "Classique estival pour les élèves, le marché du cahier de vacances à destination des adultes s'est fortement développé ces derrières années. Le PC et le PS ont déjà tenté l'expérience par le passé. Cette fois, c'est LFI et Renaissance qui s'y essaient.",
-   "lien": "https://www.franceinfo.fr/elections/presidentielle/a-quelques-mois-de-l-election-presidentielle-renaissance-et-lfi-misent-sur-le-cahier-de-vacances-pour-faire-passer-des-messages_8142749.html#xtor=RSS-3-[lestitres]",
-   "source": "franceinfo",
-   "rubrique": "France",
-   "date": "2026-08-11T12:10:43+02:00"
+   "date": "2026-08-11T12:28:49+00:00"
   },
   {
    "titre": "Ebola : l’épidémie a fait plus de 2 000 morts en RDC",
@@ -115,22 +995,6 @@
    "date": "2026-08-11T12:00:00+02:00"
   },
   {
-   "titre": "Résumés IA de Google : l’Alliance de la presse d’information générale saisit l’Autorité de la concurrence",
-   "resume": "L’APIG, qui regroupe près de 300 quotidiens français, demande au gendarme de la concurrence d’intervenir « pour demander le respect par Google des engagements pris en 2022 ».",
-   "lien": "https://www.lemonde.fr/actualite-medias/article/2026/08/11/resumes-ia-de-google-l-alliance-de-la-presse-d-information-generale-dont-le-monde-est-membre-saisit-l-autorite-de-la-concurrence_6743786_3236.html",
-   "source": "Le Monde",
-   "rubrique": "France",
-   "date": "2026-08-11T11:59:09+02:00"
-  },
-  {
-   "titre": "Au moins 132 morts, 86 bâtiments effondrés, des survivants recherchés… Les dégâts du séisme en Colombie",
-   "resume": "Le pays a été frappé par un séisme de magnitude 7,4 lundi. Les recherches de survivants sont toujours en cours.",
-   "lien": "https://www.franceinfo.fr/environnement/catastrophes-naturelles/seismes/en-images-au-moins-132-morts-86-batiments-effondres-recherche-de-survivants-les-degats-du-seisme-en-colombie_8142965.html#xtor=RSS-3-[lestitres]",
-   "source": "franceinfo",
-   "rubrique": "France",
-   "date": "2026-08-11T11:56:33+02:00"
-  },
-  {
    "titre": "Deux enquêtes ouvertes après la mort d'un jeune de 17 ans à Toulouse dans lors d'une course-poursuite avec la police",
    "resume": "L'adolescent est mort vendredi soir à l'hôpital, après une course-poursuite avec plusieurs véhicules de la police nationale dans la nuit de jeudi à vendredi, a relaté le procureur de la République de Toulouse, auprès de l'AFP.",
    "lien": "https://www.franceinfo.fr/faits-divers/deux-enquetes-ouvertes-apres-la-mort-d-un-jeune-a-toulouse-dans-lors-d-une-course-poursuite-avec-la-police_8143019.html#xtor=RSS-3-[lestitres]",
@@ -143,32 +1007,24 @@
    "resume": "Invisible depuis son accession au pouvoir, début mars, Mojtaba Khamenei a procédé, ces derniers jours, à une série de nominations renforçant son autorité au sommet de l’appareil d’Etat de la République islamique d’Iran.",
    "lien": "https://www.lemonde.fr/international/article/2026/08/11/en-iran-le-nouveau-guide-supreme-prepare-l-appareil-militaire-et-securitaire-a-une-confrontation-prolongee-avec-les-etats-unis-et-israel_6743785_3210.html",
    "source": "Le Monde",
-   "rubrique": "France",
+   "rubrique": "International",
    "date": "2026-08-11T11:51:18+02:00"
   },
   {
-   "titre": "Corse : un incendie criminel détruit la paillote Le Week-end, à Ajaccio",
-   "resume": "Mardi vers 3 heures du matin, des policiers en patrouille ont découvert en feu ce restaurant de plage rattaché à un hôtel 4 étoiles qui fait figure d’institution à Ajaccio.",
-   "lien": "https://www.lemonde.fr/societe/article/2026/08/11/corse-un-incendie-criminel-detruit-la-paillote-du-week-end-a-ajaccio_6743784_3224.html",
-   "source": "Le Monde",
+   "titre": "Des méduses contraignent à nouveau EDF à arrêter trois réacteurs de la centrale nucléaire de Gravelines",
+   "resume": "Un an exactement après un incident similaire, l’électricien a dû stopper une partie des réacteurs de la plus grande installation nucléaire d’Europe de l’Ouest après une nouvelle intrusion massive de créatures marines.",
+   "lien": "https://www.liberation.fr/environnement/nucleaire/des-meduses-contraignent-edf-a-arreter-trois-reacteurs-de-la-centrale-nucleaire-de-gravelines-20260811_ZPQSSGJGM5GL7IGZVW4CZV5KZA/",
+   "source": "Libération",
    "rubrique": "France",
-   "date": "2026-08-11T11:46:33+02:00"
+   "date": "2026-08-11T11:48:06+00:00"
   },
   {
-   "titre": "Bachar al-Assad condamné à la peine de mort par contumace par un tribunal syrien",
-   "resume": "Le président déchu a été condamné mardi pour \"crimes de guerre\" et \"crimes contre l'humanité\".",
+   "titre": "L'ex-dictateur Bachar al-Assad condamné à la peine de mort par contumace par un tribunal syrien",
+   "resume": "Les autorités de transition ont aussi condamné à mort, en sa présence, Atef Najib, ancien chef de la sécurité politique à Deraa dans le sud du pays. Il s'agit des premiers jugements à l'encontre de membres de l'ancien régime.",
    "lien": "https://www.franceinfo.fr/monde/revolte-en-syrie/bachar-al-assad-condamne-a-la-peine-de-mort-par-contumace-par-un-tribunal-syrien_8143022.html#xtor=RSS-3-[lestitres]",
    "source": "franceinfo",
    "rubrique": "France",
    "date": "2026-08-11T11:42:01+02:00"
-  },
-  {
-   "titre": "\"Il y a des points de deal directement en centre-ville\" : la consommation de crack explose dans les rues de Marseille",
-   "resume": "Depuis l'abandon d'un projet de Halte soins addictions, il y a deux ans, les petites associations de la cité phocéenne tentent malgré tout de limiter les risques de maladies auprès des consommateurs de drogue.",
-   "lien": "https://www.franceinfo.fr/sante/drogue-addictions/beaucoup-ont-le-sida-a-marseille-la-consommation-de-crack-explose-dans-les-rues-du-centre-ville_8142299.html#xtor=RSS-3-[lestitres]",
-   "source": "franceinfo",
-   "rubrique": "France",
-   "date": "2026-08-11T11:35:58+02:00"
   },
   {
    "titre": "Au-delà des catastrophes, le changement climatique fragilise nos sociétés",
@@ -177,14 +1033,6 @@
    "source": "Le Monde",
    "rubrique": "Économie",
    "date": "2026-08-11T11:30:08+02:00"
-  },
-  {
-   "titre": "Les gendarmes démantèlent un vaste réseau de livraisons de stupéfiants par drones à la prison de Villefranche-sur-Saône",
-   "resume": "Cinq personnes, dont un mineur, ont été interpellées. Les gendarmes ont identifié deux zones de décollage, proches de la prison.",
-   "lien": "https://www.franceinfo.fr/societe/prisons/les-gendarmes-demantelent-un-vaste-reseau-de-livraisons-de-stupefiants-par-drones-a-la-prison-de-villefranche-sur-saone_8143001.html#xtor=RSS-3-[lestitres]",
-   "source": "franceinfo",
-   "rubrique": "France",
-   "date": "2026-08-11T11:29:26+02:00"
   },
   {
    "titre": "Le cliché s’effondre : le crâne du dodo révèle des capacités qu’on ne lui soupçonnait pas",
@@ -227,14 +1075,6 @@
    "date": "2026-08-11T10:59:00+00:00"
   },
   {
-   "titre": "Deux policiers municipaux ont été blessés à l'arme blanche à Toulouse",
-   "resume": "L'agression a eu lieu lundi vers 18 heures, selon France 3 Occitanie. Les deux agents ont légèrement été blessés aux bras. Un homme a été interpellé.",
-   "lien": "https://www.franceinfo.fr/faits-divers/deux-policiers-municipaux-ont-ete-blesses-a-l-arme-blanche-a-toulouse_8142941.html#xtor=RSS-3-[lestitres]",
-   "source": "franceinfo",
-   "rubrique": "France",
-   "date": "2026-08-11T10:55:31+02:00"
-  },
-  {
    "titre": "Grousset en 50 m papillon, Gastaldello et Wattel en 100 m crawl : les Bleus à suivre en finale de l’Euro de natation ce mardi 11 août",
    "resume": "Quatre finales impliquant des Français sont au programme de la deuxième soirée des championnats d’Europe à Saint-Denis. Le champion du monde en titre Maxime Grousset est notamment très attendu sur sa course.",
    "lien": "https://www.liberation.fr/sports/grousset-en-50-m-papillon-gastaldello-et-wattel-en-100-m-crawl-les-bleus-a-suivre-en-finale-de-leuro-de-natation-ce-mardi-11-aout-20260811_47LEF3DMQJHCRKRJ24GMU62PME/",
@@ -251,28 +1091,12 @@
    "date": "2026-08-11T10:52:11+00:00"
   },
   {
-   "titre": "EN DIRECT - Incendies et fortes chaleurs : la canicule s’étend ce mardi jusqu’à la Manche et la pointe bretonne",
-   "resume": "Dans les 43 départements concernés par la vigilance orange, les températures monteront «entre 35 et 39 degrés au sud». Météo France table sur un «pic probable» de ce nouvel épisode caniculaire «vers le milieu de semaine».",
-   "lien": "https://www.liberation.fr/environnement/climat/en-direct-incendies-et-fortes-chaleurs-la-canicule-setend-ce-mardi-jusqua-la-manche-et-la-pointe-bretonne-20260811_H7X62JWD2JHV3IPDO3OY4ET3UM/",
-   "source": "Libération",
-   "rubrique": "France",
-   "date": "2026-08-11T10:50:28+00:00"
-  },
-  {
    "titre": "Bachar Al-Assad condamné, en son absence, à la peine de mort en Syrie pour « crimes de guerre » et « crimes contre l’humanité »",
    "resume": "L’ex-dictateur a fui avec sa famille à Moscou, en Russie, lors de la prise de Damas en décembre 2024 par une coalition menée par des islamistes.",
    "lien": "https://www.lemonde.fr/international/article/2026/08/11/bachar-al-assad-condamne-a-la-peine-de-mort-par-contumace-en-syrie-pour-crimes-de-guerre-et-crimes-contre-l-humanite_6743778_3210.html",
    "source": "Le Monde",
-   "rubrique": "France",
+   "rubrique": "International",
    "date": "2026-08-11T10:50:13+02:00"
-  },
-  {
-   "titre": "Les Ukrainiens portent un nouveau coup à l'économie russe en frappant un nouvel entrepôt Wildberries, géant du commerce en ligne",
-   "resume": "Le géant russe du commerce en ligne à nouveau dans le viseur des drones ukrainiens : un important incendie s'est déclaré dans leur entrepôt, à 1 400 km à l'est de Moscou. Ces attaques se multiplient depuis plusieurs semaines.",
-   "lien": "https://www.franceinfo.fr/monde/europe/manifestations-en-ukraine/les-ukrainiens-portent-un-nouveau-coup-a-l-economie-russe-en-frappant-un-nouvel-entrepot-wildberries-geant-du-commerce-en-ligne_8139110.html#xtor=RSS-3-[lestitres]",
-   "source": "franceinfo",
-   "rubrique": "France",
-   "date": "2026-08-11T10:49:07+02:00"
   },
   {
    "titre": "A Chalon-sur-Saône, l’intervention des CRS fait grimper la tension autour d’un collectif artistique menacé d’expulsion",
@@ -291,14 +1115,6 @@
    "date": "2026-08-11T10:46:55+00:00"
   },
   {
-   "titre": "Ousted Syrian dictator Bashar al-Assad sentenced to death in absentia",
-   "resume": "The ex-president is convicted of committing war crimes and crimes against humanity during the country's civil war.",
-   "lien": "https://www.bbc.co.uk/news/articles/ce34dkpnyg7o?at_medium=RSS&at_campaign=rss",
-   "source": "BBC News",
-   "rubrique": "International",
-   "date": "2026-08-11T10:43:07+00:00"
-  },
-  {
    "titre": "En RDC, l’épidémie d’Ebola franchit le cap des 2 000 morts",
    "resume": "Le bilan de cette 17e vague se rapproche dangereusement de celle de 2018-2020, qui avec près de 2 300 victimes était jusqu’à présent la plus meurtrière jamais enregistrée.",
    "lien": "https://www.liberation.fr/international/afrique/en-rdc-lepidemie-debola-franchit-le-cap-des-2-000-morts-20260811_GTSMHW2OMNA45E72GQCGYSME2E/",
@@ -307,56 +1123,16 @@
    "date": "2026-08-11T10:36:33+00:00"
   },
   {
-   "titre": "Mort de Tupac Shakur : un ancien chef de gang accusé d'avoir orchestré le meurtre",
-   "resume": "Trente ans après la mort de Tupac Shakur, le procès de Duane \"Keffe D\" Davis s’ouvre à Las Vegas. Cet ancien chef du gang South Side Compton Crips est accusé d’avoir orchestré la fusillade qui a coûté la vie au rappeur américain en septembre 1996. Récit de Jules Boiteau.",
-   "lien": "https://www.france24.com/fr/vid%C3%A9o/20260811-mort-de-tupac-shakur-un-ancien-chef-de-gang-accus%C3%A9-d-avoir-orchestr%C3%A9-le-meurtre",
-   "source": "France 24",
-   "rubrique": "International",
-   "date": "2026-08-11T10:30:25+00:00"
-  },
-  {
    "titre": "En Turquie, la loi sur le désarmement du PKK ne règle pas la question kurde",
    "resume": "Le Parlement turc a adopté, lundi, une loi-cadre ouvrant la voie à la libération de plusieurs milliers de combattants et cadres du Parti des travailleurs du Kurdistan. Mais son approche sécuritaire ignore les revendications politiques du mouvement kurde et laisse en suspens le sort de leur leader, Abdullah Öcalan, en détention depuis 1999.",
    "lien": "https://www.lemonde.fr/international/article/2026/08/11/en-turquie-la-loi-sur-le-desarmement-du-pkk-ne-regle-pas-la-question-kurde_6743776_3210.html",
    "source": "Le Monde",
-   "rubrique": "France",
+   "rubrique": "International",
    "date": "2026-08-11T10:30:07+02:00"
   },
   {
-   "titre": "Colombie : les secours à la recherche de survivants du séisme",
-   "resume": "Secouristes et volontaires en Colombie dégagent les décombres mardi, parfois à mains nues, pour tenter de retrouver des survivants du séisme le plus puissant de la dernière décennie, qui a fait au moins 132 morts et détruit des dizaines de bâtiments.",
-   "lien": "https://www.france24.com/fr/vid%C3%A9o/20260811-colombie-les-secours-%C3%A0-la-recherche-de-survivants-du-s%C3%A9isme",
-   "source": "France 24",
-   "rubrique": "International",
-   "date": "2026-08-11T10:29:26+00:00"
-  },
-  {
-   "titre": "Trump exfiltré du sommet de l’Otan ? Le récit rocambolesque d’un vol secret",
-   "resume": "Selon le Washington Post, Donald Trump aurait secrètement quitté la Turquie à bord d’un avion militaire différent de celui présenté publiquement comme son appareil de retour, après le sommet de l’Otan organisé à Ankara début juillet. Explications de Jenna Le Bras en direct depuis Istanbul pour France 24.",
-   "lien": "https://www.france24.com/fr/vid%C3%A9o/20260811-trump-exfiltr%C3%A9-du-sommet-de-l-otan-le-r%C3%A9cit-rocambolesque-d-un-vol-secret",
-   "source": "France 24",
-   "rubrique": "International",
-   "date": "2026-08-11T10:26:57+00:00"
-  },
-  {
-   "titre": "États-Unis : Trump signe un décret recommandant d’espacer les vaccins infantiles",
-   "resume": "Donald Trump a signé lundi 10 août un décret visant à modifier les recommandations américaines en matière de vaccination des enfants. Le texte préconise d’administrer les vaccins lors de consultations séparées et de scinder le vaccin combiné contre la rougeole, les oreillons et la rubéole (ROR) en trois injections distinctes. Décryptage de Mélina Huet, chroniqueuse internationale France 24.",
-   "lien": "https://www.france24.com/fr/vid%C3%A9o/20260811-%C3%A9tats-unis-trump-signe-un-d%C3%A9cret-recommandant-d-espacer-les-vaccins-infantiles",
-   "source": "France 24",
-   "rubrique": "International",
-   "date": "2026-08-11T10:24:36+00:00"
-  },
-  {
-   "titre": "En Indonésie, des écoles fermées et des milliers de pompiers mobilisés face à des feux de forêt",
-   "resume": "Selon l’agence nationale de gestion des catastrophes, plus de 48 000 agents ont été déployés pour combattre les incendies dans six provinces. Au total, plus de 107 000 hectares de terres ont brûlé dans l’ensemble du pays depuis le début de l’année.",
-   "lien": "https://www.lemonde.fr/international/article/2026/08/11/en-indonesie-des-ecoles-fermees-et-des-milliers-de-pompiers-mobilises-face-a-des-feux-de-foret_6743774_3210.html",
-   "source": "Le Monde",
-   "rubrique": "International",
-   "date": "2026-08-11T10:16:25+02:00"
-  },
-  {
    "titre": "Watch: Family escapes home during Colombia earthquake",
-   "resume": "At least 132 people are dead and a state of emergency has been declared after Colombia was hit by one of its largest earthquakes in years.",
+   "resume": "At least 169 people are dead and a state of emergency has been declared after Colombia was hit by one of its largest earthquakes in years.",
    "lien": "https://www.bbc.co.uk/news/videos/cwyl3w1e6zxo?at_medium=RSS&at_campaign=rss",
    "source": "BBC News",
    "rubrique": "International",
@@ -367,16 +1143,8 @@
    "resume": "A la tête d’un empire commercial s’étendant du charbon aux aéroports, en passant par le ciment et les médias, il était soupçonné d’avoir participé au versement de plus de 250 millions de dollars de pots-de-vin à des fonctionnaires indiens.",
    "lien": "https://www.lemonde.fr/international/article/2026/08/11/un-juge-americain-classe-sans-suite-une-plainte-visant-le-milliardaire-indien-adani-proche-de-narendra-modi_6743773_3210.html",
    "source": "Le Monde",
-   "rubrique": "International",
+   "rubrique": "Économie",
    "date": "2026-08-11T10:08:06+02:00"
-  },
-  {
-   "titre": "Donald Trump défend Gianni Infantino face aux opposants qui réclament son départ de la Fifa",
-   "resume": "Candidat à sa propre succession, le dirigeant italo-suisse est embourbé dans une crise depuis la divulgation de son projet, finalement abandonné, d'ouverture de la fédération à des investisseurs privés.",
-   "lien": "https://www.franceinfo.fr/sports/foot/donald-trump-defend-le-president-de-la-fifa-face-aux-voix-reclamant-son-depart-de-la-federation-internationale-de-football_8142878.html#xtor=RSS-3-[lestitres]",
-   "source": "franceinfo",
-   "rubrique": "France",
-   "date": "2026-08-11T10:00:41+02:00"
   },
   {
    "titre": "Trump signs order to limit childhood vaccines and split MMR shots",
@@ -395,54 +1163,6 @@
    "date": "2026-08-11T10:00:00+02:00"
   },
   {
-   "titre": "Grippe aviaire : l’Australie déploie la vaccination ciblée de ses oiseaux captifs et sauvages",
-   "resume": "L’Australie a détecté son premier cas touché par la souche H5 de la grippe aviaire en juin, et décomptait, lundi, 231 cas confirmés ou présumés positifs.",
-   "lien": "https://www.lemonde.fr/planete/article/2026/08/11/grippe-aviaire-l-australie-deploie-la-vaccination-ciblee-de-ses-oiseaux-captifs-et-sauvages_6743770_3244.html",
-   "source": "Le Monde",
-   "rubrique": "International",
-   "date": "2026-08-11T09:59:20+02:00"
-  },
-  {
-   "titre": "Trump hid in catering truck in secret plane swap over Iran threat, reports say",
-   "resume": "The US president was part of a ruse where reporters were falsely told he was with them on Air Force One leaving a Nato summit in Turkey.",
-   "lien": "https://www.bbc.co.uk/news/articles/cm2g90vvy62o?at_medium=RSS&at_campaign=rss",
-   "source": "BBC News",
-   "rubrique": "International",
-   "date": "2026-08-11T09:58:45+00:00"
-  },
-  {
-   "titre": "Éclipse solaire en France : les lunettes de protection en rupture de stock",
-   "resume": "À la veille de l’éclipse solaire du 12 août, les lunettes de protection se font rares chez certains opticiens et revendeurs. Reportage de J.Esposito et G.le Morvan (France 2).",
-   "lien": "https://www.france24.com/fr/vid%C3%A9o/20260811-%C3%A9clipse-solaire-en-france-les-lunettes-de-protection-en-rupture-de-stock",
-   "source": "France 24",
-   "rubrique": "International",
-   "date": "2026-08-11T09:55:56+00:00"
-  },
-  {
-   "titre": "Présidentielle en Zambie : vers un duel entre le président Hichilema et un ex-ministre ?",
-   "resume": "En Zambie, dernière ligne droite avant l'élection présidentielle. Jeudi 13 août, les électeurs sont appelés aux urnes pour un scrutin qui s'annonce particulièrement disputé entre le président sortant, Hakainde Hichilema et le chef de l'opposition, Brian Mundubile. Récit de Laurent Berstescher.",
-   "lien": "https://www.france24.com/fr/vid%C3%A9o/20260811-pr%C3%A9sidentielle-en-zambie-vers-un-duel-entre-le-pr%C3%A9sident-hichilema-et-un-ex-ministre",
-   "source": "France 24",
-   "rubrique": "International",
-   "date": "2026-08-11T09:51:08+00:00"
-  },
-  {
-   "titre": "Sécheresse en France : des restrictions d'eau sur 70% du territoire",
-   "resume": "En France, la canicule accentue la sécheresse dans l’hexagone : deux tiers des nappes phréatiques sont en dessous des normales. Conséquence : 70% du territoire fait l’objet de mesures de restrictions d’eau. Le point avec Mathieu Rio et Alexandra Quarini.",
-   "lien": "https://www.france24.com/fr/vid%C3%A9o/20260811-s%C3%A9cheresse-en-france-des-restrictions-d-eau-sur-70-du-territoire",
-   "source": "France 24",
-   "rubrique": "International",
-   "date": "2026-08-11T09:49:03+00:00"
-  },
-  {
-   "titre": "Tourisme, croisières, lunettes : le lumineux business de l'éclipse",
-   "resume": "L’éclipse solaire du 12 août provoque un véritable boom touristique en Espagne et en Islande. Réservations en hausse, chambres hors de prix, croisières spéciales et millions de lunettes vendues : quelques minutes d’obscurité font déjà tourner un marché très lucratif. Explications.",
-   "lien": "https://www.france24.com/fr/%C3%A9missions/info-%C3%A9co/20260811-tourisme-croisi%C3%A8res-lunettes-le-lumineux-business-de-l-%C3%A9clipse",
-   "source": "France 24",
-   "rubrique": "International",
-   "date": "2026-08-11T09:46:35+00:00"
-  },
-  {
    "titre": "Dans le Midwest, l’aile gauche du Parti démocrate veut pousser son avantage",
    "resume": "Après la victoire d’Abdul El-Sayed dans le Michigan, les primaires dans le Wisconsin et le Minnesota, mardi 11 août, pourraient consacrer deux nouvelles figures progressistes. Et relancer, chez les démocrates, la bataille entre la gauche du parti et l’establishment centriste.",
    "lien": "https://www.liberation.fr/international/amerique/dans-le-midwest-laile-gauche-du-parti-democrate-veut-pousser-son-avantage-20260811_DLGLSUGANNEJJHM3D7FCGGAA4Q/",
@@ -451,28 +1171,12 @@
    "date": "2026-08-11T09:46:28+00:00"
   },
   {
-   "titre": "Esport : l’Esports World Cup délocalisée à Paris, l'Arabie Saoudite aux manettes",
-   "resume": "Pour la première fois, l’Esports World Cup se tient à Paris, du 6 juillet au 23 août 2026, après deux éditions organisées à Riyad. Sa dotation globale atteint 75 millions de dollars. Pour comprendre ce nouvel outil de softpower, France 24 reçoit Olivier Mauco, président de Game in Society et docteur en Science Politique.",
-   "lien": "https://www.france24.com/fr/vid%C3%A9o/20260811-esport-l-esports-world-cup-d%C3%A9localis%C3%A9e-%C3%A0-paris-l-arabie-saoudite-aux-manettes",
-   "source": "France 24",
-   "rubrique": "International",
-   "date": "2026-08-11T09:45:48+00:00"
-  },
-  {
    "titre": "A la frontière avec le Bangladesh, l’Inde harcèle les musulmans sous couvert de traque aux «infiltrés»",
-   "resume": "Dans la province du Bengale-Occidental, les autorités régionales, issues du parti de Narendra Modi, font la chasse aux migrants du Bangladesh voisin. Une campagne qui cible surtout les musulmans indiens, risquant l’expulsion s’ils ne parviennent à prouver leur nationalité.",
+   "resume": "Depuis sa victoire dans l’Etat du Bengale-Occidental, le BJP ultranationaliste de Narendra Modi multiplie les détentions et tente d’expulser les personnes de confession musulmane de la région. Des habitants souvent installés depuis des années et qui peinent à prouver leur nationalité indienne.",
    "lien": "https://www.liberation.fr/international/asie-pacifique/a-la-frontiere-avec-le-bangladesh-linde-harcele-les-musulmans-sous-couvert-de-traque-aux-infiltres-20260811_ODT3GKDP55HYVA6BFMMO5ZFHMM/",
    "source": "Libération",
    "rubrique": "France",
    "date": "2026-08-11T09:45:00+00:00"
-  },
-  {
-   "titre": "En France, les associations de protection animale sous pression",
-   "resume": "Pendant la période estivale, l’abandon des animaux de compagnie se multiplie et notamment des chats et des chatons, mettant les associations de protection animale sous pression. Ils sont des milliers d’animaux à attendre derrière les grilles des refuges, parfois pendant des mois, avant de trouver une famille. Reportage de Nour Abdallah.",
-   "lien": "https://www.france24.com/fr/vid%C3%A9o/20260811-en-france-les-associations-de-protection-animale-sous-pression",
-   "source": "France 24",
-   "rubrique": "International",
-   "date": "2026-08-11T09:44:59+00:00"
   },
   {
    "titre": "Fans d’éclipse : «Ça fait cinq ans que le 12 août 2026 est bloqué dans mon agenda»",
@@ -483,22 +1187,6 @@
    "date": "2026-08-11T09:42:00+00:00"
   },
   {
-   "titre": "EN DIRECT, guerre en Ukraine : Kiev revendique une attaque sur la raffinerie russe d’Orsk, à 1 400 kilomètres de sa frontière",
-   "resume": "« Un incendie a été signalé » dans la raffinerie de pétrole Orsknefteorgsintez, rapporte l’état-major de l’armée ukrainienne. Le gouverneur de la région avait fait état d’une attaque de drones ukrainiens qui a provoqué un incendie dans un « établissement industriel » sans faire de victime.",
-   "lien": "https://www.lemonde.fr/international/live/2026/08/11/en-direct-guerre-en-ukraine-volodymyr-zelensky-affirme-que-la-russie-a-utilise-des-missiles-balistiques-nord-coreens-contre-zaporijia_6741928_3210.html",
-   "source": "Le Monde",
-   "rubrique": "France",
-   "date": "2026-08-11T09:39:59+02:00"
-  },
-  {
-   "titre": "Russia using North Korean missiles to strike Ukraine, Zelensky says",
-   "resume": "Ukraine's president says strikes in Zaporizhzhia - which killed at least six and injured 19 - involved ballistic missiles from Russia's ally.",
-   "lien": "https://www.bbc.co.uk/news/articles/c151dpzwnvxo?at_medium=RSS&at_campaign=rss",
-   "source": "BBC News",
-   "rubrique": "International",
-   "date": "2026-08-11T09:39:58+00:00"
-  },
-  {
    "titre": "Volodymyr Zelensky affirme que la Russie a utilisé des \"missiles balistiques nord-coréens\" contre l'Ukraine",
    "resume": "Les Russes \"se préparent désormais à déployer un contingent supplémentaire de Nord-Coréens sur leur territoire. Ils ont reçu (...) des missiles balistiques supplémentaires de la Corée du Nord\", a écrit le président ukrainien, lundi sur X.",
    "lien": "https://www.franceinfo.fr/monde/europe/manifestations-en-ukraine/volodymyr-zelensky-affirme-que-la-russie-a-utilise-des-missiles-balistiques-nord-coreens-contre-l-ukraine_8142818.html#xtor=RSS-3-[lestitres]",
@@ -507,44 +1195,12 @@
    "date": "2026-08-11T09:39:27+02:00"
   },
   {
-   "titre": "États-Unis : trente ans après le meurtre de Tupac Shakur, un ex-chef de gang en procès",
-   "resume": "Le procès de l'ancien chef de gang accusé d'avoir orchestré le meurtre de Tupac Shakur a débuté lundi à Las Vegas et devrait durer près d'un mois, trente ans après la mort jamais élucidée du célèbre rappeur californien. Correspondance de Wassim Cornet depuis Los Angeles pour France 24.",
-   "lien": "https://www.france24.com/fr/vid%C3%A9o/20260811-%C3%A9tats-unis-trente-ans-apr%C3%A8s-le-meurtre-de-tupac-shakur-un-ex-chef-de-gang-en-proc%C3%A8s",
-   "source": "France 24",
-   "rubrique": "International",
-   "date": "2026-08-11T09:35:57+00:00"
-  },
-  {
-   "titre": "Donald Trump a secrètement changé d'avion après un sommet de l'Otan en raison de menaces iraniennes, affirme la presse américaine",
-   "resume": "Selon \"The Washington Post\" et \"The New York Times\", de telles précautions auraient été prises en raison de menaces de l'Iran contre le président américain.",
-   "lien": "https://www.franceinfo.fr/monde/usa/presidentielle/donald-trump/donald-trump-n-a-pas-quitte-le-sommet-de-l-oran-a-bord-d-air-force-one-et-a-secretement-change-d-avion-selon-la-presse-americaine_8142824.html#xtor=RSS-3-[lestitres]",
-   "source": "franceinfo",
-   "rubrique": "France",
-   "date": "2026-08-11T09:33:15+02:00"
-  },
-  {
    "titre": "Ce n'est plus seulement dans la tête : le stress transforme votre sang en quelques minutes",
    "resume": "« Son sang n’a fait qu’un tour », « Ça lui a retourné les sangs », « Se faire du mauvais sang », « Se faire un sang d’encre », le langage populaire regorge d’expressions associant de fortes émotions au sang. La science commence aujourd’hui à en révéler les fondements biologiques : le stress...",
    "lien": "https://www.futura-sciences.com/sante/actualites/stress-ce-nest-plus-seulement-tete-stress-transforme-votre-sang-quelques-minutes-136776/#xtor%3DRSS-8",
    "source": "Futura Sciences",
    "rubrique": "Sciences",
    "date": "2026-08-11T09:30:00+02:00"
-  },
-  {
-   "titre": "Football : Gianni Infantino toujours plus fragilisé à la tête de la Fifa",
-   "resume": "Dans une lettre publiée aujourd'hui, les confédérations européennes, asiatiques et et d'amérique du nord et centrale critiquent à nouveau Gianni Infantino depuis son projet avorté d'ouverture de la Coupe du monde à des investisseurs privés. La rupture semble définitive entre ces confédérations et le président de la Fifa. Les explications de Julien Dubois.",
-   "lien": "https://www.france24.com/fr/vid%C3%A9o/20260811-football-gianni-infantino-toujours-plus-fragilis%C3%A9-%C3%A0-la-t%C3%AAte-de-la-fifa",
-   "source": "France 24",
-   "rubrique": "International",
-   "date": "2026-08-11T09:29:04+00:00"
-  },
-  {
-   "titre": "Séisme en Colombie : les secours cherchent des survivants sous les décombres",
-   "resume": "C'est le séisme le plus puissant du 21ème siècle enregistré dans le pays : en Colombie, un tremblement de terre de magnitude 7.4 aurait causé la mort d'au moins 164 personnes, selon un bilan provisoire. Une course contre la montre pour retrouver les survivants est lancée. Récit de Gaëlle Fonseca.",
-   "lien": "https://www.france24.com/fr/vid%C3%A9o/20260811-s%C3%A9isme-en-colombie-les-secours-cherchent-des-survivants-sous-les-d%C3%A9combres",
-   "source": "France 24",
-   "rubrique": "International",
-   "date": "2026-08-11T09:24:47+00:00"
   },
   {
    "titre": "Neuf morts dans des attaques russes, missiles balistiques nord-coréens, censure du parti antiguerre russe… L’actu de la guerre en Ukraine ce mardi 11 août",
@@ -563,92 +1219,12 @@
    "date": "2026-08-11T09:22:00+00:00"
   },
   {
-   "titre": "VIDEO Colombie : les images du séisme qui a fait au moins 132 morts",
-   "resume": "Le tremblement de terre d’une magnitude de 7,4 a frappé Cali et d’autres villes de l’ouest du pays, lundi 10 août 2026. Le président, Abelardo de la Espriella, a décrété l’état de catastrophe nationale.",
-   "lien": "https://www.lemonde.fr/planete/video/2026/08/11/colombie-les-images-du-seisme-qui-a-fait-au-moins-132-morts_6743769_3244.html",
-   "source": "Le Monde",
-   "rubrique": "International",
-   "date": "2026-08-11T09:20:15+02:00"
-  },
-  {
-   "titre": "Le moment où le séisme touche la Colombie filmé par un témoin",
-   "resume": "Un témoin a filmé à Pereira le moment où le séisme de ce lundi a frappé la Colombie. Le tremblement de terre a tué au moins 164 personnes, selon un dernier bilan provisoire.",
-   "lien": "https://www.france24.com/fr/vid%C3%A9o/20260811-moment-o%C3%B9-s%C3%A9isme-touche-colombie-film%C3%A9-par-t%C3%A9moin-pereira-tremblement-terre",
-   "source": "France 24",
-   "rubrique": "International",
-   "date": "2026-08-11T09:09:12+00:00"
-  },
-  {
-   "titre": "Aux Etats-Unis, Donald Trump poursuit son offensive antivax avec un nouveau décret qui recommande de réduire le nombre de vaccins pour les enfants",
-   "resume": "Le président américain et son ministre de la Santé, Robert F. Kennedy Jr., continuent à faire un lien entre autisme et vaccination alors que la recherche médicale n'a jamais rien prouvé.",
-   "lien": "https://www.franceinfo.fr/monde/usa/aux-etats-unis-donald-trump-poursuit-son-offensive-antivax-avec-un-nouveau-decret-qui-recommande-de-reduire-le-nombre-de-vaccins-pour-les-enfants_8142773.html#xtor=RSS-3-[lestitres]",
-   "source": "franceinfo",
-   "rubrique": "France",
-   "date": "2026-08-11T09:06:56+02:00"
-  },
-  {
-   "titre": "Syrie : le président déchu Bachar al-Assad condamné à la peine de mort par contumace",
-   "resume": "L’ex-dirigeant, qui a fui avec sa famille à Moscou lors de la prise de Damas en décembre 2024, a été reconnu ce mardi 11 août coupable de «crimes de guerre» et de «crimes contre l’humanité».",
-   "lien": "https://www.liberation.fr/international/moyen-orient/syrie-le-president-dechu-bachar-al-assad-condamne-a-la-peine-de-mort-par-contumace-20260811_7RGPHXAGZFFSZB6AHZKQNGGVXI/",
-   "source": "Libération",
-   "rubrique": "France",
-   "date": "2026-08-11T09:06:38+00:00"
-  },
-  {
-   "titre": "La tambouille de saison : « C’est après l’été qu’on se retrouve à commander des spritz en novembre »",
-   "resume": "« Les négos de l’été » (5/8). Qui dit grandes vacances dit gros et petits conflits à arbitrer. Certains plats et boissons qu’on réservait aux congés estivaux jouent désormais les prolongations le reste de l’année.",
-   "lien": "https://www.lemonde.fr/series-d-ete/article/2026/08/11/la-tambouille-de-saison-c-est-apres-l-ete-qu-on-se-retrouve-a-commander-des-spritz-en-novembre_6743768_3451060.html",
-   "source": "Le Monde",
-   "rubrique": "France",
-   "date": "2026-08-11T09:00:03+02:00"
-  },
-  {
-   "titre": "🔴 Syrie: l'ex-président al-Assad condamné à la peine de mort par contumace pour \"crimes contre l'humanité\"",
-   "resume": "",
-   "lien": "https://www.france24.com/fr/asie-pacifique/20260811-syrie-le-pr%C3%A9sident-d%C3%A9chu-bachar-al-assad-condamn%C3%A9-%C3%A0-la-peine-de-mort-par-contumace",
-   "source": "France 24",
-   "rubrique": "International",
-   "date": "2026-08-11T08:49:31+00:00"
-  },
-  {
-   "titre": "Syrie : l'ex-président Bachar al-Assad condamné à la peine de mort par contumace",
-   "resume": "L'ex-président Bachar al-Assad a été condamné mardi par un tribunal syrien à la peine de mort par contumace, pour \"crimes de guerre\" et \"crimes contre l'humanité\" lors des treize années de la guerre civile déclenchée en 2011.",
-   "lien": "https://www.france24.com/fr/asie-pacifique/20260811-syrie-le-pr%C3%A9sident-d%C3%A9chu-bachar-al-assad-condamn%C3%A9-%C3%A0-la-peine-de-mort-par-contumace",
-   "source": "France 24",
-   "rubrique": "International",
-   "date": "2026-08-11T08:47:48+00:00"
-  },
-  {
-   "titre": "Wall Street giants hand Nvidia $500bn to fund boom in AI projects",
-   "resume": "The money will be used to develop new data centres to house, operate, and cool miles of stacked computer chips that process AI data and actions.",
-   "lien": "https://www.bbc.co.uk/news/articles/c78gr0jv0mdo?at_medium=RSS&at_campaign=rss",
-   "source": "BBC News",
-   "rubrique": "International",
-   "date": "2026-08-11T08:44:52+00:00"
-  },
-  {
-   "titre": "Le bilan du séisme s'alourdit en Colombie, avec au moins 132 morts et 570 blessés",
-   "resume": "Le président Abelardo de la Espriella, en fonction depuis seulement trois jours, a déclaré l'état d'urgence et s'est engagé à mener une opération de sauvetage coordonnée.",
-   "lien": "https://www.franceinfo.fr/environnement/catastrophes-naturelles/seismes/le-bilan-du-seisme-s-alourdit-en-colombie-132-morts-recenses_8142809.html#xtor=RSS-3-[lestitres]",
-   "source": "franceinfo",
-   "rubrique": "France",
-   "date": "2026-08-11T08:40:20+02:00"
-  },
-  {
    "titre": "Etats-Unis : Donald Trump continue son offensive complotiste contre les vaccins",
    "resume": "Le président des Etats-Unis a signé lundi 10 août un décret appelant à espacer la couverture vaccinale des enfants, tout en faisant allusion à un lien entre la vaccination et l’autisme. Le tout en pleine épidémie de rougeole dans le pays.",
    "lien": "https://www.liberation.fr/international/amerique/etats-unis-donald-trump-continue-son-offensive-complotiste-contre-les-vaccins-20260811_O3L3GHR4DRAHNOR6NGOARC73HI/",
    "source": "Libération",
    "rubrique": "France",
    "date": "2026-08-11T08:31:46+00:00"
-  },
-  {
-   "titre": "En Espagne, l'éclipse solaire représente un véritable défi logistique",
-   "resume": "Le phénomène sera visible à 100% dans une large partie du pays, ce qui pourrait engendrer un afflux de touristes, notamment dans les zones rurales. Les autorités tentent d'anticiper au mieux.",
-   "lien": "https://www.franceinfo.fr/sciences/astronomie/eclipse-solaire/en-espagne-l-eclipse-solaire-represente-un-veritable-defi-logistique_8142737.html#xtor=RSS-3-[lestitres]",
-   "source": "franceinfo",
-   "rubrique": "France",
-   "date": "2026-08-11T08:30:18+02:00"
   },
   {
    "titre": "Le Web mondial dépend de câbles sous-marins : ces drones pourraient priver des pays d’Internet",
@@ -675,52 +1251,12 @@
    "date": "2026-08-11T08:28:24+00:00"
   },
   {
-   "titre": "Donald Trump entend réclamer des \"compensations\" à l'Iran dans le cadre des négociations sur le détroit d'Ormuz",
-   "resume": "Le président américain a assuré lundi sur son réseau Truth Social que cette demande serait faite \"fermement\" dans toute négociation, en réponse aux exigences iraniennes.",
-   "lien": "https://www.franceinfo.fr/monde/iran/guerre-entre-les-etats-unis-israel-et-l-iran/donald-trump-veut-reclamer-des-compensations-a-l-iran-dans-le-cadre-des-negociations-sur-le-detroit-d-ormuz_8142800.html#xtor=RSS-3-[lestitres]",
-   "source": "franceinfo",
-   "rubrique": "France",
-   "date": "2026-08-11T08:25:00+02:00"
-  },
-  {
-   "titre": "Pas-de-Calais : un père et sa fille de neuf ans retrouvés pendus au domicile familial",
-   "resume": "Les pompiers ont découvert les deux corps lundi 10 août aux alentours de 19 heures à Biache-Saint-Vaast, selon «la Voix du Nord». L’hypothèse privilégiée serait un infanticide suivi d’un suicide.",
-   "lien": "https://www.liberation.fr/societe/police-justice/pas-de-calais-un-pere-et-sa-fille-de-neuf-ans-retrouves-pendus-au-domicile-familial-20260811_NITU5LC72VGANENG5J6YEWUYYI/",
-   "source": "Libération",
-   "rubrique": "France",
-   "date": "2026-08-11T08:19:42+00:00"
-  },
-  {
    "titre": "Constipation chronique : quand le Coca-Cola aide à dissoudre un fécalome géant",
-   "resume": "Largement disponible et peu coûteuse, la célèbre boisson gazeuse peut parfois éviter une procédure invasive pour désagréger une masse de matières fécales déshydratées, dures et compactes bloquée dans le rectum ou la dernière partie du côlon",
+   "resume": "Largement disponible et peu coûteuse, la célèbre boisson gazeuse peut parfois éviter une procédure invasive pour désagréger une masse de matières fécales déshydratées, dures et compactes bloquée dans le rectum ou la dernière partie du côlon.",
    "lien": "https://www.lemonde.fr/realites-biomedicales/article/2026/08/11/constipation-chronique-quand-le-coca-cola-aide-a-dissoudre-un-fecalome-geant_6743766_6579630.html",
    "source": "Le Monde",
    "rubrique": "Sciences",
-   "date": "2026-08-11T08:13:16+02:00"
-  },
-  {
-   "titre": "En Ukraine, neuf personnes tuées dans des attaques russes",
-   "resume": "Les frappes sont survenues dans la nuit de lundi à mardi, alors qu'en parallèle, Kiev a frappé la Russie, faisant un mort.",
-   "lien": "https://www.franceinfo.fr/monde/europe/manifestations-en-ukraine/neuf-personnes-sont-mortes-en-ukraine-dans-des-attaques-russes_8142740.html#xtor=RSS-3-[lestitres]",
-   "source": "franceinfo",
-   "rubrique": "France",
-   "date": "2026-08-11T08:05:30+02:00"
-  },
-  {
-   "titre": "Trump aurait secrètement changé d'avion après le sommet de l'Otan en raison de menaces iraniennes",
-   "resume": "Alors qu'il était censé se trouver à bord d'Air Force One, Donald Trump a secrètement utilisé un autre avion pour quitter le sommet de l'Otan en Turquie début juillet en raison de menaces iraniennes, a rapporté lundi le Washington Post.",
-   "lien": "https://www.france24.com/fr/am%C3%A9riques/20260811-trump-a-secr%C3%A8tement-chang%C3%A9-d-avion-apr%C3%A8s-le-sommet-de-l-otan-en-raison-de-menaces-iraniennes",
-   "source": "France 24",
-   "rubrique": "International",
-   "date": "2026-08-11T08:01:22+00:00"
-  },
-  {
-   "titre": "Au Canada, Mark Carney tempère ses critiques contre Donald Trump",
-   "resume": "Arrivé au pouvoir en 2025 sur la promesse de tenir tête à l’administration républicaine de Washington, le premier ministre canadien est accusé de multiplier les concessions à la Maison Blanche.",
-   "lien": "https://www.lemonde.fr/international/article/2026/08/11/au-canada-mark-carney-tempere-ses-critiques-contre-donald-trump_6743765_3210.html",
-   "source": "Le Monde",
-   "rubrique": "France",
-   "date": "2026-08-11T08:00:15+02:00"
+   "date": "2026-08-11T08:13:14+02:00"
   },
   {
    "titre": "Arthur Lochmann, philosophe : «Construire une maison, c’est assembler des résistances pour créer du temps long»",
@@ -729,14 +1265,6 @@
    "source": "Libération",
    "rubrique": "France",
    "date": "2026-08-11T08:00:00+00:00"
-  },
-  {
-   "titre": "Incendies : état d’urgence et évacuations par milliers dans l’ouest du Canada, en proie à une centaine de feux",
-   "resume": "La Colombie-Britannique fait face à plusieurs incendies hors de contrôle qui ont déjà conduit à l’évacuation de plus de 20 000 personnes. Le Canada connaît une saison intense, avec 612 feux actifs, de plus en plus difficiles à combattre.",
-   "lien": "https://www.lemonde.fr/planete/article/2026/08/11/incendies-etat-d-urgence-et-evacuations-par-milliers-dans-l-ouest-du-canada-en-proie-a-une-centaine-de-feux_6743763_3244.html",
-   "source": "Le Monde",
-   "rubrique": "France",
-   "date": "2026-08-11T07:55:25+02:00"
   },
   {
    "titre": "Australia PM under fire for remarks on Japanese counterpart's melon gifts",
@@ -755,36 +1283,12 @@
    "date": "2026-08-11T07:41:13+00:00"
   },
   {
-   "titre": "Canicule : un nouvel épisode de fortes chaleurs s'installe en France ce mardi",
-   "resume": "Météo-France prévoit de placer 24 départements supplémentaires, dont Paris et sa petite couronne, à partir de mercredi midi. L'organsime table sur un \"pic probable de l'épisode vers le milieu de semaine\".",
-   "lien": "https://www.franceinfo.fr/environnement/evenements-meteorologiques-extremes/vagues-de-chaleur-canicules/en-direct-canicule-un-nouvel-episode-de-fortes-chaleurs-s-installe-en-france_8142731.html#xtor=RSS-3-[lestitres]",
-   "source": "franceinfo",
-   "rubrique": "France",
-   "date": "2026-08-11T07:40:05+02:00"
-  },
-  {
-   "titre": "🔴 En direct : Zelensky affirme que la Russie a utilisé des \"missiles balistiques nord-coréens\"",
-   "resume": "",
-   "lien": "https://www.france24.com/fr/europe/20260810-en-direct-ukraine-guerre-explosions-attaque-kiev-missiles-russie",
-   "source": "France 24",
-   "rubrique": "International",
-   "date": "2026-08-11T07:32:00+00:00"
-  },
-  {
    "titre": "Donald Trump estime que la Fifa commettrait une «terrible erreur» si elle remplaçait Gianni Infantino à sa tête",
    "resume": "Le chef d’Etat a apporté son soutien lundi à l’Italo-Suisse, vivement critiqué depuis son projet avorté d’ouverture à des investisseurs privés. En 2025, ce dernier avait remis au président américain le «Prix de la paix de la Fifa».",
    "lien": "https://www.liberation.fr/international/donald-trump-estime-que-la-fifa-commettrait-une-terrible-erreur-si-elle-remplacait-gianni-infantino-a-sa-tete-20260811_DC32USAYPZHTHG3BANUJ3SETDU/",
    "source": "Libération",
    "rubrique": "France",
    "date": "2026-08-11T07:16:30+00:00"
-  },
-  {
-   "titre": "Au Maroc, la fin du démarchage téléphonique vers la France menace plus de 40 000 emplois",
-   "resume": "Une loi adoptée en France interdit toute prospection sans accord explicite du client à partir du 11 août. Elle met en danger des dizaines de milliers de salariés dans les centres d’appels marocains, largement dépendants du marché hexagonal.",
-   "lien": "https://www.lemonde.fr/afrique/article/2026/08/11/au-maroc-la-fin-du-demarchage-telephonique-vers-la-france-menace-plus-de-40-000-emplois_6694226_3213.html",
-   "source": "Le Monde",
-   "rubrique": "International",
-   "date": "2026-08-11T07:16:07+02:00"
   },
   {
    "titre": "Au Festival de Salzbourg, Romeo Castellucci met en scène le prêche de « Saint François d’Assise » aux oiseaux morts dans une vision d’apocalypse",
@@ -811,44 +1315,12 @@
    "date": "2026-08-11T07:00:00+02:00"
   },
   {
-   "titre": "En Colombie, «le tremblement de terre a duré une minute qui a semblé une éternité»",
-   "resume": "Le puissant séisme qui a frappé l’ouest du pays lundi 10 août a fait au moins 132 morts et 570 blessés, laissant une impression de désolation et des habitants hébétés.",
-   "lien": "https://www.liberation.fr/international/en-colombie-le-tremblement-de-terre-a-dure-une-minute-qui-a-semble-une-eternite-20260811_H4WEF56FPBA7ZBERVHN6QDF3V4/",
-   "source": "Libération",
-   "rubrique": "France",
-   "date": "2026-08-11T06:54:52+00:00"
-  },
-  {
-   "titre": "En Colombie, une course contre la montre pour retrouver les survivants du séisme",
-   "resume": "Le compte à rebours est lancé en Colombie pour retrouver les survivants du séisme le plus puissant de la dernière décennie dans le pays, qui a fait au moins 132 morts, 570 blessés et détruit des dizaines de bâtiments.",
-   "lien": "https://www.france24.com/fr/am%C3%A9riques/20260811-en-colombie-une-course-contre-la-montre-pour-retrouver-les-survivants-du-s%C3%A9isme",
-   "source": "France 24",
-   "rubrique": "International",
-   "date": "2026-08-11T06:54:42+00:00"
-  },
-  {
-   "titre": "Colombie : le pays en «état d’urgence» après un puissant séisme qui a fait au moins 132 morts et 570 blessés dans l’ouest du pays",
-   "resume": "D’intenses secousses ont été ressenties jusqu’à Bogotá lundi. De nombreuses victimes ont été décomptées dans plusieurs régions, notamment à Pereira, Manizales et Cali. Six aéroports ont été mis à l’arrêt.",
-   "lien": "https://www.liberation.fr/international/amerique/colombie-un-fort-seisme-de-magnitude-66-ressenti-a-bogota-20260810_RE3YRNO4P5GHHA5PGOCLU6V5RM/",
-   "source": "Libération",
-   "rubrique": "France",
-   "date": "2026-08-11T06:43:44+00:00"
-  },
-  {
    "titre": "La Turquie adopte une loi historique sur la réintégration des combattants du PKK",
    "resume": "Le texte voté lundi 10 août pourrait permettre la libération de quelque 3 500 ex-membres de la guérilla sur les près de 10 000 détenus, mais ne prévoit pas d’amnistie générale et ne tranche pas le sort du chef historique du parti, Abdullah Ocalan.",
    "lien": "https://www.liberation.fr/international/moyen-orient/la-turquie-adopte-une-loi-historique-sur-la-reintegration-des-combattants-du-pkk-20260811_5LJ7RE6MDRFQZFG2XC47F6N7AU/",
    "source": "Libération",
    "rubrique": "France",
    "date": "2026-08-11T06:35:46+00:00"
-  },
-  {
-   "titre": "« Ebola se propage à une vitesse que nous n’avions encore jamais observée » : l’alerte de Jean-Jacques Muyembe, codécouvreur du virus",
-   "resume": "Le virologue congolais, qui a mis au jour le virus en 1976, revient, dans un entretien au « Monde », sur l’actuelle propagation de l’épidémie due à Ebola en République démocratique du Congo. En seulement trois mois, le nombre de morts s’approche du bilan humain de l’épidémie de 2018, qui avait duré vingt-deux mois.",
-   "lien": "https://www.lemonde.fr/afrique/article/2026/08/11/jean-jacques-muyembe-virologue-congolais-ebola-se-propage-a-une-vitesse-que-nous-n-avions-encore-jamais-observee_6743759_3212.html",
-   "source": "Le Monde",
-   "rubrique": "France",
-   "date": "2026-08-11T06:30:05+02:00"
   },
   {
    "titre": "Canicule, séisme en Colombie, Trump à la rescousse d’Infantino… L’actu de ce mardi 11 août au matin",
@@ -867,44 +1339,12 @@
    "date": "2026-08-11T06:30:00+02:00"
   },
   {
-   "titre": "Cinq ans après leur retour au pouvoir en Afghanistan, les Talibans misent sur la diplomatie",
-   "resume": "Cinq ans après leur retour au pouvoir en Afghanistan, les autorités talibanes ont patiemment tissé des relations avec des pays étrangers, même si elles ne sont officiellement reconnues à ce jour que par la Russie.",
-   "lien": "https://www.france24.com/fr/asie-pacifique/20260811-afghanistan-comment-le-gouvernement-taliban-tisse-progressivement-des-liens-diplomatiques",
-   "source": "France 24",
-   "rubrique": "International",
-   "date": "2026-08-11T06:20:02+00:00"
-  },
-  {
-   "titre": "Après un puissant séisme en Colombie, la recherche de survivants et le décompte des victimes",
-   "resume": "Le tremblement de terre d’une magnitude de 7,4 a frappé Cali et d’autres villes de l’ouest du pays, lundi 10 août, faisant au moins 132 morts et de nombreux dégâts. Le président, Abelardo de la Espriella, a décrété l’état de catastrophe nationale.",
-   "lien": "https://www.lemonde.fr/planete/article/2026/08/11/apres-un-puissant-seisme-en-colombie-la-recherche-de-survivants-et-le-decompte-des-victimes_6743758_3244.html",
-   "source": "Le Monde",
-   "rubrique": "France",
-   "date": "2026-08-11T06:17:01+02:00"
-  },
-  {
-   "titre": "Yannick Jadot : « Climatosceptiques et climato-arrangeants sont des capitulards qui nous condamnent au pire »",
-   "resume": "Alors que les écologistes lancent l’alerte depuis des années, les véritables responsables de la catastrophe en cours ont l’aplomb de leur en faire porter la responsabilité, dénonce le sénateur écologiste de Paris dans une tribune au « Monde ».",
-   "lien": "https://www.lemonde.fr/idees/article/2026/08/11/yannick-jadot-climatosceptiques-et-climato-arrangeants-sont-des-capitulards-qui-nous-condamnent-au-pire_6743755_3232.html",
-   "source": "Le Monde",
-   "rubrique": "France",
-   "date": "2026-08-11T06:00:39+02:00"
-  },
-  {
    "titre": "« Soudain » : Virginie Efira et Tao Okamoto en pleine conversation d’humanité",
    "resume": "Porté par les deux actrices, récompensées au Festival de Cannes, le film du Japonais Ryusuke Hamaguchi, dans les salles mercredi, transforme l’amitié naissante entre deux femmes en une méditation sur la finitude et le désir de faire du bien.",
    "lien": "https://www.lemonde.fr/culture/article/2026/08/11/soudain-virginie-efira-et-tao-okamoto-en-pleine-conversation-d-humanite_6743752_3246.html",
    "source": "Le Monde",
    "rubrique": "Culture",
    "date": "2026-08-11T06:00:28+02:00"
-  },
-  {
-   "titre": "La saga du scandale H2O, entre stars de la finance, jet privé et conflits d’intérêts",
-   "resume": "« Ces placements qui passent mal » (4/6). Alors qu’elle est toujours poursuivie en justice par près de 8 000 investisseurs, la société de gestion a annoncé la liquidation des actifs qui lestent sept de ses fonds depuis six ans, ainsi que le remboursement de près de 615 millions d’euros au total.",
-   "lien": "https://www.lemonde.fr/argent/article/2026/08/11/la-saga-du-scandale-h2o-entre-stars-de-la-finance-jet-prive-et-conflits-d-interets_6743751_1657007.html",
-   "source": "Le Monde",
-   "rubrique": "Économie",
-   "date": "2026-08-11T06:00:26+02:00"
   },
   {
    "titre": "Pourquoi l’IA provoque un nouveau séisme dans les médias, fragilisés par vingt ans de mutations numériques",
@@ -915,20 +1355,12 @@
    "date": "2026-08-11T06:00:22+02:00"
   },
   {
-   "titre": "En Hongrie, premières interrogations sur la « désorbanisation » à marche forcée de Péter Magyar",
-   "resume": "Trois mois après son arrivée au pouvoir, le premier ministre s’apprête à faire élire, mardi, l’ancien juge constitutionnel Andras Baka à la présidence de la République. Sa nomination, décidée sans concertation, soulève des questions sur la pratique du pouvoir du successeur de Viktor Orban, jugée par certains comme trop expéditive et centralisée.",
-   "lien": "https://www.lemonde.fr/international/article/2026/08/11/en-hongrie-premieres-interrogations-sur-la-desorbanisation-a-marche-forcee-de-peter-magyar_6743756_3210.html",
+   "titre": "La saga du scandale H2O, entre stars de la finance, jet privé et conflits d’intérêts",
+   "resume": "« Ces placements qui passent mal » (4/6). Alors qu’elle est toujours poursuivie en justice par près de 8 000 investisseurs, la société de gestion a annoncé la liquidation des actifs qui lestent sept de ses fonds depuis six ans, ainsi que le remboursement de près de 615 millions d’euros au total.",
+   "lien": "https://www.lemonde.fr/argent/article/2026/08/11/la-saga-du-scandale-h2o-entre-stars-de-la-finance-jet-prive-et-conflits-d-interets_6743751_1657007.html",
    "source": "Le Monde",
-   "rubrique": "International",
+   "rubrique": "Économie",
    "date": "2026-08-11T06:00:11+02:00"
-  },
-  {
-   "titre": "\"C'est plus facile d'avoir mal aux Europe qu'aux départementaux\"... La résurrection de Margot Chevrier, deux ans après sa grave blessure à la cheville",
-   "resume": "La sauteuse à la perche française s'était blessée aux Mondiaux de Glasgow, peu avant les JO de Paris. Alors que les médecins lui avaient dit qu'elle ne pourrait pas resauter, elle s'aligne mardi soir en qualification des championnats d'Europe.",
-   "lien": "https://www.franceinfo.fr/sports/athletisme/championnats-d-europe/c-est-plus-facile-d-avoir-mal-aux-europe-qu-aux-departementaux-la-resurrection-de-margot-chevrier-deux-ans-apres-sa-grave-blessure-a-la-cheville_8141936.html#xtor=RSS-3-[lestitres]",
-   "source": "franceinfo",
-   "rubrique": "France",
-   "date": "2026-08-11T06:00:02+02:00"
   },
   {
    "titre": "Démarchage téléphonique : les nouvelles mesures qui entrent en vigueur le 11 août seront-elles efficaces ?",
@@ -947,30 +1379,6 @@
    "date": "2026-08-11T06:00:00+00:00"
   },
   {
-   "titre": "Des aspirantes mannequins prises au piège d’une escroquerie tentaculaire et d’une justice à la peine : « Lors du dépôt de plainte, on m’a fait comprendre que j’étais trop conne »",
-   "resume": "Quatre personnes seront jugées, en mars 2027, pour « escroquerie en bande organisée » au préjudice de 123 personnes. Une affaire ancienne à travers laquelle se font jour les difficultés de la lutte contre les infractions financières.",
-   "lien": "https://www.lemonde.fr/societe/article/2026/08/11/des-aspirantes-mannequins-prises-au-piege-d-une-escroquerie-tentaculaire-et-d-une-justice-a-la-peine-lors-du-depot-de-plainte-on-m-a-fait-comprendre-que-j-etais-trop-conne_6743747_3224.html",
-   "source": "Le Monde",
-   "rubrique": "France",
-   "date": "2026-08-11T05:59:08+02:00"
-  },
-  {
-   "titre": "Pourquoi l'éclipse du 12 août inaugure une rare période de trois éclipses visibles en Europe en trois ans",
-   "resume": "L'éclipse totale du 12 août, qui sera partiellement visible en France, correspond au début de la \"trilogie ibérique\", soit un cycle de trois éclipses majeures observables sur le continent d'ici à 2028.",
-   "lien": "https://www.franceinfo.fr/sciences/astronomie/eclipse-solaire/pourquoi-l-eclipse-du-12-aout-inaugure-une-rare-periode-de-trois-eclipses-visibles-en-europe-en-trois-ans_8132984.html#xtor=RSS-3-[lestitres]",
-   "source": "franceinfo",
-   "rubrique": "France",
-   "date": "2026-08-11T05:54:34+02:00"
-  },
-  {
-   "titre": "Que va changer la demande obligatoire de consentement au démarchage téléphonique, en vigueur dès mardi ?",
-   "resume": "Les entreprises qui démarchent par téléphone ne pourront plus le faire si elles n'ont pas au préalable recueilli le consentement éclairé des consommateurs, selon un décret paru au Journal officiel.",
-   "lien": "https://www.franceinfo.fr/internet/telephonie/que-va-changer-la-demande-obligatoire-de-consentement-au-demarchage-telephonique-en-vigueur-des-mardi_8138222.html#xtor=RSS-3-[lestitres]",
-   "source": "franceinfo",
-   "rubrique": "France",
-   "date": "2026-08-11T05:54:01+02:00"
-  },
-  {
    "titre": "Mon budget vacances : «Je dépense 821 euros au Portugal, un peu moins que prévu»",
    "resume": "Plutôt voyages en éco ou en première classe ? S’il y a bien un moment de l’année où l’on s’autorise quelques folies, c’est l’été. Dans notre deuxième épisode, Lalie espérait faire la fête à bas coût. Aveu en partie d’échec.",
    "lien": "https://www.liberation.fr/lifestyle/voyages/mon-budget-vacances-je-depense-821-euros-au-portugal-un-peu-moins-que-prevu-20260811_KBGOIWP4SJD6LM2VGYYHRAX7MA/",
@@ -979,68 +1387,12 @@
    "date": "2026-08-11T05:48:00+00:00"
   },
   {
-   "titre": "L’Allemagne s’inquiète de sa vulnérabilité face à des incursions de drones qui se multiplient sur son territoire",
-   "resume": "Après la collision d’un engin chargé d’explosif et d’un avion ukrainien au sol à Leipzig, le 4 août, la Russie est montrée du doigt par de nombreux observateurs mais le chancelier Friedrich Merz reste, pour l’heure, sur la réserve.",
-   "lien": "https://www.lemonde.fr/international/article/2026/08/11/l-allemagne-s-inquiete-de-sa-vulnerabilite-face-a-des-incursions-de-drones-qui-se-multiplient-sur-son-territoire_6743745_3210.html",
-   "source": "Le Monde",
-   "rubrique": "International",
-   "date": "2026-08-11T05:31:09+02:00"
-  },
-  {
-   "titre": "Eclipse solaire : peu de prévention en amont, mais des précautions à respecter pour observer sans abîmer sa rétine",
+   "titre": "Eclipse solaire : critiqués, les pouvoirs publics défendent les actions de prévention menées",
    "resume": "Une « foire aux questions » destinée au grand public a été mise en ligne sur les sites ministériels, et des publications spéciales sont relayées, jusqu’au jour J, mercredi 12 août, sur les réseaux sociaux (X, Facebook, Instagram et LinkedIn).",
    "lien": "https://www.lemonde.fr/societe/article/2026/08/11/eclipse-solaire-peu-de-prevention-en-amont-mais-des-precautions-a-respecter-pour-observer-sans-abimer-sa-retine_6743744_3224.html",
    "source": "Le Monde",
    "rubrique": "Sciences",
    "date": "2026-08-11T05:30:08+02:00"
-  },
-  {
-   "titre": "Le bouleversement des fréquences FM de France Musique déroute et agace des auditeurs",
-   "resume": "Le 22 juillet, Radio France a profondément modifié son réseau FM, réduisant fortement le nombre d’émetteurs dédiés à la station musicale, qui a vu sa couverture analogique passer de 93 % à 70 % de la population.",
-   "lien": "https://www.liberation.fr/economie/medias/le-bouleversement-des-frequences-fm-de-france-musique-deroute-et-agace-des-auditeurs-20260811_BGNCUDQNLJGIZJENOHYAGTLTDY/",
-   "source": "Libération",
-   "rubrique": "France",
-   "date": "2026-08-11T05:29:00+00:00"
-  },
-  {
-   "titre": "Remplacer Infantino à la tête de la Fifa serait \"une terrible erreur\", défend Trump",
-   "resume": "\"La Fifa commettrait une terrible erreur si, pour quelque raison que ce soit, elle envisageait ne serait-ce qu'un instant de remplacer son président Gianni Infantino\", a défendu Donald Trump lundi soir, réaffirmant sa proximité avec l'Italo-Suisse au centre des critiques depuis son projet avorté d'ouverture aux investisseurs privés.",
-   "lien": "https://www.france24.com/fr/sports/20260811-remplacer-infantino-%C3%A0-la-t%C3%AAte-de-la-fifa-serait-une-terrible-erreur-d%C3%A9fend-trump",
-   "source": "France 24",
-   "rubrique": "International",
-   "date": "2026-08-11T05:25:05+00:00"
-  },
-  {
-   "titre": "Manque d’eau : en Bourgogne, habitants et animaux au cœur d’un été où «tout grille»",
-   "resume": "A cause des canicules et de l’absence de précipitations, deux communes de Côte-d’Or doivent être alimentées en eau par des camions-citernes. Habitants, éleveurs et apiculteurs tentent de s’organiser, en attendant des solutions pérennes.",
-   "lien": "https://www.liberation.fr/environnement/manque-deau-en-bourgogne-habitants-et-animaux-au-coeur-dun-ete-ou-tout-grille-20260811_ZNGOWSOQOJCXRFO5UFDL6Y6ULQ/",
-   "source": "Libération",
-   "rubrique": "France",
-   "date": "2026-08-11T05:25:00+00:00"
-  },
-  {
-   "titre": "Euro de natation 2026 : avec Léon Marchand, le relais français prend l'argent sur 4 x 200 m",
-   "resume": "Le relais 400 x 200 m nage libre masculin français a remporté l’argent aux championnats d’Europe de natation 2026. Pour son retour en France, Léon Marchand a réalisé la meilleure performance mondiale de l’année sur 200 m.",
-   "lien": "https://www.france24.com/fr/%C3%A9missions/sports/20260811-euro-de-natation-2026-avec-l%C3%A9on-marchand-le-relais-fran%C3%A7ais-prend-l-argent-sur-4-x-200-m",
-   "source": "France 24",
-   "rubrique": "International",
-   "date": "2026-08-11T05:17:33+00:00"
-  },
-  {
-   "titre": "Donald Trump a quitté le sommet de l’OTAN en Turquie en juillet à bord d’un avion secret en raison des menaces de l’Iran, selon des médias américains",
-   "resume": "Le « Washington Post » et le « New York Times » rapportent que le président américain, après être monté à bord de l’avion présidentiel Air Force One sous l’œil des caméras, a été secrètement débarqué dans un camion de restauration aéroportuaire pour emprunter un avion plus petit.",
-   "lien": "https://www.lemonde.fr/international/article/2026/08/11/donald-trump-aurait-quitte-le-sommet-de-l-otan-en-turquie-en-juillet-a-bord-d-un-avion-secret-en-raison-des-menaces-de-l-iran_6743710_3210.html",
-   "source": "Le Monde",
-   "rubrique": "International",
-   "date": "2026-08-11T05:15:43+02:00"
-  },
-  {
-   "titre": "Pour ne plus baisser la tête : à la recherche des disparus de la guerre d'Espagne (3/4)",
-   "resume": "Il y a 90 ans, la guerre d'Espagne (3/4). Quatre-vingt-dix ans après le début de ce conflit, des milliers de familles sont toujours à la recherche de leurs morts. Plus de 100 000 disparus n'ont toujours pas été identifiés, en grande majorité victimes de la répression franquiste. Des fouilles permettent aujourd'hui à leurs descendants de retrouver leurs restes et de les inhumer dignement.",
-   "lien": "https://www.france24.com/fr/europe/20260811-recherche-disparus-guerre-espagne-fosses-communes-franquisme-fouilles",
-   "source": "France 24",
-   "rubrique": "International",
-   "date": "2026-08-11T05:06:35+00:00"
   },
   {
    "titre": "Nos idées de séries : « Tip Toe », « Furious », « Prisoner »…",
@@ -1055,64 +1407,8 @@
    "resume": "Les opérations de rachat s’accélèrent depuis 2025, alors que l’industrie s’apprête à faire face à une expiration massive des brevets de traitements ces prochaines années.",
    "lien": "https://www.lemonde.fr/economie/article/2026/08/11/pour-assurer-leur-avenir-les-big-pharma-multiplient-les-acquisitions-de-biotechs_6743676_3234.html",
    "source": "Le Monde",
-   "rubrique": "France",
+   "rubrique": "Économie",
    "date": "2026-08-11T05:00:05+02:00"
-  },
-  {
-   "titre": "«Rumours», la thérapie de groupe de Fleetwood Mac",
-   "resume": "L’album, sorti en 1977, un des plus gros succès de tous les temps, est pourtant un disque de règlements de comptes où les membres du groupe s’invectivent par chansons interposées. Une mise en scène de leurs hostilités aussi brillante que lucrative, qui se poursuivra pendant des décennies.",
-   "lien": "https://www.liberation.fr/plus/speciaux-cahier-ete/rumours-la-therapie-de-groupe-de-fleetwood-mac-20260811_DAS3A76IPZBS7CY53U6BW2R4BA/",
-   "source": "Libération",
-   "rubrique": "France",
-   "date": "2026-08-11T05:00:00+00:00"
-  },
-  {
-   "titre": "En 1880, l’éclipse du 12 août était déjà à l’agenda de l’astronome Camille Flammarion",
-   "resume": "Il y a près de deux siècles, le scientifique expliquait qu’il faudrait attendre 2026 pour revoir une éclipse totale en France. Alors que le Soleil s’effacera derrière l’ombre de la Lune mercredi, c’est ce futur que nous incarnons, relève la chercheuse Elsa Courant.",
-   "lien": "https://www.liberation.fr/idees-et-debats/tribunes/en-1880-leclipse-du-12-aout-etait-deja-a-lagenda-de-lastronome-camille-flammarion-20260811_2VLDUE6AWZHP3BTZOUIJ2OYULM/",
-   "source": "Libération",
-   "rubrique": "France",
-   "date": "2026-08-11T05:00:00+00:00"
-  },
-  {
-   "titre": "«Je dois m’approcher du record du monde» : l’audacieux Yohann Ndoye-Brouard lance sa semaine parisienne avec le 200 m dos",
-   "resume": "Le nageur français entre en piste, ce mardi 11 août à Saint-Denis, avec l’envie et la stature pour décrocher une nouvelle médaille européenne, voire «monter sur le toit de l’Europe».",
-   "lien": "https://www.liberation.fr/sports/je-dois-mapprocher-du-record-du-monde-laudacieux-yohann-ndoye-brouard-lance-sa-semaine-parisienne-avec-le-200-m-dos-20260811_DRDOIDL5DFAE3BNCLMFN2WLBGM/",
-   "source": "Libération",
-   "rubrique": "France",
-   "date": "2026-08-11T04:45:00+00:00"
-  },
-  {
-   "titre": "Philippe Brun sur la hausse du chômage : «Ce que démontre la situation du pays, c’est d’abord la chute de la consommation des ménages»",
-   "resume": "Le député de l’Eure et candidat à la primaire du Parti socialiste attribue l’accroissement du chômage à la baisse du pouvoir d’achat des Français, causée notamment par la crise des prix de l’énergie.",
-   "lien": "https://www.liberation.fr/politique/philippe-brun-sur-la-hausse-du-chomage-ce-que-demontre-la-situation-du-pays-cest-dabord-la-chute-de-la-consommation-des-menages-20260811_BRMT32H62BB7JHL5VOS26CG6OU/",
-   "source": "Libération",
-   "rubrique": "France",
-   "date": "2026-08-11T04:44:00+00:00"
-  },
-  {
-   "titre": "At least 132 killed in Colombia's largest earthquake in years",
-   "resume": "More than 480 people were injured in the quakes, with more feared trapped under collapsed buildings.",
-   "lien": "https://www.bbc.co.uk/news/articles/c20e360lx0vo?at_medium=RSS&at_campaign=rss",
-   "source": "BBC News",
-   "rubrique": "International",
-   "date": "2026-08-11T04:06:07+00:00"
-  },
-  {
-   "titre": "Quiz : les années en 6",
-   "resume": "(21/30) Qu’a-t-on fêté en 2016 ? Enterré en 2006 ? Découvert en 1996 ?",
-   "lien": "https://www.liberation.fr/plus/speciaux-cahier-ete/quiz-les-annees-en-6-20260811_AEIIX3Y6WVBPDCLIWPWGQWHQ34/",
-   "source": "Libération",
-   "rubrique": "France",
-   "date": "2026-08-11T04:00:00+00:00"
-  },
-  {
-   "titre": "Aux Etats-Unis, Donald Trump relance son offensive contre la vaccination",
-   "resume": "Faisant un lien avec l’autisme, le président américain a signé un décret contenant de nouvelles recommandations en matière de vaccins ; il en limite notamment le nombre et demande à espacer leur administration aux enfants.",
-   "lien": "https://www.lemonde.fr/international/article/2026/08/11/aux-etats-unis-donald-trump-relance-son-offensive-contre-la-vaccination_6743643_3210.html",
-   "source": "Le Monde",
-   "rubrique": "International",
-   "date": "2026-08-11T01:45:09+02:00"
   },
   {
    "titre": "Young girl finds whale stranded on Australian beach",
@@ -1131,44 +1427,12 @@
    "date": "2026-08-11T01:28:40+02:00"
   },
   {
-   "titre": "Meta : face à la Chine, Mark Zuckerberg mise sur l'IA en libre accès",
-   "resume": "Meta a relancé lundi ses modèles d'intelligence artificielle en libre accès. Mark Zuckerberg défend cette stratégie face à la Chine, qui domine ce secteur, en affirmant que la diffusion libre de l'IA constitue le meilleur rempart contre ses dangers, à rebours de la retenue prônée par OpenAI et Anthropic.",
-   "lien": "https://www.france24.com/fr/%C3%A9co-tech/20260811-ia-intelligence-artificielle-meta-mark-zuckerberg-libre-acces-modeles-ouverts-chine-muse-glimmer",
-   "source": "France 24",
-   "rubrique": "International",
-   "date": "2026-08-11T01:10:19+00:00"
-  },
-  {
-   "titre": "Robots attrapeurs de moustiques, élevages en laboratoire, inspections à domicile... A Singapour, mobilisation générale contre les insectes vecteurs de la dengue",
-   "resume": "À Singapour, où 10 000 personnes en moyenne contractent la dengue chaque année, les moustiques sont un enjeu de santé publique. La cité Etat leur mène une guerre sans relâche jusque chez les habitants.",
-   "lien": "https://www.franceinfo.fr/sante/c-est-quelque-chose-que-tout-le-monde-doit-avoir-en-tete-a-singapour-pas-de-pitie-pour-les-moustiques_8142326.html#xtor=RSS-3-[lestitres]",
-   "source": "franceinfo",
-   "rubrique": "France",
-   "date": "2026-08-10T23:49:14+02:00"
-  },
-  {
-   "titre": "\"Je ne pensais pas pouvoir nager aussi vite\" : le retour du roi Léon Marchand rallume la folie de Paris avec l'éclosion du relais français 4x200 m nage libre",
-   "resume": "La star mondiale de la natation a décroché, lundi à Saint-Denis, sa première médaille européenne en compagnie de Pierre Largeron, Sauveur Cristofini et Roman Fuchs.",
-   "lien": "https://www.franceinfo.fr/sports/natation/championnats-d-europe-de-natation/je-ne-pensais-pas-pouvoir-nager-aussi-vite-le-retour-du-roi-leon-marchand-rallume-la-folie-de-paris-avec-l-eclosion-du-relais-francais-4x200-m-nage-libre_8142374.html#xtor=RSS-3-[lestitres]",
-   "source": "franceinfo",
-   "rubrique": "France",
-   "date": "2026-08-10T22:57:10+02:00"
-  },
-  {
    "titre": "Jackie, the famous California bald eagle, dies after weeks of intensive care",
    "resume": "Jackie and her partner, Shadow, had been watched by millions of people over the years through the Big Bear Eagle Nest Cam.",
    "lien": "https://www.bbc.co.uk/news/articles/c62vj8eywdlo?at_medium=RSS&at_campaign=rss",
    "source": "BBC News",
    "rubrique": "International",
    "date": "2026-08-10T22:40:23+00:00"
-  },
-  {
-   "titre": "Jouets antistress \"Squishy\" : quels sont les risques pour les enfants ?",
-   "resume": "Stars des réseaux sociaux, les balles antistress Squishy sont très appréciées par les enfants. Dans le Pas-de-Calais, l’une d’entre elles a éclaté au visage d’un enfant de huit ans, brûlé au deuxième degré. Ces jouets sont-ils vraiment sans danger, et que contiennent-ils ?",
-   "lien": "https://www.franceinfo.fr/culture/jouets/jouets-antistress-squishy-quels-sont-les-risques-pour-les-enfants_8142311.html#xtor=RSS-3-[lestitres]",
-   "source": "franceinfo",
-   "rubrique": "France",
-   "date": "2026-08-10T22:10:43+02:00"
   },
   {
    "titre": "The lonely Chinese men being conned by fake brides",
@@ -1203,14 +1467,6 @@
    "date": "2026-08-10T21:00:00+02:00"
   },
   {
-   "titre": "Watch: Moment powerful earthquake shakes Colombia and crumbles buildings",
-   "resume": "At least 111 people have been killed and dozens more injured after the 7.4 temblor hit the western part of the country, according to local officials.",
-   "lien": "https://www.bbc.co.uk/news/videos/cz6473llqpwo?at_medium=RSS&at_campaign=rss",
-   "source": "BBC News",
-   "rubrique": "International",
-   "date": "2026-08-10T20:55:34+00:00"
-  },
-  {
    "titre": "Watch: What we know about Tupac murder suspect Duane 'Keffe D' Davis",
    "resume": "The trial of the 63-year-old former gang boss kicked off on Monday, and he has entered a not guilty plea.",
    "lien": "https://www.bbc.co.uk/news/videos/cjd48zkg5n9o?at_medium=RSS&at_campaign=rss",
@@ -1243,68 +1499,12 @@
    "date": "2026-08-10T20:00:00+02:00"
   },
   {
-   "titre": "Euro de natation : le relais français du 4x200 m médaillé d’argent grâce à un immense Léon Marchand",
-   "resume": "Portés par leur star et ses prodigieuses coulées, les Bleus ont terminé à la deuxième place de leur finale, lundi aux Championnats d’Europe de natation à Saint-Denis.",
-   "lien": "https://www.liberation.fr/sports/euro-de-natation-le-relais-francais-du-4x200-m-medaille-dargent-avec-leon-marchand-20260810_U46QYJL52VB45KSOTWXXWMKJEQ/",
-   "source": "Libération",
-   "rubrique": "France",
-   "date": "2026-08-10T19:38:00+00:00"
-  },
-  {
-   "titre": "Jouets «Squishy» : une enseigne retire de la vente le produit qui a blessé un enfant dans le Nord, les autorités appellent à la prudence",
-   "resume": "La répression des fraudes affirme ce lundi 10 août qu’elle mène des analyses sur différents modèles de plusieurs marques de balles anti-stress. Une enquête a été ouverte après les graves brûlures causées par l’explosion d’une de ces boules à malaxer au visage d’un enfant de 8 ans.",
-   "lien": "https://www.liberation.fr/societe/sante/jouets-squishy-une-enseigne-retire-de-la-vente-le-produit-qui-a-blesse-un-enfant-dans-le-nord-les-autorites-appellent-a-la-prudence-20260810_G4ESDWMI3NAVPNRNXUAZXS5OCA/",
-   "source": "Libération",
-   "rubrique": "France",
-   "date": "2026-08-10T19:24:48+00:00"
-  },
-  {
-   "titre": "«Crise légumière majeure» à cause de la sécheresse et d’une canicule inédite, alerte l’entreprise Prince de Bretagne",
-   "resume": "Plusieurs cultures de légumes, dont les tomates, les brocolis et les courgettes, sont lourdement affectées par la chaleur excessive, alerte la marque ce lundi 10 août. Elle demande aux autorités des mesures d’urgence.",
-   "lien": "https://www.liberation.fr/environnement/agriculture/crise-legumiere-majeure-a-cause-de-la-secheresse-et-dune-canicule-inedite-alerte-lentreprise-prince-de-bretagne-20260810_KBYW53UBK5DDRBTOOCVSYW5GYE/",
-   "source": "Libération",
-   "rubrique": "France",
-   "date": "2026-08-10T19:12:31+00:00"
-  },
-  {
-   "titre": "Canicule : 43 départements dont la Manche et la pointe bretonne en vigilance orange mardi à partir de midi",
-   "resume": "Concentrées sur le quart sud-est de la France ce lundi, les fortes chaleurs frapperont jusqu’au Finistère dès demain. «Entre mercredi et vendredi, les 35 °C concerneront une grande partie du pays», alerte Météo France.",
-   "lien": "https://www.liberation.fr/environnement/climat/en-direct-canicule-22-departements-en-vigilance-orange-des-incendies-en-cours-dans-la-drome-et-en-lozere-20260810_F5XEKZLHD5BJRA42V6PENSF2ME/",
-   "source": "Libération",
-   "rubrique": "France",
-   "date": "2026-08-10T19:08:24+00:00"
-  },
-  {
    "titre": "Le Jardin des cinq continents, l’atlas de verdure de Bertrand Lavier à Montpellier",
    "resume": "« Artistes en leur jardin » (1/6). Dans le « jardin du MoCo », ouvert en 2019, le plasticien français a planté des espèces venues de toute la planète, mettant en scène la mondialisation des essences végétales.",
    "lien": "https://www.lemonde.fr/series-d-ete/article/2026/08/10/le-jardin-des-cinq-continents-l-atlas-de-verdure-de-bertrand-lavier-a-montpellier_6743430_3451060.html",
    "source": "Le Monde",
    "rubrique": "Culture",
    "date": "2026-08-10T19:00:06+02:00"
-  },
-  {
-   "titre": "Alexandria Ocasio-Cortez, figure de la gauche américaine, chronique sa congélation d’ovocytes sur les réseaux sociaux",
-   "resume": "La démocrate de 36 ans a publié, dimanche 9 août, une vidéo sur Instagram afin de partager son expérience, a-t-elle expliqué, et lutter contre l’invisibilisation des parcours liés à la fertilité féminine.",
-   "lien": "https://www.liberation.fr/international/amerique/alexandria-ocasio-cortez-figure-de-la-gauche-americaine-chronique-sa-congelation-dovocytes-sur-les-reseaux-sociaux-20260810_WZ27EMFN3ZFV7KHLU4NDKVNDDU/",
-   "source": "Libération",
-   "rubrique": "France",
-   "date": "2026-08-10T18:56:31+00:00"
-  },
-  {
-   "titre": "Avec les chiffres du chômage en hausse, les oppositions accusent dix ans de gouvernance : «Macron aurait menti, ben alors ça !!!»",
-   "resume": "Depuis l’annonce, vendredi 7 août par l’Insee, de la hausse des chiffres du chômage pour le 2e trimestre 2026, une première depuis 2020, les responsables politiques s’en donnent à cœur joie contre Emmanuel Macron.",
-   "lien": "https://www.liberation.fr/politique/avec-les-chiffres-du-chomage-en-hausse-les-oppositions-accusent-dix-ans-de-gouvernance-macron-aurait-menti-ben-alors-ca-20260810_I6PXFZF32RBAPOOO5KGBD7QFH4/",
-   "source": "Libération",
-   "rubrique": "France",
-   "date": "2026-08-10T18:45:57+00:00"
-  },
-  {
-   "titre": "Etats-Unis : un burrito à 20 dollars entraîne un séisme politique",
-   "resume": "A trois mois des élections de mi-mandat prévues le 3 novembre, le mépris des élus conservateurs face à la colère étudiante sur la hausse du prix du sandwich mexicain pourrait bouleverser le scrutin.",
-   "lien": "https://www.liberation.fr/international/amerique/etats-unis-un-burrito-a-20-dollars-entraine-un-seisme-politique-20260810_3JXAC3PNFRB35EC4EVQICCA7IU/",
-   "source": "Libération",
-   "rubrique": "France",
-   "date": "2026-08-10T18:41:13+00:00"
   },
   {
    "titre": "L'éclipse n'est que le début : pourquoi il faudra encore lever les yeux le 12 août",
@@ -1315,36 +1515,12 @@
    "date": "2026-08-10T18:28:35+02:00"
   },
   {
-   "titre": "Les chiffres du chômage en hausse, une illustration des promesses brisées d’Emmanuel Macron",
-   "resume": "Obnubilé par ses «premiers de cordée» et sa politique de l’offre, le Président termine ses deux mandats avec la plupart des indicateurs économiques dans le rouge.",
-   "lien": "https://www.liberation.fr/idees-et-debats/editorial/les-chiffres-du-chomage-en-hausse-une-illustration-des-promesses-brisees-demmanuel-macron-20260810_5GHEQ6CVL5BMRHX5JGHTPNF6NI/",
-   "source": "Libération",
-   "rubrique": "France",
-   "date": "2026-08-10T18:28:22+00:00"
-  },
-  {
    "titre": "New train service connects Finland and Sweden for first time in decades",
    "resume": "The service will enable rail travel from Portugal to Lapland - what is believed to be the longest train journey in Europe.",
    "lien": "https://www.bbc.co.uk/news/articles/cx2lwpzz6qjo?at_medium=RSS&at_campaign=rss",
    "source": "BBC News",
    "rubrique": "International",
    "date": "2026-08-10T18:28:11+00:00"
-  },
-  {
-   "titre": "Watch: What we know about suspected crime boss Daniel Kinahan",
-   "resume": "Suspected crime boss Daniel Kinahan, one of the world's most wanted men, has spent his first night in custody in Ireland after being extradited from Dubai.",
-   "lien": "https://www.bbc.co.uk/news/videos/cm2g97nnr5go?at_medium=RSS&at_campaign=rss",
-   "source": "BBC News",
-   "rubrique": "International",
-   "date": "2026-08-10T18:24:45+00:00"
-  },
-  {
-   "titre": "Chômage, déficit, dette… Les paris économiques perdus des quinquennats Macron",
-   "resume": "Emmanuel Macron avait promis le plein-emploi et la réduction du déficit. Alors qu’il s’apprête à quitter l’Elysée, ces promesses électorales semblent bel et bien compromises. La proportion des demandeurs d’emploi vient de monter à 8,3 % des actifs.",
-   "lien": "https://www.liberation.fr/economie/chomage-deficit-dette-les-paris-economiques-perdus-des-quinquennats-macron-20260810_ZIORE655HNFPZBWRYDRQIOSGPQ/",
-   "source": "Libération",
-   "rubrique": "France",
-   "date": "2026-08-10T18:10:11+00:00"
   },
   {
    "titre": "A la frontière entre les Etats-Unis et le Canada, le nouveau pont Gordie-Howe pris au piège des tensions commerciales",
@@ -1363,52 +1539,12 @@
    "date": "2026-08-10T18:00:00+02:00"
   },
   {
-   "titre": "Guerre au Moyen-Orient : Trump annonce qu’il va réclamer des «compensations» à l’Iran",
-   "resume": "Le président américain affirme ce lundi 10 août que Téhéran doit payer pour les morts liées à des attaques menées par l’Iran ces dernières décennies contre ses adversaires à l’étranger ou contre des manifestants iraniens. Ce qui rend encore plus improbable un accord rapide entre les deux pays.",
-   "lien": "https://www.liberation.fr/international/amerique/guerre-au-moyen-orient-trump-annonce-quil-va-reclamer-des-compensations-a-liran-20260810_FQMQIPKD2RCQVKU5VY5KRJV75U/",
-   "source": "Libération",
-   "rubrique": "France",
-   "date": "2026-08-10T17:59:15+00:00"
-  },
-  {
-   "titre": "Cochons décomposés : enquête ouverte contre un élevage porcin des Côtes-d’Armor, «l’un des pires cas d’abandon documenté par L214»",
-   "resume": "Le parquet de Saint-Brieuc a ouvert une enquête après que l’association de défense des animaux a filmé dans un élevage breton lié à la coopérative Eureden des «images difficilement soutenables» montrant «plus de 300 cadavres de cochons».",
-   "lien": "https://www.liberation.fr/environnement/animaux/cochons-decomposes-enquete-ouverte-contre-un-elevage-porcin-des-cotes-darmor-lun-des-pires-cas-dabandon-documente-par-l214-20260810_XVKCMHRU2BASBA6GZJKFV4WMRI/",
-   "source": "Libération",
-   "rubrique": "France",
-   "date": "2026-08-10T17:44:29+00:00"
-  },
-  {
-   "titre": "Au Royaume-Uni, un mouchard chinois à bord des drones navals de la Royal Navy",
-   "resume": "Un composant chinois doté de capacités d’espionnage et de sabotage était intégré au drone militaire K3 Scout, commercialisé par le britannique Kraken et l’allemand Rheinmetall, acheté par les forces spéciales britanniques et américaines et testé par l’Otan.",
-   "lien": "https://www.liberation.fr/international/europe/au-royaume-uni-un-mouchard-chinois-a-bord-des-drones-navals-de-la-royal-navy-20260810_TVFYDRDPNBDTXOHTFMWHUKOOUI/",
-   "source": "Libération",
-   "rubrique": "France",
-   "date": "2026-08-10T17:37:22+00:00"
-  },
-  {
    "titre": "« House of the Dragon », saison 3, sur HBO Max : un grand spectacle au goût de cendres",
    "resume": "Alors qu’il approche de sa conclusion, le prologue à « Game of Thrones » trouve son équilibre entre représentation de la violence guerrière et tragédie familiale.",
    "lien": "https://www.lemonde.fr/culture/article/2026/08/10/house-of-the-dragon-saison-3-sur-hbo-max-un-grand-spectacle-au-gout-de-cendres_6743418_3246.html",
    "source": "Le Monde",
    "rubrique": "Culture",
    "date": "2026-08-10T17:30:07+02:00"
-  },
-  {
-   "titre": "Royaume-Uni : des fans de Harry Potter parviennent à faire relocaliser un projet de câble électrique pour protéger la «tombe» de Dobby",
-   "resume": "Le chef du projet Greenlink, une liaison entre le Royaume-Uni et l’Irlande, dit avoir reçu «des centaines d’appels» criant à la profanation du sanctuaire réservé à l’elfe domestique, rapporte le «Guardian».",
-   "lien": "https://www.liberation.fr/international/europe/royaume-uni-des-fans-dharry-potter-parviennent-a-faire-relocaliser-un-projet-de-cable-electrique-pour-proteger-la-tombe-de-dobby-20260810_AGECCPVMINGUDONCJQOS2JCB5A/",
-   "source": "Libération",
-   "rubrique": "France",
-   "date": "2026-08-10T17:19:25+00:00"
-  },
-  {
-   "titre": "Affaire Lyhanna : Gérald Darmanin contraint de constater son propre échec",
-   "resume": "Après avoir refusé durant des semaines d’évoquer les difficultés structurelles dans le traitement des plaintes pour violences sexuelles, le ministre de la Justice a fini par acter l’évidence, reconnaissant en creux les insuffisances de son passage place Beauvau.",
-   "lien": "https://www.liberation.fr/societe/police-justice/affaire-lyhanna-gerald-darmanin-contraint-de-constater-son-propre-echec-20260810_S3LOA3MVGJGA3B5UHE7O357AMM/",
-   "source": "Libération",
-   "rubrique": "France",
-   "date": "2026-08-10T17:10:43+00:00"
   },
   {
    "titre": "Elle a vu l’envers du décor : pourquoi Meredith Whittaker veut empêcher l’IA de fouiller dans vos messages",
@@ -1419,30 +1555,6 @@
    "date": "2026-08-10T17:04:09+02:00"
   },
   {
-   "titre": "Guillaume Pley, accusé d’échanges ambigus avec des mineures, tente de se défendre : «Ce qui était peut-être acceptable à l’époque ne l’est plus»",
-   "resume": "L’animateur de «Legend» a répondu samedi dans un communiqué sur Instagram à l’enquête publiée par «les Inrocks» le 5 août. Mais d’anciens collaborateurs mettent à mal sa défense tandis que «Le Monde» publie un nouveau témoignage accablant.",
-   "lien": "https://www.liberation.fr/economie/medias/guillaume-pley-accuse-dechanges-ambigus-avec-des-mineures-tente-de-se-defendre-ce-qui-etait-peut-etre-acceptable-a-lepoque-ne-lest-plus-20260810_LSCPPO5Z6NFL5MGZ3TXD5477E4/",
-   "source": "Libération",
-   "rubrique": "France",
-   "date": "2026-08-10T17:00:59+00:00"
-  },
-  {
-   "titre": "Aux championnats d’Europe de natation, Maxime Grousset (r)assure malgré sa blessure",
-   "resume": "Le champion du monde s’est qualifié en finale du 50 mètres papillon en livrant d’impressionnantes prestations dans le bassin du Centre aquatique olympique, alors même que sa participation avait été compromise par une fracture au pied.",
-   "lien": "https://www.liberation.fr/sports/aux-championnats-deurope-de-natation-maxime-grousset-rassure-malgre-sa-blessure-20260810_DGPZVYOIFNFUZF434WUKMG2ENA/",
-   "source": "Libération",
-   "rubrique": "France",
-   "date": "2026-08-10T16:58:28+00:00"
-  },
-  {
-   "titre": "\"Je ne rêve que d'être sapeur-pompier professionnel malgré mon handicap\" : gravement brûlé lors dans un incendie en 2016, un soldat du feu continue son combat",
-   "resume": "France Télévisions a recueilli le témoignage d'un pompier volontaire, gravement blessé lors d'une intervention il y a dix ans. Malgré le traumatisme, il veut toujours lutter contre les flammes et aspire à devenir pompier professionnel... ce que refuse l’administration.",
-   "lien": "https://www.franceinfo.fr/societe/je-n-ai-qu-un-seul-reve-c-est-d-etre-sapeur-pompier-professionnel-malgre-mon-handicap-un-soldat-du-feu-gravement-brule-continue-son-combat_8141900.html#xtor=RSS-3-[lestitres]",
-   "source": "franceinfo",
-   "rubrique": "France",
-   "date": "2026-08-10T16:50:22+02:00"
-  },
-  {
    "titre": "Fonction publique : l’Etat appelé à faire le ménage dans les primes de ses agents",
    "resume": "Dans une « revue de dépenses » publiée fin juillet, l’inspection générale des finances et l’inspection générale de l’administration préconisent d’accentuer l’effort de rationalisation des primes. Elles étaient au nombre de 543 en 2025 pour un coût total de 19,1 milliards d’euros.",
    "lien": "https://www.lemonde.fr/politique/article/2026/08/10/fonction-publique-l-etat-appele-a-faire-le-menage-dans-les-primes-de-ses-agents_6743411_823448.html",
@@ -1451,76 +1563,12 @@
    "date": "2026-08-10T16:46:29+02:00"
   },
   {
-   "titre": "Guillaume Pley, le fondateur du média « Legend », accusé d’échanges en ligne à caractère sexuel avec plusieurs mineures",
-   "resume": "L’ancien animateur de NRJ a publié vendredi un communiqué pour se défendre des accusations d’une série d’enquêtes. Depuis, plusieurs anciens proches se sont désolidarisés de Guillaume Pley, dont la défense est fragilisée par un nouveau témoignage recueilli par « Le Monde ».",
-   "lien": "https://www.lemonde.fr/pixels/article/2026/08/10/guillaume-pley-le-fondateur-de-legend-accuse-d-echanges-en-ligne-a-caractere-sexuel-avec-plusieurs-mineures_6743407_4408996.html",
-   "source": "Le Monde",
-   "rubrique": "Économie",
-   "date": "2026-08-10T16:21:28+02:00"
-  },
-  {
-   "titre": "Chômage : Sébastien Lecornu défend le bilan du macronisme, sans « déni » mais en appelant à rejeter la « caricature »",
-   "resume": "Le taux de chômage en France a augmenté de 0,2 point au deuxième trimestre, pour atteindre 8,3 %, son plus haut niveau depuis l’automne 2020, en plein Covid, et depuis l’automne 2019 auparavant, a rapporté l’Insee vendredi.",
-   "lien": "https://www.lemonde.fr/politique/article/2026/08/10/chomage-sebastien-lecornu-defend-le-bilan-du-macronisme-sans-deni-mais-en-appelant-a-rejeter-la-caricature_6743372_823448.html",
-   "source": "Le Monde",
-   "rubrique": "Économie",
-   "date": "2026-08-10T15:59:31+02:00"
-  },
-  {
    "titre": "The transgender controversy surrounding the WNBA",
    "resume": "After the Indiana Fever's Sophie Cunningham said it was \"common sense\" to ban transgender women from women's sports, a row has emerged in the WNBA - with former NBA players saying eligibility rules mean they can enter the 2027 Draft.",
    "lien": "https://www.bbc.co.uk/sport/basketball/articles/ckg3enx6rj6o?at_medium=RSS&at_campaign=rss",
    "source": "BBC News",
    "rubrique": "International",
    "date": "2026-08-10T15:34:56+00:00"
-  },
-  {
-   "titre": "Elles semblent aller bien, mais s’épuisent en silence : pourquoi le TDAH passe inaperçu chez les femmes",
-   "resume": "Longtemps considéré comme un trouble de « petits garçons turbulents », le TDAH reste largement sous-diagnostiqué chez les filles et les femmes. Symptômes plus discrets, stratégies de camouflage, poids des normes sociales et influence des hormones : découvrez pourquoi ce trouble passe si souvent...",
-   "lien": "https://www.futura-sciences.com/sciences/actualites/series-ete-elles-semblent-aller-bien-mais-epuisent-silence-tdah-passe-inapercu-chez-femmes-136218/#xtor%3DRSS-8",
-   "source": "Futura Sciences",
-   "rubrique": "Sciences",
-   "date": "2026-08-10T15:01:15+02:00"
-  },
-  {
-   "titre": "Plus de 660 avis positifs : cette tondeuse à gazon Bosch fait presque l'unanimité",
-   "resume": "La Bosch EasyRotak 32-205 prouve qu'une tondeuse filaire a encore de beaux jours devant elle. Compacte, maniable et efficace, elle aide à retrouver une pelouse impeccable sans compliquer les séances de jardinage.",
-   "lien": "https://www.futura-sciences.com/conso/bons-plans/guides-jardin-plus-660-avis-positifs-cette-tondeuse-gazon-bosch-fait-presque-unanimite-10971/#xtor%3DRSS-8",
-   "source": "Futura Sciences",
-   "rubrique": "Sciences",
-   "date": "2026-08-10T14:00:00+02:00"
-  },
-  {
-   "titre": "Démarchage téléphonique : à partir du 11 août, les entreprises devront obtenir le consentement des consommateurs",
-   "resume": "Désormais, les entreprises devront recueillir le consentement des consommateurs avant toute prospection commerciale par téléphone, ce consentement étant « entendu comme une manifestation de volonté libre, spécifique, éclairée, univoque et révocable ».",
-   "lien": "https://www.lemonde.fr/economie/article/2026/08/10/demarchage-telephonique-a-partir-du-11-aout-les-entreprises-devront-obtenir-le-consentement-des-consommateurs_6733043_3235.html",
-   "source": "Le Monde",
-   "rubrique": "Économie",
-   "date": "2026-08-10T13:14:23+02:00"
-  },
-  {
-   "titre": "Camille Dormoy, sociologue : « L’économie circulaire demande de reprendre le temps qu’on nous a appris à ne plus perdre »",
-   "resume": "Dans une société fondée sur la vitesse, l’injonction à trier, réparer et valoriser les objets se heurte au manque de temps. Un angle mort des politiques publiques centrées sur les comportements, estime la chercheuse dans une tribune au « Monde ».",
-   "lien": "https://www.lemonde.fr/idees/article/2026/08/10/camille-dormoy-sociologue-l-economie-circulaire-demande-de-reprendre-le-temps-qu-on-nous-a-appris-a-ne-plus-perdre_6743267_3232.html",
-   "source": "Le Monde",
-   "rubrique": "Économie",
-   "date": "2026-08-10T13:00:07+02:00"
-  },
-  {
-   "titre": "Rakuten frappe très fort : -48 % sur le Samsung Galaxy S24 Ultra",
-   "resume": "Le Samsung Galaxy S24 Ultra n'a rien perdu de son aura. Écran XXL, capteur photo de 200 Mpx, Galaxy AI et S Pen : un smartphone haut de gamme qui continue de faire tourner les têtes des amateurs de technologie.",
-   "lien": "https://www.futura-sciences.com/conso/bons-plans/guides-smartphones-rakuten-frappe-tres-fort-48-samsung-galaxy-s24-ultra-10969/#xtor%3DRSS-8",
-   "source": "Futura Sciences",
-   "rubrique": "Sciences",
-   "date": "2026-08-10T12:00:00+02:00"
-  },
-  {
-   "titre": "World's oceans hit record-high July temperatures",
-   "resume": "Global oceans recorded their hottest July on record, partly fuelled by developing El Niño conditions, as wildfires continue to ravage western Europe.",
-   "lien": "https://www.bbc.co.uk/news/articles/cpvw8vmmgrwo?at_medium=RSS&at_campaign=rss",
-   "source": "BBC News",
-   "rubrique": "International",
-   "date": "2026-08-10T10:24:46+00:00"
   }
  ]
 }
