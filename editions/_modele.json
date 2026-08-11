@@ -7,7 +7,10 @@
     "l'étape 4 de .claude/commands/brief-du-soir.md, pour lui épargner une lecture",
     "de plus. Si vous modifiez l'un, pensez à l'autre.",
     "Un article n'utilise que les champs qui lui servent : seuls titre, rubrique et contenu",
-    "sont vraiment obligatoires. Les autres sont là pour montrer ce qui est disponible."
+    "sont vraiment obligatoires. Les autres sont là pour montrer ce qui est disponible.",
+    "Trois exceptions, à l'échelle de l'édition : 2 ou 3 articles marqués a_la_une — ce sont",
+    "eux que l'application met en tête —, au moins un chiffre et au moins une citation. Sans",
+    "eux la page est une suite de blocs identiques. verifier_edition.py le contrôle."
   ],
 
   "edition": {

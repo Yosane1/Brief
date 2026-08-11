@@ -92,12 +92,13 @@ lecture te fait revenir sur un sujet d'abord écarté.
 Un titre de dépêche annonce le sujet, pas les faits ; il ne porte ni chiffre
 vérifiable, ni attribution, ni nuance. Sans le résumé, tu inventerais.
 
-**c. Arbitrage.** Sélectionne alors **12 à 15 articles**, pour un total de
-**6 à 8 minutes de lecture** (le calcul se fait à 220 mots/minute). C'est une
-contrainte ferme : au-delà, la promesse du format n'est plus tenue. En
-respectant ces équilibres :
+**c. Arbitrage.** Sélectionne alors **9 à 11 articles**, pour un total de
+**5 à 7 minutes de lecture** (le calcul se fait à 220 mots/minute). C'est une
+contrainte ferme : au-delà, la promesse du format n'est plus tenue — une
+édition de quatorze articles demandait huit minutes et seize écrans de
+téléphone. En respectant ces équilibres :
 
-- 5 à 7 sujets en **On rembobine** — l'essentiel du jour, formats courts
+- 4 à 6 sujets en **On rembobine** — l'essentiel du jour, formats courts
   (150 à 250 mots), un mélange France / international / économie.
 - **Un seul** sujet en **Tout s'explique** — le décryptage du jour, 400 à
   600 mots, structuré en sous-titres `###`. C'est la pièce maîtresse : choisis
@@ -105,6 +106,9 @@ respectant ces équilibres :
 - Les autres rubriques selon ce que l'actualité offre, sans forcer :
   `On fait le point`, `C'est leur avis`, `Ça se voit`, `C'est qui ?`,
   `Ça alors`, `Ça peut servir`, `Ça vaut un clic`, `À vous de jouer`.
+- **2 ou 3 articles marqués `a_la_une`** : ce sont eux, et eux seuls, que
+  l'application met en tête d'édition. Choisis-les comme une vraie hiérarchie,
+  pas comme les trois premiers venus.
 - Le samedi, bascule sur le format week-end (voir « Cas particuliers »).
 
 Écarte systématiquement : les articles sponsorisés, les bons plans et tests
@@ -177,9 +181,22 @@ n'aboutira nulle part et sera signalé à la vérification.
 
 `mots_cles` : 6 à 8, ils font vivre la recherche.
 
-Facultatifs, selon ce que le sujet offre — ne les force pas : `a_la_une` (sur
-les 2 ou 3 articles majeurs seulement), `chiffre` + `legende_chiffre`,
-`citation` + `auteur_citation`.
+**Trois éléments à placer dans chaque édition**, parce qu'ils sont ce qui donne
+son rythme à la page : sans eux, le lecteur descend douze blocs strictement
+identiques.
+
+| Élément | Combien | Où |
+|---|---|---|
+| `a_la_une` | **2 ou 3** | sur les articles majeurs — ils ouvrent l'édition |
+| `chiffre` + `legende_chiffre` | **au moins 1** | là où une donnée porte le sujet |
+| `citation` + `auteur_citation` | **au moins 1** | un propos rapporté qui vaut d'être lu tel quel |
+
+Le chiffre et la citation doivent sortir d'un résumé que tu as lu, comme le
+reste — pas d'un ordre de grandeur reconstitué. Si aucune dépêche du jour n'en
+fournit, passe et dis-le dans le compte rendu : mieux vaut une édition sans
+chiffre qu'un chiffre inventé.
+
+`image` reste facultatif tant qu'aucune source d'illustration n'est en place.
 
 Ne renseigne ni `numero` ni `temps_lecture` : ils sont calculés à la
 publication.

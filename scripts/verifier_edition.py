@@ -72,11 +72,18 @@ def verifier(jour=None):
         alertes.append("aucun article rattaché : l'édition s'affichera vide")
 
     par_rubrique = {}
+    mobilier = {"chiffre": 0, "citation": 0, "à la une": 0}
     for a in articles:
         f = a["fields"]
         r = f.get("Rubrique", "(vide)")
         par_rubrique.setdefault(r, 0)
         par_rubrique[r] += 1
+        if f.get("Chiffre clé"):
+            mobilier["chiffre"] += 1
+        if f.get("Citation"):
+            mobilier["citation"] += 1
+        if f.get("À la une"):
+            mobilier["à la une"] += 1
 
         titre = (f.get("Titre") or "(sans titre)")[:60]
         if not f.get("Titre"):
@@ -102,16 +109,41 @@ def verifier(jour=None):
     print("\n  Répartition :")
     for r, n in sorted(par_rubrique.items(), key=lambda x: -x[1]):
         print(f"    {n:>2} × {r}")
+    print("  Rythme       : "
+          + ", ".join(f"{n} {nom}" for nom, n in mobilier.items()))
 
     # L'extra du samedi n'a pas de décryptage : c'est son format.
-    if ed.get("Type") != "Extra du samedi" and "Tout s'explique" not in par_rubrique:
+    extra = ed.get("Type") == "Extra du samedi"
+    if not extra and "Tout s'explique" not in par_rubrique:
         avertissements.append("pas de décryptage « Tout s'explique »")
 
+    # Sans chiffre ni citation, la page est une suite de blocs identiques : ce
+    # sont eux qui lui donnent son rythme. Le champ « À la une » commande en
+    # plus le bloc de tête de l'application — vide, l'édition s'ouvre sans
+    # hiérarchie.
+    if not extra:
+        if not mobilier["chiffre"]:
+            avertissements.append("aucun chiffre clé : la page n'a aucun point d'accroche")
+        if not mobilier["citation"]:
+            avertissements.append("aucune citation")
+        if not mobilier["à la une"]:
+            alertes.append("aucun article « À la une » : l'édition s'ouvrira sans bloc de tête")
+        elif mobilier["à la une"] > 4:
+            avertissements.append(
+                f"{mobilier['à la une']} articles « À la une » : "
+                f"au-delà de trois, ce n'est plus une sélection"
+            )
+
+    if not extra and not 9 <= len(articles) <= 11:
+        avertissements.append(
+            f"{len(articles)} articles : le format en demande 9 à 11"
+        )
+
     minutes = ed.get("Temps de lecture") or 0
-    if minutes > 9:
+    if minutes > 7:
         avertissements.append(
             f"{minutes} min de lecture : au-dessus de la promesse « moins de 7 minutes », "
-            f"envisager de retirer {max(1, (minutes - 7) * 2)} article(s)"
+            f"envisager de retirer {max(1, (minutes - 6) * 2)} article(s)"
         )
 
     if avertissements:

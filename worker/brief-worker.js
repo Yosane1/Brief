@@ -416,6 +416,7 @@ function article(r) {
     motsCles: (f["Mots-clés"] || "").split(",").map(s => s.trim()).filter(Boolean),
     date: f["Date"] || "",
     ordre: f["Ordre"] || 0,
+    aLaUne: !!f["À la une"],
   };
 }
 

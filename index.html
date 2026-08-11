@@ -135,7 +135,16 @@ main{width:var(--lg); margin-inline:auto; padding:2.5rem 0 5rem}
   display:flex; flex-wrap:wrap; align-items:center; gap:.5rem .75rem; margin-bottom:1rem;
   font-size:.72rem; font-weight:600; letter-spacing:.08em; text-transform:uppercase; color:var(--texte-3);
 }
+/* La puce est un élément de flux à part entière, donc susceptible de finir
+   seule en bout de ligne quand la métadonnée passe à la suivante. Sur mobile
+   c'est systématique. Elle est donc collée à ce qu'elle sépare. */
 .puce{width:3px; height:3px; border-radius:99px; background:currentColor; opacity:.5}
+.une-meta .puce, .carte-meta .puce{display:none}
+.une-meta .sep::before, .carte-meta .sep::before{
+  content:""; display:inline-block; vertical-align:middle;
+  width:3px; height:3px; border-radius:99px; background:currentColor;
+  opacity:.5; margin-right:.75rem;
+}
 .badge-type{
   background:var(--accent); color:#fff; padding:.2rem .55rem; border-radius:4px; letter-spacing:.06em;
 }
@@ -143,10 +152,14 @@ main{width:var(--lg); margin-inline:auto; padding:2.5rem 0 5rem}
   font-size:clamp(2rem,6vw,2.9rem); line-height:1.08; letter-spacing:-.035em;
   margin:0 0 1.25rem; text-wrap:balance;
 }
+/* Le filet coloré porte la voix de l'édito : l'italique n'y ajoutait qu'un coût
+   de lecture, sur le premier bloc de prose que le lecteur rencontre et le plus
+   long de la page. */
 .edito{
   border-left:3px solid var(--accent); padding:.15rem 0 .15rem 1.1rem;
-  color:var(--texte-2); font-style:italic; font-size:1.02rem; line-height:1.6;
+  color:var(--texte-2); font-size:1.02rem; line-height:1.6;
 }
+.edito em, .edito i{font-style:italic}
 
 /* ── Sommaire ────────────────────────────────────────────────────────── */
 .sommaire{
@@ -158,8 +171,46 @@ main{width:var(--lg); margin-inline:auto; padding:2.5rem 0 5rem}
   text-transform:uppercase; color:var(--texte-3); list-style:none;
 }
 .sommaire summary::-webkit-details-marker{display:none}
-.sommaire summary::after{content:" ▾"; opacity:.6}
-.sommaire[open] summary::after{content:" ▴"}
+/* Le chevron est porté par le libellé, pas par le résumé : sinon il tombe sous
+   la phrase d'aide, seul sur sa ligne. */
+.somm-libelle::after{content:" ▾"; opacity:.6}
+.sommaire[open] .somm-libelle::after{content:" ▴"}
+/* Le sommaire est replié par défaut : déplié, il occupait un écran entier de
+   téléphone avant la première nouvelle. Encore faut-il dire au lecteur qu'il
+   est là — un titre seul ne se donne pas pour un bouton. */
+.somm-aide{
+  display:block; margin-top:.25rem; font-size:.78rem; font-weight:400;
+  letter-spacing:0; text-transform:none; color:var(--texte-3);
+}
+.sommaire[open] .somm-aide{display:none}
+/* ── À la une ────────────────────────────────────────────────────────────
+   Les deux ou trois articles que la rédaction du soir a marqués « À la une ».
+   Le champ existait depuis l'origine et n'était lu par personne : c'est le
+   seul endroit où le lecteur profite d'un arbitrage déjà fait pour lui. Trois
+   lignes, là où le sommaire complet en prenait un écran entier. */
+.essentiels{margin:0 0 1.5rem}
+.essentiels-titre{
+  display:flex; align-items:center; gap:.6rem; margin-bottom:.6rem;
+  font-size:.7rem; font-weight:700; letter-spacing:.11em; text-transform:uppercase;
+  color:var(--texte-3);
+}
+.essentiels-titre::after{content:""; flex:1; height:1px; background:var(--bord)}
+.essentiels ol{margin:0; padding:0; list-style:none; counter-reset:e}
+.essentiels li{
+  counter-increment:e; display:flex; gap:.85rem; align-items:baseline;
+  padding:.65rem 0; border-top:1px solid var(--bord);
+}
+.essentiels li:first-child{border-top:0; padding-top:.2rem}
+.essentiels li::before{
+  content:counter(e); flex:none; font-size:.78rem; font-weight:700;
+  color:var(--accent); font-variant-numeric:tabular-nums;
+}
+.essentiels a{
+  text-decoration:none; font-size:1.02rem; font-weight:600;
+  line-height:1.3; letter-spacing:-.015em;
+}
+.essentiels a:hover{color:var(--accent)}
+
 /* Le compteur est porté par le sommaire entier, pas par chaque liste : la
    numérotation doit suivre l'ordre de lecture, pas repartir à chaque rubrique. */
 .sommaire{counter-reset:s}
@@ -369,6 +420,13 @@ input:focus-visible, select:focus-visible, button:focus-visible, a:focus-visible
 }
 .nuage a:hover{background:var(--accent); border-color:var(--accent); color:#fff}
 .nuage a i{font-style:normal; color:var(--texte-3); font-size:.75rem; margin-left:.35rem}
+.note-nuage{margin:1.25rem 0 0; font-size:.8rem; color:var(--texte-3); line-height:1.5}
+.note-nuage a{color:var(--accent); font-weight:600}
+
+/* Écran de départ de la recherche : deux entrées dans le corpus plutôt qu'un
+   formulaire vide. Il faut bien proposer quelque chose à chercher. */
+.depart{display:grid; gap:2rem}
+.depart .surtitre{display:block; margin-bottom:.8rem}
 .nuage a:hover i{color:rgba(255,255,255,.8)}
 
 /* ── Résultats de recherche ──────────────────────────────────────────── */
@@ -1341,6 +1399,7 @@ function lireArticle(r) {
     motsCles: (f["Mots-clés"] || "").split(",").map(s => s.trim()).filter(Boolean),
     date: f["Date"] || "",
     ordre: f["Ordre"] || 0,
+    aLaUne: !!f["À la une"],
   };
 }
 
@@ -1407,6 +1466,9 @@ async function vueEdition(slug) {
   // reprise de lecture, qui n'aurait alors plus lieu d'être proposée.
   const reprise = location.hash.includes("#article-") ? null : LECTURE.reprise(ed.slug);
 
+  // Plafonné à quatre : au-delà, ce n'est plus une sélection, c'est le sommaire.
+  const aLaUne = ed.articles.filter(a => a.aLaUne).slice(0, 4);
+
   vue().className = "";
   vue().innerHTML = `
     <article style="--accent:${accent}">
@@ -1414,8 +1476,8 @@ async function vueEdition(slug) {
         <div class="une-meta">
           <span class="badge-type" style="background:${accent}">${echappe(ed.type)}</span>
           <span>${dateLongue(ed.date)}</span>
-          ${ed.numero ? `<i class="puce"></i><span>N° ${ed.numero}</span>` : ""}
-          <i class="puce"></i><span>${minutes} min de lecture</span>
+          ${ed.numero ? `<span class="sep">N° ${ed.numero}</span>` : ""}
+          <span class="sep">${minutes} min de lecture</span>
         </div>
         <h1>${echappe(ed.titre)}</h1>
         ${ed.edito ? `<div class="edito" style="border-color:${accent}">${markdown(ed.edito)}</div>` : ""}
@@ -1434,9 +1496,16 @@ async function vueEdition(slug) {
         <small>${Math.round(reprise.part * 100)} %</small>
       </button>` : ""}
 
+      ${aLaUne.length ? `
+      <nav class="essentiels" aria-label="Les articles à la une">
+        <div class="essentiels-titre">À la une</div>
+        <ol>${aLaUne.map(a =>
+          `<li><a href="#article-${a.id}">${echappe(a.titre)}</a></li>`).join("")}</ol>
+      </nav>` : ""}
+
       ${ordonnees.length > 1 ? `
-      <details class="sommaire" open>
-        <summary>Au sommaire</summary>
+      <details class="sommaire">
+        <summary><span class="somm-libelle">Au sommaire</span><span class="somm-aide">Appuyez pour voir les ${ed.articles.length} titres, rubrique par rubrique.</span></summary>
         ${ordonnees.map(([rubrique, articles]) => `
           <div class="somm-groupe" style="--c:${couleurDe(rubrique)}">
             <div class="somm-titre">${echappe(rubrique)}</div>
@@ -1485,7 +1554,7 @@ async function vueEdition(slug) {
 
   LOCAL.ecrire("derniereLue", ed.slug);
   journaliser("Lecture", `Édition ${ed.slug} — ${ed.articles.length} articles`);
-  document.title = `${ed.titre} — Brief du ${dateCourte(ed.date)}`;
+  document.title = `${ed.titre} — ${reglage("app_nom", "Brief")} du ${dateCourte(ed.date)}`;
 }
 
 /**
@@ -1569,7 +1638,7 @@ async function vueArchives() {
     <div class="chapeau-page">
       <h1 data-reglage="titre_archives">Archives</h1>
       <p>${editions.length} édition${editions.length > 1 ? "s" : ""} disponible${editions.length > 1 ? "s" : ""},
-         de ${dateCourte(bornes.min)} à ${dateCourte(bornes.max)}.</p>
+         du ${dateCourte(bornes.min)} au ${dateCourte(bornes.max)}.</p>
     </div>
 
     <div class="barre-outils">
@@ -1605,7 +1674,7 @@ async function vueArchives() {
       : `<div class="vide"><b>Aucune édition</b>Aucun brief ne correspond à ce format.</div>`;
   });
 
-  document.title = "Archives — Brief";
+  document.title = `${reglage("titre_archives", "Archives")} — ${reglage("app_nom", "Brief")}`;
 }
 
 function rendreArchives(parMois) {
@@ -1626,8 +1695,8 @@ function rendreArchives(parMois) {
             <div class="carte-meta">
               <i class="pastille"></i>
               <span>${dateLongue(e.date)}</span>
-              ${e.numero ? `<i class="puce"></i><span>N° ${e.numero}</span>` : ""}
-              ${e.minutes ? `<i class="puce"></i><span>${e.minutes} min</span>` : ""}
+              ${e.numero ? `<span class="sep">N° ${e.numero}</span>` : ""}
+              ${e.minutes ? `<span class="sep">${e.minutes} min</span>` : ""}
               ${reprise ? `<span class="jalon">En cours
                   <i style="--p:${Math.round(reprise.part * 100)}%"></i></span>` : ""}
             </div>
@@ -1695,7 +1764,13 @@ async function vueExplorer(params) {
 
   const rubriques = [...parRubrique.entries()].sort((a, b) => rangDe(a[0]) - rangDe(b[0]));
   const thematiques = [...parThematique.entries()].sort((a, b) => b[1] - a[1]);
-  const motsCles = [...parMotCle.entries()].sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0]));
+  // Quatre mots-clés sur cinq ne désignent qu'un seul article — noms propres,
+  // événements d'un soir. Les afficher tous, c'est offrir un nuage fait à 80 %
+  // d'impasses. Le nuage ne garde que ce qui relie au moins deux articles ;
+  // le reste demeure trouvable par la recherche, qui est faite pour ça.
+  const tousMotsCles = [...parMotCle.entries()].sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0]));
+  const motsCles = tousMotsCles.filter(([, n]) => n > 1);
+  const motsUniques = tousMotsCles.length - motsCles.length;
 
   const contenus = {
     rubriques: () => `
@@ -1720,13 +1795,19 @@ async function vueExplorer(params) {
 
     motscles: () => motsCles.length ? `
       <p class="surtitre" style="display:block; margin-bottom:1rem">
-        ${motsCles.length} mots-clés · les plus fréquents d'abord
+        ${motsCles.length} sujet${motsCles.length > 1 ? "s" : ""} qui revien${motsCles.length > 1 ? "nent" : "t"}
+        · les plus fréquents d'abord
       </p>
       <div class="nuage">
         ${motsCles.slice(0, 120).map(([m, n]) => `
           <a href="#/recherche?q=${encodeURIComponent(m)}">${echappe(m)}<i>${n}</i></a>`).join("")}
-      </div>`
-      : `<div class="vide"><b>Aucun mot-clé</b>Les articles publiés n'en portent pas encore.</div>`,
+      </div>
+      ${motsUniques ? `<p class="note-nuage">${motsUniques} autre${motsUniques > 1 ? "s" : ""}
+        mot${motsUniques > 1 ? "s" : ""}-clé${motsUniques > 1 ? "s" : ""}
+        ne désigne${motsUniques > 1 ? "nt" : ""} qu'un seul article
+        et reste${motsUniques > 1 ? "nt" : ""} accessible${motsUniques > 1 ? "s" : ""}
+        par la <a href="#/recherche">recherche</a>.</p>` : ""}`
+      : `<div class="vide"><b>Aucun sujet récurrent</b>Aucun mot-clé ne relie encore deux articles.</div>`,
   };
 
   const onglets = [
@@ -1801,52 +1882,109 @@ async function vueRecherche(params) {
 
   appliquerReglages();
 
+  /* La recherche se relance à la frappe, mais sans repasser par le routeur :
+     changer la route reconstruirait le formulaire et le champ perdrait le
+     focus au premier caractère. On ne remplace donc que les résultats, et
+     l'adresse est réécrite en silence pour rester partageable. */
+  let minuteur, requeteEnCours = 0;
+  async function lancer({ pousserRoute = false } = {}) {
+    const t = $("#q").value.trim();
+    const r = $("#f-rubrique").value;
+    const th = $("#f-thematique").value;
+
+    const p = new URLSearchParams();
+    if (t) p.set("q", t);
+    if (r) p.set("rubrique", r);
+    if (th) p.set("thematique", th);
+    const route = "#/recherche" + (p.toString() ? "?" + p : "");
+    pousserRoute ? (location.hash = route) : history.replaceState(null, "", route);
+
+    if (!t && !r && !th) return void ($("#resultats").innerHTML = await ecranDeDepart());
+
+    // Une réponse lente ne doit pas écraser le résultat d'une frappe plus
+    // récente : seule la dernière requête lancée a le droit d'afficher.
+    const mien = ++requeteEnCours;
+    $("#resultats").innerHTML = `<p class="vide">Recherche en cours…</p>`;
+    try {
+      const trouves = t ? await rechercher(t, { rubrique: r, thematique: th })
+                        : await filtrerSansTerme({ rubrique: r, thematique: th });
+      if (mien !== requeteEnCours) return;
+      afficherResultats(trouves, t);
+      journaliser("Recherche", `« ${t} » → ${trouves.length} résultat(s)`);
+    } catch (e) {
+      if (mien !== requeteEnCours) return;
+      $("#resultats").innerHTML =
+        `<div class="vide"><b>La recherche a échoué</b>${echappe(e.message)}</div>`;
+    }
+  }
+
+  $("#q").addEventListener("input", () => {
+    clearTimeout(minuteur);
+    minuteur = setTimeout(() => lancer(), 350);
+  });
+  $("#f-rubrique").onchange = $("#f-thematique").onchange = () => lancer();
   $("#form-recherche").addEventListener("submit", e => {
     e.preventDefault();
-    const p = new URLSearchParams();
-    if ($("#q").value.trim())    p.set("q", $("#q").value.trim());
-    if ($("#f-rubrique").value)  p.set("rubrique", $("#f-rubrique").value);
-    if ($("#f-thematique").value) p.set("thematique", $("#f-thematique").value);
-    location.hash = "#/recherche?" + p.toString();
+    clearTimeout(minuteur);
+    $("#q").blur();               // sur mobile, referme le clavier
+    lancer({ pousserRoute: true });
   });
 
-  document.title = q ? `« ${q} » — Recherche` : "Recherche — Brief";
+  const nomApp = reglage("app_nom", "Brief");
+  document.title = q
+    ? `« ${q} » — ${reglage("titre_recherche", "Recherche")}`
+    : `${reglage("titre_recherche", "Recherche")} — ${nomApp}`;
 
-  if (!q && !rubrique && !thematique) {
-    $("#resultats").innerHTML = `
-      <div class="vide">
-        <b>Que cherchez-vous ?</b>
-        Tapez un mot-clé, ou filtrez par rubrique et par thématique.
-      </div>`;
-    return;
+  await lancer();
+}
+
+function afficherResultats(trouves, q) {
+  $("#resultats").innerHTML = trouves.length
+    ? `<p class="surtitre" style="display:block; margin-bottom:1rem">
+         ${trouves.length} résultat${trouves.length > 1 ? "s" : ""}
+       </p>
+       ${trouves.map(a => rendreResultat(a, q)).join("")}`
+    : `<div class="vide">
+         <b>Aucun résultat</b>
+         Aucun article ne correspond${q ? ` à « ${echappe(q)} »` : ""}.
+       </div>`;
+}
+
+/**
+ * Ce qu'on montre avant la première frappe.
+ *
+ * Un formulaire vide ne dit pas ce qu'il y a à chercher. Les thématiques et
+ * les sujets qui reviennent donnent une prise immédiate, et se remplissent
+ * tout seuls à mesure que le corpus grossit.
+ */
+async function ecranDeDepart() {
+  let articles = [];
+  try { articles = await chargerVivier(); } catch { /* la recherche reste utilisable */ }
+  if (!articles.length) {
+    return `<div class="vide"><b>Que cherchez-vous ?</b>
+      Tapez un mot-clé, ou filtrez par rubrique et par thématique.</div>`;
   }
 
-  $("#resultats").innerHTML = `<p class="vide">Recherche en cours…</p>`;
-  let trouves;
-  try {
-    trouves = q ? await rechercher(q, { rubrique, thematique })
-                : await filtrerSansTerme({ rubrique, thematique });
-  } catch (e) {
-    return void ($("#resultats").innerHTML =
-      `<div class="vide"><b>La recherche a échoué</b>${echappe(e.message)}</div>`);
-  }
+  const thematiques = [...compter(articles, "thematique").entries()].sort((a, b) => b[1] - a[1]);
+  const sujets = [...compter(articles, "motsCles", true).entries()]
+    .filter(([, n]) => n > 1)
+    .sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0]))
+    .slice(0, 24);
 
-  journaliser("Recherche", `« ${q} » → ${trouves.length} résultat(s)`);
+  const nuage = (entrees, lien) => `<div class="nuage">${entrees.map(([v, n]) =>
+    `<a href="${lien(v)}">${echappe(v)}<i>${n}</i></a>`).join("")}</div>`;
 
-  if (!trouves.length) {
-    $("#resultats").innerHTML = `
-      <div class="vide">
-        <b>Aucun résultat</b>
-        Aucun article ne correspond${q ? ` à « ${echappe(q)} »` : ""}.
-      </div>`;
-    return;
-  }
-
-  $("#resultats").innerHTML = `
-    <p class="surtitre" style="display:block; margin-bottom:1rem">
-      ${trouves.length} résultat${trouves.length > 1 ? "s" : ""}
-    </p>
-    ${trouves.map(a => rendreResultat(a, q)).join("")}`;
+  return `
+    <div class="depart">
+      ${thematiques.length ? `<div>
+        <span class="surtitre">Par thématique</span>
+        ${nuage(thematiques, t => `#/recherche?thematique=${encodeURIComponent(t)}`)}
+      </div>` : ""}
+      ${sujets.length ? `<div>
+        <span class="surtitre">Sujets qui reviennent</span>
+        ${nuage(sujets, s => `#/recherche?q=${encodeURIComponent(s)}`)}
+      </div>` : ""}
+    </div>`;
 }
 
 const filtrerSansTerme = filtres => API.articles(filtres);
@@ -2489,7 +2627,7 @@ const SW = {
       e.preventDefault();
       invite = e;
       if (LOCAL.lire("installRefuse")) return;
-      alerte("Installez Brief pour le retrouver comme une application.",
+      alerte(`Installez ${reglage("app_nom", "Brief")} pour le retrouver comme une application.`,
              { texte: "Installer", href: "#/" });
       const lien = $("#bandeau a");
       if (!lien) return;
