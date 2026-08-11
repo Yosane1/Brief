@@ -36,8 +36,13 @@
   --accent:var(--rouge);
 
   --serif:"Radio Canada Big", ui-sans-serif, system-ui, "Segoe UI", Roboto, sans-serif;
-  --lg:min(680px, 100% - 2.5rem);
-  --lg-large:min(1120px, 100% - 2.5rem);
+
+  /* Les gouttières sont en pixels et non en rem : la colonne de lecture ne doit
+     pas se rétrécir quand le lecteur agrandit le texte — ce serait exactement
+     l'inverse de ce qu'il demande. */
+  --lg:min(680px, 100% - 40px);
+  --lg-large:min(1120px, 100% - 40px);
+  --echelle:1;
 }
 :root[data-theme="dark"]{
   --fond:#1f1f1f; --fond-2:#282929; --fond-3:#323233;
@@ -55,11 +60,24 @@
 }
 
 *,*::before,*::after{box-sizing:border-box}
-html{-webkit-text-size-adjust:100%}
+
+/* Toute la typographie du fichier est en rem : régler cette seule racine change
+   la taille du texte partout, sans toucher à une règle de plus. */
+html{-webkit-text-size-adjust:100%; font-size:calc(16px * var(--echelle)); scroll-behavior:smooth}
 body{
   margin:0; background:var(--fond); color:var(--texte);
-  font-family:var(--serif); font-size:17px; line-height:1.62;
+  font-family:var(--serif); font-size:1.0625rem; line-height:1.62;
   -webkit-font-smoothing:antialiased; overflow-wrap:break-word;
+}
+
+/* Un lecteur qui a désactivé les animations dans son système ne les a pas
+   désactivées à moitié. */
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{
+    animation-duration:.01ms !important; animation-iteration-count:1 !important;
+    transition-duration:.01ms !important;
+  }
 }
 a{color:inherit}
 button{font:inherit; color:inherit; cursor:pointer; border:0; background:none}
@@ -77,7 +95,7 @@ button{font:inherit; color:inherit; cursor:pointer; border:0; background:none}
   backdrop-filter:saturate(1.6) blur(14px);
 }
 .entete-in{
-  width:var(--lg-large); margin-inline:auto; height:60px;
+  width:var(--lg-large); margin-inline:auto; min-height:60px;
   display:flex; align-items:center; gap:1.25rem;
 }
 .logo{display:flex; align-items:baseline; gap:.1rem; font-weight:700; font-size:1.4rem; letter-spacing:-.03em; text-decoration:none}
@@ -142,7 +160,10 @@ main{width:var(--lg); margin-inline:auto; padding:2.5rem 0 5rem}
 .sommaire summary::-webkit-details-marker{display:none}
 .sommaire summary::after{content:" ▾"; opacity:.6}
 .sommaire[open] summary::after{content:" ▴"}
-.sommaire ol{margin:1rem 0 0; padding:0; list-style:none; counter-reset:s}
+/* Le compteur est porté par le sommaire entier, pas par chaque liste : la
+   numérotation doit suivre l'ordre de lecture, pas repartir à chaque rubrique. */
+.sommaire{counter-reset:s}
+.sommaire ol{margin:.5rem 0 0; padding:0; list-style:none}
 .sommaire li{counter-increment:s; margin-bottom:.55rem; display:flex; gap:.7rem; align-items:baseline}
 .sommaire li::before{
   content:counter(s,decimal-leading-zero); font-size:.7rem; font-weight:700;
@@ -150,6 +171,25 @@ main{width:var(--lg); margin-inline:auto; padding:2.5rem 0 5rem}
 }
 .sommaire a{text-decoration:none; font-size:.94rem; font-weight:500; line-height:1.4}
 .sommaire a:hover{color:var(--accent)}
+
+/* Le sommaire reprend le découpage par rubrique de la page elle-même : c'est
+   cette structure qui fait la marque du format, la perdre ici priverait le
+   lecteur de son repère au moment précis où il cherche à s'orienter. */
+.somm-groupe{margin-top:1rem}
+.somm-groupe:first-of-type{margin-top:.75rem}
+.somm-titre{
+  display:flex; align-items:center; gap:.5rem; margin-bottom:.5rem;
+  font-size:.66rem; font-weight:700; letter-spacing:.1em; text-transform:uppercase;
+  color:var(--texte-3);
+}
+.somm-titre::before{
+  content:""; width:6px; height:6px; border-radius:99px;
+  background:var(--c,var(--accent)); flex:none;
+}
+/* L'article en cours de lecture. Le repère est un trait à gauche plutôt qu'un
+   fond : il se lit d'un coup d'œil sans attirer l'attention. */
+.sommaire a.actif{color:var(--texte); font-weight:700}
+.sommaire li.actif::before{color:var(--accent)}
 
 /* ── Rubriques ───────────────────────────────────────────────────────── */
 .rubrique{margin:0 0 3.5rem; scroll-margin-top:80px}
@@ -277,6 +317,25 @@ input:focus-visible, select:focus-visible, button:focus-visible, a:focus-visible
 .carte h3{font-size:1.15rem; line-height:1.25; letter-spacing:-.02em; margin:0 0 .35rem; transition:color .15s}
 .carte p{margin:0; font-size:.93rem; color:var(--texte-2); line-height:1.5}
 .pastille{width:7px; height:7px; border-radius:99px; background:var(--c,var(--accent)); flex:none}
+
+/* Éditions déjà lues. À trois briefs on s'en passe ; à deux cent cinquante on
+   ne sait plus où on en est. La pastille se vide, le titre s'apaise — l'édition
+   reste parfaitement lisible, elle cesse seulement de réclamer l'attention. */
+.carte.lue .pastille{background:transparent; box-shadow:inset 0 0 0 1.5px var(--c,var(--accent))}
+.carte.lue h3{color:var(--texte-2); font-weight:600}
+.carte.lue .carte-meta{opacity:.75}
+.jalon{
+  margin-left:auto; display:inline-flex; align-items:center; gap:.3rem;
+  color:var(--accent); letter-spacing:.06em;
+}
+.jalon i{
+  font-style:normal; width:26px; height:3px; border-radius:99px;
+  background:var(--bord-fort); position:relative; overflow:hidden;
+}
+.jalon i::after{
+  content:""; position:absolute; inset:0 auto 0 0; width:var(--p,0%);
+  background:var(--accent);
+}
 
 /* ── Explorer ────────────────────────────────────────────────────────── */
 .onglets{
@@ -415,6 +474,32 @@ mark{background:color-mix(in srgb, var(--accent) 22%, transparent); color:inheri
   color:var(--texte); font-size:.88rem; line-height:1.45; text-align:center;
   padding:.65rem 1.25rem;
 }
+
+/* Hors ligne. Un brief périmé affiché comme frais serait pire que pas de brief
+   du tout : le bandeau dit la date de ce qui est montré, et ne se referme pas. */
+#hors-ligne{
+  background:var(--fond-3); border-bottom:1px solid var(--bord);
+  color:var(--texte-2); font-size:.82rem; line-height:1.4; text-align:center;
+  padding:.5rem 1.25rem; display:flex; align-items:center; justify-content:center; gap:.5rem;
+}
+#hors-ligne b{color:var(--texte); font-weight:600}
+#hors-ligne::before{
+  content:""; width:7px; height:7px; border-radius:99px; flex:none;
+  background:var(--or); box-shadow:0 0 0 3px color-mix(in srgb, var(--or) 22%, transparent);
+}
+
+/* Reprise de lecture. Proposée, jamais imposée : un lecteur qui rouvre pour
+   relire l'édito serait agacé d'atterrir d'autorité au milieu de l'édition. */
+.reprendre{
+  display:flex; align-items:center; gap:.7rem; width:100%; text-align:left;
+  margin:0 0 2rem; padding:.8rem 1rem; border-radius:12px;
+  background:var(--fond-2); border:1px solid var(--bord);
+  font-size:.9rem; transition:border-color .15s;
+}
+.reprendre:hover{border-color:var(--accent)}
+.reprendre svg{width:18px; height:18px; flex:none; fill:none; stroke:var(--accent); stroke-width:2}
+.reprendre b{font-weight:600}
+.reprendre small{color:var(--texte-3); margin-left:auto; font-variant-numeric:tabular-nums}
 .bandeau button{opacity:.6; flex:none; font-size:1.2rem; line-height:1}
 .menu{
   position:absolute; right:0; top:calc(100% + 8px); background:var(--fond); z-index:70;
@@ -557,6 +642,7 @@ mark{background:color-mix(in srgb, var(--accent) 22%, transparent); color:inheri
   <div class="progression" id="progression"></div>
 </header>
 
+<div id="hors-ligne" hidden></div>
 <div id="annonce" hidden></div>
 <main id="vue" hidden></main>
 
@@ -672,6 +758,93 @@ function dateCourte(iso) {
 }
 const aujourdhui = () => new Date().toISOString().slice(0, 10);
 
+/* ══════════════════════════════════════════════════════════════════════════
+   Confort de lecture
+   ══════════════════════════════════════════════════════════════════════════ */
+
+/** Taille du texte. Trois crans : au-delà, la mise en page se disloque. */
+const ECHELLE = {
+  crans: [[1, "Normale"], [1.125, "Grande"], [1.25, "Très grande"]],
+
+  courant() {
+    const v = Number(LOCAL.lire("echelle"));
+    return this.crans.some(c => c[0] === v) ? v : 1;
+  },
+  appliquer(v) {
+    LOCAL.ecrire("echelle", v);
+    document.documentElement.style.setProperty("--echelle", v);
+  },
+};
+
+/**
+ * Où en est le lecteur, édition par édition.
+ *
+ * La progression est mémorisée pour être *proposée* au retour, jamais pour y
+ * replacer d'autorité : qui rouvre le brief pour relire l'édito serait
+ * déconcerté d'atterrir au milieu de l'édition.
+ */
+const LECTURE = {
+  // En deçà, la lecture n'a pas commencé ; au-delà, elle est finie. Dans les
+  // deux cas il n'y a rien à reprendre.
+  MIN: 0.06,
+  MAX: 0.92,
+
+  positions() { return LOCAL.lire("positions", {}) || {}; },
+
+  noter(slug, y, part) {
+    const t = this.positions();
+    t[slug] = { y: Math.round(y), part: Math.min(1, Math.max(0, part)), vu: Date.now() };
+    // Cent éditions suffisent largement : au-delà, on oublie les plus anciennes
+    // plutôt que de laisser enfler le stockage local.
+    const gardees = Object.keys(t).sort((a, b) => t[b].vu - t[a].vu).slice(0, 100);
+    LOCAL.ecrire("positions", Object.fromEntries(gardees.map(k => [k, t[k]])));
+  },
+
+  part(slug) { return this.positions()[slug]?.part || 0; },
+
+  reprise(slug) {
+    const p = this.positions()[slug];
+    return p && p.part > this.MIN && p.part < this.MAX ? p : null;
+  },
+
+  lues() { return new Set(LOCAL.lire("lues", []) || []); },
+
+  marquerLue(slug) {
+    const s = this.lues();
+    if (s.has(slug)) return;
+    s.add(slug);
+    LOCAL.ecrire("lues", [...s].slice(-400));
+  },
+};
+
+/**
+ * Bandeau « hors ligne ».
+ *
+ * Le service worker date ce qu'il sert depuis son cache. Sans ce signal,
+ * l'application afficherait un brief d'avant-hier comme s'il venait de
+ * paraître — plus trompeur que de ne rien afficher du tout.
+ */
+const HORS_LIGNE = {
+  depuis: null,
+
+  signaler(entete) {
+    const el = $("#hors-ligne");
+    if (!el) return;
+    if (!entete) {                       // réponse fraîche : on efface la trace
+      if (this.depuis) { this.depuis = null; el.hidden = true; }
+      return;
+    }
+    if (this.depuis === entete) return;
+    this.depuis = entete;
+    const d = new Date(entete);
+    const quand = isNaN(d.getTime()) ? "" : dateCourte(d.toISOString().slice(0, 10));
+    el.innerHTML = quand
+      ? `<span>Hors ligne — vous lisez la version enregistrée le <b>${echappe(quand)}</b>.</span>`
+      : `<span>Hors ligne — vous lisez une version enregistrée.</span>`;
+    el.hidden = false;
+  },
+};
+
 /* ── Client Airtable ───────────────────────────────────────────────────── */
 async function airtable(table, params = {}, options = {}) {
   const url = new URL(`https://api.airtable.com/v0/${CONF.base}/${CONF.tables[table] || table}`);
@@ -728,6 +901,11 @@ const API = {
       },
       body: corps ? JSON.stringify(corps) : undefined,
     });
+    // Le service worker marque ce qu'il sert depuis son cache : sans ce signal,
+    // l'application afficherait un brief d'avant-hier comme s'il venait d'être
+    // publié — plus trompeur que de ne rien afficher.
+    HORS_LIGNE.signaler(r.headers.get("X-Brief-Cache"));
+
     const donnees = await r.json().catch(() => ({}));
     if (r.status === 401) {
       this.session = null;
@@ -1097,6 +1275,9 @@ function fermerSession() {
   journaliser("Déconnexion");
   LOCAL.vider("session");
   LOCAL.vider("passerelle");
+  // Les briefs enregistrés pour la lecture hors ligne partent avec la session :
+  // sur un poste partagé, ils resteraient lisibles sans identifiant.
+  caches?.delete("brief-donnees").catch(() => {});
   SESSION.identifiant = SESSION.jeton = SESSION.client = null;
   API.session = null;
   location.hash = "";
@@ -1107,6 +1288,12 @@ function fermerSession() {
    Accès aux contenus
    ══════════════════════════════════════════════════════════════════════════ */
 const CACHE = { editions: null, parDate: new Map(), vivier: null };
+
+// Édition actuellement à l'écran : c'est elle dont on note la progression au
+// défilement. Nulle partout ailleurs, pour ne rien enregistrer depuis les
+// archives ou la recherche.
+let EDITION_LUE = null;
+let observateurSommaire = null;
 
 /** Tous les articles parus, allégés : de quoi alimenter la vue Explorer. */
 async function chargerVivier(force = false) {
@@ -1216,6 +1403,10 @@ async function vueEdition(slug) {
   const minutes = ed.minutes || Math.max(2, Math.round(
     ed.articles.reduce((n, a) => n + (a.contenu + a.chapo).split(/\s+/).length, 0) / 220));
 
+  // Une ancre dans l'adresse est une intention explicite : elle prime sur une
+  // reprise de lecture, qui n'aurait alors plus lieu d'être proposée.
+  const reprise = location.hash.includes("#article-") ? null : LECTURE.reprise(ed.slug);
+
   vue().className = "";
   vue().innerHTML = `
     <article style="--accent:${accent}">
@@ -1234,11 +1425,24 @@ async function vueEdition(slug) {
         </button>
       </div>
 
+      ${reprise ? `
+      <button class="reprendre" id="btn-reprendre">
+        <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M4.5 12a7.5 7.5 0 1 0 2.2-5.3M4 4.5V9h4.5"/>
+        </svg>
+        <b>Reprendre la lecture</b>
+        <small>${Math.round(reprise.part * 100)} %</small>
+      </button>` : ""}
+
       ${ordonnees.length > 1 ? `
       <details class="sommaire" open>
         <summary>Au sommaire</summary>
-        <ol>${ed.articles.map(a =>
-          `<li><a href="#article-${a.id}">${echappe(a.titre)}</a></li>`).join("")}</ol>
+        ${ordonnees.map(([rubrique, articles]) => `
+          <div class="somm-groupe" style="--c:${couleurDe(rubrique)}">
+            <div class="somm-titre">${echappe(rubrique)}</div>
+            <ol>${articles.map(a =>
+              `<li><a href="#article-${a.id}">${echappe(a.titre)}</a></li>`).join("")}</ol>
+          </div>`).join("")}
       </details>` : ""}
 
       ${ordonnees.map(([rubrique, articles]) => `
@@ -1268,9 +1472,52 @@ async function vueEdition(slug) {
     journaliser("Lecture", `Écoute de l'édition ${ed.slug}`);
   };
 
+  if (reprise) {
+    $("#btn-reprendre").onclick = e => {
+      scrollTo({ top: reprise.y, behavior: "smooth" });
+      e.currentTarget.remove();
+    };
+  }
+
+  EDITION_LUE = ed.slug;
+  observateurSommaire = suivreSommaire();
+  LECTURE.marquerLue(ed.slug);
+
   LOCAL.ecrire("derniereLue", ed.slug);
   journaliser("Lecture", `Édition ${ed.slug} — ${ed.articles.length} articles`);
   document.title = `${ed.titre} — Brief du ${dateCourte(ed.date)}`;
+}
+
+/**
+ * Surligne dans le sommaire l'article en cours de lecture.
+ *
+ * La marge basse de −70 % fait qu'un article devient « courant » lorsqu'il
+ * atteint le premier tiers de l'écran, et non dès qu'il pointe en bas : c'est
+ * là que l'œil se pose. Quand plusieurs articles courts tiennent dans cette
+ * bande, seul le premier est retenu — deux repères simultanés n'en font aucun.
+ */
+function suivreSommaire() {
+  const liens = new Map($$(".sommaire a").map(a => [a.getAttribute("href").slice(1), a]));
+  if (!liens.size || !("IntersectionObserver" in window)) return null;
+
+  const ordre = $$(".article").map(el => el.id);
+  const visibles = new Set();
+
+  const obs = new IntersectionObserver(entrees => {
+    for (const e of entrees) {
+      if (e.isIntersecting) visibles.add(e.target.id);
+      else visibles.delete(e.target.id);
+    }
+    const courant = ordre.find(id => visibles.has(id));
+    for (const [id, a] of liens) {
+      const actif = id === courant;
+      a.classList.toggle("actif", actif);
+      a.parentElement.classList.toggle("actif", actif);
+    }
+  }, { rootMargin: "-80px 0px -70% 0px" });
+
+  $$(".article").forEach(el => obs.observe(el));
+  return obs;
 }
 
 function rendreArticle(a) {
@@ -1362,22 +1609,32 @@ async function vueArchives() {
 }
 
 function rendreArchives(parMois) {
+  const lues = LECTURE.lues();
+
   return [...parMois.entries()].map(([cle, liste]) => {
     const [an, m] = cle.split("-");
     return `
       <section class="mois">
         <h2>${MOIS[+m - 1]} ${an}</h2>
-        ${liste.map(e => `
-          <a class="carte" href="#/edition/${e.slug}" style="--c:${e.type === "Extra du samedi" ? "var(--violet)" : "var(--rouge)"}">
+        ${liste.map(e => {
+          // Une édition « en cours » l'emporte sur « lue » : c'est celle vers
+          // laquelle le lecteur veut revenir, elle ne doit pas s'effacer.
+          const reprise = LECTURE.reprise(e.slug);
+          const lue = lues.has(e.slug) && !reprise;
+          return `
+          <a class="carte${lue ? " lue" : ""}" href="#/edition/${e.slug}" style="--c:${e.type === "Extra du samedi" ? "var(--violet)" : "var(--rouge)"}">
             <div class="carte-meta">
               <i class="pastille"></i>
               <span>${dateLongue(e.date)}</span>
               ${e.numero ? `<i class="puce"></i><span>N° ${e.numero}</span>` : ""}
               ${e.minutes ? `<i class="puce"></i><span>${e.minutes} min</span>` : ""}
+              ${reprise ? `<span class="jalon">En cours
+                  <i style="--p:${Math.round(reprise.part * 100)}%"></i></span>` : ""}
             </div>
             <h3>${echappe(e.titre)}</h3>
             ${e.resume ? `<p>${echappe(e.resume)}</p>` : ""}
-          </a>`).join("")}
+          </a>`;
+        }).join("")}
       </section>`;
   }).join("");
 }
@@ -2090,6 +2347,7 @@ function rendreMenuCompte() {
   const notifs = NOTIF.actif();
   const voix = "speechSynthesis" in window ? LECTEUR.voixDisponibles() : [];
   const retenue = LOCAL.lire("voix") || voix[0]?.voiceURI;
+  const echelle = ECHELLE.courant();
   $("#menu-compte").innerHTML = `
     <div class="menu-tete">
       <b>${echappe(c.nom)}</b>
@@ -2102,6 +2360,13 @@ function rendreMenuCompte() {
       <span>Alerte nouveau brief</span>
       <i class="interrupteur" data-on="${notifs ? 1 : 0}"></i>
     </button>
+    <div class="menu-bloc">
+      <label for="choix-echelle">Taille du texte</label>
+      <select id="choix-echelle">
+        ${ECHELLE.crans.map(([v, nom]) => `<option value="${v}"${
+          v === echelle ? " selected" : ""}>${nom}</option>`).join("")}
+      </select>
+    </div>
     ${voix.length ? `
     <div class="menu-bloc">
       <label for="choix-voix">Voix de lecture</label>
@@ -2126,6 +2391,10 @@ function rendreMenuCompte() {
     selecteur.onchange = e => LECTEUR.definirVoix(e.target.value);
     selecteur.onclick = e => e.stopPropagation();
   }
+  const tailles = $("#choix-echelle");
+  tailles.onchange = e => ECHELLE.appliquer(Number(e.target.value));
+  tailles.onclick = e => e.stopPropagation();
+
   $("#btn-deconnexion").onclick = fermerSession;
 }
 
@@ -2143,6 +2412,12 @@ function router() {
   const [chemin, requete] = brut.split("?");
   const params = new URLSearchParams(requete || "");
   const segments = chemin.split("/").filter(Boolean);
+
+  // On quitte la vue précédente : plus d'édition à suivre, plus de sommaire à
+  // observer. vueEdition les réarme si c'est là qu'on va.
+  EDITION_LUE = null;
+  observateurSommaire?.disconnect();
+  observateurSommaire = null;
 
   $$(".nav a").forEach(a => a.removeAttribute("aria-current"));
   const marquer = v => $(`.nav a[data-vue="${v}"]`)?.setAttribute("aria-current", "page");
@@ -2268,6 +2543,7 @@ async function demarrer() {
   SW.enregistrer();
   SW.guetterInstallation();
   appliquerTheme(themeInitial());
+  ECHELLE.appliquer(ECHELLE.courant());
 
   // Une ancre interne se traite par un défilement, jamais par un changement de
   // route : c'est ce qui rend le sommaire cliquable du premier coup, y compris
@@ -2313,10 +2589,29 @@ async function demarrer() {
   addEventListener("beforeunload", () => LECTEUR.arreter(false));
 
   window.addEventListener("hashchange", router);
+
+  // Barre de progression, et mémorisation de la position dans l'édition. On
+  // n'écrit dans le stockage qu'une fois par seconde : le défilement produit
+  // des dizaines d'événements par seconde, tous inutiles à conserver.
+  let dernierEnreg = 0;
   window.addEventListener("scroll", () => {
     const h = document.documentElement.scrollHeight - innerHeight;
-    $("#progression").style.width = h > 0 ? (scrollY / h) * 100 + "%" : "0";
+    const part = h > 0 ? scrollY / h : 0;
+    $("#progression").style.width = (part * 100) + "%";
+
+    if (!EDITION_LUE || h <= 0) return;
+    const t = Date.now();
+    if (t - dernierEnreg < 1000) return;
+    dernierEnreg = t;
+    LECTURE.noter(EDITION_LUE, scrollY, part);
   }, { passive: true });
+
+  // Quitter la page compte comme un défilement : sans ça, les derniers mètres
+  // de lecture ne sont jamais enregistrés.
+  addEventListener("pagehide", () => {
+    const h = document.documentElement.scrollHeight - innerHeight;
+    if (EDITION_LUE && h > 0) LECTURE.noter(EDITION_LUE, scrollY, scrollY / h);
+  });
 
   await chargerReglages();
   // Le thème par défaut vient de la base : il n'est connu qu'ici, et ne doit

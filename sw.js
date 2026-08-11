@@ -10,7 +10,7 @@
 
 // Incrémenter à chaque déploiement : l'activation purge les caches des versions
 // précédentes.
-const VERSION = "brief-v2";
+const VERSION = "brief-v3";
 const COQUILLE = [
   "./",
   "./index.html",
@@ -18,6 +18,16 @@ const COQUILLE = [
   "./icones/icone-192.png",
   "./icones/icone-512.png",
 ];
+
+// Les briefs, dans un cache distinct de la coquille : ils survivent au
+// déploiement d'une nouvelle version de l'application, et disparaissent à la
+// déconnexion (la page les efface, un poste peut être partagé).
+const DONNEES = "brief-donnees";
+
+// La passerelle est sur une autre origine que l'application. C'est cette
+// différence qui avait fait tomber la lecture hors ligne sans qu'on la voie :
+// le filtre same-origin plus bas écartait toutes les données.
+const PASSERELLE = "https://brief.jamet-aymeric-pro.workers.dev";
 
 // ---------------------------------------------------------------------------
 // Cycle de vie
@@ -36,7 +46,7 @@ self.addEventListener("activate", e => {
   e.waitUntil(
     caches.keys()
       .then(noms => Promise.all(
-        noms.filter(n => n !== VERSION).map(n => caches.delete(n))
+        noms.filter(n => n !== VERSION && n !== DONNEES).map(n => caches.delete(n))
       ))
       .then(() => self.clients.claim())
   );
@@ -49,10 +59,21 @@ self.addEventListener("activate", e => {
 self.addEventListener("fetch", e => {
   const url = new URL(e.request.url);
 
-  // Les données ne sont jamais mises en cache : un brief périmé affiché comme
-  // frais serait pire que pas de brief du tout.
-  if (url.hostname === "api.airtable.com") return;
   if (e.request.method !== "GET") return;
+
+  // Airtable n'est plus joint directement depuis la page ; s'il l'était encore,
+  // il ne faudrait pas conserver de jeton dans un cache.
+  if (url.hostname === "api.airtable.com") return;
+
+  // Les briefs. Réseau d'abord — une édition fraîche prime toujours — et cache
+  // en dernier recours, ce qui rend le brief lisible dans le métro. La réponse
+  // servie depuis le cache est datée pour que la page puisse le dire : un brief
+  // d'avant-hier présenté comme celui du soir serait pire que pas de brief.
+  if (url.origin === PASSERELLE) {
+    e.respondWith(donneesReseauPuisCache(e.request));
+    return;
+  }
+
   if (url.origin !== self.location.origin) return;
 
   // Le document et le manifeste sont demandés en contournant le cache HTTP du
@@ -77,6 +98,36 @@ self.addEventListener("fetch", e => {
       .catch(() => caches.match(e.request).then(r => r || caches.match("./index.html")))
   );
 });
+
+/**
+ * Les briefs : réseau d'abord, cache en repli.
+ *
+ * La réponse tirée du cache est reconstruite plutôt que renvoyée telle quelle,
+ * pour lui ajouter `X-Brief-Cache`. Une réponse fabriquée ici n'est pas soumise
+ * au filtrage CORS des en-têtes — la page peut donc lire cette date et prévenir
+ * le lecteur qu'il consulte une version enregistrée.
+ */
+async function donneesReseauPuisCache(requete) {
+  const cache = await caches.open(DONNEES);
+  try {
+    const rep = await fetch(requete);
+    // Une erreur d'authentification ou un 500 n'ont rien à faire en cache : on
+    // les laisse passer, mais la prochaine coupure doit retrouver le brief.
+    if (rep.ok) cache.put(requete, rep.clone());
+    return rep;
+  } catch (panne) {
+    const garde = await cache.match(requete);
+    if (!garde) throw panne;
+
+    const entetes = new Headers(garde.headers);
+    entetes.set("X-Brief-Cache", garde.headers.get("date") || new Date().toUTCString());
+    return new Response(await garde.arrayBuffer(), {
+      status: 200,
+      statusText: "OK (cache)",
+      headers: entetes,
+    });
+  }
+}
 
 // ---------------------------------------------------------------------------
 // Notifications
