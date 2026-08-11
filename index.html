@@ -429,6 +429,13 @@ mark{background:color-mix(in srgb, var(--accent) 22%, transparent); color:inheri
   width:100%; text-align:left; padding:.55rem .7rem; border-radius:8px; text-decoration:none;
 }
 .menu button:hover, .menu a:hover{background:var(--fond-3)}
+.menu-bloc{padding:.6rem .7rem; border-top:1px solid var(--bord); margin-top:.4rem}
+.menu-bloc label{
+  display:block; font-size:.7rem; font-weight:700; letter-spacing:.08em;
+  text-transform:uppercase; color:var(--texte-3); margin-bottom:.4rem;
+}
+.menu-bloc select{width:100%; font-size:.85rem; padding:.45rem .55rem}
+.menu-bloc small{display:block; margin-top:.4rem; font-size:.72rem; color:var(--texte-3)}
 .interrupteur{
   width:34px; height:20px; border-radius:99px; background:var(--bord-fort);
   position:relative; flex:none; transition:background .18s;
@@ -1828,14 +1835,46 @@ const LECTEUR = {
     return sortie;
   },
 
+  /** Voix françaises disponibles, les plus naturelles en tête. */
+  voixDisponibles() {
+    const rang = v => {
+      // Les voix distantes sont synthétisées par le serveur du navigateur :
+      // elles sont sans commune mesure avec les voix embarquées du système.
+      if (/google/i.test(v.name)) return 0;
+      if (!v.localService) return 1;
+      // Sur Windows, les voix récentes valent nettement mieux qu'Hortense.
+      if (/denise|henri|rémy|remy|vivienne|eloise/i.test(v.name)) return 2;
+      return 3;
+    };
+    return speechSynthesis.getVoices()
+      .filter(v => v.lang && v.lang.toLowerCase().startsWith("fr"))
+      .sort((a, b) => rang(a) - rang(b) || a.name.localeCompare(b.name));
+  },
+
   choisirVoix() {
-    const voix = speechSynthesis.getVoices();
-    if (!voix.length) return null;
-    const fr = voix.filter(v => v.lang && v.lang.toLowerCase().startsWith("fr"));
-    // Les voix distantes de Google sont nettement plus naturelles.
-    return fr.find(v => /google/i.test(v.name))
-        || fr.find(v => !v.localService)
-        || fr[0] || null;
+    const dispo = this.voixDisponibles();
+    if (!dispo.length) return null;
+    const memorisee = LOCAL.lire("voix");
+    return dispo.find(v => v.voiceURI === memorisee) || dispo[0];
+  },
+
+  /** Change de voix et en donne immédiatement un aperçu. */
+  definirVoix(uri, apercu = true) {
+    LOCAL.ecrire("voix", uri);
+    this.voix = this.voixDisponibles().find(v => v.voiceURI === uri) || null;
+    if (this.actif) {
+      speechSynthesis.cancel();
+      this.enPause = false;
+      this.enoncer();
+    } else if (apercu && this.voix) {
+      speechSynthesis.cancel();
+      const e = new SpeechSynthesisUtterance(
+        "Voici le brief du jour, l'essentiel de l'actualité.");
+      e.lang = "fr-FR";
+      e.rate = this.vitesse;
+      e.voice = this.voix;
+      speechSynthesis.speak(e);
+    }
   },
 
   construire(edition) {
@@ -2049,6 +2088,8 @@ function rendreMenuCompte() {
   const c = SESSION.client;
   if (!c) return;
   const notifs = NOTIF.actif();
+  const voix = "speechSynthesis" in window ? LECTEUR.voixDisponibles() : [];
+  const retenue = LOCAL.lire("voix") || voix[0]?.voiceURI;
   $("#menu-compte").innerHTML = `
     <div class="menu-tete">
       <b>${echappe(c.nom)}</b>
@@ -2061,6 +2102,17 @@ function rendreMenuCompte() {
       <span>Alerte nouveau brief</span>
       <i class="interrupteur" data-on="${notifs ? 1 : 0}"></i>
     </button>
+    ${voix.length ? `
+    <div class="menu-bloc">
+      <label for="choix-voix">Voix de lecture</label>
+      <select id="choix-voix">
+        ${voix.map(v => `<option value="${echappe(v.voiceURI)}"${
+          v.voiceURI === retenue ? " selected" : ""
+        }>${echappe(v.name.replace(/\s*\([^)]*\)/g, "").trim())}${
+          v.localService ? "" : " ✦"}</option>`).join("")}
+      </select>
+      <small>✦ voix distante, nettement plus naturelle</small>
+    </div>` : ""}
     <a href="#/archives">Parcourir les archives</a>
     <button id="btn-deconnexion">Se déconnecter</button>`;
 
@@ -2069,6 +2121,11 @@ function rendreMenuCompte() {
     else if (!await NOTIF.activer()) { rendreMenuCompte(); return; }
     rendreMenuCompte();
   };
+  const selecteur = $("#choix-voix");
+  if (selecteur) {
+    selecteur.onchange = e => LECTEUR.definirVoix(e.target.value);
+    selecteur.onclick = e => e.stopPropagation();
+  }
   $("#btn-deconnexion").onclick = fermerSession;
 }
 
@@ -2237,7 +2294,13 @@ async function demarrer() {
       $("#menu-compte").hidden = true;
   });
 
-  // Lecteur audio
+  // Lecteur audio. La liste des voix arrive de façon asynchrone : le menu doit
+  // être redessiné quand le navigateur la publie enfin.
+  if ("speechSynthesis" in window) {
+    speechSynthesis.addEventListener("voiceschanged", () => {
+      if (SESSION.client) rendreMenuCompte();
+    });
+  }
   $("#lect-play").onclick = () => LECTEUR.basculer();
   $("#lect-prec").onclick = () => LECTEUR.sauter(-1);
   $("#lect-suiv").onclick = () => LECTEUR.sauter(1);
