@@ -387,7 +387,7 @@ async function articles(env, params) {
 
 async function vivier(env) {
   const recs = await tout(env, "articles", {
-    "fields[]": ["Titre", "Rubrique", "Thématique", "Mots-clés", "Date", "Chapô"],
+    "fields[]": ["Titre", "Rubrique", "Thématique", "Mots-clés", "Date", "Chapô", "Image"],
     "sort[0][field]": "Date",
     "sort[0][direction]": "desc",
   });

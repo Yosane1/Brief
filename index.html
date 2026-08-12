@@ -737,24 +737,59 @@ mark{background:color-mix(in srgb, var(--accent) 22%, transparent); color:inheri
 .manquees-plus{display:inline-block; margin-top:.4rem; font-size:.8rem; color:var(--texte-2)}
 
 /* ── Le fil du sujet ───────────────────────────────────────────────────────
-   Discret par construction : c'est un supplément, jamais le propos. */
-.fil{
-  margin-top:1.1rem; padding-left:.9rem; border-left:2px solid var(--bord);
-}
+   Une rangée de cartes, et une seule quel que soit le nombre de
+   rapprochements : en liste verticale, trois rappels poussaient l'article
+   suivant d'autant, et le supplément pesait plus que le propos.
+
+   Sur téléphone les cartes défilent au doigt, une par écran ; sur ordinateur
+   les trois se partagent la colonne et il n'y a rien à faire défiler — un
+   défilement horizontal à la molette n'existe pas. */
+.fil{margin-top:1.25rem}
 .fil-titre{
   font-size:.68rem; font-weight:700; letter-spacing:.1em; text-transform:uppercase;
-  color:var(--texte-3); margin-bottom:.35rem;
+  color:var(--texte-3); margin-bottom:.5rem;
 }
-.fil ul{margin:0; padding:0; list-style:none}
-.fil a{
-  display:flex; gap:.6rem; align-items:baseline; text-decoration:none;
-  color:var(--texte-2); font-size:.88rem; line-height:1.35; padding-block:.35rem;
+.fil-piste{
+  display:flex; gap:.6rem; margin:0; padding:.15rem .15rem .5rem; list-style:none;
+  overflow-x:auto; scroll-snap-type:x proximity; scrollbar-width:none;
 }
-/* Colonne de date à largeur fixe : sans elle, « 5 mai » et « 11 août » font
-   démarrer les titres à deux abscisses différentes et la liste part en dents
-   de scie. */
-.fil time{flex:none; min-width:5.4rem; font-size:.74rem; color:var(--texte-3); font-variant-numeric:tabular-nums}
-.fil a:hover{color:var(--accent)}
+.fil-piste::-webkit-scrollbar{display:none}
+.fil-piste > li{flex:1 1 0; min-width:0; display:flex}
+.fil-carte{
+  display:flex; flex-direction:column; gap:.3rem; flex:1;
+  padding:.7rem .8rem .8rem; border-radius:10px; text-decoration:none;
+  background:var(--fond); border:1px solid var(--bord);
+  border-top:2px solid var(--c, var(--accent));
+  box-shadow:0 2px 12px -6px color-mix(in srgb, var(--c, var(--accent)) 55%, transparent);
+  transition:transform .15s, box-shadow .15s;
+}
+.fil-carte:hover{
+  transform:translateY(-2px);
+  box-shadow:0 8px 20px -8px color-mix(in srgb, var(--c, var(--accent)) 70%, transparent);
+}
+.fil-carte time{font-size:.7rem; color:var(--texte-3); font-variant-numeric:tabular-nums}
+.fil-carte-titre{
+  font-size:.85rem; font-weight:600; line-height:1.3; color:var(--texte);
+  display:-webkit-box; -webkit-line-clamp:3; -webkit-box-orient:vertical; overflow:hidden;
+}
+/* Emplacement d'illustration, prêt mais inutilisé : le champ « Image » existe
+   dans la table Articles et n'est pas encore rempli. Le jour où il le sera,
+   la vignette se posera ici sans que la carte change de forme. */
+.fil-image{
+  display:block; aspect-ratio:16/9; border-radius:6px; overflow:hidden;
+  background:var(--fond-3); margin-bottom:.15rem;
+}
+.fil-image img{width:100%; height:100%; object-fit:cover; display:block}
+
+/* L'exception mobile se déclare ici, après la règle qu'elle corrige : placée
+   dans le bloc mobile plus haut dans la feuille, elle perdait à égalité de
+   spécificité contre la règle de bureau écrite ensuite.
+
+   Trois cartes ne tiennent pas sur 360px : elles passent en défilement au
+   doigt, calées une par une, la suivante dépassant assez pour se voir. */
+@media (max-width:640px){
+  .fil-piste > li{flex:0 0 74%; scroll-snap-align:start}
+}
 
 /* ── Garder un article ─────────────────────────────────────────────────── */
 .article-tete{display:flex; align-items:flex-start; gap:.5rem}
@@ -778,18 +813,28 @@ mark{background:color-mix(in srgb, var(--accent) 22%, transparent); color:inheri
    Le format promet six minutes ; certains soirs le lecteur n'en a qu'une. Le
    bouton reste volontairement effacé à côté de l'écoute : c'est un recours,
    pas une invitation à lire moins. */
-.une-actions{display:flex; align-items:center; gap:.75rem; flex-wrap:wrap}
+.une-actions{display:flex; align-items:center; gap:.6rem; flex-wrap:wrap}
 .btn-express{
-  font-size:.8rem; font-weight:600; color:var(--texte-3); text-decoration:underline;
-  text-underline-offset:3px; padding:.5rem .25rem; min-height:44px;
+  display:inline-flex; align-items:center; gap:.45rem; min-height:48px;
+  padding:.5rem 1.05rem; border:1px solid var(--bord); border-radius:99px;
+  font-size:.85rem; font-weight:600; color:var(--texte-2); background:transparent;
+  transition:border-color .15s, color .15s, background .15s;
 }
-.btn-express:hover{color:var(--texte)}
-.btn-express[aria-pressed="true"]{color:var(--accent)}
-.express .article:not([data-une]){display:none}
-.express .rubrique:not(:has(.article[data-une])){display:none}
+.btn-express svg{width:15px; height:15px; fill:none; stroke:currentColor; stroke-width:2; stroke-linecap:round}
+.btn-express:hover{border-color:var(--bord-fort); color:var(--texte)}
+.btn-express[aria-pressed="true"]{
+  background:var(--fond-3); border-color:transparent; color:var(--texte);
+}
+
+/* La version courte garde TOUS les articles et n'ôte que ce qui se lit
+   lentement : le corps, la citation, l'illustration, les sources, les
+   étiquettes, le fil. Restent le titre, le chapô et le chiffre — l'édition
+   entière, en un défilement. Ne garder que les articles à la une revenait à
+   supprimer les deux tiers du brief plutôt qu'à l'abréger. */
 .express .sommaire,
 .express .article .corps, .express .article .citation, .express .article .illustration,
 .express .article .sources, .express .article .etiquettes, .express .article .fil{display:none}
+.express .article{padding-bottom:.5rem}
 
 /* ── Hauteur des cibles en liste ───────────────────────────────────────────
    Les titres à la une, les entrées du sommaire et les liens de sources sont
@@ -1366,7 +1411,7 @@ const API = {
   async vivier() {
     if (this.passerelle) return this.appelAuth("/vivier");
     const recs = await airtableTout("articles", {
-      "fields[]": ["Titre", "Rubrique", "Thématique", "Mots-clés", "Date", "Chapô"],
+      "fields[]": ["Titre", "Rubrique", "Thématique", "Mots-clés", "Date", "Chapô", "Image"],
       "sort[0][field]": "Date",
       "sort[0][direction]": "desc",
     });
@@ -1948,9 +1993,12 @@ const FIL = {
       hote.insertAdjacentHTML("beforeend", `
         <nav class="fil" aria-label="Ce sujet dans les éditions précédentes">
           <div class="fil-titre">Ce sujet, précédemment</div>
-          <ul>${voisins.map(v => `
-            <li><a href="#/edition/${v.date}#article-${v.id}">
-              <time>${dateCourte(v.date)}</time><span>${prose(v.titre)}</span>
+          <ul class="fil-piste">${voisins.map(v => `
+            <li><a class="fil-carte" style="--c:${couleurDe(v.rubrique)}"
+                   href="#/edition/${v.date}#article-${v.id}">
+              ${v.image ? `<span class="fil-image"><img src="${echappe(v.image)}" alt="" loading="lazy"></span>` : ""}
+              <time>${dateCourte(v.date)}</time>
+              <span class="fil-carte-titre">${prose(v.titre)}</span>
             </a></li>`).join("")}</ul>
         </nav>`);
     }
@@ -2181,8 +2229,10 @@ async function vueEdition(slug) {
             <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
             <span data-reglage="bouton_ecouter">Écouter l'édition</span>
           </button>
-          ${aLaUne.length ? `
-          <button class="btn-express" id="btn-express" aria-pressed="false">Version courte</button>` : ""}
+          <button class="btn-express" id="btn-express" aria-pressed="false">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h7"/></svg>
+            <span>Version courte</span>
+          </button>
         </div>
       </div>
 
@@ -2265,7 +2315,13 @@ async function vueEdition(slug) {
     express.onclick = () => {
       const actif = vue().classList.toggle("express");
       express.setAttribute("aria-pressed", String(actif));
-      express.textContent = actif ? "Version complète" : "Version courte";
+      express.querySelector("span").textContent = actif ? "Version complète" : "Version courte";
+      // Trois lignes pleines pour le texte entier, la dernière écourtée pour la
+      // version brève. Deux chevrons face à face se lisaient comme une croix
+      // une fois réduits à quinze pixels.
+      express.querySelector("path").setAttribute("d", actif
+        ? "M4 6h16M4 12h16M4 18h16"
+        : "M4 6h16M4 12h16M4 18h7");
       scrollTo({ top: 0, behavior: "smooth" });
     };
   }
