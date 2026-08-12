@@ -37,13 +37,13 @@ jobs:
       contents: write
 
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
         with:
           # Historique complet : le dépôt superficiel par défaut empêche le
           # rebase dont l'étape de dépôt a besoin quand `main` a avancé.
           fetch-depth: 0
 
-      - uses: actions/setup-python@v5
+      - uses: actions/setup-python@v7
         with:
           python-version: "3.12"
 
@@ -169,7 +169,7 @@ jobs:
       # perdre que le compte rendu, jamais la matière du soir.
       - name: Envoyer le compte rendu par courriel
         if: always()
-        uses: dawidd6/action-send-mail@v3
+        uses: dawidd6/action-send-mail@v18
         with:
           server_address: smtp.gmail.com
           server_port: 465
