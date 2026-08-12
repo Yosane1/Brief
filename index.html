@@ -118,7 +118,10 @@ button{font:inherit; color:inherit; cursor:pointer; border:0; background:none}
 .progression{height:2px; background:var(--accent); width:0; transition:width .1s linear}
 
 /* ── Blocs génériques ────────────────────────────────────────────────── */
-main{width:var(--lg); margin-inline:auto; padding:2.5rem 0 5rem}
+/* La barre de lecture est en position fixe : la place qu'elle occupe est
+   réservée ici, mesurée à l'ouverture, remise à zéro à la fermeture. Sans
+   elle, la pagination de fin d'édition passe dessous pendant l'écoute. */
+main{width:var(--lg); margin-inline:auto; padding:2.5rem 0 calc(5rem + var(--place-lecteur, 0px))}
 .large{width:var(--lg-large)}
 .chapeau-page{margin:0 0 2rem}
 .chapeau-page h1{font-size:clamp(1.7rem,4.5vw,2.2rem); letter-spacing:-.03em; margin:0 0 .3rem; line-height:1.15}
@@ -130,6 +133,20 @@ main{width:var(--lg); margin-inline:auto; padding:2.5rem 0 5rem}
 }
 
 /* ── Une d'édition ───────────────────────────────────────────────────── */
+/* « Ce n'est pas l'édition du jour ». Le ton reste informatif : ce n'est pas
+   une panne, c'est un fait sur ce qu'on est en train de lire. */
+.avis-fraicheur{
+  display:flex; align-items:flex-start; gap:.65rem;
+  margin:0 0 1.75rem; padding:.7rem .9rem;
+  background:var(--fond-3); border-radius:10px;
+  font-size:.85rem; line-height:1.45; color:var(--texte-2);
+}
+.avis-fraicheur::before{
+  content:""; flex:none; margin-top:.42rem;
+  width:7px; height:7px; border-radius:99px; background:var(--or);
+  box-shadow:0 0 0 3px color-mix(in srgb, var(--or) 22%, transparent);
+}
+
 .une{border-bottom:1px solid var(--bord); padding-bottom:2rem; margin-bottom:2.5rem}
 .une-meta{
   display:flex; flex-wrap:wrap; align-items:center; gap:.5rem .75rem; margin-bottom:1rem;
@@ -501,8 +518,23 @@ mark{background:color-mix(in srgb, var(--accent) 22%, transparent); color:inheri
 .lecteur button svg{width:17px; height:17px; fill:currentColor}
 .lecteur .principal{
   width:40px; height:40px; background:var(--accent); color:#fff;
+  transition:background .18s;
 }
 .lecteur .principal:hover{background:var(--accent); color:#fff; opacity:.88}
+
+/* Second signal, redondant avec l'icône : la voix parle ou non. Un lecteur au
+   casque, son coupé ou dans le bruit, n'a que la barre pour le savoir — un
+   seul indice ne suffit pas s'il tombe en panne. En pause, le bouton se vide
+   de sa couleur ; en lecture, un halo bat doucement autour de lui. */
+.lecteur:not(.joue) .principal{
+  background:var(--fond-3); color:var(--texte-2);
+  box-shadow:inset 0 0 0 1.5px var(--bord-fort);
+}
+.lecteur.joue .principal{animation:souffle 2.4s ease-in-out infinite}
+@keyframes souffle{
+  0%, 100%{box-shadow:0 0 0 0 color-mix(in srgb, var(--accent) 45%, transparent)}
+  50%     {box-shadow:0 0 0 6px color-mix(in srgb, var(--accent) 0%, transparent)}
+}
 .lecteur .vitesse{width:auto; padding:0 .5rem; font-size:.78rem; font-weight:700}
 .lecteur-jauge{height:3px; background:var(--fond-3); border-radius:3px; margin-top:.6rem; overflow:hidden}
 .lecteur-jauge i{display:block; height:100%; width:0; background:var(--accent); transition:width .25s}
@@ -619,7 +651,8 @@ mark{background:color-mix(in srgb, var(--accent) 22%, transparent); color:inheri
   .nav a:hover{background:none}
   .nav a[aria-current]{background:none; color:var(--accent)}
 
-  main{padding-top:1.75rem; padding-bottom:calc(5.5rem + env(safe-area-inset-bottom))}
+  main{padding-top:1.75rem;
+       padding-bottom:calc(5.5rem + var(--place-lecteur, 0px) + env(safe-area-inset-bottom))}
   .bandeau{bottom:calc(4.75rem + env(safe-area-inset-bottom))}
   .pagination{flex-direction:column}
   .pagination .suiv{text-align:left}
@@ -707,7 +740,7 @@ mark{background:color-mix(in srgb, var(--accent) 22%, transparent); color:inheri
 <div class="lecteur" id="lecteur" hidden role="region" aria-label="Lecture audio">
   <div class="lecteur-ligne">
     <button class="principal" id="lect-play" aria-label="Lecture ou pause">
-      <svg viewBox="0 0 24 24" id="lect-icone"><path d="M8 5v14l11-7z"/></svg>
+      <svg viewBox="0 0 24 24"><path id="lect-icone" d="M8 5v14l11-7z"/></svg>
     </button>
     <div class="lecteur-info">
       <b id="lect-titre">—</b>
@@ -1474,6 +1507,39 @@ function erreur(titre, detail) {
   vue().innerHTML = `<div class="vide"><b>${echappe(titre)}</b>${echappe(detail || "")}</div>`;
 }
 
+/**
+ * Ce que le lecteur doit savoir avant de commencer : ce n'est pas l'édition
+ * du jour.
+ *
+ * Le cas n'a rien d'exceptionnel — il se produit chaque dimanche, où la
+ * procédure ne prévoit pas de parution, et chaque soir où le pipeline
+ * échoue. Sans ce mot, rien ne l'en avertit : seule la ligne de date le dit,
+ * et encore faut-il connaître la date du jour pour l'interpréter.
+ *
+ * L'heure annoncée vient du réglage `heure_publication`. On dit « vers » :
+ * la rédaction est programmée, mais sa mise en ligne dépend d'une file
+ * d'attente qui a déjà pris trois quarts d'heure de retard.
+ */
+function avisFraicheur(dateEdition) {
+  if (!dateEdition || dateEdition === aujourdhui()) return "";
+  const debut = "Pas encore d'édition aujourd'hui — voici la dernière parue.";
+
+  const m = /^(\d{1,2})\s*[:hH]\s*(\d{2})$/.exec(reglage("heure_publication").trim());
+  if (!m) return debut;
+
+  const heure = `${m[1]}h${m[2]}`;
+  const parution = new Date();
+  parution.setHours(+m[1], +m[2], 0, 0);
+  const minutes = (Date.now() - parution) / 60000;
+
+  // Deux heures de battement après l'heure annoncée avant de renvoyer le
+  // lecteur au lendemain : en deçà, l'édition du soir est simplement en route.
+  const suite = minutes < 0   ? `Prochaine édition vers ${heure}.`
+              : minutes < 120 ? "L'édition du jour ne va pas tarder."
+              :                 `Prochaine édition demain vers ${heure}.`;
+  return `${debut} ${suite}`;
+}
+
 /* ── Vue : une édition ─────────────────────────────────────────────────── */
 async function vueEdition(slug) {
   chargement();
@@ -1512,9 +1578,14 @@ async function vueEdition(slug) {
   // Plafonné à quatre : au-delà, ce n'est plus une sélection, c'est le sommaire.
   const aLaUne = ed.articles.filter(a => a.aLaUne).slice(0, 4);
 
+  // Une édition demandée par son adresse est un choix : le lecteur sait qu'il
+  // ouvre une archive. L'avis ne concerne que celui qui a demandé « aujourd'hui ».
+  const avis = slug ? "" : avisFraicheur(ed.date);
+
   vue().className = "";
   vue().innerHTML = `
     <article style="--accent:${accent}">
+      ${avis ? `<p class="avis-fraicheur">${echappe(avis)}</p>` : ""}
       <div class="une">
         <div class="une-meta">
           <span class="badge-type" style="background:${accent}">${echappe(ed.type)}</span>
@@ -2352,6 +2423,7 @@ const LECTEUR = {
     this.actif = true;
     this.enPause = false;
     $("#lecteur").hidden = false;
+    this.reserverLaPlace();
     await this.verrouillerEcran();
     this.reanimer();
     this.enoncer();
@@ -2437,7 +2509,26 @@ const LECTEUR = {
     clearInterval(this.reanimation);
     this.libererEcran();
     $$(".article.ecoute").forEach(el => el.classList.remove("ecoute"));
-    if (masquer) $("#lecteur").hidden = true;
+    if (masquer) {
+      $("#lecteur").hidden = true;
+      this.reserverLaPlace();
+    }
+    this.marquerEtat();
+  },
+
+  /**
+   * Réserve sous la page la hauteur qu'occupe la barre de lecture.
+   *
+   * Elle est en `position:fixed` : sans cette marge, elle recouvre la fin de
+   * la dernière rubrique et surtout les liens vers l'édition précédente et
+   * suivante, qui deviennent inatteignables tant qu'on écoute. La hauteur est
+   * mesurée plutôt que codée en dur — elle change avec la taille du texte
+   * choisie par le lecteur.
+   */
+  reserverLaPlace() {
+    const barre = $("#lecteur");
+    const h = barre.hidden ? 0 : Math.ceil(barre.getBoundingClientRect().height);
+    document.documentElement.style.setProperty("--place-lecteur", h + "px");
   },
 
   /** Contournement d'un arrêt spontané de la synthèse dans Chrome. */
@@ -2464,7 +2555,30 @@ const LECTEUR = {
     this.verrou = null;
   },
 
+  /**
+   * État du bouton lecture / pause.
+   *
+   * Il est mis à jour avant tout le reste, et sans condition : c'est le seul
+   * repère dont dispose un lecteur qui écoute au casque, son coupé ou dans un
+   * environnement bruyant. Un bouton figé sur « lecture » alors que la voix
+   * parle, ou l'inverse, le laisse sans moyen de savoir où il en est.
+   */
+  marquerEtat() {
+    const enLecture = this.actif && !this.enPause;
+    $("#lect-icone").setAttribute("d", enLecture
+      ? "M6 5h4v14H6zm8 0h4v14h-4z"      // deux barres — en train de lire
+      : "M8 5v14l11-7z");                // triangle — en pause ou à l'arrêt
+    const b = $("#lect-play");
+    b.setAttribute("aria-label", enLecture ? "Mettre en pause" : "Reprendre la lecture");
+    b.setAttribute("aria-pressed", String(enLecture));
+    $("#lecteur").classList.toggle("joue", enLecture);
+  },
+
   rafraichir() {
+    // Avant la sortie anticipée : la file peut être vide entre deux articles,
+    // l'état du bouton doit rester juste malgré tout.
+    this.marquerEtat();
+
     const morceau = this.file[this.index];
     if (!morceau) return;
     $("#lect-titre").textContent = morceau.titre;
@@ -2472,9 +2586,6 @@ const LECTEUR = {
       `${Math.round((this.index / this.file.length) * 100)} % · ${this.vitesse}×`;
     $("#lect-vitesse").textContent = `${this.vitesse}×`;
     $("#lect-progres").style.width = `${(this.index / this.file.length) * 100}%`;
-    $("#lect-icone").setAttribute("d", this.enPause
-      ? "M8 5v14l11-7z"
-      : "M6 5h4v14H6zm8 0h4v14h-4z");
 
     // Suivi visuel : l'article en cours de lecture est mis en évidence.
     $$(".article.ecoute").forEach(el => el.classList.remove("ecoute"));
