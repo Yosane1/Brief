@@ -29,11 +29,11 @@
   --cyan:#54c1c9;  --orange:#ff6a1a; --vert:#23c46e; --or:#de9c03;
   --magenta:#d955a6; --sarcelle:#47ad88;
 
-  /* L'or des rubriques est fait pour un filet, pas pour du texte : sur fond
-     clair il tombe à 2,27:1. Deux jetons dédiés, l'un pour l'écrit sur la page,
-     l'autre pour un aplat qui porte du blanc. */
+  /* L'or des rubriques est fait pour une pastille, pas pour un signe qui porte
+     du sens : sur fond clair il tombe à 2,27:1, sous le seuil de 3:1 exigé
+     d'un élément graphique porteur d'information. Jeton dédié pour ces
+     usages-là — aujourd'hui l'étoile des articles gardés. */
   --or-texte:#8a6100;   /* 5,31:1 sur le fond clair */
-  --or-plein:#8a6100;   /* le blanc y tient à 5,54:1, dans les deux thèmes */
 
   --fond:#fff; --fond-2:#fafafa; --fond-3:#f2f2f0;
   --texte:#222; --texte-2:#5b5966; --texte-3:#75727f;
@@ -760,33 +760,6 @@ mark{background:color-mix(in srgb, var(--accent) 22%, transparent); color:inheri
                    stroke-linecap:round; stroke-linejoin:round}
 .btn-rattraper:hover{opacity:.9}
 
-/* ── Sujets suivis ─────────────────────────────────────────────────────── */
-.sujets-alerte{
-  background:var(--fond-2); border:1px solid var(--bord); border-left:3px solid var(--or);
-  border-radius:12px; padding:1rem 1.15rem; margin-bottom:2rem;
-}
-.sujets-alerte ul{margin:0; padding:0; list-style:none}
-.sujets-alerte a{display:block; text-decoration:none; padding-block:.45rem; line-height:1.3}
-.sujets-alerte a span:last-child{font-weight:600}
-.sujets-alerte a:hover span:last-child{color:var(--accent)}
-.sujets-mots{
-  display:block; font-size:.7rem; font-weight:700; letter-spacing:.06em;
-  text-transform:uppercase; color:var(--or-texte); margin-bottom:.1rem;
-}
-.resultats-tete{display:flex; align-items:center; gap:.75rem; flex-wrap:wrap; margin-bottom:1.2rem}
-.resultats-tete .surtitre{margin:0}
-.btn-suivre{
-  display:inline-flex; align-items:center; gap:.4rem; min-height:44px;
-  padding:.4rem .95rem; border:1px solid var(--bord); border-radius:99px;
-  font-size:.82rem; font-weight:600; color:var(--texte-2); background:transparent;
-}
-.btn-suivre svg{width:14px; height:14px; fill:none; stroke:currentColor; stroke-width:2.2;
-                stroke-linecap:round; stroke-linejoin:round}
-.btn-suivre:hover{border-color:var(--bord-fort); color:var(--texte)}
-.btn-suivre.actif{background:var(--or-plein); border-color:transparent; color:#fff}
-.note-suivi{flex:1 0 100%; font-size:.78rem; color:var(--texte-3)}
-.nuage a.suivi{border-color:var(--or); color:var(--or-texte)}
-
 /* ── Rattrapage ────────────────────────────────────────────────────────── */
 .rattrapage-jour{margin-bottom:2.25rem}
 .rattrapage-tete{
@@ -869,7 +842,7 @@ mark{background:color-mix(in srgb, var(--accent) 22%, transparent); color:inheri
 }
 .garder svg{width:20px; height:20px; fill:none; stroke:currentColor; stroke-width:1.6; stroke-linejoin:round}
 .garder:hover{background:var(--fond-3); color:var(--texte)}
-.garder.actif{color:var(--or)}
+.garder.actif{color:var(--or-texte)}
 .garder.actif svg{fill:currentColor}
 .resultat .garder{position:absolute; top:.5rem; right:.5rem}
 .resultat{position:relative}
@@ -1279,53 +1252,6 @@ const GARDES = {
   },
 };
 
-/**
- * Les sujets suivis.
- *
- * Le fil du sujet est réactif : il ne joue que si le lecteur tombe sur le bon
- * article. Suivre est l'inverse — l'application veille, y compris les soirs où
- * personne n'ouvre, et signale à l'arrivée ce qui est paru sur les sujets
- * retenus.
- *
- * Entièrement local : un mot-clé suivi, comparé aux mots-clés des articles du
- * jour, déjà chargés. Aucun appel.
- */
-const SUJETS = {
-  MAX: 30,
-
-  // Au-delà de cette part du corpus, un mot-clé cesse de désigner un sujet.
-  // « France » revient dans un article sur sept : le suivre reviendrait à être
-  // alerté tous les jours de tout. On ne l'interdit pas — c'est le choix du
-  // lecteur — mais on l'en avertit.
-  PART_LARGE: 0.12,
-
-  tous() { return LOCAL.lire("sujets", []) || []; },
-  suit(mot) { return this.tous().includes(mot); },
-
-  basculer(mot) {
-    const liste = this.tous();
-    const i = liste.indexOf(mot);
-    if (i > -1) liste.splice(i, 1); else liste.unshift(mot);
-    LOCAL.ecrire("sujets", liste.slice(0, this.MAX));
-    return i === -1;
-  },
-
-  /** Un sujet est-il trop large pour valoir la peine d'être suivi ? */
-  estLarge(mot) {
-    const i = FIL.index;
-    if (!i) return false;
-    return (i.freq.get(mot) || 0) / i.total > this.PART_LARGE;
-  },
-
-  /** Les articles d'une édition qui touchent un sujet suivi. */
-  dansEdition(articles) {
-    const suivis = new Set(this.tous());
-    if (!suivis.size) return [];
-    return articles
-      .map(a => ({ article: a, touches: a.motsCles.filter(m => suivis.has(m)) }))
-      .filter(x => x.touches.length);
-  },
-};
 
 /**
  * Bandeau « hors ligne ».
@@ -2353,9 +2279,6 @@ async function vueEdition(slug) {
   // une archive ouverte volontairement, il n'aurait aucun sens.
   const manquees = slug ? [] : LECTURE.manquees(editions, ed.slug);
 
-  // Les sujets suivis, en revanche, valent sur n'importe quelle édition : le
-  // lecteur veut savoir que celle qu'il ouvre touche à ce qu'il surveille.
-  const surSujets = SUJETS.dansEdition(ed.articles);
 
   vue().className = "";
   vue().innerHTML = `
@@ -2406,18 +2329,6 @@ async function vueEdition(slug) {
           <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4.5 12a7.5 7.5 0 1 0 2.2-5.3M4 4.5V9h4.5"/></svg>
           <span>Rattraper en deux minutes</span>
         </a>
-      </nav>` : ""}
-
-      ${surSujets.length ? `
-      <nav class="sujets-alerte" aria-label="Vos sujets dans cette édition">
-        <div class="manquees-titre">${surSujets.length === 1
-          ? "Un article sur un sujet que vous suivez"
-          : `${surSujets.length} articles sur des sujets que vous suivez`}</div>
-        <ul>${surSujets.map(({ article, touches }) => `
-          <li><a href="#article-${article.id}">
-            <span class="sujets-mots">${touches.map(m => echappe(m)).join(", ")}</span>
-            <span>${prose(article.titre)}</span>
-          </a></li>`).join("")}</ul>
       </nav>` : ""}
 
       ${aLaUne.length ? `
@@ -2865,8 +2776,7 @@ async function vueExplorer(params) {
       </p>
       <div class="nuage">
         ${motsCles.slice(0, 120).map(([m, n]) => `
-          <a href="#/recherche?q=${encodeURIComponent(m)}"${SUJETS.suit(m) ? ' class="suivi"' : ""}
-             >${echappe(m)}<i>${n}</i></a>`).join("")}
+          <a href="#/recherche?q=${encodeURIComponent(m)}">${echappe(m)}<i>${n}</i></a>`).join("")}
       </div>
       ${motsUniques ? `<p class="note-nuage">${motsUniques} autre${motsUniques > 1 ? "s" : ""}
         mot${motsUniques > 1 ? "s" : ""}-clé${motsUniques > 1 ? "s" : ""}
@@ -3004,34 +2914,11 @@ async function vueRecherche(params) {
   await lancer();
 }
 
-/**
- * L'offre de suivi. Elle n'apparaît que sur une recherche qui a donné quelque
- * chose : proposer de suivre un terme qui ne ramène rien n'aurait pas de sens.
- * Le mot est celui que le lecteur a saisi, tel quel — c'est lui qui décide de
- * ce qu'il appelle un sujet.
- */
-function offreDeSuivi(q) {
-  const mot = (q || "").trim();
-  if (!mot) return "";
-  const suivi = SUJETS.suit(mot);
-  const large = !suivi && SUJETS.estLarge(mot);
-  return `
-    <button class="btn-suivre${suivi ? " actif" : ""}" data-suivre="${echappe(mot)}"
-            aria-pressed="${suivi}">
-      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="${suivi
-        ? "M5 12l5 5L19 7" : "M12 5v14M5 12h14"}"/></svg>
-      <span>${suivi ? "Sujet suivi" : "Suivre ce sujet"}</span>
-    </button>
-    ${large ? `<small class="note-suivi">Ce mot revient dans une grande partie
-       des articles : vous serez signalé presque chaque soir.</small>` : ""}`;
-}
-
 function afficherResultats(trouves, q) {
   $("#resultats").innerHTML = trouves.length
-    ? `<div class="resultats-tete">
-         <p class="surtitre">${trouves.length} résultat${trouves.length > 1 ? "s" : ""}</p>
-         ${offreDeSuivi(q)}
-       </div>
+    ? `<p class="surtitre" style="display:block; margin-bottom:1rem">
+         ${trouves.length} résultat${trouves.length > 1 ? "s" : ""}
+       </p>
        ${trouves.map(a => rendreResultat(a, q)).join("")}`
     : `<div class="vide">
          <b>Aucun résultat</b>
@@ -3925,18 +3812,6 @@ async function demarrer() {
     rendreMenuCompte();
     // Depuis la liste des gardés, retirer doit faire disparaître la carte.
     if (location.hash.startsWith("#/gardes")) vueGardes();
-  });
-
-  // Suivre un sujet. Même délégation unique, même raison.
-  document.addEventListener("click", e => {
-    const btn = e.target.closest("[data-suivre]");
-    if (!btn) return;
-    const suivi = SUJETS.basculer(btn.dataset.suivre);
-    btn.classList.toggle("actif", suivi);
-    btn.setAttribute("aria-pressed", String(suivi));
-    btn.querySelector("span").textContent = suivi ? "Sujet suivi" : "Suivre ce sujet";
-    btn.querySelector("path").setAttribute("d", suivi ? "M5 12l5 5L19 7" : "M12 5v14M5 12h14");
-    btn.parentElement?.querySelector(".note-suivi")?.remove();
   });
 
   $("#btn-theme").onclick = () =>
