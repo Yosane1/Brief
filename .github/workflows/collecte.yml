@@ -1,9 +1,14 @@
 # Étape 1 du pipeline du soir : ramasser la matière première.
 #
-# La session Claude Code cloud ne peut joindre aucun site extérieur — son proxy
+# La session Claude Code cloud ne peut joindre aucun site extérieur : son proxy
 # n'autorise que GitHub, les registres de paquets et l'API Anthropic. C'est donc
 # GitHub qui va chercher les dépêches et les dépose dans le dépôt, où la routine
-# Claude viendra les lire quarante minutes plus tard.
+# Claude viendra les lire.
+#
+# Cette collecte doit impérativement se terminer AVANT le passage de la routine
+# (voir HEURE_ROUTINE plus bas). Les crons de GitHub sont mis en file et partent
+# parfois avec trois quarts d'heure de retard : c'est le point faible du
+# montage, et la raison d'être du compte rendu envoyé à la fin.
 
 name: Collecte du soir
 
@@ -13,11 +18,22 @@ on:
     - cron: "50 15 * * *"
   workflow_dispatch:      # permet de lancer la collecte à la main
 
+env:
+  # Heure à laquelle la routine de rédaction se déclenche, en heure de Paris.
+  # Elle est planifiée dans la console des routines Claude Code, hors de ce
+  # dépôt : c'est la seule façon de la rappeler ici, et le compte rendu s'en
+  # sert pour dire si la collecte est arrivée à temps.
+  HEURE_ROUTINE: "17:31"
+
 jobs:
   collecter:
     runs-on: ubuntu-latest
     permissions:
       contents: write
+    env:
+      # Remontées au niveau du job : une condition `if` d'étape ne peut pas
+      # lire le `env` de sa propre étape, ni le contexte `secrets`.
+      DESTINATAIRE: ${{ secrets.MAIL_DESTINATAIRE }}
 
     steps:
       - uses: actions/checkout@v4
@@ -52,3 +68,85 @@ jobs:
             git commit -m "Veille du $(date -u +%Y-%m-%d)"
             git push
           fi
+
+      # ── Compte rendu ─────────────────────────────────────────────────────
+      #
+      # Le point faible du montage n'est pas la collecte mais l'écart entre
+      # elle et la rédaction : les crons de GitHub sont mis en file et peuvent
+      # partir avec trois quarts d'heure de retard. Le compte rendu dit donc
+      # l'heure réelle de fin et la compare à celle de la routine — c'est la
+      # seule chose qu'on ne peut pas voir autrement, et le seul cas où il
+      # faut réagir avant le soir.
+      - name: Rédiger le compte rendu
+        id: bilan
+        if: always()
+        env:
+          ETAT_JOB: ${{ job.status }}
+          LIEN: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+        run: |
+          fin=$(TZ=Europe/Paris date +%H:%M)
+          jour=$(TZ=Europe/Paris date +%Y-%m-%d)
+          nb=$(( $(wc -l < veille.jsonl 2>/dev/null || echo 1) - 1 ))
+          [ "$nb" -lt 0 ] && nb=0
+
+          # 10# force la base décimale : sans lui, une heure comme 08:05 serait
+          # lue en octal et l'arithmétique échouerait un matin sur deux.
+          minutes() { echo $(( 10#${1%%:*} * 60 + 10#${1##*:} )); }
+          reste=$(( $(minutes "$HEURE_ROUTINE") - $(minutes "$fin") ))
+
+          if [ "$ETAT_JOB" != "success" ]; then
+            etat="ECHEC"
+            verdict="La collecte a echoue. Sans matiere fraiche, il n'y aura pas d'edition ce soir."
+          elif [ "$nb" -lt 20 ]; then
+            etat="MAIGRE"
+            verdict="Seulement $nb depeches. L'edition sera courte, voire impossible."
+          elif [ "$reste" -lt 0 ]; then
+            etat="TROP TARD"
+            verdict="Terminee APRES le passage de la routine ($HEURE_ROUTINE). L'edition de ce soir manquera."
+          elif [ "$reste" -lt 15 ]; then
+            etat="JUSTE"
+            verdict="Il ne reste que $reste minutes avant la routine de $HEURE_ROUTINE. Marge trop courte."
+          else
+            etat="OK"
+            verdict="$reste minutes de marge avant la routine de $HEURE_ROUTINE."
+          fi
+
+          # Répartition par source, relue dans le fichier produit. Tout tient
+          # sur une ligne à dessein : un heredoc devrait être moins indenté que
+          # le bloc YAML, ce qui le refermerait, et du Python sur plusieurs
+          # lignes hériterait de cette indentation. chr(10) évite au passage de
+          # faire traverser un « \n » au shell.
+          sources=$(python -c "import json,collections; L=open('veille.jsonl',encoding='utf-8').read().splitlines()[1:]; c=collections.Counter(json.loads(x)['source'] for x in L); print(chr(10).join('  {:<18}{:>4}'.format(s,n) for s,n in c.most_common()))" 2>/dev/null) || sources="  (repartition indisponible)"
+
+          {
+            echo "sujet=[$etat] Collecte du $jour, $nb depeches"
+            echo "corps<<FIN_DU_CORPS"
+            echo "Collecte terminee a ${fin} (Paris), le ${jour}."
+            echo ""
+            echo "${nb} depeches sur 26 heures."
+            echo "${verdict}"
+            echo ""
+            echo "${sources}"
+            echo ""
+            echo "Journal complet : ${LIEN}"
+            echo "FIN_DU_CORPS"
+          } >> "$GITHUB_OUTPUT"
+
+          echo "### [$etat] $nb dépêches à $fin" >> "$GITHUB_STEP_SUMMARY"
+          echo "$verdict" >> "$GITHUB_STEP_SUMMARY"
+
+      # Sans destinataire configuré, l'étape est simplement sautée : le
+      # pipeline n'a pas à dépendre d'un réglage de messagerie.
+      - name: Envoyer le compte rendu par courriel
+        if: always() && env.DESTINATAIRE != ''
+        uses: dawidd6/action-send-mail@v3
+        with:
+          server_address: smtp.gmail.com
+          server_port: 465
+          secure: true
+          username: ${{ secrets.MAIL_UTILISATEUR }}
+          password: ${{ secrets.MAIL_MOT_DE_PASSE }}
+          from: Brief Bot <${{ secrets.MAIL_UTILISATEUR }}>
+          to: ${{ secrets.MAIL_DESTINATAIRE }}
+          subject: ${{ steps.bilan.outputs.sujet }}
+          body: ${{ steps.bilan.outputs.corps }}
