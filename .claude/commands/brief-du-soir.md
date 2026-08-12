@@ -73,7 +73,7 @@ En deux temps : tu présélectionnes sur les titres, puis tu lis les résumés d
 ce que tu as retenu.
 
 **a. Présélection.** Parcours les titres et retiens tout ce qui pourrait entrer
-dans l'édition — **40 à 60 dépêches**, largement plus que les 12 à 15 articles
+dans l'édition — **40 à 60 dépêches**, largement plus que les 9 à 11 articles
 finaux. Un titre suffit à écarter un résultat sportif ou un marronnier, pas à
 juger si un sujet mérite le décryptage.
 
@@ -167,7 +167,6 @@ les voisins sont des éditions parues, pas des gabarits.
       "thematique": "International",
       "chapo": "Une ou deux phrases de mise en bouche.",
       "contenu": "Le corps de l'article, en Markdown restreint.",
-      "mots_cles": ["otan", "ukraine", "défense"],
       "sources": ["lm042", "fi017"],
       "a_la_une": true,
       "chiffre": "2 000",
@@ -184,7 +183,12 @@ les voisins sont des éditions parues, pas des gabarits.
 cite que des identifiants que tu as réellement lus : un identifiant inventé
 n'aboutira nulle part et sera signalé à la vérification.
 
-`mots_cles` : 6 à 8, ils font vivre la recherche.
+**N'écris pas de mots-clés.** Airtable les génère lui-même après la
+publication, à partir du texte de l'article, et il les tire plus volontiers
+vers le thème que vers le détail — « Culture, Histoire, Censure » là où tu
+aurais mis « Jouvet, Dullin, Pitoëff ». C'est exactement ce dont vit le nuage
+d'Explorer, qui ne montre que ce qui relie au moins deux articles. Les noms
+propres, eux, restent trouvables : la recherche porte aussi sur le contenu.
 
 **Trois éléments à placer dans chaque édition**, parce qu'ils sont ce qui donne
 son rythme à la page : sans eux, le lecteur descend douze blocs strictement

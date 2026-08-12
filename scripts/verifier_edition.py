@@ -26,6 +26,19 @@ ID_NON_RESOLU = re.compile(r"^[a-z][a-z0-9]{1,3}\d{3}$")
 # découvrir en lisant l'édition publiée.
 CADRATIN = re.compile(r"[—–]")
 
+
+def motsCles(champ):
+    """
+    Les mots-clés viennent d'un champ IA d'Airtable, qui renvoie
+    `{state, value, isStale}` et non une chaîne. Ils se remplissent après la
+    création de l'article, donc *après* ce contrôle : leur absence ici n'est
+    pas une anomalie en soi. C'est leur absence sur toute l'édition qui en est
+    une, et elle est signalée plus bas.
+    """
+    if isinstance(champ, dict):
+        champ = champ.get("value", "") if champ.get("state") == "generated" else ""
+    return [m.strip() for m in str(champ or "").split(",") if m.strip()]
+
 for flux in (sys.stdout, sys.stderr):
     if hasattr(flux, "reconfigure"):
         flux.reconfigure(encoding="utf-8", errors="replace")
@@ -79,6 +92,7 @@ def verifier(jour=None):
     par_rubrique = {}
     mobilier = {"chiffre": 0, "citation": 0, "à la une": 0}
     cadratins = []
+    avec_mots = 0
     for a in articles:
         f = a["fields"]
         for champ in ("Titre", "Chapô", "Contenu"):
@@ -107,9 +121,9 @@ def verifier(jour=None):
             bruts = [l for l in f["Sources"].splitlines() if ID_NON_RESOLU.match(l.strip())]
             if bruts:
                 alertes.append(f"« {titre} » : source(s) non résolue(s) "
-                               f"{', '.join(bruts)} — dépêche absente de veille/")
-        if not f.get("Mots-clés"):
-            avertissements.append(f"« {titre} » : aucun mot-clé (invisible en recherche)")
+                               f"{', '.join(bruts)}, dépêche absente de veille/")
+        if motsCles(f.get("Mots-clés")):
+            avec_mots += 1
         if r not in RUBRIQUES_CONNUES:
             alertes.append(f"« {titre} » : rubrique inconnue « {r} »")
         if not f.get("Édition"):
@@ -120,6 +134,19 @@ def verifier(jour=None):
         print(f"    {n:>2} × {r}")
     print("  Rythme       : "
           + ", ".join(f"{n} {nom}" for nom, n in mobilier.items()))
+    print(f"  Mots-clés    : {avec_mots}/{len(articles)} articles")
+
+    # Airtable les génère après coup : quelques articles encore vides juste
+    # après la publication sont normaux. Aucun sur toute l'édition ne l'est
+    # pas — c'est le signe que l'automatisation est arrêtée ou en échec.
+    # L'édition reste parfaitement lisible, seule la navigation par sujet
+    # s'appauvrit : un avertissement, jamais un blocage.
+    if articles and not avec_mots:
+        avertissements.append(
+            "aucun mot-clé sur l'édition : la génération Airtable n'a pas encore "
+            "tourné, ou elle est en panne. Les articles restent lisibles et "
+            "trouvables par leur contenu ; seul le nuage d'Explorer s'appauvrit"
+        )
 
     # L'extra du samedi n'a pas de décryptage : c'est son format.
     extra = ed.get("Type") == "Extra du samedi"

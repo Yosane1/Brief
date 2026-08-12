@@ -394,6 +394,21 @@ async function vivier(env) {
   return json(recs.map(article));
 }
 
+/**
+ * Lit les mots-clés, que le champ soit du texte ou une génération d'Airtable.
+ *
+ * Un champ IA ne renvoie pas une chaîne mais `{state, value, isStale}`. Tant
+ * que `state` ne vaut pas « generated », on renvoie une liste vide : l'article
+ * paraît sans étiquettes plutôt que de faire échouer toute l'édition sur une
+ * automatisation annexe.
+ */
+function motsClesDe(champ) {
+  const brut = champ && typeof champ === "object"
+    ? (champ.state === "generated" ? champ.value : "")
+    : champ;
+  return String(brut || "").split(",").map(s => s.trim()).filter(Boolean);
+}
+
 function article(r) {
   const f = r.fields;
   return {
@@ -413,7 +428,7 @@ function article(r) {
       const [titre, url] = l.split("|").map(s => (s || "").trim());
       return { titre: titre || url, url: url || "" };
     }),
-    motsCles: (f["Mots-clés"] || "").split(",").map(s => s.trim()).filter(Boolean),
+    motsCles: motsClesDe(f["Mots-clés"]),
     date: f["Date"] || "",
     ordre: f["Ordre"] || 0,
     aLaUne: !!f["À la une"],

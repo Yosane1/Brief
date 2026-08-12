@@ -44,7 +44,11 @@ CHAMPS_ARTICLE = {
     "chiffre": "Chiffre clé", "legende_chiffre": "Légende chiffre",
     "citation": "Citation", "auteur_citation": "Auteur citation",
     "image": "Image", "legende_image": "Légende image", "sources": "Sources",
-    "mots_cles": "Mots-clés", "date": "Date", "a_la_une": "À la une",
+    # « Mots-clés » ne figure pas ici : Airtable le génère lui-même après la
+    # création de l'article. Un champ IA n'est pas inscriptible, et la routine
+    # n'a plus à produire ce que la base produit mieux — plus thématique, donc
+    # plus utile au nuage d'Explorer, qui vit de ce qui se répète.
+    "date": "Date", "a_la_une": "À la une",
     "temps_lecture": "Temps de lecture",
 }
 
@@ -167,8 +171,7 @@ def publier(chemin, brouillon=False):
         a.setdefault("date", ed["date"])
         if isinstance(a.get("sources"), list):
             a["sources"] = resoudre_sources(a["sources"], liens, a.get("titre", ""))
-        if isinstance(a.get("mots_cles"), list):
-            a["mots_cles"] = ", ".join(a["mots_cles"])
+        a.pop("mots_cles", None)   # toléré dans un JSON ancien, jamais réécrit
         ligne = mappe(a, CHAMPS_ARTICLE)
         ligne["Édition"] = [rec_id]
         lignes.append(ligne)

@@ -1453,6 +1453,23 @@ async function chargerEdition(slug) {
   return edition;
 }
 
+/**
+ * Lit les mots-clés, que le champ soit du texte ou une génération d'Airtable.
+ *
+ * Un champ IA ne renvoie pas une chaîne mais `{state, value, isStale}` :
+ * `state` vaut « generated » quand la génération a abouti, autre chose
+ * lorsqu'elle est en attente ou qu'elle a échoué. Dans ce cas on renvoie une
+ * liste vide et l'article paraît sans étiquettes. L'édition ne doit jamais
+ * dépendre d'une automatisation annexe : elle se lit, se cherche par son
+ * contenu et s'écoute exactement pareil sans un seul mot-clé.
+ */
+function motsClesDe(champ) {
+  const brut = champ && typeof champ === "object"
+    ? (champ.state === "generated" ? champ.value : "")
+    : champ;
+  return String(brut || "").split(",").map(s => s.trim()).filter(Boolean);
+}
+
 function lireArticle(r) {
   const f = r.fields;
   return {
@@ -1472,7 +1489,7 @@ function lireArticle(r) {
       const [titre, url] = l.split("|").map(s => (s || "").trim());
       return { titre: titre || url, url: url || "" };
     }),
-    motsCles: (f["Mots-clés"] || "").split(",").map(s => s.trim()).filter(Boolean),
+    motsCles: motsClesDe(f["Mots-clés"]),
     date: f["Date"] || "",
     ordre: f["Ordre"] || 0,
     aLaUne: !!f["À la une"],
