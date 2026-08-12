@@ -361,6 +361,21 @@ que les voix embarquées.
 **Déployée** sur `https://brief.jamet-aymeric-pro.workers.dev`.
 `index.html` ne contient plus aucun jeton.
 
+### Deux chemins vers Airtable, deux jetons
+
+La passerelle ne couvre que la **lecture** : c'est le chemin des abonnés,
+app → Worker → Airtable, et son jeton vit dans les secrets Cloudflare.
+
+L'**écriture** ne passe pas par elle. `publication.yml` tourne sur un runner
+GitHub, qui a un accès réseau complet et appelle `api.airtable.com` en direct ;
+le Worker n'expose d'ailleurs aucune route d'écriture pour les éditions. Ce
+chemin-là exige donc le secret GitHub `AIRTABLE_TOKEN`.
+
+Les scripts n'ont **aucun jeton de repli** : sans variable d'environnement, ils
+s'arrêtent avec un message explicite. Un jeton écrit dans le dépôt survivrait à
+sa révocation dans l'historique de git, et ferait surtout passer une
+configuration absente pour une configuration correcte.
+
 ### Le problème qu'elle résout
 
 Sans passerelle, l'application interroge Airtable directement avec un jeton

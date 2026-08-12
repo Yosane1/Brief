@@ -50,8 +50,10 @@ jobs:
       - name: Publier dans Airtable
         if: steps.cibles.outputs.fichiers != ''
         env:
-          # Renseignez le secret AIRTABLE_TOKEN pour sortir le jeton du code.
-          # S'il est absent, les scripts retombent sur la valeur du dépôt.
+          # Obligatoire : les scripts n'ont plus de jeton de repli. Sans ce
+          # secret, la publication s'arrête avec un message explicite plutôt
+          # que de tourner avec une valeur périmée. C'est le chemin d'écriture
+          # vers Airtable, distinct de celui du Worker qui ne sert qu'à lire.
           AIRTABLE_TOKEN: ${{ secrets.AIRTABLE_TOKEN }}
         run: |
           for f in ${{ steps.cibles.outputs.fichiers }}; do

@@ -18,10 +18,10 @@ for flux in (sys.stdout, sys.stderr):
     if hasattr(flux, "reconfigure"):
         flux.reconfigure(encoding="utf-8", errors="replace")
 
-TOKEN = os.environ.get("AIRTABLE_TOKEN") or \
-    "patDnefT5sQlQc2L1.7388f732d1cac15a74705c77a61c2d0be78892cb5594d5ee6d0e9d0bf1683b01"
-BASE_ID = os.environ.get("AIRTABLE_BASE_ID") or "appzxFhyARS0LjDFc"
-API = "https://api.airtable.com/v0"
+# Jeton et base viennent du client partagé : deux copies, c'était deux endroits
+# où un secret pouvait rester en clair, et deux comportements à faire diverger.
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from airtable import TOKEN, BASE_ID, API, AirtableError  # noqa: E402
 
 # --------------------------------------------------------------------------- #
 # Helpers HTTP
@@ -31,6 +31,11 @@ API = "https://api.airtable.com/v0"
 def call(method, path, payload=None):
     """Appel API via curl : le magasin de certificats Python est inutilisable
     derrière l'inspection TLS de certains postes Windows."""
+    if not TOKEN:
+        raise AirtableError(
+            "AIRTABLE_TOKEN n'est pas défini. "
+            "Voir scripts/airtable.py pour les deux façons de le fournir."
+        )
     cmd = [
         "curl", "-s", "-X", method, f"{API}{path}",
         "-H", f"Authorization: Bearer {TOKEN}",

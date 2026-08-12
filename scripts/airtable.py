@@ -11,10 +11,15 @@ import subprocess
 import tempfile
 import urllib.parse
 
-# « or » et non le défaut de get() : un secret GitHub non renseigné définit la
-# variable à la chaîne vide, ce qui écraserait silencieusement la valeur de repli.
-TOKEN = os.environ.get("AIRTABLE_TOKEN") or \
-    "patDnefT5sQlQc2L1.7388f732d1cac15a74705c77a61c2d0be78892cb5594d5ee6d0e9d0bf1683b01"
+# Aucune valeur de repli, volontairement. Un jeton écrit ici finit dans
+# l'historique de git, où il survit à toutes les révocations, et il fait
+# surtout passer une configuration absente pour une configuration correcte :
+# les scripts continuent de tourner avec un jeton que plus personne ne croit
+# actif. L'absence est signalée au premier appel, pas contournée.
+TOKEN = os.environ.get("AIRTABLE_TOKEN", "").strip()
+
+# L'identifiant de base, lui, n'est pas un secret : c'est une adresse, elle ne
+# donne accès à rien sans jeton. Il garde donc sa valeur par défaut.
 BASE_ID = os.environ.get("AIRTABLE_BASE_ID") or "appzxFhyARS0LjDFc"
 API = "https://api.airtable.com/v0"
 
@@ -34,6 +39,16 @@ class AirtableError(RuntimeError):
 
 
 def call(method, path, payload=None, params=None):
+    # Contrôlé ici et non à l'import : le module reste inspectable sans jeton,
+    # et le message arrive au moment où il sert, avec de quoi agir.
+    if not TOKEN:
+        raise AirtableError(
+            "AIRTABLE_TOKEN n'est pas défini.\n"
+            "  GitHub Actions : Settings > Secrets and variables > Actions.\n"
+            "  En local       : export AIRTABLE_TOKEN=pat…\n"
+            "                   (setx AIRTABLE_TOKEN pat… sous Windows, "
+            "puis rouvrir le terminal)"
+        )
     url = f"{API}{path}"
     if params:
         url += "?" + urllib.parse.urlencode(params, doseq=True)
