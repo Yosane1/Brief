@@ -335,6 +335,7 @@ async function editions(env) {
     edito: r.fields["Édito"] || "",
     minutes: r.fields["Temps de lecture"] || null,
     image: r.fields["Image de une"] || "",
+    credit: r.fields["Crédit image"] || "",
   })).filter(e => e.date));
 }
 
