@@ -38,6 +38,10 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4
+        with:
+          # Historique complet : le dépôt superficiel par défaut empêche le
+          # rebase dont l'étape de dépôt a besoin quand `main` a avancé.
+          fetch-depth: 0
 
       - uses: actions/setup-python@v5
         with:
@@ -65,9 +69,28 @@ jobs:
           git add veille.jsonl veille/
           if git diff --staged --quiet; then
             echo "Veille inchangée, rien à committer."
-          else
-            git commit -m "Veille du $(date -u +%Y-%m-%d)"
-            git push
+            exit 0
+          fi
+          git commit -m "Veille du $(date -u +%Y-%m-%d)"
+
+          # Le runner travaille sur un instantané de `main` pris au démarrage.
+          # Entre-temps, un commit a pu arriver — le mien, celui de la routine,
+          # ou une modification faite à la main — et le push est alors rejeté.
+          # On se replace donc sur l'origine et on réessaie. Ce workflow est le
+          # seul à écrire veille.jsonl et veille/ : le rebase ne rencontre pas
+          # de conflit en pratique, et s'il en rencontrait un, mieux vaut
+          # échouer bruyamment que de résoudre au hasard la matière du soir.
+          pousse=0
+          for essai in 1 2 3; do
+            if git push origin HEAD:main; then pousse=1; break; fi
+            echo "::warning::Push rejeté (essai $essai/3), rebase sur l'origine…"
+            git pull --rebase origin main || break
+          done
+
+          if [ "$pousse" != 1 ]; then
+            echo "::error::La veille n'a pas pu être déposée. Sans elle, la routine \
+          de ce soir s'arrêtera faute de matière fraîche."
+            exit 1
           fi
 
       # ── Compte rendu ─────────────────────────────────────────────────────

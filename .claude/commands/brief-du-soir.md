@@ -236,12 +236,23 @@ git add editions/AAAA/AAAA-MM-JJ.json && git -c user.name="Brief Bot" -c user.em
 Trois règles sur ce commit, pour éviter d'emporter autre chose au passage :
 
 - **Un seul fichier**, celui de l'édition du jour. Rien d'autre, jamais.
-- Si `git status` montre d'autres fichiers modifiés — `veille.jsonl` typiquement
-  — laisse-les tels quels, ne les ajoute pas.
+- Si `git status` montre d'autres fichiers modifiés, `veille.jsonl`
+  typiquement, laisse-les tels quels : ne les ajoute pas.
 - Si le dépôt est dans un état inattendu (HEAD détachée, commits locaux que tu
-  n'as pas faits), **ne cherche pas à le réparer** : `git push origin HEAD:main`
-  suffit tant que l'avance est en fast-forward. Si le push est rejeté,
-  arrête-toi et signale-le plutôt que de forcer.
+  n'as pas faits), **ne cherche pas à le réparer**.
+
+**Si le push est rejeté**, c'est presque toujours que `main` a avancé pendant
+que tu écrivais : la collecte, une correction faite à la main. Tu as droit à
+**une seule tentative de rattrapage**, celle-ci et pas une autre :
+
+```bash
+git pull --rebase origin main && git push origin HEAD:main
+```
+
+Ton commit ne touche qu'un fichier que personne d'autre n'écrit : le rebase
+passe sans conflit. Si ce second essai échoue à son tour, **arrête-toi et
+signale-le**. Ne force jamais, ne réinitialise rien : une édition perdue se
+republie en une commande, un historique écrasé ne se retrouve pas.
 
 ## Étape 6 — Rendre compte
 
