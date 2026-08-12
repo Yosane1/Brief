@@ -194,9 +194,9 @@ Le réseau est pris en charge par GitHub Actions, qui encadre la routine :
 
 | Heure (Paris) | Qui | Quoi |
 |---|---|---|
-| 17h50 | `.github/workflows/collecte.yml` | Collecte les flux, dépose `veille.jsonl` dans le dépôt |
-| 18h30 | Routine Claude Code cloud | Lit la veille, rédige, commite `editions/AAAA/AAAA-MM-JJ.json` |
-| 18h32 | `.github/workflows/publication.yml` | Écrit dans Airtable et vérifie l'édition |
+| 16h00 | `.github/workflows/collecte.yml` | Collecte les flux, dépose `veille.jsonl`, envoie le compte rendu |
+| 17h31 | Routine Claude Code cloud | Lit la veille, rédige, commite `editions/AAAA/AAAA-MM-JJ.json` |
+| ~17h35 | `.github/workflows/publication.yml` | Écrit dans Airtable, vérifie, notifie les abonnés |
 
 GitHub Actions est gratuit sur dépôt privé (2 000 min/mois, ce pipeline en
 consomme une centaine) et la rédaction reste sur l'abonnement Claude : aucune
@@ -206,9 +206,24 @@ Les deux workflows se lancent aussi à la main depuis l'onglet **Actions** du
 dépôt — `publication.yml` accepte une date en paramètre pour republier une
 édition passée.
 
-**Les crons sont en UTC.** `50 15` et `30 16` correspondent à 17h50 et 18h30 en
-heure d'été ; au passage à l'heure d'hiver, fin octobre, il faut les avancer
-d'une heure (`50 16` et `30 17`) pour conserver les mêmes horaires à Paris.
+**Les crons sont en UTC.** `0 14` correspond à 16h00 en heure d'été ; au passage
+à l'heure d'hiver, fin octobre, il faut l'avancer d'une heure (`0 15`) pour
+conserver le même horaire à Paris. La routine de rédaction se planifie ailleurs,
+dans la console des routines Claude Code, et suit la même règle.
+
+**L'écart entre les deux est le point faible du montage.** Les workflows
+programmés de GitHub sont mis en file et peuvent partir très en retard : le
+11 août, cette collecte a démarré avec quarante-huit minutes de retard. D'où
+les quatre-vingt-onze minutes de marge, et d'où le compte rendu envoyé à la fin
+de la collecte, qui compare l'heure réelle de fin à `HEURE_ROUTINE` et prévient
+quand la marge fond. Si la collecte se termine après le passage de la routine,
+celle-ci lit une veille vieille de plus de douze heures et s'arrête : il n'y a
+pas d'édition ce soir-là.
+
+Pour recevoir ce compte rendu, trois secrets sont à créer dans **Settings →
+Secrets and variables → Actions** : `MAIL_DESTINATAIRE`, `MAIL_UTILISATEUR` et
+`MAIL_MOT_DE_PASSE` (un mot de passe d'application Google, pas le mot de passe
+du compte). Sans eux, l'étape d'envoi est simplement sautée.
 
 ### Pourquoi la veille tient en deux fichiers
 
@@ -479,7 +494,7 @@ scripts/
   commands/brief-du-soir.md         la procédure et les règles éditoriales
   launch.json                       serveur local pour la prévisualisation
 .github/workflows/
-  collecte.yml                      17h50 — dépose la veille dans le dépôt
+  collecte.yml                      16h00 · dépose la veille et rend compte
   publication.yml                   sur commit d'édition — écrit dans Airtable
 ```
 

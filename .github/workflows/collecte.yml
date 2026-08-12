@@ -14,8 +14,13 @@ name: Collecte du soir
 
 on:
   schedule:
-    # 15h50 UTC = 17h50 à Paris en été, 16h50 en hiver.
-    - cron: "50 15 * * *"
+    # 14h00 UTC = 16h00 à Paris en été, 15h00 en hiver.
+    #
+    # Quatre-vingt-onze minutes avant la routine de 17h31. C'est
+    # volontairement large : GitHub a déjà lancé cette collecte avec
+    # quarante-huit minutes de retard, et une marge courte se paie par une
+    # soirée sans édition.
+    - cron: "0 14 * * *"
   workflow_dispatch:      # permet de lancer la collecte à la main
 
 env:
