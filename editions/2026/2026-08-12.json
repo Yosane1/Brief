@@ -1,0 +1,98 @@
+{
+  "edition": {
+    "titre": "Éclipse solaire totale, séisme meurtrier en Colombie et nucléaire sous tension en France",
+    "date": "2026-08-12",
+    "slug": "2026-08-12",
+    "type": "Quotidienne",
+    "statut": "Publiée",
+    "resume": "Une éclipse solaire totale a captivé l’Europe ce mercredi, tandis que le bilan du séisme qui a frappé la Colombie continue de grimper. En France, la canicule et une invasion de méduses ont provoqué un record d’indisponibilité du parc nucléaire. Meta comparaît par ailleurs devant la justice californienne pour l’addiction des mineurs aux réseaux sociaux.",
+    "edito": "Ce mercredi restera comme le jour de l’éclipse solaire totale, un rendez-vous céleste si rare qu’il ne se reproduira en Europe qu’en 2027. On vous explique pourquoi ce phénomène, aussi bref soit-il, mobilise autant les scientifiques que les gestionnaires de réseaux électriques. À côté de ce spectacle, l’actualité n’a pas ralenti : en Colombie, le bilan du séisme continue de s’alourdir, et en France, chaleur et méduses ont mis le parc nucléaire sous tension inédite."
+  },
+  "articles": [
+    {
+      "titre": "Colombie : le bilan du séisme dépasse 200 morts, les secours se poursuivent",
+      "rubrique": "On fait le point",
+      "thematique": "International",
+      "chapo": "Trois jours après le séisme de magnitude 7,4 qui a frappé l’ouest du pays, les recherches de survivants continuent à Pereira, Manizales et Cali.",
+      "contenu": "Le bilan du séisme qui a frappé l’ouest de la Colombie continue d’évoluer. Selon les autorités, citées par *Le Monde*, il s’élève désormais à 216 morts, un chiffre revu à la baisse par rapport aux premières estimations, et un deuil national de trois jours a été décrété. *France 24* évoque de son côté un bilan d’au moins 254 morts : les chiffres varient encore selon les sources, signe que le décompte reste incertain trois jours après la catastrophe.\n\nLes recherches de survivants se poursuivent à Pereira, Manizales et Cali, la troisième ville du pays. Plusieurs sauvetages ont redonné espoir : un bébé a été retrouvé vivant avec sa mère, et une femme a été extraite des décombres après environ 36 heures. L’Union européenne et les Etats-Unis ont annoncé débloquer plusieurs millions d’euros d’aide d’urgence.",
+      "sources": ["f24010", "lm024", "f24019"],
+      "a_la_une": true
+    },
+    {
+      "titre": "Pourquoi l’éclipse solaire totale du 12 août est un événement si rare",
+      "rubrique": "Tout s'explique",
+      "thematique": "Sciences",
+      "chapo": "Mercredi en fin d’après-midi, la Lune a masqué totalement le Soleil au-dessus du nord de l’Espagne, un spectacle rare suivi de près par les scientifiques et par les gestionnaires de réseaux électriques.",
+      "contenu": "### Un rendez-vous céleste rare\n\nMercredi en fin d’après-midi, des millions d’Européens et de passionnés d’astronomie ont levé les yeux vers le ciel pour observer une éclipse solaire totale. Le phénomène a plongé très brièvement le nord de l’Espagne dans l’obscurité en plein jour. La bande de totalité a traversé l’Atlantique Nord et l’Islande avant de s’achever sur les Baléares : dans cette zone précise, des phénomènes curieux se sont produits le temps de quelques minutes d’obscurité totale. Pour les scientifiques, ce bref passage à l’obscurité totale est aussi l’occasion d’étudier le Soleil dans des conditions impossibles à reproduire autrement.\n\n### Pourquoi celle-ci ne se reproduira pas de sitôt\n\nUne éclipse totale suppose un alignement précis entre le Soleil, la Lune et la Terre, visible seulement depuis une bande étroite du globe. Ce n’est pas un hasard si l’événement suscite un tel engouement : la prochaine éclipse totale visible depuis l’Europe n’aura lieu que le 2 août 2027, un phénomène si exceptionnel que les astronomes l’ont déjà surnommé « l’éclipse du siècle ».\n\n### Des précautions à ne pas négliger\n\nRegarder le Soleil sans protection adaptée peut provoquer des lésions oculaires permanentes : les rayons solaires peuvent brûler la rétine, explique la cheffe du service ophtalmologique de l’hôpital Necker, à Paris. Les autorités sanitaires ont recommandé une vigilance particulière pour les enfants, souvent moins conscients du danger, et la Répression des fraudes a alerté sur des lunettes de protection non conformes vendues en France.\n\n### Un impact qui dépasse le spectacle\n\nAu delà de l’émerveillement, l’éclipse a aussi une incidence bien concrète sur l’énergie. En faisant chuter la production des panneaux solaires, une source devenue une part croissante du mix énergétique en France et sur le reste du continent, le phénomène a représenté un test grandeur nature pour les réseaux électriques européens, à un moment où le photovoltaïque pèse chaque année un peu plus dans la production d’électricité.\n\n### Ce qu’il faut retenir\n\nCe qui rend cette éclipse marquante n’est donc pas seulement sa rareté. C’est aussi ce qu’elle révèle : la dépendance croissante des systèmes électriques européens à une énergie par nature intermittente, et la nécessité, pour les autorités sanitaires, de rappeler à chaque occasion les mêmes précautions élémentaires face à un astre que l’on ne regarde jamais directement sans risque.",
+      "sources": ["fi021", "fs016", "lib010", "lm013", "f24012"],
+      "a_la_une": true
+    },
+    {
+      "titre": "Meta devant la justice californienne pour l’addiction des mineurs aux réseaux sociaux",
+      "rubrique": "On rembobine",
+      "thematique": "Économie",
+      "chapo": "Une trentaine d’Etats américains accusent le groupe de Mark Zuckerberg d’avoir conçu Instagram et Facebook pour rendre les mineurs dépendants.",
+      "contenu": "Meta comparaît à partir de mercredi devant un tribunal fédéral d’Oakland, en Californie, dans un procès civil à haut risque financier. Une trentaine d’Etats américains, dont quatre à l’origine de la procédure, accusent le groupe d’avoir conçu Instagram et Facebook pour capter l’attention des plus jeunes et les rendre dépendants, notamment via le défilement infini, les notifications et les mentions « J’aime ». Les procureurs veulent démontrer que ces plateformes ont été pensées pour la rétention d’attention, et réclament de très lourdes pénalités financières contre l’entreprise.",
+      "sources": ["f24002", "lib023", "lm047"],
+      "a_la_une": true
+    },
+    {
+      "titre": "Canicule et méduses provoquent un record d’indisponibilité du parc nucléaire français",
+      "rubrique": "On rembobine",
+      "thematique": "France",
+      "chapo": "Treize réacteurs étaient partiellement ou totalement à l’arrêt mercredi, en pleine vague de chaleur qui touche presque tout le pays.",
+      "contenu": "Treize réacteurs nucléaires français étaient partiellement ou totalement à l’arrêt mercredi matin, portant à 20,4 % la part de la capacité de production indisponible, un record. En cause : la chaleur, qui limite le refroidissement de certaines centrales, mais aussi une arrivée massive de méduses dans les stations de pompage d’eau de mer. A Gravelines, dans le Nord, plusieurs tonnes de méduses ont saturé les systèmes de filtration, contraignant EDF à arrêter trois des six réacteurs.\n\nCet épisode s’ajoute à une canicule qui touche la quasi-totalité du pays, avec jusqu’à 40°C relevés en Indre-et-Loire selon *franceinfo*, et 80 départements placés en vigilance orange jeudi. Plus de 40 000 personnes subissent déjà des coupures d’eau au robinet, selon la ministre de la Transition écologique Monique Barbut.",
+      "sources": ["lib003", "fi001", "f24006", "fi002"],
+      "chiffre": "20,4",
+      "legende_chiffre": "% de la capacité nucléaire française indisponible mercredi, un record",
+      "a_la_une": false
+    },
+    {
+      "titre": "Ukraine : Kiev revendique des gains territoriaux, Pyongyang muscle son soutien à Moscou",
+      "rubrique": "On rembobine",
+      "thematique": "International",
+      "chapo": "Sur le front comme sur le plan diplomatique, la guerre en Ukraine a connu plusieurs développements ce mercredi.",
+      "contenu": "Le président ukrainien Volodymyr Zelensky affirme que 26 villages des oblasts de Dnipropetrovsk, Donetsk et Zaporijia, soit 745 kilomètres carrés, ont été repris à la Russie depuis janvier.\n\nSelon le renseignement militaire ukrainien, la Corée du Nord s’apprêterait à envoyer jusqu’à 50 000 soldats supplémentaires en soutien à la Russie et a déployé sur son sol une unité équipée de missiles balistiques. Certains de ces missiles auraient été utilisés mardi contre la ville ukrainienne de Zaporijia, selon Volodymyr Zelensky.\n\nPar ailleurs, l’Union européenne a adopté fin juillet de nouvelles sanctions ouvrant la voie à la vente du pétrole et des marchandises saisis sur les navires de la « flotte fantôme » russe, soupçonnés de contourner l’embargo pétrolier. Vladimir Poutine a dénoncé ces saisies et menacé de saisir en retour des navires occidentaux.",
+      "sources": ["lm005", "lm016", "fi023"],
+      "citation": "Il s’agit de piraterie et de banditisme",
+      "auteur_citation": "Vladimir Poutine, président russe",
+      "a_la_une": false
+    },
+    {
+      "titre": "Arabie saoudite, Turquie et Pakistan scellent un pacte militaire qui inquiète l’Inde",
+      "rubrique": "On rembobine",
+      "thematique": "International",
+      "chapo": "Signé le 7 août à La Mecque, cet accord de défense redessine les équilibres régionaux au détriment de New Delhi.",
+      "contenu": "Riyad, Ankara et Islamabad ont signé le 7 août à La Mecque un accord de défense que *Libération* qualifie de « jalon militaire historique ». Dans le contexte volatile de la guerre entre l’Iran et Israël, ce pacte offre aux trois puissances régionales une garantie de protection mutuelle, à un moment où celle des Etats-Unis apparaît de plus en plus incertaine.\n\nPour *Le Monde*, cet accord redessine les équilibres régionaux au détriment de New Delhi : en renforçant le Pakistan, ennemi historique de l’Inde, il fragilise la position indienne dans la région.",
+      "sources": ["lib017", "lm023"],
+      "a_la_une": false
+    },
+    {
+      "titre": "Emplois fictifs à la RATP : une association élargit sa plainte à des élus « de tout bord »",
+      "rubrique": "On rembobine",
+      "thematique": "France",
+      "chapo": "L’association anticorruption AC !! dénonce un système plus large qu’une première plainte visant un élu insoumis de Seine-Saint-Denis.",
+      "contenu": "Après une première plainte contre X visant le maire insoumis de Saint-Denis Bally Bakayoko, soupçonné de détournement de fonds publics et d’emploi fictif, l’association AC !! Anti-Corruption dénonce désormais un système plus large d’emplois fictifs concernant des élus « de tout bord politique » au sein de la RATP. La régie parisienne dément fermement les accusations.",
+      "sources": ["lib005", "fi007"],
+      "a_la_une": false
+    },
+    {
+      "titre": "Qui était Zhu Rongji, l’ex-premier ministre chinois artisan de l’entrée à l’OMC ?",
+      "rubrique": "C'est qui ?",
+      "thematique": "International",
+      "chapo": "L’ancien dirigeant chinois est mort à 97 ans. Il avait dirigé le gouvernement de 1998 à 2003.",
+      "contenu": "Zhu Rongji est mort à l’âge de 97 ans. Premier ministre chinois de 1998 à 2003 sous la présidence de Jiang Zemin, il reste associé aux réformes économiques qui ont contribué à faire entrer la Chine dans l’Organisation mondiale du commerce (OMC) et à transformer le pays en géant du commerce international. Ses réformes ont nourri l’essor économique chinois des années qui ont suivi son mandat.",
+      "sources": ["bbc005", "lm019"],
+      "a_la_une": false
+    },
+    {
+      "titre": "Grève chez EasyJet France les 15 et 16 août : ce qu’il faut savoir",
+      "rubrique": "Ça peut servir",
+      "thematique": "France",
+      "chapo": "Trois syndicats du personnel de cabine appellent à la mobilisation ce week-end, en pleine période de départs en vacances.",
+      "contenu": "Trois syndicats du personnel de cabine d’EasyJet France appellent à la grève les 15 et 16 août. Ils dénoncent un « épuisement physique et mental généralisé », lié selon eux à l’instabilité chronique des plannings, et réclament une amélioration des conditions de travail. Un précédent mouvement social organisé à Pâques avait eu peu de conséquences sur le trafic aérien.",
+      "sources": ["lib002", "fi003"],
+      "a_la_une": false
+    }
+  ]
+}
