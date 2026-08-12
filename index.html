@@ -511,7 +511,7 @@ mark{background:color-mix(in srgb, var(--accent) 22%, transparent); color:inheri
 
 /* ── Lecteur audio ───────────────────────────────────────────────────── */
 .btn-ecoute{
-  display:inline-flex; align-items:center; gap:.5rem; margin-top:1.25rem;
+  display:inline-flex; align-items:center; gap:.5rem;
   padding:.55rem 1.05rem .55rem .8rem; border-radius:99px;
   border:1px solid var(--bord); background:var(--fond-2);
   font-size:.87rem; font-weight:600; transition:.15s;
@@ -813,7 +813,11 @@ mark{background:color-mix(in srgb, var(--accent) 22%, transparent); color:inheri
    Le format promet six minutes ; certains soirs le lecteur n'en a qu'une. Le
    bouton reste volontairement effacé à côté de l'écoute : c'est un recours,
    pas une invitation à lire moins. */
-.une-actions{display:flex; align-items:center; gap:.6rem; flex-wrap:wrap}
+/* L'écart avec l'édito est porté par la rangée, non par le bouton d'écoute.
+   Sa marge haute datait du temps où il était seul et en bloc : devenu élément
+   d'une rangée centrée, elle décalait sa boîte de 20px vers le bas et les deux
+   pastilles ne s'alignaient plus. */
+.une-actions{display:flex; align-items:center; gap:.6rem; flex-wrap:wrap; margin-top:1.25rem}
 .btn-express{
   display:inline-flex; align-items:center; gap:.45rem; min-height:48px;
   padding:.5rem 1.05rem; border:1px solid var(--bord); border-radius:99px;
