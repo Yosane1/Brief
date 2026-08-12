@@ -223,7 +223,9 @@ pas d'édition ce soir-là.
 Pour recevoir ce compte rendu, trois secrets sont à créer dans **Settings →
 Secrets and variables → Actions** : `MAIL_DESTINATAIRE`, `MAIL_UTILISATEUR` et
 `MAIL_MOT_DE_PASSE` (un mot de passe d'application Google, pas le mot de passe
-du compte). Sans eux, l'étape d'envoi est simplement sautée.
+du compte). L'envoi est toujours tenté : s'ils manquent, l'étape échoue et
+GitHub signale le workflow en échec, ce qui reste une alerte. Une étape sautée
+en silence, elle, n'en serait pas une.
 
 ### Pourquoi la veille tient en deux fichiers
 

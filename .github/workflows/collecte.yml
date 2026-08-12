@@ -35,10 +35,6 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: write
-    env:
-      # Remontées au niveau du job : une condition `if` d'étape ne peut pas
-      # lire le `env` de sa propre étape, ni le contexte `secrets`.
-      DESTINATAIRE: ${{ secrets.MAIL_DESTINATAIRE }}
 
     steps:
       - uses: actions/checkout@v4
@@ -140,10 +136,16 @@ jobs:
           echo "### [$etat] $nb dépêches à $fin" >> "$GITHUB_STEP_SUMMARY"
           echo "$verdict" >> "$GITHUB_STEP_SUMMARY"
 
-      # Sans destinataire configuré, l'étape est simplement sautée : le
-      # pipeline n'a pas à dépendre d'un réglage de messagerie.
+      # L'envoi est toujours tenté, jamais sauté. Si un secret manque ou qu'il
+      # est erroné, l'étape échoue et le workflow est marqué en échec : GitHub
+      # prévient alors de lui-même. Une étape silencieusement sautée, elle, ne
+      # préviendrait de rien — et c'est précisément quand la messagerie est
+      # cassée qu'on a besoin de l'apprendre.
+      #
+      # La veille est committée à l'étape précédente : un échec ici ne fait
+      # perdre que le compte rendu, jamais la matière du soir.
       - name: Envoyer le compte rendu par courriel
-        if: always() && env.DESTINATAIRE != ''
+        if: always()
         uses: dawidd6/action-send-mail@v3
         with:
           server_address: smtp.gmail.com
