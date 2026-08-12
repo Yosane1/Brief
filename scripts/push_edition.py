@@ -83,7 +83,7 @@ def charger_liens(jour, dossier="veille"):
             continue
         for cle, valeur in brut.items():
             source, titre, url = (list(valeur) + ["", "", ""])[:3]
-            table[cle] = f"{source} — {titre} | {url}"
+            table[cle] = f"{source} · {titre} | {url}"
     return table
 
 

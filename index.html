@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="description" content="L'actualité résumée, contextualisée et expliquée en moins de dix minutes">
 <meta name="theme-color" content="#ffffff">
-<title>Actus• — L'essentiel de l'actualité, chaque soir.</title>
+<title>Actus• · L'essentiel de l'actualité, chaque soir.</title>
 
 <!-- Installation en application autonome (Android, iOS, bureau) -->
 <link rel="manifest" href="manifest.webmanifest">
@@ -743,7 +743,7 @@ mark{background:color-mix(in srgb, var(--accent) 22%, transparent); color:inheri
       <svg viewBox="0 0 24 24"><path id="lect-icone" d="M8 5v14l11-7z"/></svg>
     </button>
     <div class="lecteur-info">
-      <b id="lect-titre">—</b>
+      <b id="lect-titre"></b>
       <small id="lect-position"></small>
     </div>
     <button id="lect-prec" aria-label="Article précédent">
@@ -930,8 +930,8 @@ const HORS_LIGNE = {
     const d = new Date(entete);
     const quand = isNaN(d.getTime()) ? "" : dateCourte(d.toISOString().slice(0, 10));
     el.innerHTML = quand
-      ? `<span>Hors ligne — vous lisez la version enregistrée le <b>${echappe(quand)}</b>.</span>`
-      : `<span>Hors ligne — vous lisez une version enregistrée.</span>`;
+      ? `<span>Hors ligne : vous lisez la version enregistrée le <b>${echappe(quand)}</b>.</span>`
+      : `<span>Hors ligne : vous lisez une version enregistrée.</span>`;
     el.hidden = false;
   },
 };
@@ -952,7 +952,7 @@ async function airtable(table, params = {}, options = {}) {
   });
   if (!r.ok) {
     const detail = await r.text().catch(() => "");
-    throw new Error(`Airtable ${r.status} — ${detail.slice(0, 200)}`);
+    throw new Error(`Airtable ${r.status} : ${detail.slice(0, 200)}`);
   }
   return r.json();
 }
@@ -1127,7 +1127,7 @@ const API = {
     return airtable("journal", {}, {
       method: "POST",
       body: { records: [{ fields: {
-        "Événement": `${type} — ${SESSION.client.nom}`.slice(0, 250),
+        "Événement": `${type} · ${SESSION.client.nom}`.slice(0, 250),
         "Type": type,
         "Client": [SESSION.client.id],
         "Jeton saisi": SESSION.jeton,
@@ -1263,7 +1263,7 @@ async function chargerReglages() {
   } catch (e) {
     REGLAGES = LOCAL.lire("reglages", null);
     if (!REGLAGES) {
-      throw new Error("Les réglages de l'application n'ont pas pu être chargés — "
+      throw new Error("Les réglages de l'application n'ont pas pu être chargés : "
         + `${e.message}. Vérifiez la connexion, puis rechargez la page.`);
     }
     console.warn("Réglages indisponibles, derniers connus réutilisés :", e.message);
@@ -1293,7 +1293,7 @@ function appliquerReglages() {
 
   const nom = identite("app_nom");
   const accroche = identite("app_baseline");
-  if (nom) document.title = accroche ? `${nom} — ${accroche}` : nom;
+  if (nom) document.title = accroche ? `${nom} · ${accroche}` : nom;
 
   const annonce = $("#annonce");
   const message = reglage("message_accueil");
@@ -1522,10 +1522,9 @@ function erreur(titre, detail) {
  */
 function avisFraicheur(dateEdition) {
   if (!dateEdition || dateEdition === aujourdhui()) return "";
-  const debut = "Pas encore d'édition aujourd'hui — voici la dernière parue.";
 
   const m = /^(\d{1,2})\s*[:hH]\s*(\d{2})$/.exec(reglage("heure_publication").trim());
-  if (!m) return debut;
+  if (!m) return "L'édition du jour n'est pas encore parue.";
 
   const heure = `${m[1]}h${m[2]}`;
   const parution = new Date();
@@ -1534,10 +1533,9 @@ function avisFraicheur(dateEdition) {
 
   // Deux heures de battement après l'heure annoncée avant de renvoyer le
   // lecteur au lendemain : en deçà, l'édition du soir est simplement en route.
-  const suite = minutes < 0   ? `Prochaine édition vers ${heure}.`
-              : minutes < 120 ? "L'édition du jour ne va pas tarder."
-              :                 `Prochaine édition demain vers ${heure}.`;
-  return `${debut} ${suite}`;
+  return minutes < 0   ? `L'édition du jour arrive vers ${heure}.`
+       : minutes < 120 ? "L'édition du jour arrive d'un instant à l'autre."
+       :                 `Prochaine édition demain vers ${heure}.`;
 }
 
 /* ── Vue : une édition ─────────────────────────────────────────────────── */
@@ -1667,9 +1665,9 @@ async function vueEdition(slug) {
   LECTURE.marquerLue(ed.slug);
 
   LOCAL.ecrire("derniereLue", ed.slug);
-  journaliser("Lecture", `Édition ${ed.slug} — ${ed.articles.length} articles`);
+  journaliser("Lecture", `Édition ${ed.slug} · ${ed.articles.length} articles`);
   const nomApp = identite("app_nom");
-  document.title = `${ed.titre} — ${nomApp ? nomApp + " du " : ""}${dateCourte(ed.date)}`;
+  document.title = `${ed.titre} · ${nomApp ? nomApp + " du " : ""}${dateCourte(ed.date)}`;
 }
 
 /**
@@ -1715,7 +1713,7 @@ function rendreArticle(a) {
       </figure>` : ""}
     ${a.citation ? `<blockquote class="citation">
         <p>« ${echappe(a.citation)} »</p>
-        ${a.auteurCitation ? `<cite>— ${echappe(a.auteurCitation)}</cite>` : ""}
+        ${a.auteurCitation ? `<cite>${echappe(a.auteurCitation)}</cite>` : ""}
       </blockquote>` : ""}
     <div class="corps">${markdown(a.contenu)}</div>
     ${a.chiffre ? `<div class="chiffre">
@@ -1789,7 +1787,7 @@ async function vueArchives() {
       : `<div class="vide"><b>Aucune édition</b>Aucune ne correspond à ce format.</div>`;
   });
 
-  document.title = [reglage("titre_archives", "Archives"), identite("app_nom")].filter(Boolean).join(" — ");
+  document.title = [reglage("titre_archives", "Archives"), identite("app_nom")].filter(Boolean).join(" · ");
 }
 
 function rendreArchives(parMois) {
@@ -1868,7 +1866,7 @@ async function vueExplorer(params) {
           ? retenus.map(a => rendreResultat(a, "")).join("")
           : `<div class="vide"><b>Rien pour l'instant</b>Aucun article dans cette catégorie.</div>`}
       </div>`;
-    document.title = [nom, identite("app_nom")].filter(Boolean).join(" — ");
+    document.title = [nom, identite("app_nom")].filter(Boolean).join(" · ");
     return;
   }
 
@@ -1960,7 +1958,7 @@ async function vueExplorer(params) {
     };
   });
 
-  document.title = [reglage("titre_explorer", "Explorer"), identite("app_nom")].filter(Boolean).join(" — ");
+  document.title = [reglage("titre_explorer", "Explorer"), identite("app_nom")].filter(Boolean).join(" · ");
 }
 
 /* ── Vue : recherche ───────────────────────────────────────────────────── */
@@ -2047,8 +2045,8 @@ async function vueRecherche(params) {
 
   const nomApp = identite("app_nom");
   document.title = q
-    ? `« ${q} » — ${reglage("titre_recherche", "Recherche")}`
-    : [reglage("titre_recherche", "Recherche"), nomApp].filter(Boolean).join(" — ");
+    ? `« ${q} » · ${reglage("titre_recherche", "Recherche")}`
+    : [reglage("titre_recherche", "Recherche"), nomApp].filter(Boolean).join(" · ");
 
   await lancer();
 }
@@ -2263,7 +2261,7 @@ const NOTIF = {
     const titre = reglage("notification_titre", "Une nouvelle édition est disponible");
     if (this.actif()) await notifier(titre, derniere.titre, derniere.slug);
 
-    alerte(`${titre} — ${derniere.titre}`,
+    alerte(`${titre} · ${derniere.titre}`,
            { texte: "Lire", href: `#/edition/${derniere.slug}` });
     CACHE.parDate.delete(derniere.slug);
     CACHE.vivier = null;   // le vivier d'Explorer doit intégrer les nouveaux articles

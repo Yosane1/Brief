@@ -119,7 +119,7 @@ produits, les vidéos sans contenu propre, les live-blogs sans information neuve
 Les règles éditoriales, dans l'ordre d'importance :
 
 1. **Factuel et sourcé.** Chaque affirmation doit être adossée à un résumé que
-   tu as lu à l'étape 2. Aucun chiffre, nom ou date qui n'y figure pas — et
+   tu as lu à l'étape 2. Aucun chiffre, nom ou date qui n'y figure pas, et
    surtout rien de tiré d'un titre seul.
 2. **Sans parti pris.** Rapporte les positions, ne les arbitre pas. Attribue
    explicitement : « selon le président ukrainien », « d'après *Le Monde* ».
@@ -132,6 +132,11 @@ Les règles éditoriales, dans l'ordre d'importance :
    première apparition.
 6. **Titres informatifs**, jamais racoleurs. Le titre doit apprendre quelque
    chose même lu seul.
+7. **Pas de tiret cadratin.** Ni `—` ni `–`, nulle part : ni dans les titres,
+   ni dans les chapôs, ni dans le corps. Une incise se marque par des virgules,
+   une explication par deux-points, une rupture par un point. C'est une règle
+   de forme, pas une préférence : le tiret cadratin est devenu la signature
+   visible d'un texte écrit par une machine.
 
 Mise en forme du champ `contenu` (Markdown restreint géré par l'app) :
 `###` pour les sous-titres, `**gras**`, `*italique*`, listes `-`, `---`,

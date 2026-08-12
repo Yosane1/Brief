@@ -21,6 +21,11 @@ from airtable import select, esc  # noqa: E402
 # que push_edition.py n'a pas su détendre : le lecteur verrait « lm042 ».
 ID_NON_RESOLU = re.compile(r"^[a-z][a-z0-9]{1,3}\d{3}$")
 
+# Le tiret cadratin est proscrit par la règle 7 de la procédure. Il revient
+# tout seul si on ne le surveille pas : autant le dire ici plutôt que de le
+# découvrir en lisant l'édition publiée.
+CADRATIN = re.compile(r"[—–]")
+
 for flux in (sys.stdout, sys.stderr):
     if hasattr(flux, "reconfigure"):
         flux.reconfigure(encoding="utf-8", errors="replace")
@@ -73,8 +78,12 @@ def verifier(jour=None):
 
     par_rubrique = {}
     mobilier = {"chiffre": 0, "citation": 0, "à la une": 0}
+    cadratins = []
     for a in articles:
         f = a["fields"]
+        for champ in ("Titre", "Chapô", "Contenu"):
+            if CADRATIN.search(f.get(champ) or ""):
+                cadratins.append(f"{(f.get('Titre') or '?')[:40]} ({champ.lower()})")
         r = f.get("Rubrique", "(vide)")
         par_rubrique.setdefault(r, 0)
         par_rubrique[r] += 1
@@ -133,6 +142,12 @@ def verifier(jour=None):
                 f"{mobilier['à la une']} articles « À la une » : "
                 f"au-delà de trois, ce n'est plus une sélection"
             )
+
+    if cadratins:
+        avertissements.append(
+            f"tiret cadratin dans {len(cadratins)} champ(s), contraire à la règle 7 : "
+            + ", ".join(cadratins[:3]) + ("…" if len(cadratins) > 3 else "")
+        )
 
     if not extra and not 9 <= len(articles) <= 11:
         avertissements.append(

@@ -68,7 +68,7 @@ def lire_reglages():
 def ecrire_manifeste(r):
     nom_complet = f"{r['app_nom']}{r['app_point']}".strip()
     manifeste = {
-        "name": f"{nom_complet} — {r['app_baseline']}".rstrip(" —"),
+        "name": f"{nom_complet} · {r['app_baseline']}".rstrip(" ·"),
         "short_name": r["app_nom"][:12],
         "description": r["app_description"],
         "lang": "fr",
@@ -91,7 +91,7 @@ def ecrire_manifeste(r):
              "type": "image/png", "purpose": "maskable"},
         ],
         "shortcuts": [
-            {"name": "Le brief du jour", "url": "./index.html#/",
+            {"name": "L'édition du jour", "url": "./index.html#/",
              "icons": [{"src": "icones/icone-192.png", "sizes": "192x192"}]},
             {"name": "Archives", "url": "./index.html#/archives"},
             {"name": "Explorer", "url": "./index.html#/explorer"},
