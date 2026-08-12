@@ -10,7 +10,7 @@
 
 // Incrémenter à chaque déploiement : l'activation purge les caches des versions
 // précédentes.
-const VERSION = "brief-v3";
+const VERSION = "brief-v4";
 const COQUILLE = [
   "./",
   "./index.html",

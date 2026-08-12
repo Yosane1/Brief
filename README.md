@@ -289,10 +289,54 @@ Une fois installée depuis Android, iOS ou le navigateur de bureau, elle s'ouvre
 en plein écran, sans barre d'adresse, avec sa propre icône — et non comme un
 raccourci web. Sur mobile, la navigation passe en barre d'onglets basse.
 
-Le service worker met aussi en cache la coquille de l'application, ce qui permet
-de relire le dernier brief consulté hors ligne. Les données Airtable, elles, ne
-sont jamais mises en cache : un brief périmé affiché comme frais serait pire que
-pas de brief du tout.
+Le service worker met en cache la coquille de l'application dans `brief-v4`, et
+les briefs eux-mêmes dans un cache distinct, `brief-donnees` : ils survivent
+ainsi au déploiement d'une nouvelle version, et disparaissent à la déconnexion —
+un poste peut être partagé. Un brief servi depuis le cache après une panne de
+réseau est daté par l'en-tête `X-Brief-Cache`, et l'application le dit au
+lecteur : un brief d'avant-hier présenté comme frais serait pire que pas de
+brief.
+
+### Ne réveiller le réseau que lorsqu'il a quelque chose à dire
+
+L'application interrogeait la passerelle à chaque démarrage, puis toutes les dix
+minutes, du matin au soir : environ cent quarante appels par jour et par onglet
+pour apprendre cent trente-neuf fois la même chose. Le brief ne paraît qu'une
+fois par jour.
+
+La décision d'aller en ligne se prend désormais **avant le premier appel**, sur
+les seules données locales — l'heure de parution annoncée par la base, la date
+de l'édition la plus récente connue, et celle du dernier contrôle :
+
+| Situation | Au démarrage |
+| --- | --- |
+| Rechargement explicite (F5, balayage vers le bas) | réseau |
+| Rien d'exploitable en mémoire (première visite, déconnexion) | réseau |
+| L'édition attendue est déjà en mémoire | mémoire locale |
+| Une édition plus récente peut exister | réseau |
+| … mais la passerelle a déjà répondu il y a moins de 30 min | mémoire locale |
+| Accès non vérifié depuis sept jours | réseau |
+
+« L'édition attendue » est celle d'aujourd'hui une fois `heure_publication`
+passée, celle d'hier avant. La question posée est bien « une édition que je n'ai
+pas peut-elle exister ? », et non « sommes-nous après l'heure de parution ? » —
+qui laisserait un lecteur du matin sur l'avant-veille quand l'édition d'hier
+soir est arrivée en retard.
+
+Le sondage périodique suit la même logique : il ne s'ouvre qu'entre
+`heure_publication` et deux heures plus tard, et seulement tant que l'édition
+attendue manque. Le reste du temps, aucun appel.
+
+Le lecteur garde la main : un rechargement force toujours la mise à jour. Aucun
+bouton n'a été ajouté — le geste est celui que tout le monde connaît déjà.
+
+Deux garde-fous rendent ce mode sans risque. Si le cache se révèle insuffisant,
+l'application rouvre le réseau et retombe sur le comportement d'avant. Et le
+jeton n'est plus revérifié au démarrage, mais au premier appel réel : `appelAuth`
+rejoue la connexion sur tout refus de la passerelle, si bien qu'un accès révoqué
+relit ce qu'on lui avait déjà servi et tombe dès que l'application demande du
+neuf. La péremption de sept jours ferme le cas de l'appareil qui ne se
+reconnecterait plus jamais.
 
 ### Les notifications
 

@@ -789,9 +789,15 @@ const CONF = {
     push:     "tblD3A0snPC239bgo",
     journal:  "tblKOTUxKjS6IgOOj",
   },
-  // Fréquence de vérification d'une nouvelle édition (ms)
+  // Fréquence de vérification d'une nouvelle édition (ms), pendant le seul
+  // créneau de parution — voir VEILLE.
   intervalleVeille: 10 * 60 * 1000,
 };
+
+/* Cache des briefs, rempli par le service worker et relu ici pour la lecture
+   hors ligne. Le nom est partagé avec sw.js : le changer d'un côté seulement
+   rendrait le cache invisible sans rien casser de visible. */
+const CACHE_DONNEES = "brief-donnees";
 
 /* Ordre et couleur des rubriques — modifiable sans toucher aux données. */
 const RUBRIQUES = [
@@ -847,7 +853,17 @@ function dateCourte(iso) {
   const d = new Date(iso + "T12:00:00");
   return `${d.getDate()} ${MOIS_COURT[d.getMonth()]} ${d.getFullYear()}`;
 }
-const aujourdhui = () => new Date().toISOString().slice(0, 10);
+/**
+ * La date du jour, en heure locale.
+ *
+ * `toISOString()` seul travaille en UTC : entre minuit et deux heures du matin
+ * à Paris, il renvoie encore la veille. L'application se croirait alors un jour
+ * en retard — sans conséquence tant que ce n'était qu'un libellé, mais c'est
+ * désormais sur cette date que repose la décision d'aller chercher une
+ * nouvelle édition.
+ */
+const aujourdhui = (d = new Date()) =>
+  new Date(d.getTime() - d.getTimezoneOffset() * 60000).toISOString().slice(0, 10);
 
 /* ══════════════════════════════════════════════════════════════════════════
    Confort de lecture
@@ -1004,6 +1020,31 @@ const API = {
     }
     if (!r.ok) throw new Error(donnees.erreur || `La passerelle a répondu ${r.status}.`);
     return donnees;
+  },
+
+  /**
+   * Relit une réponse que le service worker a déjà enregistrée, sans toucher
+   * au réseau.
+   *
+   * La page partage le cache du service worker : rien à inventer, ni en-tête
+   * ni protocole, et aucune requête préalable. `ignoreVary` est en revanche
+   * indispensable — la passerelle répond « Vary: Origin », et la
+   * correspondance échouerait silencieusement sans lui.
+   *
+   * Renvoie `null` dès que le cache n'a pas la réponse : l'appelant repasse
+   * alors en ligne.
+   */
+  async depuisCache(chemin, params = null) {
+    if (!this.passerelle || typeof caches === "undefined") return null;
+    const url = new URL(this.passerelle + chemin);
+    if (params) {
+      for (const [k, v] of Object.entries(params)) if (v) url.searchParams.set(k, v);
+    }
+    try {
+      const cache = await caches.open(CACHE_DONNEES);
+      const rep = await cache.match(url.href, { ignoreVary: true });
+      return rep ? await rep.json() : null;
+    } catch { return null; }
   },
 
   /** Une session dure une heure : on la renouvelle en silence à l'expiration. */
@@ -1254,7 +1295,16 @@ const identite = cle => (REGLAGES[cle] ?? "").trim();
  * n'appartiennent à personne. Et si l'application n'en a jamais reçu, elle
  * le dit au lieu de se donner une identité qu'elle n'a pas.
  */
-async function chargerReglages() {
+async function chargerReglages({ reseau = true } = {}) {
+  // Démarrage hors ligne : les derniers réglages connus suffisent, et c'est
+  // d'ailleurs sur eux que la décision de ne pas aller en ligne vient d'être
+  // prise. S'ils manquaient malgré tout, on rouvre le réseau.
+  if (!reseau) {
+    REGLAGES = LOCAL.lire("reglages", null);
+    if (REGLAGES) { appliquerReglages(); return; }
+    FRAICHEUR.repasserEnLigne("réglages absents du cache");
+  }
+
   try {
     const recus = await API.reglages();
     if (!recus || !Object.keys(recus).length) throw new Error("réponse vide");
@@ -1410,8 +1460,13 @@ function fermerSession() {
   LOCAL.vider("session");
   LOCAL.vider("passerelle");
   // Les briefs enregistrés pour la lecture hors ligne partent avec la session :
-  // sur un poste partagé, ils resteraient lisibles sans identifiant.
-  caches?.delete("brief-donnees").catch(() => {});
+  // sur un poste partagé, ils resteraient lisibles sans identifiant. La liste
+  // des éditions en fait partie — elle porte les titres, les résumés et les
+  // éditos, et sa suppression était oubliée.
+  caches?.delete(CACHE_DONNEES).catch(() => {});
+  LOCAL.vider("cache.editions");
+  LOCAL.vider("dernierControle");
+  LOCAL.vider("derniereConnue");
   SESSION.identifiant = SESSION.jeton = SESSION.client = null;
   API.session = null;
   location.hash = "";
@@ -1419,9 +1474,143 @@ function fermerSession() {
 }
 
 /* ══════════════════════════════════════════════════════════════════════════
+   Fraîcheur — décider s'il faut aller en ligne
+
+   L'application interrogeait la passerelle à chaque démarrage, puis toutes les
+   dix minutes, du matin au soir. Cent quarante appels par jour et par onglet
+   pour apprendre cent trente-neuf fois la même chose : le brief du soir ne
+   paraît qu'une fois par jour, et le lecteur qui l'a déjà lu n'a rien à
+   attendre du réseau.
+
+   Tout se décide donc localement, avant le moindre appel, à partir de trois
+   choses déjà en mémoire : l'heure de parution annoncée par la base, la date
+   de l'édition la plus récente connue, et celle du dernier contrôle.
+   ══════════════════════════════════════════════════════════════════════════ */
+
+/**
+ * L'heure de parution annoncée, ramenée à aujourd'hui.
+ * Renvoie `{date, libelle}`, ou `null` si le réglage manque ou est illisible.
+ */
+function heureParution() {
+  const m = /^(\d{1,2})\s*[:hH]\s*(\d{2})$/.exec(reglage("heure_publication").trim());
+  if (!m) return null;
+  const date = new Date();
+  date.setHours(+m[1], +m[2], 0, 0);
+  return { date, libelle: `${m[1]}h${m[2]}` };
+}
+
+/**
+ * Le battement admis après l'heure annoncée. La rédaction est programmée, mais
+ * sa mise en ligne dépend d'une file d'attente qui a déjà pris trois quarts
+ * d'heure de retard. Passé ce délai, l'édition du soir ne viendra plus.
+ *
+ * Une seule valeur pour deux usages qui doivent s'accorder : ce qu'on dit au
+ * lecteur, et la durée pendant laquelle on guette la parution.
+ */
+const BATTEMENT_PARUTION = 120 * 60000;
+
+const FRAICHEUR = {
+  // Deux contrôles réseau ne sont jamais séparés de moins que ça. C'est ce qui
+  // évite de marteler la passerelle les soirs où rien ne paraît — le pipeline
+  // échoue, la condition « du neuf est attendu » reste vraie, et sans ce
+  // plancher chaque ouverture repartirait en réseau pour ne rien trouver.
+  PLANCHER: 30 * 60 * 1000,
+
+  // Au-delà, on repasse en ligne même si aucune édition n'est attendue. En
+  // usage normal l'application va en ligne chaque soir et ce seuil ne se
+  // déclenche jamais : il empêche seulement qu'un appareil qui ne se
+  // reconnecte plus lise indéfiniment avec un accès révoqué.
+  PEREMPTION: 7 * 24 * 60 * 60 * 1000,
+
+  // Vrai quand le démarrage s'est fait sur la mémoire locale. Les lectures de
+  // contenu s'y réfèrent pour se servir au cache plutôt qu'au réseau.
+  horsLigne: false,
+
+  dernierControle() { return LOCAL.lire("dernierControle", 0) || 0; },
+  noterControle()   { LOCAL.ecrire("dernierControle", Date.now()); },
+
+  /**
+   * Le jour de la dernière édition attendue : aujourd'hui une fois l'heure de
+   * parution passée, hier avant.
+   *
+   * C'est la bonne question — « une édition que je n'ai pas peut-elle
+   * exister ? » — là où « sommes-nous après l'heure de parution ? » laisserait
+   * un lecteur du matin sur l'édition de l'avant-veille quand celle d'hier
+   * soir est arrivée en retard.
+   */
+  jourAttendu() {
+    const p = heureParution();
+    const d = new Date();
+    if (p && Date.now() < p.date) d.setDate(d.getDate() - 1);
+    return aujourdhui(d);
+  },
+
+  /** La date de l'édition la plus récente que cet appareil connaisse. */
+  jourConnu() {
+    const liste = CACHE.editions || LOCAL.lire("cache.editions", null) || [];
+    return liste.length ? (liste[0].date || "") : "";
+  },
+
+  duNeufEstAttendu() { return this.jourConnu() < this.jourAttendu(); },
+
+  /**
+   * Le créneau de guet : de l'heure annoncée à deux heures après. C'est le même
+   * battement que celui annoncé au lecteur par `avisFraicheur` — passé ce
+   * délai, l'édition du soir ne viendra plus et le prochain rendez-vous est
+   * celui de demain.
+   *
+   * Sans heure annoncée, pas de guet du tout : le contrôle au démarrage suffit.
+   */
+  creneauDeGuet() {
+    const p = heureParution();
+    if (!p) return false;
+    const debut = p.date.getTime();
+    return Date.now() >= debut && Date.now() < debut + BATTEMENT_PARUTION;
+  },
+
+  /**
+   * Faut-il ouvrir le réseau au démarrage ? Rien ici ne fait d'appel : tout se
+   * lit dans le stockage local. Le motif n'est pas décoratif, il part dans la
+   * console — c'est le seul moyen de comprendre après coup pourquoi une
+   * ouverture a coûté cinq appels ou zéro.
+   */
+  decider() {
+    const nav = performance.getEntriesByType("navigation")[0];
+    if (nav && nav.type === "reload")
+      return { enLigne: true, motif: "rechargement demandé par le lecteur" };
+
+    const memo = LOCAL.lire("session");
+    if (!memo?.jeton || !memo?.client || !LOCAL.lire("reglages") || !LOCAL.lire("cache.editions"))
+      return { enLigne: true, motif: "rien d'exploitable en mémoire" };
+
+    if (Date.now() - (memo.verifiee || 0) > this.PEREMPTION)
+      return { enLigne: true, motif: "accès non vérifié depuis sept jours" };
+
+    if (!this.duNeufEstAttendu())
+      return { enLigne: false, motif: "l'édition attendue est déjà en mémoire" };
+
+    if (Date.now() - this.dernierControle() < this.PLANCHER)
+      return { enLigne: false, motif: "passerelle déjà interrogée il y a moins de 30 min" };
+
+    return { enLigne: true, motif: "une édition plus récente peut exister" };
+  },
+
+  /**
+   * Le cache s'est révélé insuffisant : on rouvre le réseau pour la suite de
+   * la session. Ce repli est ce qui rend le mode hors ligne sans risque — au
+   * pire, on retombe sur le comportement d'avant.
+   */
+  repasserEnLigne(motif) {
+    if (!this.horsLigne) return;
+    this.horsLigne = false;
+    console.info("Retour en ligne :", motif);
+  },
+};
+
+/* ══════════════════════════════════════════════════════════════════════════
    Accès aux contenus
    ══════════════════════════════════════════════════════════════════════════ */
-const CACHE = { editions: null, parDate: new Map(), vivier: null };
+const CACHE = { editions: null, enVol: null, parDate: new Map(), vivier: null };
 
 // Édition actuellement à l'écran : c'est elle dont on note la progression au
 // défilement. Nulle partout ailleurs, pour ne rien enregistrer depuis les
@@ -1436,11 +1625,37 @@ async function chargerVivier(force = false) {
   return CACHE.vivier;
 }
 
+/**
+ * La liste des éditions parues.
+ *
+ * Deux mémoires, pour deux raisons distinctes : la liste tient dans le
+ * stockage local, où elle survit à l'absence de service worker ; les articles,
+ * eux, sont bien trop volumineux et restent dans le cache du service worker.
+ *
+ * La requête en cours est partagée, pas seulement son résultat. Au démarrage,
+ * la vue et le guet demandent cette liste à quelques millisecondes d'écart :
+ * mémoriser la seule réponse ne suffisait pas, le second appel partait avant
+ * le retour du premier et la passerelle répondait deux fois la même chose.
+ */
 async function listerEditions(force = false) {
   if (CACHE.editions && !force) return CACHE.editions;
-  CACHE.editions = await API.editions();
-  LOCAL.ecrire("cache.editions", CACHE.editions.slice(0, 40));
-  return CACHE.editions;
+  if (CACHE.enVol && !force) return CACHE.enVol;
+
+  if (FRAICHEUR.horsLigne && !force) {
+    const memo = LOCAL.lire("cache.editions", null);
+    if (memo?.length) return (CACHE.editions = memo);
+    FRAICHEUR.repasserEnLigne("aucune liste d'éditions en mémoire");
+  }
+
+  CACHE.enVol = (async () => {
+    const liste = await API.editions();
+    FRAICHEUR.noterControle();
+    LOCAL.ecrire("cache.editions", liste.slice(0, 40));
+    return (CACHE.editions = liste);
+  })();
+
+  try { return await CACHE.enVol; }
+  finally { CACHE.enVol = null; }
 }
 
 async function chargerEdition(slug) {
@@ -1448,6 +1663,20 @@ async function chargerEdition(slug) {
   const editions = await listerEditions();
   const edition = editions.find(e => e.slug === slug || e.date === slug);
   if (!edition) return null;
+
+  // Hors ligne par choix : on se contente de ce que le service worker a déjà
+  // enregistré. S'il n'a rien — une archive jamais ouverte, un cache purgé —
+  // on rouvre le réseau plutôt que d'afficher une édition sans articles.
+  if (FRAICHEUR.horsLigne) {
+    const memo = await API.depuisCache("/edition", { slug: edition.slug });
+    if (memo?.articles?.length) {
+      edition.articles = memo.articles;
+      CACHE.parDate.set(slug, edition);
+      return edition;
+    }
+    FRAICHEUR.repasserEnLigne(`édition ${edition.slug} absente du cache`);
+  }
+
   edition.articles = await API.articlesDuJour(edition.slug, edition.date);
   CACHE.parDate.set(slug, edition);
   return edition;
@@ -1528,31 +1757,25 @@ function erreur(titre, detail) {
  * Ce que le lecteur doit savoir avant de commencer : ce n'est pas l'édition
  * du jour.
  *
- * Le cas n'a rien d'exceptionnel — il se produit chaque dimanche, où la
- * procédure ne prévoit pas de parution, et chaque soir où le pipeline
- * échoue. Sans ce mot, rien ne l'en avertit : seule la ligne de date le dit,
- * et encore faut-il connaître la date du jour pour l'interpréter.
+ * Le cas n'a rien d'exceptionnel : il se produit tous les jours entre minuit
+ * et l'heure de parution, et chaque soir où le pipeline échoue. Sans ce mot,
+ * rien ne l'en avertit : seule la ligne de date le dit, et encore faut-il
+ * connaître la date du jour pour l'interpréter.
  *
  * L'heure annoncée vient du réglage `heure_publication`. On dit « vers » :
- * la rédaction est programmée, mais sa mise en ligne dépend d'une file
- * d'attente qui a déjà pris trois quarts d'heure de retard.
+ * la mise en ligne dépend d'une file d'attente qui a déjà pris trois quarts
+ * d'heure de retard.
  */
 function avisFraicheur(dateEdition) {
   if (!dateEdition || dateEdition === aujourdhui()) return "";
 
-  const m = /^(\d{1,2})\s*[:hH]\s*(\d{2})$/.exec(reglage("heure_publication").trim());
-  if (!m) return "L'édition du jour n'est pas encore parue.";
+  const parution = heureParution();
+  if (!parution) return "L'édition du jour n'est pas encore parue.";
 
-  const heure = `${m[1]}h${m[2]}`;
-  const parution = new Date();
-  parution.setHours(+m[1], +m[2], 0, 0);
-  const minutes = (Date.now() - parution) / 60000;
-
-  // Deux heures de battement après l'heure annoncée avant de renvoyer le
-  // lecteur au lendemain : en deçà, l'édition du soir est simplement en route.
-  return minutes < 0   ? `L'édition du jour arrive vers ${heure}.`
-       : minutes < 120 ? "L'édition du jour arrive d'un instant à l'autre."
-       :                 `Prochaine édition demain vers ${heure}.`;
+  const ecart = Date.now() - parution.date;
+  return ecart < 0                   ? `L'édition du jour arrive vers ${parution.libelle}.`
+       : ecart < BATTEMENT_PARUTION  ? "L'édition du jour arrive d'un instant à l'autre."
+       :                               `Prochaine édition demain vers ${parution.libelle}.`;
 }
 
 /* ── Vue : une édition ─────────────────────────────────────────────────── */
@@ -2261,10 +2484,16 @@ const NOTIF = {
     return !!souscription;
   },
 
-  /** Compare la dernière édition publiée à la dernière vue par ce lecteur. */
-  async verifier() {
+  /**
+   * Compare la dernière édition publiée à la dernière vue par ce lecteur.
+   *
+   * `force` commande un appel réseau. Au démarrage il vaut faux : la vue vient
+   * de charger la liste, et la redemander à quelques millisecondes d'intervalle
+   * était le même appel deux fois.
+   */
+  async verifier(force = true) {
     let editions;
-    try { editions = await listerEditions(true); } catch { return; }
+    try { editions = await listerEditions(force); } catch { return; }
     if (!editions.length) return;
 
     const derniere = editions[0];
@@ -2282,6 +2511,50 @@ const NOTIF = {
            { texte: "Lire", href: `#/edition/${derniere.slug}` });
     CACHE.parDate.delete(derniere.slug);
     CACHE.vivier = null;   // le vivier d'Explorer doit intégrer les nouveaux articles
+  },
+};
+
+/**
+ * Le guet d'une nouvelle édition.
+ *
+ * Deux rythmes, pour deux situations distinctes :
+ *
+ *   • pendant le créneau de parution, et tant que l'édition attendue manque,
+ *     on interroge la passerelle toutes les dix minutes — c'est le moment où
+ *     le lecteur l'attend, et où quelques appels sont justement bien employés ;
+ *   • le reste du temps, rien. Le minuteur continue de battre, mais il ne fait
+ *     qu'une comparaison de dates : le sondage permanent, du matin au soir,
+ *     n'apprenait rien que le démarrage suivant n'aurait appris.
+ *
+ * Le minuteur n'est jamais arrêté, à dessein. Un onglet ouvert depuis la
+ * matinée doit voir s'ouvrir le créneau du soir, et un onglet ouvert depuis
+ * hier doit voir arriver celui de demain.
+ */
+const VEILLE = {
+  minuteur: null,
+
+  demarrer() {
+    NOTIF.verifier(false);
+    if (this.minuteur) return;     // montrerApplication() a deux appelants
+    this.minuteur = setInterval(() => this.battre(), CONF.intervalleVeille);
+    document.addEventListener("visibilitychange", () => {
+      if (!document.hidden) this.auRetour();
+    });
+  },
+
+  battre() {
+    if (FRAICHEUR.creneauDeGuet() && FRAICHEUR.duNeufEstAttendu()) NOTIF.verifier(true);
+  },
+
+  /**
+   * Retour au premier plan. Hors créneau, c'est la seule occasion de rattraper
+   * une édition parue pendant que l'onglet dormait — d'où le plancher, qui
+   * empêche qu'un va-et-vient entre onglets se paie en appels.
+   */
+  auRetour() {
+    if (!FRAICHEUR.duNeufEstAttendu()) return;
+    if (Date.now() - FRAICHEUR.dernierControle() < FRAICHEUR.PLANCHER) return;
+    NOTIF.verifier(true);
   },
 };
 
@@ -2770,10 +3043,16 @@ const SW = {
       this.pret = true;
 
       // Une application installée ne se recharge jamais d'elle-même : on
-      // vérifie la présence d'une nouvelle version à chaque retour au premier
-      // plan, sans quoi elle peut tourner indéfiniment sur du code périmé.
+      // vérifie la présence d'une nouvelle version au retour au premier plan,
+      // sans quoi elle peut tourner indéfiniment sur du code périmé. Une fois
+      // par heure suffit largement — l'application ne change pas tous les
+      // jours, et à chaque bascule d'onglet c'était un aller-retour de plus
+      // vers l'hébergement.
+      let dernierControleVersion = 0;
       document.addEventListener("visibilitychange", () => {
-        if (!document.hidden) reg.update().catch(() => {});
+        if (document.hidden || Date.now() - dernierControleVersion < 3600_000) return;
+        dernierControleVersion = Date.now();
+        reg.update().catch(() => {});
       });
       // Une version plus récente prend la main dès le rechargement suivant.
       reg.addEventListener("updatefound", () => {
@@ -2829,12 +3108,7 @@ function montrerApplication() {
   $("#entete").hidden = $("#vue").hidden = false;
   rendreMenuCompte();
   router();
-
-  NOTIF.verifier();
-  setInterval(() => NOTIF.verifier(), CONF.intervalleVeille);
-  document.addEventListener("visibilitychange", () => {
-    if (!document.hidden) NOTIF.verifier();
-  });
+  VEILLE.demarrer();
 }
 
 /** Thème système, sauf préférence explicite du lecteur ou réglage de la base. */
@@ -2921,7 +3195,17 @@ async function demarrer() {
     if (EDITION_LUE && h > 0) LECTURE.noter(EDITION_LUE, scrollY, scrollY / h);
   });
 
-  await chargerReglages();
+  // ── La décision : réseau, ou mémoire ? ────────────────────────────────
+  //
+  // Elle se prend ici, avant le premier appel, et sur les seules données
+  // locales. Les réglages en cache sont posés d'abord : c'est d'eux que vient
+  // l'heure de parution, sans laquelle il n'y a rien à décider.
+  REGLAGES = LOCAL.lire("reglages", null) || {};
+  const { enLigne, motif } = FRAICHEUR.decider();
+  FRAICHEUR.horsLigne = !enLigne;
+  console.info(`Démarrage ${enLigne ? "en ligne" : "sur la mémoire locale"} : ${motif}.`);
+
+  await chargerReglages({ reseau: enLigne });
   // Le thème par défaut vient de la base : il n'est connu qu'ici, et ne doit
   // pas écraser un choix déjà fait par le lecteur.
   if (!LOCAL.lire("theme")) appliquerTheme(themeInitial());
@@ -2965,9 +3249,22 @@ async function demarrer() {
     montrerApplication();
   });
 
-  // Reprise de session : le jeton est revérifié à chaque démarrage, de sorte
-  // qu'une révocation dans Airtable coupe l'accès dès le rechargement suivant.
+  // Reprise de session.
+  //
+  // Le jeton était autrefois revérifié à chaque démarrage, pour qu'une
+  // révocation dans Airtable coupe l'accès au rechargement suivant. Ce
+  // contrôle n'a pas disparu, il a changé de moment : `appelAuth` rejoue la
+  // connexion sur tout refus de la passerelle. Un accès révoqué relit donc ce
+  // qu'on lui avait déjà servi, et tombe dès que l'application demande du
+  // neuf — ce qu'elle fait au premier passage en ligne. La péremption de sept
+  // jours ferme le cas de l'appareil qui ne se reconnecterait plus jamais.
   const memo = LOCAL.lire("session");
+  if (FRAICHEUR.horsLigne && memo?.client) {
+    SESSION.identifiant = memo.identifiant;
+    SESSION.jeton = memo.jeton;
+    SESSION.client = memo.client;
+    return montrerApplication();
+  }
   if (memo?.jeton && memo?.identifiant) {
     const res = await verifierAcces(memo.identifiant, memo.jeton);
     if (res.ok) {
