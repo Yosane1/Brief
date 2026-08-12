@@ -30,7 +30,7 @@
   --magenta:#d955a6; --sarcelle:#47ad88;
 
   --fond:#fff; --fond-2:#fafafa; --fond-3:#f2f2f0;
-  --texte:#222; --texte-2:#5b5966; --texte-3:#8b8895;
+  --texte:#222; --texte-2:#5b5966; --texte-3:#75727f;
   --bord:#e4e3e6; --bord-fort:#d0cfd4;
   --ombre:0 1px 2px rgba(20,18,30,.05), 0 8px 24px -12px rgba(20,18,30,.14);
   --accent:var(--rouge);
@@ -46,14 +46,14 @@
 }
 :root[data-theme="dark"]{
   --fond:#1f1f1f; --fond-2:#282929; --fond-3:#323233;
-  --texte:#e8e6ea; --texte-2:#a5a2b1; --texte-3:#807d8b;
+  --texte:#e8e6ea; --texte-2:#a5a2b1; --texte-3:#8d8a99;
   --bord:#3a3a3c; --bord-fort:#4d4d50;
   --ombre:0 1px 2px rgba(0,0,0,.4), 0 8px 24px -12px rgba(0,0,0,.7);
 }
 @media (prefers-color-scheme:dark){
   :root:not([data-theme="light"]){
     --fond:#1f1f1f; --fond-2:#282929; --fond-3:#323233;
-    --texte:#e8e6ea; --texte-2:#a5a2b1; --texte-3:#807d8b;
+    --texte:#e8e6ea; --texte-2:#a5a2b1; --texte-3:#8d8a99;
     --bord:#3a3a3c; --bord-fort:#4d4d50;
     --ombre:0 1px 2px rgba(0,0,0,.4), 0 8px 24px -12px rgba(0,0,0,.7);
   }
@@ -104,13 +104,17 @@ button{font:inherit; color:inherit; cursor:pointer; border:0; background:none}
 .nav a{
   display:flex; align-items:center; gap:.4rem; text-decoration:none;
   font-size:.875rem; font-weight:500; color:var(--texte-2);
-  padding:.4rem .7rem; border-radius:99px; white-space:nowrap;
+  padding:.4rem .9rem; border-radius:99px; white-space:nowrap;
+  min-height:44px; justify-content:center;
 }
 .nav a svg{display:none}      /* les icônes ne servent qu'à la barre mobile */
 .nav a:hover{background:var(--fond-3); color:var(--texte)}
 .nav a[aria-current]{background:var(--texte); color:var(--fond)}
+/* Le disque coloré ne se voit qu'au survol : la cible peut donc être plus
+   large que ce qu'on en perçoit. 48px est le minimum de Material, et il vaut
+   pour la souris comme pour le doigt. */
 .icone-btn{
-  width:34px; height:34px; border-radius:99px; display:grid; place-items:center;
+  width:48px; height:48px; border-radius:99px; display:grid; place-items:center;
   color:var(--texte-2); flex:none;
 }
 .icone-btn:hover{background:var(--fond-3); color:var(--texte)}
@@ -154,13 +158,21 @@ main{width:var(--lg); margin-inline:auto; padding:2.5rem 0 calc(5rem + var(--pla
 }
 /* La puce est un élément de flux à part entière, donc susceptible de finir
    seule en bout de ligne quand la métadonnée passe à la suivante. Sur mobile
-   c'est systématique. Elle est donc collée à ce qu'elle sépare. */
+   c'est systématique. Elle est donc collée à ce qu'elle sépare.
+
+   Encore faut-il la coller du bon côté : accrochée à l'élément qui SUIT, elle
+   passait à la ligne avec lui et ouvrait la seconde ligne par une puce
+   orpheline — « ... N° 4 » puis « · 6 MIN DE LECTURE ». Elle suit désormais
+   l'élément qu'elle termine, comme une virgule. */
 .puce{width:3px; height:3px; border-radius:99px; background:currentColor; opacity:.5}
 .une-meta .puce, .carte-meta .puce{display:none}
-.une-meta .sep::before, .carte-meta .sep::before{
+/* « L'élément suivi d'un .sep » : la puce se pose au bon endroit quel que soit
+   le nombre de métadonnées présentes, sans classe conditionnelle dans le
+   gabarit. Le badge, lui, n'est jamais suivi d'un .sep et n'en reçoit pas. */
+.une-meta > :has(+ .sep)::after, .carte-meta > :has(+ .sep)::after{
   content:""; display:inline-block; vertical-align:middle;
   width:3px; height:3px; border-radius:99px; background:currentColor;
-  opacity:.5; margin-right:.75rem;
+  opacity:.5; margin-left:.75rem;
 }
 .badge-type{
   background:var(--accent); color:#fff; padding:.2rem .55rem; border-radius:4px; letter-spacing:.06em;
@@ -185,7 +197,8 @@ main{width:var(--lg); margin-inline:auto; padding:2.5rem 0 calc(5rem + var(--pla
 }
 .sommaire summary{
   cursor:pointer; font-size:.72rem; font-weight:700; letter-spacing:.11em;
-  text-transform:uppercase; color:var(--texte-3); list-style:none;
+  text-transform:uppercase; color:var(--texte-2); list-style:none;
+  min-height:48px; display:flex; flex-direction:column; justify-content:center;
 }
 .sommaire summary::-webkit-details-marker{display:none}
 /* Le chevron est porté par le libellé, pas par le résumé : sinon il tombe sous
@@ -325,9 +338,12 @@ main{width:var(--lg); margin-inline:auto; padding:2.5rem 0 calc(5rem + var(--pla
 .illustration figcaption{font-size:.78rem; color:var(--texte-3); margin-top:.5rem}
 
 .sources{margin-top:1.1rem; font-size:.82rem}
+/* Le dépliant des sources faisait 19px de haut : c'est l'affordance qui porte
+   la promesse éditoriale du brief, elle doit être visible et atteignable. */
 .sources summary{
-  cursor:pointer; color:var(--texte-3); font-weight:600; list-style:none;
+  cursor:pointer; color:var(--texte-2); font-weight:600; list-style:none;
   font-size:.72rem; letter-spacing:.07em; text-transform:uppercase;
+  min-height:48px; display:flex; align-items:center;
 }
 .sources summary::-webkit-details-marker{display:none}
 .sources summary::after{content:" +"; }
@@ -337,10 +353,14 @@ main{width:var(--lg); margin-inline:auto; padding:2.5rem 0 calc(5rem + var(--pla
 .sources a{color:var(--texte-2)}
 .sources a:hover{color:var(--accent)}
 
-.etiquettes{display:flex; flex-wrap:wrap; gap:.35rem; margin-top:1rem}
+/* Les étiquettes restent volontairement compactes : elles sont nombreuses et
+   secondaires, et les grossir jusqu'à 48px coûterait plusieurs écrans de
+   hauteur par édition. L'écart entre elles est en revanche élargi — deux
+   cibles voisines qui se touchent produisent des appuis à côté. */
+.etiquettes{display:flex; flex-wrap:wrap; gap:.5rem; margin-top:1rem}
 .etiquette{
   font-size:.72rem; color:var(--texte-2); background:var(--fond-3);
-  padding:.2rem .55rem; border-radius:99px; text-decoration:none;
+  padding:.4rem .7rem; border-radius:99px; text-decoration:none;
 }
 .etiquette:hover{background:var(--accent); color:#fff}
 
@@ -511,15 +531,16 @@ mark{background:color-mix(in srgb, var(--accent) 22%, transparent); color:inheri
 }
 .lecteur-info small{font-size:.72rem; color:var(--texte-3)}
 .lecteur button{
-  width:34px; height:34px; border-radius:99px; display:grid; place-items:center;
+  width:48px; height:48px; border-radius:99px; display:grid; place-items:center;
   color:var(--texte-2); flex:none;
 }
 .lecteur button:hover{background:var(--fond-3); color:var(--texte)}
 .lecteur button svg{width:17px; height:17px; fill:currentColor}
 .lecteur .principal{
-  width:40px; height:40px; background:var(--accent); color:#fff;
+  width:56px; height:56px; background:var(--accent); color:#fff;
   transition:background .18s;
 }
+.lecteur .principal svg{width:20px; height:20px}
 .lecteur .principal:hover{background:var(--accent); color:#fff; opacity:.88}
 
 /* Second signal, redondant avec l'icône : la voix parle ou non. Un lecteur au
@@ -535,7 +556,7 @@ mark{background:color-mix(in srgb, var(--accent) 22%, transparent); color:inheri
   0%, 100%{box-shadow:0 0 0 0 color-mix(in srgb, var(--accent) 45%, transparent)}
   50%     {box-shadow:0 0 0 6px color-mix(in srgb, var(--accent) 0%, transparent)}
 }
-.lecteur .vitesse{width:auto; padding:0 .5rem; font-size:.78rem; font-weight:700}
+.lecteur .vitesse{width:auto; min-width:48px; padding:0 .5rem; font-size:.78rem; font-weight:700}
 .lecteur-jauge{height:3px; background:var(--fond-3); border-radius:3px; margin-top:.6rem; overflow:hidden}
 .lecteur-jauge i{display:block; height:100%; width:0; background:var(--accent); transition:width .25s}
 .article.ecoute{
@@ -625,10 +646,24 @@ mark{background:color-mix(in srgb, var(--accent) 22%, transparent); color:inheri
 @media (max-width:640px){
   :root{--lg:calc(100% - 2rem); --lg-large:calc(100% - 2rem)}
   body{font-size:16px}
-  .entete-in{height:54px; gap:.5rem}
+  .entete-in{height:56px; gap:.25rem}
   .logo{font-size:1.25rem}
-  .icone-btn{width:32px; height:32px; margin-left:0}
+  /* Les deux commandes permanentes gardent leurs 48px : elles étaient
+     rétrécies à 32 précisément là où l'on vise au doigt. */
+  .icone-btn{margin-left:0}
   .icone-btn:first-of-type{margin-left:auto}
+
+  /* Cinq boutons de 48px et le titre ne tiennent pas sur 343px : le titre
+     prend sa propre ligne, ce qui règle du même coup sa troncature à
+     « Colombie : le… ». La hauteur de la barre est mesurée à l'ouverture,
+     la page réserve donc la bonne place toute seule. */
+  .lecteur-ligne{flex-wrap:wrap; justify-content:center}
+  .lecteur-info{flex:1 0 100%; order:-1; text-align:center; margin-bottom:.15rem}
+  /* Une ligne entière ne suffit pas non plus : « Pourquoi l'éclipse solaire
+     totale du 12 août est un événement si rare » fait soixante-huit signes.
+     Deux lignes couvrent la quasi-totalité des titres du brief. */
+  .lecteur-info b{white-space:normal; display:-webkit-box; -webkit-line-clamp:2;
+                  -webkit-box-orient:vertical; overflow:hidden}
 
   /* Quatre onglets ne tiennent pas dans l'en-tête : ils passent en barre basse,
      comme dans une application native. env(safe-area-inset-bottom) évite que la
@@ -654,6 +689,11 @@ mark{background:color-mix(in srgb, var(--accent) 22%, transparent); color:inheri
   main{padding-top:1.75rem;
        padding-bottom:calc(5.5rem + var(--place-lecteur, 0px) + env(safe-area-inset-bottom))}
   .bandeau{bottom:calc(4.75rem + env(safe-area-inset-bottom))}
+  /* Le lecteur restait à 1,25rem du bas et recouvrait 43px de la barre
+     d'onglets : pendant l'écoute, les quatre onglets étaient inatteignables et
+     il fallait fermer le lecteur pour naviguer. Il se pose au-dessus, comme le
+     bandeau d'alerte. */
+  .lecteur{bottom:calc(5rem + env(safe-area-inset-bottom))}
   .pagination{flex-direction:column}
   .pagination .suiv{text-align:left}
   .chiffre{gap:.5rem}
@@ -661,13 +701,42 @@ mark{background:color-mix(in srgb, var(--accent) 22%, transparent); color:inheri
   .tuile{padding:.85rem .9rem}
   .tuile b{font-size:.92rem}
 }
+/* ── Lien d'évitement ──────────────────────────────────────────────────────
+   Vingt-deux arrêts au clavier séparaient le haut de page du premier article :
+   l'en-tête, les quatre onglets, le lecteur audio, la reprise de lecture, les
+   trois titres à la une, le sommaire. Ce lien saute tout cela d'une touche.
+   Invisible tant qu'il n'a pas le focus — il ne s'adresse qu'au clavier. */
+.evitement{
+  position:absolute; left:.75rem; top:-4rem; z-index:200;
+  background:var(--texte); color:var(--fond); text-decoration:none;
+  padding:.75rem 1.1rem; border-radius:0 0 10px 10px; font-weight:600;
+  transition:top .15s;
+}
+/* `:focus` et non `:focus-visible` : le lien est hors écran, donc inatteignable
+   à la souris — il n'y a aucun risque de le voir surgir sur un clic, et il doit
+   apparaître quelle que soit la façon dont le focus lui arrive. */
+.evitement:focus{top:0}
+
+/* ── Hauteur des cibles en liste ───────────────────────────────────────────
+   Les titres à la une, les entrées du sommaire et les liens de sources sont
+   des liens d'une seule ligne : leur boîte faisait 38 à 42px alors qu'on les
+   vise au doigt. Le remplissage vertical les porte au-delà de 48px sans
+   toucher à la mise en page — le texte, lui, ne bouge pas d'un pixel. */
+.essentiels a, .somm-groupe a, .sources li a{
+  display:inline-block; padding-block:.35rem;
+}
+.logo{padding-block:.5rem}
+.btn-ecoute{min-height:48px}
+
 @media print{
-  .entete,.pagination,.sommaire,.etiquettes{display:none}
+  .entete,.pagination,.sommaire,.etiquettes,.evitement{display:none}
   body{font-size:11pt}
 }
 </style>
 </head>
 <body>
+
+<a class="evitement" href="#vue">Aller au contenu</a>
 
 <!-- ════════════════ Portail d'accès ════════════════ -->
 <div class="portail" id="portail" hidden>
@@ -735,7 +804,7 @@ mark{background:color-mix(in srgb, var(--accent) 22%, transparent); color:inheri
 
 <div id="hors-ligne" hidden></div>
 <div id="annonce" hidden></div>
-<main id="vue" hidden></main>
+<main id="vue" tabindex="-1" hidden></main>
 
 <div class="lecteur" id="lecteur" hidden role="region" aria-label="Lecture audio">
   <div class="lecteur-ligne">
@@ -825,6 +894,31 @@ const $$ = (s, r = document) => [...r.querySelectorAll(s)];
 
 const echappe = s => String(s ?? "").replace(/[&<>"']/g,
   c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+
+/* ── Typographie française ─────────────────────────────────────────────────
+   Les ponctuations doubles et les guillemets prennent une espace insécable.
+   Sans elle, le signe part seul en tête de la ligne suivante : sur une colonne
+   de téléphone, une édition en produisait une soixantaine d'occasions. On avait
+   ainsi une ligne finissant par « mentions « J'aime » et la suivante s'ouvrant
+   sur un guillemet fermant orphelin.
+
+   L'Imprimerie nationale distingue deux largeurs : fine devant « ; ! ? » et les
+   guillemets, pleine devant le deux-points. Les unités suivent la même règle,
+   « 20,4 % » ne devant jamais se couper.
+
+   La règle du deux-points exige une espace devant lui, ce qui laisse « https:// »
+   et « 17:45 » intacts. */
+const FINE  = " ";   // espace fine insécable
+const INSEC = " ";   // espace insécable
+
+const typo = t => String(t ?? "")
+  .replace(/[ \t]+([;!?»])/g, FINE + "$1")
+  .replace(/«[ \t]+/g, "«" + FINE)
+  .replace(/(\S)[ \t]+:/g, "$1" + INSEC + ":")
+  .replace(/(\d)[ \t]+(%|€|°|km|kg|h|min)\b/g, "$1" + INSEC + "$2");
+
+/** Prose destinée à l'affichage : typographie posée, puis échappée. */
+const prose = v => echappe(typo(v));
 
 /** La clé VAPID circule en base64url ; PushManager attend des octets bruts. */
 function base64urlEnOctets(s) {
@@ -1216,7 +1310,9 @@ async function journaliser(type, detail = "") {
 /* ── Rendu Markdown (sous-ensemble volontairement restreint) ───────────── */
 function markdown(src) {
   if (!src) return "";
-  const lignes = echappe(src).split("\n");
+  // La typographie se pose sur la source, avant tout balisage : appliquée au
+  // HTML produit, elle irait glisser des insécables dans les adresses.
+  const lignes = echappe(typo(src)).split("\n");
   let html = "", listeOuverte = false;
 
   const fermerListe = () => { if (listeOuverte) { html += "</ul>"; listeOuverte = false; } };
@@ -1831,7 +1927,7 @@ async function vueEdition(slug) {
           ${ed.numero ? `<span class="sep">N° ${ed.numero}</span>` : ""}
           <span class="sep">${minutes} min de lecture</span>
         </div>
-        <h1>${echappe(ed.titre)}</h1>
+        <h1>${prose(ed.titre)}</h1>
         ${ed.edito ? `<div class="edito" style="border-color:${accent}">${markdown(ed.edito)}</div>` : ""}
         <button class="btn-ecoute" id="btn-ecouter">
           <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
@@ -1852,7 +1948,7 @@ async function vueEdition(slug) {
       <nav class="essentiels" aria-label="Les articles à la une">
         <div class="essentiels-titre">À la une</div>
         <ol>${aLaUne.map(a =>
-          `<li><a href="#article-${a.id}">${echappe(a.titre)}</a></li>`).join("")}</ol>
+          `<li><a href="#article-${a.id}">${prose(a.titre)}</a></li>`).join("")}</ol>
       </nav>` : ""}
 
       ${ordonnees.length > 1 ? `
@@ -1862,7 +1958,7 @@ async function vueEdition(slug) {
           <div class="somm-groupe" style="--c:${couleurDe(rubrique)}">
             <div class="somm-titre">${echappe(rubrique)}</div>
             <ol>${articles.map(a =>
-              `<li><a href="#article-${a.id}">${echappe(a.titre)}</a></li>`).join("")}</ol>
+              `<li><a href="#article-${a.id}">${prose(a.titre)}</a></li>`).join("")}</ol>
           </div>`).join("")}
       </details>` : ""}
 
@@ -1945,19 +2041,19 @@ function suivreSommaire() {
 function rendreArticle(a) {
   return `
   <div class="article" id="article-${a.id}">
-    <h3>${echappe(a.titre)}</h3>
-    ${a.chapo ? `<p class="chapo">${echappe(a.chapo)}</p>` : ""}
+    <h3>${prose(a.titre)}</h3>
+    ${a.chapo ? `<p class="chapo">${prose(a.chapo)}</p>` : ""}
     ${a.image ? `<figure class="illustration">
         <img src="${echappe(a.image)}" alt="${echappe(a.legendeImage || a.titre)}" loading="lazy">
-        ${a.legendeImage ? `<figcaption>${echappe(a.legendeImage)}</figcaption>` : ""}
+        ${a.legendeImage ? `<figcaption>${prose(a.legendeImage)}</figcaption>` : ""}
       </figure>` : ""}
     ${a.citation ? `<blockquote class="citation">
-        <p>« ${echappe(a.citation)} »</p>
-        ${a.auteurCitation ? `<cite>${echappe(a.auteurCitation)}</cite>` : ""}
+        <p>«${FINE}${prose(a.citation)}${FINE}»</p>
+        ${a.auteurCitation ? `<cite>${prose(a.auteurCitation)}</cite>` : ""}
       </blockquote>` : ""}
     <div class="corps">${markdown(a.contenu)}</div>
     ${a.chiffre ? `<div class="chiffre">
-        <b>${echappe(a.chiffre)}</b><span>${echappe(a.legendeChiffre)}</span>
+        <b>${prose(a.chiffre)}</b><span>${prose(a.legendeChiffre)}</span>
       </div>` : ""}
     ${a.sources.length ? `<details class="sources">
         <summary>${a.sources.length} source${a.sources.length > 1 ? "s" : ""}</summary>
@@ -2053,8 +2149,8 @@ function rendreArchives(parMois) {
               ${reprise ? `<span class="jalon">En cours
                   <i style="--p:${Math.round(reprise.part * 100)}%"></i></span>` : ""}
             </div>
-            <h3>${echappe(e.titre)}</h3>
-            ${e.resume ? `<p>${echappe(e.resume)}</p>` : ""}
+            <h3>${prose(e.titre)}</h3>
+            ${e.resume ? `<p>${prose(e.resume)}</p>` : ""}
           </a>`;
         }).join("")}
       </section>`;
@@ -2344,7 +2440,7 @@ const filtrerSansTerme = filtres => API.articles(filtres);
 
 function rendreResultat(a, q) {
   const surligne = t => {
-    const clair = echappe(t);
+    const clair = echappe(typo(t));
     if (!q) return clair;
     return clair.replace(
       new RegExp(`(${q.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")})`, "gi"), "<mark>$1</mark>");
@@ -2874,6 +2970,11 @@ const LECTEUR = {
       `${Math.round((this.index / this.file.length) * 100)} % · ${this.vitesse}×`;
     $("#lect-vitesse").textContent = `${this.vitesse}×`;
     $("#lect-progres").style.width = `${(this.index / this.file.length) * 100}%`;
+    // Sur mobile le titre s'étale sur une ou deux lignes selon sa longueur : la
+    // barre change donc de hauteur d'un article à l'autre, et la réserve doit
+    // suivre. Mesurée à la seule ouverture, elle laissait la pagination passer
+    // dessous dès qu'un titre long arrivait.
+    this.reserverLaPlace();
 
     // Suivi visuel : l'article en cours de lecture est mis en évidence.
     $$(".article.ecoute").forEach(el => el.classList.remove("ecoute"));
@@ -3131,11 +3232,15 @@ async function demarrer() {
   // route : c'est ce qui rend le sommaire cliquable du premier coup, y compris
   // au doigt sur mobile.
   document.addEventListener("click", e => {
-    const lien = e.target.closest('a[href^="#article-"]');
+    const lien = e.target.closest('a[href^="#article-"], a.evitement');
     if (!lien) return;
     e.preventDefault();
     const cible = document.getElementById(lien.getAttribute("href").slice(1));
-    if (cible) cible.scrollIntoView({ behavior: "smooth", block: "start" });
+    if (!cible) return;
+    cible.scrollIntoView({ behavior: "smooth", block: "start" });
+    // Le lien d'évitement doit aussi déplacer le focus, sans quoi la tabulation
+    // suivante repartirait de l'en-tête et le saut n'aurait servi à rien.
+    if (lien.classList.contains("evitement")) cible.focus({ preventScroll: true });
   });
 
   $("#btn-theme").onclick = () =>
