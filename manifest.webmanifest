@@ -1,7 +1,7 @@
 {
   "name": "Actus• — L'essentiel de l'actualité, chaque soir.",
   "short_name": "Actus",
-  "description": "Le brief quotidien : l'actualité résumée, contextualisée et expliquée en moins de sept minutes.",
+  "description": "L'actualité résumée, contextualisée et expliquée en moins de dix minutes",
   "lang": "fr",
   "dir": "ltr",
   "start_url": "./index.html",

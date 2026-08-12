@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="description" content="Le brief quotidien : l'actualité résumée, contextualisée et expliquée en moins de sept minutes.">
+<meta name="description" content="L'actualité résumée, contextualisée et expliquée en moins de dix minutes">
 <meta name="theme-color" content="#ffffff">
 <title>Actus• — L'essentiel de l'actualité, chaque soir.</title>
 
@@ -639,7 +639,7 @@ mark{background:color-mix(in srgb, var(--accent) 22%, transparent); color:inheri
 <!-- ════════════════ Portail d'accès ════════════════ -->
 <div class="portail" id="portail" hidden>
   <div class="portail-carte">
-    <span class="logo"><b data-reglage="app_nom">brief</b><span data-reglage="app_point">.</span></span>
+    <span class="logo"><b data-reglage="app_nom">Actus</b><span data-reglage="app_point">•</span></span>
     <h1 data-reglage="app_baseline">L'essentiel de l'actualité, chaque soir.</h1>
     <p class="intro" data-reglage="portail_intro">Cette édition est réservée aux abonnés. Saisissez le jeton d'accès qui vous a été communiqué.</p>
     <div id="portail-erreur"></div>
@@ -655,7 +655,7 @@ mark{background:color-mix(in srgb, var(--accent) 22%, transparent); color:inheri
         <input type="password" id="saisie-jeton" required
                spellcheck="false" autocapitalize="none" autocomplete="current-password">
       </label>
-      <button class="bouton accent" id="btn-acces" type="submit" data-reglage="portail_bouton">Accéder au brief</button>
+      <button class="bouton accent" id="btn-acces" type="submit" data-reglage="portail_bouton">Se connecter</button>
     </form>
     <p class="aide">
       Votre accès est vérifié à chaque connexion&nbsp;: il dépend des dates de validité
@@ -668,7 +668,7 @@ mark{background:color-mix(in srgb, var(--accent) 22%, transparent); color:inheri
 <!-- ════════════════ Application ════════════════ -->
 <header class="entete" id="entete" hidden>
   <div class="entete-in">
-    <a class="logo" href="#/" aria-label="Accueil"><b data-reglage="app_nom">brief</b><span data-reglage="app_point">.</span></a>
+    <a class="logo" href="#/" aria-label="Accueil"><b data-reglage="app_nom">Actus</b><span data-reglage="app_point">•</span></a>
     <nav class="nav" id="nav">
       <a href="#/" data-vue="edition">
         <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 4h14v16H5z"/><path d="M8.5 9h7M8.5 13h7M8.5 17h4"/></svg>
@@ -1189,14 +1189,51 @@ const SESSION = {
 };
 
 let REGLAGES = {};
+
+/**
+ * Un libellé. Une valeur de repli est légitime ici : « Archives » reste
+ * « Archives », et l'application demeure utilisable si la clé manque.
+ */
 const reglage = (cle, defaut = "") => (REGLAGES[cle] ?? "").trim() || defaut;
 
+/**
+ * Une valeur d'identité : le nom, les couleurs, l'accroche.
+ *
+ * Aucun repli, volontairement. Un libellé approximatif se corrige d'un coup
+ * d'œil ; un nom ou une couleur inventés donnent à l'application l'apparence
+ * d'un produit qui n'est pas le sien, ce qui est indiscernable du bon
+ * fonctionnement. Ce qui n'a pas été chargé n'est pas affiché.
+ */
+const identite = cle => (REGLAGES[cle] ?? "").trim();
+
+/**
+ * Charge la table Réglages, ou explique pourquoi elle manque.
+ *
+ * Cette fonction avalait autrefois l'erreur et repartait sur un objet vide,
+ * chaque appel à `reglage()` fournissant ensuite une valeur d'usine
+ * vraisemblable. Résultat : ouverte depuis une origine que la passerelle
+ * n'autorise pas, l'application ne tombait pas en panne — elle affichait un
+ * autre produit, un autre nom, une autre couleur, sans rien signaler. Un
+ * échec silencieux qui ressemble à un succès est le pire des deux.
+ *
+ * Deux garde-fous désormais. Les derniers réglages connus sont conservés
+ * localement : ce sont ceux du lecteur, là où les valeurs d'usine
+ * n'appartiennent à personne. Et si l'application n'en a jamais reçu, elle
+ * le dit au lieu de se donner une identité qu'elle n'a pas.
+ */
 async function chargerReglages() {
   try {
-    REGLAGES = await API.reglages();
+    const recus = await API.reglages();
+    if (!recus || !Object.keys(recus).length) throw new Error("réponse vide");
+    REGLAGES = recus;
+    LOCAL.ecrire("reglages", recus);
   } catch (e) {
-    console.warn("Réglages indisponibles, valeurs par défaut :", e.message);
-    REGLAGES = {};
+    REGLAGES = LOCAL.lire("reglages", null);
+    if (!REGLAGES) {
+      throw new Error("Les réglages de l'application n'ont pas pu être chargés — "
+        + `${e.message}. Vérifiez la connexion, puis rechargez la page.`);
+    }
+    console.warn("Réglages indisponibles, derniers connus réutilisés :", e.message);
   }
   appliquerReglages();
 }
@@ -1212,12 +1249,18 @@ function appliquerReglages() {
     if (v !== undefined) el.textContent = v;
   });
 
+  // Les deux couleurs ne sont posées que si la base en fournit une. Sans
+  // réglage, la page garde la palette de rubriques du fichier — qui est du
+  // design, pas une personnalisation — plutôt qu'un accent inventé.
   const style = document.documentElement.style;
-  style.setProperty("--rouge", reglage("couleur_accent", "#ff4a59"));
-  style.setProperty("--violet", reglage("couleur_accent_weekend", "#7070f5"));
+  const accent = identite("couleur_accent");
+  const accentWeekend = identite("couleur_accent_weekend");
+  if (accent) style.setProperty("--rouge", accent);
+  if (accentWeekend) style.setProperty("--violet", accentWeekend);
 
-  const nom = reglage("app_nom", "Brief");
-  document.title = `${nom} — ${reglage("app_baseline", "L'essentiel de l'actualité")}`;
+  const nom = identite("app_nom");
+  const accroche = identite("app_baseline");
+  if (nom) document.title = accroche ? `${nom} — ${accroche}` : nom;
 
   const annonce = $("#annonce");
   const message = reglage("message_accueil");
@@ -1437,14 +1480,14 @@ async function vueEdition(slug) {
   const editions = await listerEditions();
   if (!editions.length) {
     return erreur("Aucune édition publiée",
-      "Le premier brief apparaîtra ici dès sa publication.");
+      "La première édition apparaîtra ici dès sa publication.");
   }
 
   const cible = slug || editions[0].slug;
   const ed = await chargerEdition(cible);
   if (!ed) {
     return erreur("Édition introuvable",
-      `Aucun brief n'a été publié le ${dateLongue(cible)}.`);
+      `Aucune édition n'a été publiée le ${dateLongue(cible)}.`);
   }
 
   const i = editions.findIndex(e => e.slug === ed.slug);
@@ -1483,7 +1526,7 @@ async function vueEdition(slug) {
         ${ed.edito ? `<div class="edito" style="border-color:${accent}">${markdown(ed.edito)}</div>` : ""}
         <button class="btn-ecoute" id="btn-ecouter">
           <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
-          <span data-reglage="bouton_ecouter">Écouter le brief</span>
+          <span data-reglage="bouton_ecouter">Écouter l'édition</span>
         </button>
       </div>
 
@@ -1554,7 +1597,8 @@ async function vueEdition(slug) {
 
   LOCAL.ecrire("derniereLue", ed.slug);
   journaliser("Lecture", `Édition ${ed.slug} — ${ed.articles.length} articles`);
-  document.title = `${ed.titre} — ${reglage("app_nom", "Brief")} du ${dateCourte(ed.date)}`;
+  const nomApp = identite("app_nom");
+  document.title = `${ed.titre} — ${nomApp ? nomApp + " du " : ""}${dateCourte(ed.date)}`;
 }
 
 /**
@@ -1671,10 +1715,10 @@ async function vueArchives() {
     }
     $("#liste-archives").innerHTML = filtre.size
       ? rendreArchives(filtre)
-      : `<div class="vide"><b>Aucune édition</b>Aucun brief ne correspond à ce format.</div>`;
+      : `<div class="vide"><b>Aucune édition</b>Aucune ne correspond à ce format.</div>`;
   });
 
-  document.title = `${reglage("titre_archives", "Archives")} — ${reglage("app_nom", "Brief")}`;
+  document.title = [reglage("titre_archives", "Archives"), identite("app_nom")].filter(Boolean).join(" — ");
 }
 
 function rendreArchives(parMois) {
@@ -1753,7 +1797,7 @@ async function vueExplorer(params) {
           ? retenus.map(a => rendreResultat(a, "")).join("")
           : `<div class="vide"><b>Rien pour l'instant</b>Aucun article dans cette catégorie.</div>`}
       </div>`;
-    document.title = `${nom} — ${reglage("app_nom", "Brief")}`;
+    document.title = [nom, identite("app_nom")].filter(Boolean).join(" — ");
     return;
   }
 
@@ -1845,7 +1889,7 @@ async function vueExplorer(params) {
     };
   });
 
-  document.title = `${reglage("titre_explorer", "Explorer")} — ${reglage("app_nom", "Brief")}`;
+  document.title = [reglage("titre_explorer", "Explorer"), identite("app_nom")].filter(Boolean).join(" — ");
 }
 
 /* ── Vue : recherche ───────────────────────────────────────────────────── */
@@ -1858,7 +1902,7 @@ async function vueRecherche(params) {
   vue().innerHTML = `
     <div class="chapeau-page">
       <h1 data-reglage="titre_recherche">Recherche</h1>
-      <p data-reglage="soustitre_recherche">Cherchez dans l'ensemble des briefs publiés :
+      <p data-reglage="soustitre_recherche">Cherchez dans l'ensemble des éditions publiées :
          titres, résumés, contenus et mots-clés.</p>
     </div>
 
@@ -1930,10 +1974,10 @@ async function vueRecherche(params) {
     lancer({ pousserRoute: true });
   });
 
-  const nomApp = reglage("app_nom", "Brief");
+  const nomApp = identite("app_nom");
   document.title = q
     ? `« ${q} » — ${reglage("titre_recherche", "Recherche")}`
-    : `${reglage("titre_recherche", "Recherche")} — ${nomApp}`;
+    : [reglage("titre_recherche", "Recherche"), nomApp].filter(Boolean).join(" — ");
 
   await lancer();
 }
@@ -2145,7 +2189,7 @@ const NOTIF = {
     if (!connue) return;                       // première visite : rien à annoncer
     if (derniere.slug === LOCAL.lire("derniereLue")) return;
 
-    const titre = reglage("notification_titre", "Votre brief du soir est arrivé");
+    const titre = reglage("notification_titre", "Une nouvelle édition est disponible");
     if (this.actif()) await notifier(titre, derniere.titre, derniere.slug);
 
     alerte(`${titre} — ${derniere.titre}`,
@@ -2264,7 +2308,7 @@ const LECTEUR = {
     } else if (apercu && this.voix) {
       speechSynthesis.cancel();
       const e = new SpeechSynthesisUtterance(
-        "Voici le brief du jour, l'essentiel de l'actualité.");
+        "L'essentiel de l'actualité du jour vous attend.");
       e.lang = "fr-FR";
       e.rate = this.vitesse;
       e.voice = this.voix;
@@ -2495,7 +2539,7 @@ function rendreMenuCompte() {
       </small>
     </div>
     <button id="bascule-notifs">
-      <span>Alerte nouveau brief</span>
+      <span>Alerte nouvelle édition</span>
       <i class="interrupteur" data-on="${notifs ? 1 : 0}"></i>
     </button>
     <div class="menu-bloc">
@@ -2627,7 +2671,7 @@ const SW = {
       e.preventDefault();
       invite = e;
       if (LOCAL.lire("installRefuse")) return;
-      alerte(`Installez ${reglage("app_nom", "Brief")} pour le retrouver comme une application.`,
+      alerte(`Installez ${identite("app_nom") || "cette application"} pour la retrouver comme une application.`,
              { texte: "Installer", href: "#/" });
       const lien = $("#bandeau a");
       if (!lien) return;
@@ -2772,7 +2816,7 @@ async function demarrer() {
     const motDePasse = $("#saisie-jeton").value;
     const res = await verifierAcces(identifiant, motDePasse);
     btn.disabled = false;
-    btn.textContent = reglage("portail_bouton", "Accéder au brief");
+    btn.textContent = reglage("portail_bouton", "Se connecter");
 
     if (!res.ok) {
       $("#portail-erreur").innerHTML = `<div class="alerte">${echappe(res.motif)}</div>`;

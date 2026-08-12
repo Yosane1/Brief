@@ -36,23 +36,32 @@ for flux in (sys.stdout, sys.stderr):
     if hasattr(flux, "reconfigure"):
         flux.reconfigure(encoding="utf-8", errors="replace")
 
+# Le nom et la couleur ne s'inventent pas : une valeur de repli produirait une
+# application au nom et à l'apparence de personne, ce qui est indiscernable du
+# bon fonctionnement. Mieux vaut s'arrêter ici, au moment où c'est réparable.
+REQUIS = ("app_nom", "couleur_accent")
+
 DEFAUTS = {
-    "app_nom": "Brief",
     "app_point": "",
-    "app_baseline": "L'essentiel de l'actualité, chaque soir.",
-    "app_description": "Le brief quotidien : l'actualité résumée, "
-                       "contextualisée et expliquée en moins de sept minutes.",
-    "couleur_accent": "#ff4a59",
+    "app_baseline": "",
+    "app_description": "",
 }
 
 
 def lire_reglages():
     valeurs = dict(DEFAUTS)
+    attendues = set(REQUIS) | set(DEFAUTS)
     for r in select("reglages"):
         cle = r["fields"].get("Clé")
         val = (r["fields"].get("Valeur") or "").strip()
-        if cle in DEFAUTS and val:
+        if cle in attendues and val:
             valeurs[cle] = val
+
+    manquantes = [c for c in REQUIS if not valeurs.get(c)]
+    if manquantes:
+        sys.exit(f"✗ Réglage(s) absent(s) de la base : {', '.join(manquantes)}.\n"
+                 f"  Renseignez-les dans la table Réglages avant de régénérer "
+                 f"l'identité de l'application.")
     return valeurs
 
 
@@ -115,14 +124,21 @@ def patcher_index(r, titre_complet):
         html = f.read()
 
     remplacements = [
-        (r"<title>.*?</title>", f"<title>{titre_complet}</title>"),
+        (r"<title>.*?</title>", f"<title>{titre_complet}</title>", 1),
         (r'(<meta name="description" content=)".*?"',
-         lambda m: f'{m.group(1)}"{r["app_description"]}"'),
+         lambda m: f'{m.group(1)}"{r["app_description"]}"', 1),
         (r'(<meta name="apple-mobile-web-app-title" content=)".*?"',
-         lambda m: f'{m.group(1)}"{r["app_nom"]}"'),
+         lambda m: f'{m.group(1)}"{r["app_nom"]}"', 1),
+
+        # Le logo apparaît avant que le JavaScript n'ait lu la base — sur le
+        # portail comme dans l'en-tête. Il porte donc le nom réel, déposé ici,
+        # et non un nom d'usine écrit dans le fichier. Les deux occurrences
+        # sont remplacées.
+        (r'(<b data-reglage="app_nom">).*?(</b><span data-reglage="app_point">).*?(</span>)',
+         lambda m: f'{m.group(1)}{r["app_nom"]}{m.group(2)}{r["app_point"]}{m.group(3)}', 0),
     ]
-    for motif, remplacement in remplacements:
-        html, n = re.subn(motif, remplacement, html, count=1, flags=re.S)
+    for motif, remplacement, combien in remplacements:
+        html, n = re.subn(motif, remplacement, html, count=combien, flags=re.S)
         if not n:
             print(f"  ! motif introuvable dans index.html : {motif}")
 
