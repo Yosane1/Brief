@@ -139,6 +139,25 @@ async function diagnostic(env) {
 // Airtable — jamais exposé tel quel au navigateur
 // ───────────────────────────────────────────────────────────────────────────
 
+/**
+ * Une écriture accessoire : elle ne doit pas faire échouer la requête du
+ * lecteur, mais son échec doit se voir.
+ *
+ * Trois écritures étaient jusqu'ici avalées par un `catch` muet — l'horodatage
+ * de connexion, le compteur de connexions, l'état des notifications. Le jeton
+ * du Worker a perdu le droit d'écrire dans la table Clients un 12 août à 13h,
+ * et rien ne l'a signalé : les connexions ont cessé d'être enregistrées pendant
+ * des heures sans qu'aucune réponse ne change. Un échec silencieux ressemble
+ * exactement à un succès, ce qui en fait le pire des deux.
+ *
+ * Le message part dans les journaux Cloudflare, visibles par `wrangler tail`.
+ */
+function tolerer(promesse, quoi) {
+  return promesse.catch(e => {
+    console.warn(`[écriture ignorée] ${quoi} : ${e?.message || e}`);
+  });
+}
+
 async function airtable(env, table, params = {}, options = {}) {
   const url = new URL(`https://api.airtable.com/v0/${env.BASE_ID}/${TABLES[table]}`);
   for (const [k, v] of Object.entries(params)) {
@@ -299,13 +318,13 @@ async function connexion(requete, env) {
     exp: maintenant + DUREE_SESSION,
   });
 
-  await airtable(env, "clients", {}, {
+  await tolerer(airtable(env, "clients", {}, {
     method: "PATCH",
     body: { records: [{ id: trouves[0].id, fields: {
       "Dernière connexion": new Date().toISOString(),
       "Connexions": (f["Connexions"] || 0) + 1,
     }}], typecast: true },
-  }).catch(() => {});
+  }), "horodatage de connexion");
 
   await tracer(env, trouves[0].id, login, "Connexion", appareil, appareil);
 
@@ -515,10 +534,10 @@ async function abonnement(requete, env, session) {
     ? { method: "PATCH", body: { records: [{ id: existants[0].id, fields: champs }], typecast: true } }
     : { method: "POST",  body: { records: [{ fields: champs }], typecast: true } });
 
-  await airtable(env, "clients", {}, {
+  await tolerer(airtable(env, "clients", {}, {
     method: "PATCH",
     body: { records: [{ id: session.c, fields: { "Notifications": !!active } }], typecast: true },
-  }).catch(() => {});
+  }), "état des notifications");
 
   return json({ ok: true });
 }
@@ -533,9 +552,11 @@ async function tracer(env, clientId, jeton, type, detail, appareil, nom = "") {
     "Appareil": String(appareil).slice(0, 200),
   };
   if (clientId) champs["Client"] = [clientId];
-  return airtable(env, "journal", {}, {
+  // Le journal ne doit jamais empêcher la lecture, mais son silence ne doit
+  // pas non plus faire croire qu'il a enregistré.
+  return tolerer(airtable(env, "journal", {}, {
     method: "POST", body: { records: [{ fields: champs }], typecast: true },
-  }).catch(() => {});   // le journal ne doit jamais empêcher la lecture
+  }), `journal (${type})`);
 }
 
 // ───────────────────────────────────────────────────────────────────────────
@@ -642,10 +663,10 @@ async function envoyerPush(env, abonne, contenu) {
 /** Met à jour des enregistrements par lots de 10, la limite de l'API. */
 async function majLot(env, table, lignes) {
   for (let i = 0; i < lignes.length; i += 10) {
-    await airtable(env, table, {}, {
+    await tolerer(airtable(env, table, {}, {
       method: "PATCH",
       body: { records: lignes.slice(i, i + 10), typecast: true },
-    }).catch(() => {});
+    }), `mise à jour de ${table}`);
   }
 }
 
