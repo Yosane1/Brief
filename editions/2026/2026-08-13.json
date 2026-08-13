@@ -1,0 +1,94 @@
+{
+  "edition": {
+    "titre": "Colombie : le bilan du séisme grimpe à 265 morts, la France cumule canicule et grève des pompiers",
+    "date": "2026-08-13",
+    "slug": "2026-08-13",
+    "type": "Quotidienne",
+    "statut": "Publiée",
+    "resume": "En Colombie, le bilan du séisme de lundi grimpe à 265 morts et 500 disparus, la recherche de survivants s'intensifie. En France, les pompiers en grève dénoncent un manque de moyens en pleine vague de chaleur historique. En Ukraine, juillet a été le mois le plus meurtrier pour les civils depuis mai 2022.",
+    "edito": "Ce jeudi, l'actualité se conjugue au superlatif : le bilan du séisme colombien s'alourdit d'heure en heure, la vague de chaleur française entre dans le trio des plus longues jamais mesurées, et l'Ukraine vient de vivre son mois le plus meurtrier depuis mai 2022. Au milieu de ces épisodes qui semblent se répéter chaque été, les pompiers français font entendre une colère plus structurelle qu'il n'y paraît. On vous explique pourquoi leur grève de ce jeudi n'est pas un simple mouvement d'humeur, dans notre décryptage du jour."
+  },
+  "articles": [
+    {
+      "titre": "En Colombie, le bilan du séisme grimpe à 265 morts et 500 disparus",
+      "rubrique": "On fait le point",
+      "thematique": "International",
+      "chapo": "Trois jours après le tremblement de terre qui a frappé l'ouest du pays, la recherche des personnes disparues entre dans une phase jugée critique.",
+      "contenu": "Le dernier bilan, communiqué mercredi en fin d'après-midi, fait état d'au moins 265 morts, près de 3 500 blessés et 500 disparus. Le président colombien a revu ce chiffre à la hausse, au moment où le sauvetage des personnes toujours introuvables devient particulièrement urgent.\n\nLe séisme a frappé lundi l'ouest de la Colombie, dans le département du Choco, une région pauvre et isolée de la côte Pacifique. Les secours peinent à atteindre certaines communautés reculées.\n\nHabitants et responsables locaux redoutent qu'une fois l'urgence humanitaire passée, le Choco ne retombe dans l'oubli où il se trouvait avant la catastrophe. Cette région figure parmi les plus délaissées du pays en matière d'infrastructures et de services publics.",
+      "sources": ["lib033", "lm015", "f24006"],
+      "a_la_une": true,
+      "chiffre": "265",
+      "legende_chiffre": "morts et 500 disparus recensés dans le séisme qui a frappé la Colombie lundi"
+    },
+    {
+      "titre": "Pourquoi les pompiers sont en grève en pleine vague de chaleur historique",
+      "rubrique": "Tout s'explique",
+      "thematique": "France",
+      "chapo": "Reçus jeudi par le ministre de l'Intérieur, les syndicats de sapeurs-pompiers dénoncent un système à bout de souffle, alors que la France vit l'une des vagues de chaleur les plus longues de son histoire.",
+      "contenu": "### Une grève symbolique, un dialogue jugé insuffisant\n\nLes syndicats de sapeurs-pompiers professionnels ont été reçus jeudi par le ministre de l'Intérieur, Laurent Nuñez. Le mouvement de grève de ce jeudi est symbolique : les interventions restent toutes assurées, un feu ne se laisse pas négocier. Mais les syndicats en ressortent déçus, estimant n'avoir obtenu aucune mesure concrète à l'issue de cette rencontre.\n\nIls appellent désormais à une mobilisation intensive le 29 septembre, sauf surprise dans le projet de loi de modernisation de la Sécurité civile. Ce texte doit leur être présenté le 8 septembre par le gouvernement, une échéance qui concentre désormais toutes les attentes du mouvement.\n\n### Un système qu'ils jugent à bout de souffle\n\nPour les organisations syndicales, les incendies extrêmes de cet été ont révélé les failles d'une organisation qui repose de plus en plus sur celles et ceux qui, selon leurs mots, vont au-delà de leurs limites. Elles décrivent des forêts devenues des poudrières et un système de Sécurité civile lui-même en manque drastique de moyens. Elles réclament des financements supplémentaires pour les services départementaux d'incendie et de secours, qui n'ont pas suivi, selon elles, l'intensification des épisodes climatiques extrêmes. Rien, disent-elles, ne peut continuer à reposer uniquement sur le dévouement individuel des agents.\n\n### Une chaleur qui bat des records\n\nCette colère survient alors que la vague de chaleur qui touche la France depuis fin juillet est devenue jeudi la troisième plus longue jamais enregistrée dans le pays, derrière celles de 2006 et 1983. Elle doit se poursuivre au moins jusqu'au week-end, entretenant un risque d'incendie élevé sur une large partie du territoire.\n\n### Ce qui est en jeu\n\nLe bras de fer illustre une équation appelée à se reposer chaque été : des vagues de chaleur et des feux de forêt plus fréquents et plus intenses, face à une Sécurité civile dont les syndicats jugent les moyens inchangés depuis des années. Le projet de loi promis pour septembre dira si le gouvernement est prêt à revoir cette équation en profondeur, ou si la mobilisation du 29 septembre annoncée par les pompiers devient inévitable. Entre les deux, l'été 2026 aura valeur de test grandeur nature pour un modèle de Sécurité civile pensé pour un climat qui a déjà changé.",
+      "sources": ["fi002", "lib026", "lib015"],
+      "a_la_une": true
+    },
+    {
+      "titre": "Juillet a été le mois le plus meurtrier pour les civils ukrainiens depuis 2022",
+      "rubrique": "On rembobine",
+      "thematique": "International",
+      "chapo": "Selon l'ONU, le nombre de civils tués en Ukraine a bondi de 70 % en un mois, tandis que la Russie poursuit ses frappes sur les infrastructures.",
+      "contenu": "Un conducteur de train et son assistant ont été tués jeudi dans une attaque de drone russe contre un train de passagers dans la région d'Odessa, dans le sud de l'Ukraine, a annoncé le directeur des chemins de fer ukrainiens. Cette attaque contre une infrastructure civile s'ajoute à une longue série de frappes similaires depuis le début de l'été.\n\nSelon la Mission de surveillance des droits de l'homme des Nations unies en Ukraine, le mois de juillet a été le plus meurtrier pour les civils depuis mai 2022, avec un nombre de morts en hausse de 70 % par rapport à juillet 2025. Ce bilan confirme une intensification des frappes russes en profondeur sur le territoire ukrainien.\n\nL'Ukraine dénonce aussi le manque de systèmes de défense antiaérienne pour s'en protéger. Lors d'une attaque russe ayant fait 17 morts début août, Kiev n'était parvenu à intercepter aucun des 28 missiles balistiques tirés, faute de missiles Patriot américains en nombre suffisant. Le président Volodymyr Zelensky réclame qu'au moins 5 % des intercepteurs Patriot des Etats-Unis soient réservés à l'Ukraine.",
+      "sources": ["f24001", "fi024", "fi030"],
+      "a_la_une": true
+    },
+    {
+      "titre": "En Cisjordanie, des colons israéliens assiègent des maisons palestiniennes depuis dimanche",
+      "rubrique": "On rembobine",
+      "thematique": "International",
+      "chapo": "L'ambassadeur américain en Israël a dénoncé un comportement de voyous, alors que le blocus se poursuit dans le village de Qusra.",
+      "contenu": "Depuis dimanche, des dizaines de colons israéliens bloquent l'accès à des maisons palestiniennes dans le village de Qusra, près de Naplouse, en Cisjordanie occupée. Selon le maire du village, des soldats israéliens ont dit à des familles palestiniennes de quitter leur domicile, certaines maisons ayant même été utilisées comme casernement par les troupes.\n\nMercredi, le blocus se poursuivait malgré la venue d'officiers israéliens pour tenter de faire partir les colons, selon un habitant et un photographe de l'AFP.\n\nL'ambassadeur des Etats-Unis en Israël, Mike Huckabee, a condamné jeudi ce qu'il a qualifié de comportement de voyous et de répugnant, une prise de position rare de la part d'un diplomate de l'administration Trump.",
+      "sources": ["bbc001", "f24009", "f24017"]
+    },
+    {
+      "titre": "Le gouvernement prépare une baisse limitée du déficit pour 2027",
+      "rubrique": "On rembobine",
+      "thematique": "Économie",
+      "chapo": "Sébastien Lecornu doit présenter son projet de loi de finances le 30 septembre, avec un objectif jugé réaliste plutôt qu'ambitieux.",
+      "contenu": "Le premier ministre Sébastien Lecornu prévoit de présenter son projet de loi de finances dès le 30 septembre, selon des informations du Monde. Il s'oriente vers une baisse du déficit qualifiée de réaliste plutôt que d'ambitieuse, sans réforme majeure ni nouvel impôt, pour viser un déficit autour de 4,9 % du produit intérieur brut (PIB) en 2027.\n\nCette trajectoire marque un net ralentissement par rapport aux engagements pris ces dernières années. L'objectif fixé précédemment de ramener le déficit sous les 3 % du PIB en 2029 semble en passe d'être abandonné faute de mesures d'ampleur.",
+      "sources": ["lm008"]
+    },
+    {
+      "titre": "À Paris, la police évacue les familles installées devant le Samu social",
+      "rubrique": "On rembobine",
+      "thematique": "France",
+      "chapo": "Après un mois d'occupation du parvis, un dispositif policier a délogé les 400 personnes sans toit qui réclamaient un hébergement.",
+      "contenu": "Un dispositif policier a délogé jeudi les quelque 400 demandeurs de toit installés depuis plus d'un mois sur le parvis et dans le sous-sol du siège du Samu social, dans le 13e arrondissement de Paris. Face à la centaine de places d'hébergement proposées par l'Etat, la plupart d'entre eux sont retournés à l'errance, selon franceinfo.\n\nCes familles, dont plusieurs avec de nombreux enfants, avaient monté un campement de fortune en rejoignant le mouvement de grève des salariés du 115, le numéro d'urgence pour les personnes sans domicile. Ces derniers alertent depuis cinquante jours sur le manque de moyens alloués à l'hébergement d'urgence. L'association Utopia 56 dénonce une dispersion menée sans solution de relogement pour les personnes évacuées.",
+      "sources": ["fi009", "lib029", "lm044"]
+    },
+    {
+      "titre": "Twitch va utiliser les vidéos de ses créateurs pour entraîner les IA d'Amazon",
+      "rubrique": "Ça alors",
+      "thematique": "Économie",
+      "chapo": "La collecte est activée par défaut chez tous les utilisateurs de la plateforme de streaming, qui doivent se rendre dans leurs paramètres pour la refuser.",
+      "contenu": "La plateforme de streaming Twitch va utiliser le contenu créé par ses streameurs pour entraîner les intelligences artificielles de sa maison mère, Amazon. Cette collecte est autorisée par défaut chez tous les utilisateurs, qui doivent aller dans leurs paramètres pour la désactiver.\n\nL'annonce a suscité une vague de protestations chez les créateurs, qui critiquent ce choix de désactivation plutôt que d'activation volontaire. En intégrant par défaut leurs contenus à l'entraînement des IA d'Amazon, Twitch s'expose à des accusations d'exploiter le travail de ses utilisateurs sans consentement explicite.",
+      "sources": ["fi011", "lm012", "bbc008"]
+    },
+    {
+      "titre": "En RDC, l'épidémie d'Ebola en passe de devenir la plus grave de l'histoire",
+      "rubrique": "On rembobine",
+      "thematique": "International",
+      "chapo": "Le virus a déjà fait plus de 2 000 morts en deux mois en République démocratique du Congo, selon l'Organisation mondiale de la santé.",
+      "contenu": "L'épidémie d'Ebola qui se propage en République démocratique du Congo a déjà fait plus de 2 000 morts en deux mois, selon l'Organisation mondiale de la santé (OMS), qui pointe un rythme de transmission exceptionnel.\n\nDéclarée le 15 mai, l'épidémie a entraîné des milliers de cas recensés à travers le pays, un total qui continue de grimper. Le directeur général de l'OMS estime qu'elle est en passe de devenir la plus meurtrière jamais enregistrée pour cette maladie, un constat qui illustre la difficulté à contenir cette flambée.",
+      "sources": ["fi026", "bbc017"],
+      "chiffre": "2 000",
+      "legende_chiffre": "morts en deux mois en RDC, selon l'OMS"
+    },
+    {
+      "titre": "Dmitry Muratov, le journaliste russe qui affirme que Poutine ne peut plus revendiquer la victoire en Ukraine",
+      "rubrique": "C'est qui ?",
+      "thematique": "International",
+      "chapo": "Le prix Nobel de la paix, ancien rédacteur en chef d'un journal russe indépendant, livre une analyse sans détour à la BBC sur l'état de la guerre, qui entre dans sa cinquième année.",
+      "contenu": "Dmitry Muratov est un journaliste russe, prix Nobel de la paix, connu pour avoir dirigé le journal indépendant Novaïa Gazeta. Dans un entretien accordé à la BBC, il livre une analyse sans détour de la guerre en Ukraine, qui entre dans sa cinquième année.\n\nSelon lui, la Russie ne peut plus revendiquer la victoire dans ce conflit. Il estime que Vladimir Poutine peut encore détruire l'Ukraine, mais qu'il ne peut plus la conquérir.\n\nCette analyse intervient alors que la Russie intensifie ses frappes en profondeur sur le territoire ukrainien, au moment où le soutien des Etats-Unis à Kiev montre des signes d'essoufflement.",
+      "sources": ["bbc013", "lm032"],
+      "citation": "Il peut détruire l'Ukraine, mais il ne peut pas la conquérir.",
+      "auteur_citation": "Dmitry Muratov, journaliste russe, prix Nobel de la paix"
+    }
+  ]
+}
