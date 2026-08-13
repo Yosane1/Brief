@@ -96,6 +96,7 @@ async function router(requete, env, url) {
     case "/vivier GET":      return vivier(env);
     case "/journal POST":    return journal(requete, env, session);
     case "/abonnement POST": return abonnement(requete, env, session);
+    case "/sujets POST":     return sujets(requete, env, session);
   }
   throw erreur(`Route inconnue : ${methode} ${chemin}`, 404);
 }
@@ -285,6 +286,10 @@ async function connexion(requete, env) {
     illimite: !!f["Utilisateurs illimités"],
     places,
     notifications: !!f["Notifications"],
+    // Les sujets suivis voyagent avec le profil : la lecture ne coûte donc
+    // aucun appel supplémentaire, et l'abonné retrouve sa veille sur n'importe
+    // lequel de ses appareils.
+    sujets: listeSujets(f["Sujets suivis"]),
   };
 
   const maintenant = Math.floor(Date.now() / 1000);
@@ -444,6 +449,42 @@ async function journal(requete, env, session) {
   const { type = "Lecture", detail = "", appareil = "" } = await requete.json().catch(() => ({}));
   await tracer(env, session.c, "", type, detail, appareil, session.n);
   return json({ ok: true });
+}
+
+/**
+ * Les sujets suivis d'un abonné.
+ *
+ * Rangés dans le champ « Sujets suivis » de la table Clients, séparés par des
+ * virgules. C'est le seul endroit qui suive l'abonné plutôt que l'appareil :
+ * une liste gardée dans le navigateur divergeait d'un téléphone à un ordinateur
+ * sans jamais se réconcilier.
+ *
+ * L'enregistrement visé vient de `session.c`, c'est-à-dire de la charge signée
+ * en HMAC — jamais du corps de la requête. Un lecteur ne peut donc écrire que
+ * ses propres sujets, même en fabriquant l'appel à la main.
+ */
+function listeSujets(brut) {
+  return String(brut || "")
+    .split(",").map(s => s.trim()).filter(Boolean).slice(0, 30);
+}
+
+async function sujets(requete, env, session) {
+  const recu = await requete.json().catch(() => ({}));
+  if (!Array.isArray(recu.sujets)) throw erreur("Liste de sujets attendue", 400);
+
+  // On borne ce qui est écrit : un mot-clé est court, et trente sujets suivis
+  // couvrent déjà bien au-delà de ce qu'un lecteur surveille.
+  const propres = [...new Set(recu.sujets
+    .map(s => String(s).trim().replace(/,/g, " "))   // la virgule est le séparateur
+    .filter(s => s && s.length <= 60))].slice(0, 30);
+
+  await airtable(env, "clients", {}, {
+    method: "PATCH",
+    body: { records: [{ id: session.c, fields: { "Sujets suivis": propres.join(", ") } }],
+            typecast: true },
+  });
+
+  return json({ ok: true, sujets: propres });
 }
 
 async function abonnement(requete, env, session) {
