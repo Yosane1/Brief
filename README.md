@@ -1,7 +1,6 @@
 # Brief
 
-Application de lecture d'une lettre d'information quotidienne, dans l'esprit de
-brief.me. Un seul fichier `index.html`, adossé à une base Airtable.
+Application de lecture d'une lettre d'information quotidienne. Un seul fichier `index.html`, adossé à une base Airtable.
 
 - **Lecture** d'une édition du jour, découpée en rubriques éditoriales
 - **Archives** consultables, navigation par date
