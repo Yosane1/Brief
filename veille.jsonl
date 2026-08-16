@@ -1,185 +1,168 @@
-{"collecte":"2026-08-15 16:27","fuseau":"Europe/Paris","fenetre_heures":26,"depeches":184,"detail":"veille/2026-08-15.json","format":"titres seuls — résumés via « python scripts/depeches.py id1 id2 … »"}
-{"id":"lib001","date":"08-15 16:18","source":"Libération","rubrique":"France","titre":"«Je suis à 100% de pertes» : en Bretagne, les maraîchers frappés de plein fouet par la sécheresse"}
-{"id":"lib002","date":"08-15 16:11","source":"Libération","rubrique":"France","titre":"Le contrôle judiciaire de Patrick Bruel allégé, révèle «Mediapart»"}
-{"id":"lm001","date":"08-15 16:11","source":"Le Monde","rubrique":"France","titre":"A Locarno, le Léopard d’or est attribué à « You Don’t Belong Here », du Roumain Florin Serban"}
-{"id":"lib003","date":"08-15 16:05","source":"Libération","rubrique":"France","titre":"Sud du Liban : neuf morts, dont des enfants, dans des frappes israéliennes"}
-{"id":"fi001","date":"08-15 15:55","source":"franceinfo","rubrique":"France","titre":"Les dirigeants talibans célèbrent leurs cinq ans à la tête de l'Afghanistan, l'ONU dénonce des \"restrictions suffocantes\" dans le pays"}
-{"id":"fi002","date":"08-15 15:46","source":"franceinfo","rubrique":"France","titre":"Incendie dans les Landes : la lutte \"très intense\" des pompiers \"va prendre encore un peu de temps\", selon le préfet"}
-{"id":"fi003","date":"08-15 15:46","source":"franceinfo","rubrique":"France","titre":"Le parquet de Paris ouvre une enquête sur le piratage du système d'information des impôts"}
-{"id":"bbc001","date":"08-15 15:41","source":"BBC News","rubrique":"International","titre":"Family stranded at sea for 16 hours after jet ski capsized in Thailand"}
-{"id":"bbc002","date":"08-15 15:41","source":"BBC News","rubrique":"International","titre":"World's Ugliest Dog contest crowns 2026 winner"}
-{"id":"lm002","date":"08-15 15:39","source":"Le Monde","rubrique":"International","titre":"Incendie en Belgique : le feu dans un parc naturel dans l’est du pays a déjà parcouru 1 650 hectares"}
-{"id":"bbc003","date":"08-15 15:38","source":"BBC News","rubrique":"International","titre":"Eleven killed in Israeli strikes on southern Lebanon, authorities say"}
-{"id":"bbc004","date":"08-15 15:35","source":"BBC News","rubrique":"International","titre":"Powerful magnitude 7.7 earthquake kills at least 47 in Indonesia"}
-{"id":"f24001","date":"08-15 15:35","source":"France 24","rubrique":"International","titre":"Cinq ans après le retour des Taliban : les Afghanes toujours exclues de la société"}
-{"id":"lib004","date":"08-15 15:33","source":"Libération","rubrique":"France","titre":"Piratage d’impots.gouv : «Les réductions des dépenses publiques conduisent aussi à plus de vols de données fiscales»"}
-{"id":"f24002","date":"08-15 15:32","source":"France 24","rubrique":"International","titre":"Afghanistan : pourquoi la communauté internationale s'accommode des Taliban ?"}
-{"id":"fi004","date":"08-15 15:25","source":"franceinfo","rubrique":"France","titre":"Pour lutter contre l'incendie dans les Landes, des militaires du génie en renfort des pompiers"}
-{"id":"lib005","date":"08-15 15:23","source":"Libération","rubrique":"France","titre":"Bouches-du-Rhône : des associations féministes s’insurgent contre un concert ce samedi de Naps, condamné pour viol"}
-{"id":"fi005","date":"08-15 15:14","source":"franceinfo","rubrique":"France","titre":"\"On essaie de mettre le maximum de moyens pour sauver le maximum d'habitations\" : dans les Landes, les pompiers luttent toujours contre les flammes"}
-{"id":"fi006","date":"08-15 15:11","source":"franceinfo","rubrique":"France","titre":"\"Un radiateur en plus\" : l'inquiétude des habitants d'une commune de l'Ain devant le projet d'installation d'un data center"}
-{"id":"fi007","date":"08-15 15:09","source":"franceinfo","rubrique":"France","titre":"Au Liban, des frappes israéliennes causent la mort de neuf personnes dans le sud du pays"}
-{"id":"lib006","date":"08-15 15:05","source":"Libération","rubrique":"France","titre":"EN DIRECT - Incendies en Europe : alerte maximale en Grèce, une cinquantaine de départs de feux en 24 heures"}
-{"id":"lm003","date":"08-15 15:03","source":"Le Monde","rubrique":"France","titre":"Le Liechtenstein adopte l’égalité hommes-femmes pour la succession au trône"}
-{"id":"lm004","date":"08-15 15:00","source":"Le Monde","rubrique":"France","titre":"Le modèle finlandais de réserves stratégiques alimentaires et énergétiques, pour « survivre à n’importe quel type de crise », fait école"}
-{"id":"f24003","date":"08-15 14:45","source":"France 24","rubrique":"International","titre":"Le triangle des Bermudes : un mystère pas si mystérieux que ça"}
-{"id":"fi008","date":"08-15 14:42","source":"franceinfo","rubrique":"France","titre":"Plus de 700 km de bouchons cumulés samedi midi, hors Ile-de-France"}
-{"id":"lm005","date":"08-15 14:30","source":"Le Monde","rubrique":"France","titre":"Plainte de Jordan Bardella contre le rappeur Kerchak : « Judiciariser une punchline relève soit d’une cécité culturelle, soit d’un contresens volontaire »"}
-{"id":"fi009","date":"08-15 14:22","source":"franceinfo","rubrique":"France","titre":"Un séisme dans l'est de l'Indonésie fait au moins 40 morts, un second tremblement de terre secoue l'ouest du pays quelques heures plus tard"}
-{"id":"lm006","date":"08-15 14:14","source":"Le Monde","rubrique":"International","titre":"EN DIRECT, guerre en Ukraine : Volodymyr Zelensky affirme qu’une entreprise du groupe Roscosmos a été touchée par des missiles ukrainiens dans l’oblast de Samara, en Russie"}
-{"id":"f24004","date":"08-15 14:12","source":"France 24","rubrique":"International","titre":"Loi sur l'interdiction des réseaux sociaux aux mineurs : le conseil constitutionnel censure"}
-{"id":"fi010","date":"08-15 14:07","source":"franceinfo","rubrique":"France","titre":"Canicule : 64 départements maintenus en vigilance orange, une baisse progressive des températures sur la moitié ouest"}
-{"id":"fs001","date":"08-15 14:02","source":"Futura Sciences","rubrique":"Sciences","titre":"Les solutions de stockage et de gestion intelligente remettent en lumière l’autoconsommation du photovoltaïque résidentiel"}
-{"id":"lib007","date":"08-15 13:49","source":"Libération","rubrique":"France","titre":"Deux séismes secouent l’Indonésie, au moins 38 morts"}
-{"id":"f24005","date":"08-15 13:46","source":"France 24","rubrique":"International","titre":"🔴 L'Indonésie frappée par deux puissants séismes à quelques heures d'intervalle"}
-{"id":"lib008","date":"08-15 13:45","source":"Libération","rubrique":"France","titre":"Jason Arday, ancien plus jeune professeur noir de Cambridge, retrouvé mort après des accusations de plagiat"}
-{"id":"lm007","date":"08-15 13:45","source":"Le Monde","rubrique":"France","titre":"Les hommages se multiplient après la mort de Jason Arday, qui fut le plus jeune professeur noir de Cambridge, avant d’être accusé de plagiat"}
-{"id":"f24006","date":"08-15 13:36","source":"France 24","rubrique":"International","titre":"L'Ukraine revendique une attaque sur l'usine spatiale russe de Samara"}
-{"id":"fi011","date":"08-15 13:32","source":"franceinfo","rubrique":"France","titre":"Aurélien Quinion remporte la médaille de bronze sur le marathon marche lors des championnats d'Europe d'athlétisme"}
-{"id":"lm008","date":"08-15 13:30","source":"Le Monde","rubrique":"France","titre":"En Ukraine, Volodymyr Zelensky en passe de reprendre la main après un mois de crise politique"}
-{"id":"fs002","date":"08-15 13:28","source":"Futura Sciences","rubrique":"Sciences","titre":"Votre couple a besoin d’air : ce conseil surprenant pourrait lui donner un second souffle"}
-{"id":"fi012","date":"08-15 13:28","source":"franceinfo","rubrique":"France","titre":"Jordan Bardella a perçu plus d'un million d'euros de droits d'auteur en deux ans"}
-{"id":"bbc005","date":"08-15 13:25","source":"BBC News","rubrique":"International","titre":"Secondhand book sales are booming. Is it because of AI?"}
-{"id":"fi013","date":"08-15 13:11","source":"franceinfo","rubrique":"France","titre":"Deux footballeurs amateurs d'Indre-et-Loire écopent de 20 ans de suspension après avoir agressé deux arbitres"}
-{"id":"lib009","date":"08-15 13:08","source":"Libération","rubrique":"France","titre":"Mort à 19 ans du cycliste britannique Finlay Tarling, percuté par une voiture lors du Tour du Portugal"}
-{"id":"lm009","date":"08-15 13:00","source":"Le Monde","rubrique":"France","titre":"Election du 20 septembre à Berlin : une campagne dominée par la crise du logement et les questions de sécurité, qui pourrait profiter à la gauche"}
-{"id":"lib010","date":"08-15 12:59","source":"Libération","rubrique":"France","titre":"Grève massive à Easyjet : au moins 98 vols annulés au départ de la France ce week-end"}
-{"id":"fi014","date":"08-15 12:57","source":"franceinfo","rubrique":"France","titre":"Grève à EasyJet : une centaine de vols annulés ce week-end au départ de la France"}
-{"id":"lm010","date":"08-15 12:48","source":"Le Monde","rubrique":"International","titre":"Espagne : Grenade secouée par un rare séisme de magnitude 5, pas de victimes"}
-{"id":"lib011","date":"08-15 12:45","source":"Libération","rubrique":"France","titre":"Rétrospective Frank Stella : à Saint-Etienne, un parc d’abstraction"}
-{"id":"f24007","date":"08-15 12:37","source":"France 24","rubrique":"International","titre":"Émotion après la mort de Jason Arday, professeur noir de Cambridge harcelé pendant trois ans"}
-{"id":"lib012","date":"08-15 12:37","source":"Libération","rubrique":"France","titre":"Au Japon, un mode d’emploi pour épouser un personnage de manga"}
-{"id":"lm011","date":"08-15 12:34","source":"Le Monde","rubrique":"France","titre":"Catapultes américaines : « aucun risque » identifié pour le futur porte-avions français « France-Libre », selon le ministère des armées"}
-{"id":"fi015","date":"08-15 12:33","source":"franceinfo","rubrique":"France","titre":"\"On ne va pas embêter quelqu'un pour trois géraniums\" : en Côte-d'Or, les agents de l'OFB font respecter les restrictions d'eau avec pédagogie"}
-{"id":"lib013","date":"08-15 12:28","source":"Libération","rubrique":"France","titre":"Première finale individuelle de Léon Marchand, jubilé de Florent Manaudou : une soirée festive à l’Euro de natation"}
-{"id":"fs003","date":"08-15 12:27","source":"Futura Sciences","rubrique":"Sciences","titre":"Pixel 11 Pro : cette couleur secrète vous dit qui appelle, sans alerter les autres"}
-{"id":"lib014","date":"08-15 12:22","source":"Libération","rubrique":"France","titre":"Le champion du monde espagnol Ferran Torres, 26 ans, s’envole vers le PSG : une destination «de rêve»"}
-{"id":"fi016","date":"08-15 12:19","source":"franceinfo","rubrique":"France","titre":"Clause de conscience, patients sous curatelle ou tutelle... Quelles sont les réserves formulées par le Conseil constitutionnel sur l'aide à mourir ?"}
-{"id":"fi017","date":"08-15 12:18","source":"franceinfo","rubrique":"France","titre":"Le champion du monde espagnol Ferran Torres s'engage avec le PSG en provenance du Barça"}
-{"id":"lm012","date":"08-15 12:10","source":"Le Monde","rubrique":"France","titre":"EN DIRECT, incendies et canicule : 64 départements resteront en vigilance orange canicule dimanche ; un incendie a brûlé 1 650 hectares de forêt en Belgique"}
-{"id":"lm013","date":"08-15 12:07","source":"Le Monde","rubrique":"International","titre":"Les images du séisme qui a frappé l’est de l’Indonésie et fait au moins 38 morts"}
-{"id":"lib015","date":"08-15 12:00","source":"Libération","rubrique":"France","titre":"Souviens-toi l’été d’avant la présidentielle : 2021, Zemmour tente de tuer la maison Le Pen"}
-{"id":"f24008","date":"08-15 11:45","source":"France 24","rubrique":"International","titre":"Quand les descendants français de républicains espagnols s'emparent de leur histoire (4/4)"}
-{"id":"f24009","date":"08-15 11:39","source":"France 24","rubrique":"International","titre":"Séisme en Indonésie : des milliers d'habitants évacués par crainte d'une montée des eaux"}
-{"id":"bbc006","date":"08-15 11:35","source":"BBC News","rubrique":"International","titre":"South Korea proposes talks to officially end war with North"}
-{"id":"lm014","date":"08-15 11:30","source":"Le Monde","rubrique":"International","titre":"Au Cambodge, le combat sans fin d’anciennes employées du casino NagaWorld : « Notre syndicat était devenu extrêmement puissant, la direction a voulu se débarrasser de nous »"}
-{"id":"bbc007","date":"08-15 11:29","source":"BBC News","rubrique":"International","titre":"Moment family rescued after 16 hours floating on jet ski off Thailand"}
-{"id":"fi018","date":"08-15 11:29","source":"franceinfo","rubrique":"France","titre":"Un père de famille retrouve un trentenaire qui échangeait des photos intimes avec sa fille, le suspect condamné"}
-{"id":"lib016","date":"08-15 11:21","source":"Libération","rubrique":"France","titre":"«Noir et LFI, c’est trop» : Jean-Luc Mélenchon dénonce le «racisme systémique» dont font l’objet Bally Bagayoko et Aly Diouara"}
-{"id":"f24010","date":"08-15 11:14","source":"France 24","rubrique":"International","titre":"Les vignes gagnent du terrain en Ethiopie grâce à un partenariat avec la France"}
-{"id":"f24011","date":"08-15 11:11","source":"France 24","rubrique":"International","titre":"Le président tchadien gracie neuf opposants politiques : quel avenir pour l'opposition ?"}
-{"id":"f24012","date":"08-15 11:09","source":"France 24","rubrique":"International","titre":"Au Tchad, le président gracie neuf figures de l'opposition dont Succès Masra"}
-{"id":"lib017","date":"08-15 11:07","source":"Libération","rubrique":"France","titre":"Découvrez les premières pages d’«Ultimes Sursauts» du collectif Infernus Iohannes"}
-{"id":"fi019","date":"08-15 11:06","source":"franceinfo","rubrique":"France","titre":"Disney présente des avant-premières et ses nouveaux X-Men à la convention D23 du studio en Californie"}
-{"id":"lib018","date":"08-15 11:06","source":"Libération","rubrique":"France","titre":"A Digne-les-Bains, un foyer d’accueil pour victimes de violence en quête de fonds"}
-{"id":"lm015","date":"08-15 11:00","source":"Le Monde","rubrique":"France","titre":"Pour « Une aube nouvelle », le réalisateur Yoshitoshi Shinomiya a multiplié les techniques d’animation en véritable artificier du dessin"}
-{"id":"lm016","date":"08-15 11:00","source":"Le Monde","rubrique":"International","titre":"A Gaza, l’accord sur le désarmement du Hamas entre avancée historique et blocage israélien"}
-{"id":"fi020","date":"08-15 10:57","source":"franceinfo","rubrique":"France","titre":"Pauline Stey au pied du podium sur le semi marathon marche des championnats d'Europe d'athlétisme, remporté par l'Espagnole Maria Pérez"}
-{"id":"f24013","date":"08-15 10:54","source":"France 24","rubrique":"International","titre":"Cinq ans après le retour des Taliban : le parcours brisé des exilés afghans en France"}
-{"id":"f24014","date":"08-15 10:50","source":"France 24","rubrique":"International","titre":"Sud-Liban : au moins sept morts et trois blessés samedi lors d'une frappe aérienne ​israélienne"}
-{"id":"fs004","date":"08-15 10:29","source":"Futura Sciences","rubrique":"Sciences","titre":"Ce spectacle est grandiose : cette image de James-Webb montre ce que deviendra notre Soleil"}
-{"id":"f24015","date":"08-15 10:19","source":"France 24","rubrique":"International","titre":"Liverpool annonce l'arrivée de Jeff Bezos en tant qu'actionnaire minoritaire"}
-{"id":"f24016","date":"08-15 10:16","source":"France 24","rubrique":"International","titre":"France : censure de la loi sur l'interdiction des réseaux sociaux aux moins de 15 ans"}
-{"id":"f24017","date":"08-15 10:12","source":"France 24","rubrique":"International","titre":"Le siège du village de Qusra, en Cisjordanie occupée, suscite l'indignation"}
-{"id":"f24018","date":"08-15 10:07","source":"France 24","rubrique":"International","titre":"Sécheresse en Europe : nouveaux cépages pour les viticulteurs"}
-{"id":"f24019","date":"08-15 10:05","source":"France 24","rubrique":"International","titre":"En Afghanistan, cinq ans après le retour de Taliban, les femmes exclues de la société"}
-{"id":"f24020","date":"08-15 10:04","source":"France 24","rubrique":"International","titre":"\"L’Occident a une grande responsabilité dans la préservation de l’avenir des Afghanes\""}
-{"id":"lib019","date":"08-15 10:03","source":"Libération","rubrique":"France","titre":"Une famille française secourue après plus de 16 heures à la dérive au large de la Thaïlande"}
-{"id":"lib020","date":"08-15 10:02","source":"Libération","rubrique":"France","titre":"«Je pensais que les volets pouvaient nous protéger du feu» : l’incendie de Gironde vu à hauteur d’enfant"}
-{"id":"fs005","date":"08-15 10:00","source":"Futura Sciences","rubrique":"Sciences","titre":"Longtemps considéré comme inutile, cet organe retiré en chirurgie divise aujourd'hui les scientifiques"}
-{"id":"f24021","date":"08-15 09:54","source":"France 24","rubrique":"International","titre":"Siège du village de Qusra en Cisjordanie : Israël sous pression"}
-{"id":"fi021","date":"08-15 09:49","source":"franceinfo","rubrique":"France","titre":"Classement de Shanghai : la France entre dans le top 10 mondial, les universités américaines toujours en tête"}
-{"id":"fi022","date":"08-15 09:44","source":"franceinfo","rubrique":"France","titre":"\"Ça m'a pris une vingtaine de minutes\" : l'IA de plus en plus utilisée pour planifier ses voyages, bonne idée ou mauvais plan ?"}
-{"id":"lib021","date":"08-15 09:43","source":"Libération","rubrique":"France","titre":"Qui est vraiment l’ambitieux Josh Kushner, l’homme derrière le rachat éclair des Lakers et le projet avorté d’Infantino ?"}
-{"id":"fi023","date":"08-15 09:31","source":"franceinfo","rubrique":"France","titre":"En Italie, les carabiniers retrouvent trois toiles volées de Cézanne, Renoir et Matisse"}
-{"id":"f24022","date":"08-15 09:27","source":"France 24","rubrique":"International","titre":"\"Le cauchemar est terminé\" : au Venezuela, plus de 130 prisonniers politiques libérés"}
-{"id":"lm017","date":"08-15 09:20","source":"Le Monde","rubrique":"International","titre":"Au Liban, neuf personnes tuées par des bombardements israéliens dans le sud du pays"}
-{"id":"f24023","date":"08-15 09:12","source":"France 24","rubrique":"International","titre":"Incendie dans les Landes : le feu a repris dans la nuit, une météo plus \"favorable\" attendue"}
-{"id":"lib022","date":"08-15 09:06","source":"Libération","rubrique":"France","titre":"Guerre de succession : le savoir haïr des baronnes de Rothschild"}
-{"id":"lm018","date":"08-15 09:00","source":"Le Monde","rubrique":"France","titre":"Championnats d’Europe de natation 2026 : à Saint-Denis, le retour « inéluctable » des Russes crée des remous"}
-{"id":"fs006","date":"08-15 09:00","source":"Futura Sciences","rubrique":"Sciences","titre":"Ce requin géant a une vision étonnante : voici ce que des chercheurs ont découvert"}
-{"id":"lm019","date":"08-15 08:39","source":"Le Monde","rubrique":"International","titre":"Brésil : des indices de présence de pétrole au large de l’Amazonie détectés par Petrobras"}
-{"id":"lib023","date":"08-15 08:31","source":"Libération","rubrique":"France","titre":"Ma pire rando : «Si la foudre tombe sur nous et qu’on est collés, on y passe tous les deux»"}
-{"id":"lm020","date":"08-15 08:30","source":"Le Monde","rubrique":"International","titre":"Au Kenya, la mort préoccupante d’éléphants, victimes de mystérieux empoisonnements"}
-{"id":"fs007","date":"08-15 08:26","source":"Futura Sciences","rubrique":"Sciences","titre":"Votre chien vous observe : ce que votre humeur change dans son cerveau"}
-{"id":"lm021","date":"08-15 08:12","source":"Le Monde","rubrique":"Économie","titre":"Easyjet : la grève des hôtesses et stewards entraîne l’annulation d’une centaine de vols au départ de la France"}
-{"id":"lm022","date":"08-15 08:02","source":"Le Monde","rubrique":"International","titre":"Détroit d’Ormuz : un pétrolier de la compagnie émiratie Adnoc attaqué dans la soirée, le troisième en près de vingt-quatre heures"}
-{"id":"f24024","date":"08-15 08:00","source":"France 24","rubrique":"International","titre":"Virus Ebola en RD Congo : un décès toutes les 30 minutes, l'épidémie s'étend à une 6e province"}
-{"id":"lib024","date":"08-15 08:00","source":"Libération","rubrique":"France","titre":"Lilly Wachowski dénonce la frilosité d’Hollywood à financer son prochain film au «casting fait exclusivement d’acteurs trans»"}
-{"id":"fs008","date":"08-15 08:00","source":"Futura Sciences","rubrique":"Sciences","titre":"Ils ont laissé des IA faire tourner une entreprise, le résultat est bien pire que prévu"}
-{"id":"lib025","date":"08-15 07:30","source":"Libération","rubrique":"France","titre":"Avec les canicules à répétition, l’entreprise Le Parapluie de Cherbourg mise sur les ombrelles haut de gamme"}
-{"id":"lib026","date":"08-15 07:05","source":"Libération","rubrique":"France","titre":"Le nucléaire, une énergie bientôt intermittente dans une France sous 40 degrés ?"}
-{"id":"fi024","date":"08-15 07:01","source":"franceinfo","rubrique":"France","titre":"\"Ce courrier, c'est dur\" : les policiers attendent que Laurent Nuñez prenne leur défense après la note de Gérald Darmanin sur les violences sexuelles sur mineurs"}
-{"id":"bbc008","date":"08-15 07:01","source":"BBC News","rubrique":"International","titre":"Europe's scorched landscapes seen from space after summer heatwaves"}
-{"id":"lm023","date":"08-15 07:00","source":"Le Monde","rubrique":"International","titre":"A Chypre ou Malte, des start-up très discrètes se disputent le filon des services d’IA érotiques"}
-{"id":"lm024","date":"08-15 07:00","source":"Le Monde","rubrique":"Économie","titre":"En Moselle, la mémoire des hauts-fourneaux entretenue par une poignée d’anciens ouvriers"}
-{"id":"fi025","date":"08-15 06:59","source":"franceinfo","rubrique":"France","titre":"Face aux ingérences étrangères, que proposent les partis politiques, à huit mois de l'élection présidentielle ?"}
-{"id":"fs009","date":"08-15 06:32","source":"Futura Sciences","rubrique":"Sciences","titre":"À Rotterdam, ce bâtiment vivant veut faire entrer la nature au cœur de la ville"}
-{"id":"lm025","date":"08-15 06:30","source":"Le Monde","rubrique":"International","titre":"« Se taire sur l’Afghanistan reviendrait à abandonner les femmes qui demandent la reconnaissance de leur combat »"}
-{"id":"lib027","date":"08-15 06:10","source":"Libération","rubrique":"France","titre":"Cinq ans après le retour des talibans : «Les femmes sont placées dans une condition d’infériorité extrême, de soumission inégalée»"}
-{"id":"lm026","date":"08-15 06:00","source":"Le Monde","rubrique":"Sciences","titre":"Un plongeur italien découvre des centaines d’amphores antique en Sicile"}
-{"id":"lm027","date":"08-15 06:00","source":"Le Monde","rubrique":"France","titre":"« Je cherchais une manière de réduire ma consommation de vidéos porno » : le succès grandissant des services d’IA érotiques"}
-{"id":"lm028","date":"08-15 06:00","source":"Le Monde","rubrique":"France","titre":"« Une attraction puissante » : pourquoi le Rassemblement national gagne du terrain dans la fonction publique"}
-{"id":"lm029","date":"08-15 06:00","source":"Le Monde","rubrique":"France","titre":"Cartographie : le durcissement de la politique migratoire de Donald Trump en Afrique"}
-{"id":"lm030","date":"08-15 05:45","source":"Le Monde","rubrique":"France","titre":"La Maison de la presse de Pézenas, dans l’Hérault, illustration du déclin de la presse papier et de la baisse du pouvoir d’achat"}
-{"id":"lm031","date":"08-15 05:00","source":"Le Monde","rubrique":"Culture","titre":"Nos conseils de programmes à regarder en replay : Léon Marchand, éclipse, hymnes queer et influenceurs"}
-{"id":"lm032","date":"08-15 04:19","source":"Le Monde","rubrique":"France","titre":"Indonésie : un puissant séisme de magnitude 7,7 fait au moins 40 morts"}
-{"id":"bbc009","date":"08-15 02:10","source":"BBC News","rubrique":"International","titre":"I wish I had been a more rebellious teenager, says Bella Ramsey"}
-{"id":"bbc010","date":"08-15 02:01","source":"BBC News","rubrique":"International","titre":"BBC seeks to subpoena Trump's family members in Panorama lawsuit"}
-{"id":"bbc011","date":"08-15 01:17","source":"BBC News","rubrique":"International","titre":"The Polygamist's creator says women see themselves reflected in her Netflix hit"}
-{"id":"bbc012","date":"08-15 01:16","source":"BBC News","rubrique":"International","titre":"Many Canadians are boycotting the US, so this is where they're travelling instead"}
-{"id":"bbc013","date":"08-15 01:08","source":"BBC News","rubrique":"International","titre":"How is parkour helping these seniors avoid injuries?"}
-{"id":"bbc014","date":"08-14 22:22","source":"BBC News","rubrique":"International","titre":"Dozens injured and thousands evacuated in Croatia wildfire"}
-{"id":"fi026","date":"08-14 20:59","source":"franceinfo","rubrique":"France","titre":"Mode opératoire des pirates, risques d'usurpation d'identité... Les questions qui se posent après la cyberattaque contre le fisc"}
-{"id":"fs010","date":"08-14 20:56","source":"Futura Sciences","rubrique":"Sciences","titre":"25 ans, une bascule : ce que nous confions à ChatGPT endort doucement notre bon sens"}
-{"id":"lib028","date":"08-14 20:56","source":"Libération","rubrique":"France","titre":"Incendie dans les Landes : l’intensité du feu «diminue légèrement»"}
-{"id":"bbc015","date":"08-14 20:54","source":"BBC News","rubrique":"International","titre":"'I shot Mr Thompson'- What it was like inside court as Mangione pleaded guilty"}
-{"id":"lib029","date":"08-14 20:48","source":"Libération","rubrique":"France","titre":"A Saint-Denis, Léon Marchand entre enfin dans le bain des courses individuelles"}
-{"id":"lib030","date":"08-14 20:47","source":"Libération","rubrique":"France","titre":"Etats-Unis : les gants électriques, le «nouvel outil dangereux» dont des agents de l’ICE vont être équipés"}
-{"id":"lib031","date":"08-14 20:42","source":"Libération","rubrique":"France","titre":"«Ils envoient les forces de l’ordre face à une situation de détresse sociale» : 450 personnes évacuées du parvis du Samu social de Paris"}
-{"id":"bbc016","date":"08-14 20:25","source":"BBC News","rubrique":"International","titre":"Afghan women tell the BBC their lives are unrecognisable after five years of Taliban rule"}
-{"id":"lib032","date":"08-14 20:08","source":"Libération","rubrique":"France","titre":"«Le matin du 4 décembre, j’ai tiré sur M. Thompson et il est mort» : Luigi Mangione reconnaît avoir tué le PDG de UnitedHealthcare"}
-{"id":"fi027","date":"08-14 20:07","source":"franceinfo","rubrique":"France","titre":"Le piratage du système d'information des impôts a touché 678 000 contribuables, annonce la DGFiP"}
-{"id":"fs011","date":"08-14 20:01","source":"Futura Sciences","rubrique":"Sciences","titre":"Ce géant de roche fonce vers nous : en frôlant la Terre en 2029, c'est pourtant lui qui va se faire secouer"}
-{"id":"lib033","date":"08-14 19:38","source":"Libération","rubrique":"France","titre":"Equipe de France : Zidane présente son staff pour les Bleus, mais ne coache pas la case féminisation"}
-{"id":"bbc017","date":"08-14 19:36","source":"BBC News","rubrique":"International","titre":"US aircraft carrier on way to relieve USS Lincoln after issues reported aboard"}
-{"id":"bbc018","date":"08-14 19:03","source":"BBC News","rubrique":"International","titre":"Activists try to deliver aid to Palestinians in homes besieged by Israeli settlers"}
-{"id":"bbc019","date":"08-14 19:00","source":"BBC News","rubrique":"International","titre":"Five years after the Taliban swept to power, does the West have any influence?"}
-{"id":"lm033","date":"08-14 19:00","source":"Le Monde","rubrique":"Culture","titre":"Le domaine de George Sand à Nohant, un refuge de verdure et d’écriture"}
-{"id":"bbc020","date":"08-14 18:59","source":"BBC News","rubrique":"International","titre":"Why is Selena Gomez being sued?"}
-{"id":"lib034","date":"08-14 18:58","source":"Libération","rubrique":"France","titre":"Incendie dans les Landes, baisse attendue des températures, décisions du Conseil constitutionnel… L’actu de ce vendredi 14 août"}
-{"id":"fs012","date":"08-14 18:48","source":"Futura Sciences","rubrique":"Sciences","titre":"Les impôts ne sont pas seuls : ces autres organismes piratés et les données qui pourraient tomber entre de mauvaises mains"}
-{"id":"lib035","date":"08-14 18:43","source":"Libération","rubrique":"France","titre":"«Un massacre sans précédent» : la LPO demande le report de l’ouverture de la chasse aux oiseaux d’eau en raison de la sécheresse"}
-{"id":"bbc021","date":"08-14 18:35","source":"BBC News","rubrique":"International","titre":"France's top court blocks social media ban for under-15s"}
-{"id":"bbc022","date":"08-14 18:28","source":"BBC News","rubrique":"International","titre":"Zambia vote counting resumes after pause over alleged attacks on polling staff"}
-{"id":"fs013","date":"08-14 18:28","source":"Futura Sciences","rubrique":"Sciences","titre":"Le jour où un orage banal a envoyé la foudre sur le Christ de Rio et signé une photo historique"}
-{"id":"lib036","date":"08-14 18:24","source":"Libération","rubrique":"France","titre":"Sécheresse dans les Alpes-Maritimes : 100 communes sont concernées par des restrictions d’eau, certains maires se rebellent"}
-{"id":"lib037","date":"08-14 18:12","source":"Libération","rubrique":"France","titre":"A Qusra, en Cisjordanie, deux familles palestiniennes sont toujours assiégées par des colons israéliens"}
-{"id":"lm034","date":"08-14 18:00","source":"Le Monde","rubrique":"Économie","titre":"« On m’a offert une poupée sur un poney, entourée de dessins de phallus » : le pot de départ graveleux de Marine, employée dans le BTP"}
-{"id":"fs014","date":"08-14 18:00","source":"Futura Sciences","rubrique":"Sciences","titre":"Vous regardez un proche… et son visage se transforme : ce trouble méconnu fascine les neurologues"}
-{"id":"lib038","date":"08-14 17:44","source":"Libération","rubrique":"France","titre":"Pesticides : le Conseil constitutionnel valide la quasi-totalité de la loi d’urgence agricole, y compris la réintroduction de l’acétamipride"}
-{"id":"lib039","date":"08-14 17:40","source":"Libération","rubrique":"France","titre":"Plan des Etats-Unis pour Gaza : Jared Kushner attendu en Israël pour aplanir les divergences entre Trump et Nétanyahou"}
-{"id":"lm035","date":"08-14 17:36","source":"Le Monde","rubrique":"Économie","titre":"En Sicile, l’éruption de l’Etna provoque l’annulation de plus de 1 000 vols à l’aéroport de Catane et bloque des dizaines de milliers de voyageurs"}
-{"id":"lib040","date":"08-14 17:36","source":"Libération","rubrique":"France","titre":"Au Porge, une centaine de sinistrés du mégafeu sont relogés au camping : «J’ai signé pour être ici jusqu’en décembre»"}
-{"id":"lm036","date":"08-14 17:30","source":"Le Monde","rubrique":"Culture","titre":"« Studio 54. Un lieu de liberté et d’excès », sur Arte.tv : splendeurs et misères des nuits new-yorkaises"}
-{"id":"lib041","date":"08-14 17:27","source":"Libération","rubrique":"France","titre":"Au Tchad, l’opposant Succès Masra gracié mais pas amnistié"}
-{"id":"lm037","date":"08-14 17:22","source":"Le Monde","rubrique":"Culture","titre":"En Italie, trois tableaux d’Auguste Renoir, Paul Cézanne et Henri Matisse ont été retrouvés après cinq mois d’enquête"}
-{"id":"lib042","date":"08-14 17:14","source":"Libération","rubrique":"France","titre":"Jordan Bardella, l’écrivain qui valait un million"}
-{"id":"lib043","date":"08-14 17:11","source":"Libération","rubrique":"France","titre":"Pénuries d’essence dans l’Est, le Rhin et la sécheresse en cause"}
-{"id":"lib044","date":"08-14 17:02","source":"Libération","rubrique":"France","titre":"«Foutre au feu» la dette, un projet de «banqueroute totale» du pays : Mélenchon et Attal poursuivent leur feuilleton estival"}
-{"id":"lm038","date":"08-14 17:00","source":"Le Monde","rubrique":"Sciences","titre":"Des souris conservent la mémoire malgré la perte de connexions neuronales"}
-{"id":"bbc023","date":"08-14 16:56","source":"BBC News","rubrique":"International","titre":"Moment €9m worth of art stolen from Italy museum"}
-{"id":"lm039","date":"08-14 16:45","source":"Le Monde","rubrique":"Économie","titre":"« En quarante-huit ans de métier, je n’ai jamais vu ça » : les fortes chaleurs précipitent les vendanges et font craindre de faibles rendements"}
-{"id":"lib045","date":"08-14 16:27","source":"Libération","rubrique":"France","titre":"Pourquoi la suite de «Barbie» reste en suspens"}
-{"id":"lib046","date":"08-14 16:27","source":"Libération","rubrique":"France","titre":"Expulsion de Xenia Fedorova : la justice rejette un nouveau recours de la chroniqueuse russe"}
-{"id":"lib047","date":"08-14 16:24","source":"Libération","rubrique":"France","titre":"Cet été, 30 chiffres aussi dingues qu’inutiles"}
-{"id":"lib048","date":"08-14 16:21","source":"Libération","rubrique":"France","titre":"Free parties, protoxyde d’azote, permis de conduire : le Conseil constitutionnel valide l’essentiel de la loi Ripost"}
-{"id":"lib049","date":"08-14 16:13","source":"Libération","rubrique":"France","titre":"Avec la série «Sterling Point», adieu le scénario rouillé de la toxicité dans les relations amoureuses"}
-{"id":"lib050","date":"08-14 16:04","source":"Libération","rubrique":"France","titre":"Réseaux sociaux : le Conseil constitutionnel censure l’interdiction pour les moins de 15 ans, Macron exige une nouvelle loi avant la présidentielle"}
-{"id":"lm040","date":"08-14 16:00","source":"Le Monde","rubrique":"Économie","titre":"Xenia Fedorova : le tribunal administratif de Paris rejette le recours en référé-suspension contre l’expulsion de la propagandiste russe"}
-{"id":"fs015","date":"08-14 16:00","source":"Futura Sciences","rubrique":"Sciences","titre":"Moustiques : on sait enfin pourquoi ils piquent certaines personnes plus que d'autres"}
-{"id":"lm041","date":"08-14 15:35","source":"Le Monde","rubrique":"Économie","titre":"Loi d’urgence agricole : le Conseil constitutionnel valide la quasi-totalité du texte, y compris les volets controversés sur la réintroduction dérogatoire de pesticides interdits"}
-{"id":"bbc024","date":"08-14 15:18","source":"BBC News","rubrique":"International","titre":"Builders unearth €9m gold stash sealed in walls of Belgian property"}
-{"id":"fs016","date":"08-14 15:14","source":"Futura Sciences","rubrique":"Sciences","titre":"Des trous noirs géants cachés dans des étoiles : James-Webb a-t-il enfin percé le mystère des petits points rouges ?"}
-{"id":"lm042","date":"08-14 15:00","source":"Le Monde","rubrique":"Culture","titre":"« Spiderman » au cinéma : « Que reste-t-il de l’envie de voir triompher la vérité et l’humanisme lorsque la lumière se rallume ? »"}
-{"id":"lm043","date":"08-14 14:30","source":"Le Monde","rubrique":"Économie","titre":"Dans les librairies Gibert, les rayons se vident et le plan de relance de la direction inquiète les salariés"}
+{"collecte":"2026-08-16 16:27","fuseau":"Europe/Paris","fenetre_heures":26,"depeches":167,"detail":"veille/2026-08-16.json","format":"titres seuls — résumés via « python scripts/depeches.py id1 id2 … »"}
+{"id":"lib001","date":"08-16 16:21","source":"Libération","rubrique":"France","titre":"EN DIRECT - Incendies : deux morts et des centaines d’évacuation sur l’île de Salamine, près d’Athènes"}
+{"id":"fi001","date":"08-16 16:20","source":"franceinfo","rubrique":"France","titre":"Canicule : seuls six départements du Sud-Est maintenus en vigilance orange lundi à partir de 6 heures"}
+{"id":"lib002","date":"08-16 16:01","source":"Libération","rubrique":"France","titre":"Séismes en Indonésie : au moins 53 morts et des milliers d’évacués"}
+{"id":"fs001","date":"08-16 15:59","source":"Futura Sciences","rubrique":"Sciences","titre":"La photo de la semaine : l’image est saisissante, mais ce que cachent ces tourbillons sur le Soleil l’est encore plus"}
+{"id":"lm001","date":"08-16 15:46","source":"Le Monde","rubrique":"France","titre":"EN DIRECT, incendies et canicule : le feu en Belgique provoque un pic de pollution de l’air en Moselle ; dans les Landes, l’incendie est « stable » et a parcouru 1 700 hectares"}
+{"id":"f24001","date":"08-16 15:46","source":"France 24","rubrique":"International","titre":"Guerre en Ukraine : Moscou visée par 600 drones, Kiev par des missiles balistiques"}
+{"id":"lib003","date":"08-16 15:45","source":"Libération","rubrique":"France","titre":"«Lost Weekend» de Phoebe Bridgers : dans l’œil de l’icône"}
+{"id":"f24002","date":"08-16 15:44","source":"France 24","rubrique":"International","titre":"Présidentielle au Brésil : Lula et Flávio Bolsonaro au coude-à-coude"}
+{"id":"f24003","date":"08-16 15:43","source":"France 24","rubrique":"International","titre":"France : l'incendie dans les Landes ne progresse plus mais reste hors de contrôle"}
+{"id":"f24004","date":"08-16 15:40","source":"France 24","rubrique":"International","titre":"Liban : onze morts dans les frappes israéliennes les plus meurtrières depuis juin"}
+{"id":"f24005","date":"08-16 15:39","source":"France 24","rubrique":"International","titre":"Séisme en Colombie : un chien sauvé au prix de la vie de sa maîtresse"}
+{"id":"f24006","date":"08-16 15:36","source":"France 24","rubrique":"International","titre":"Sud du Liban : quel impact des frappes israéliennes sur les négociations de paix ?"}
+{"id":"lib004","date":"08-16 15:36","source":"Libération","rubrique":"France","titre":"Un Boeing 787 de la Vietnam Airlines revient se poser à Munich après un incident au décollage"}
+{"id":"fi002","date":"08-16 15:35","source":"franceinfo","rubrique":"France","titre":"À Montpellier, un jeune homme de 19 ans meurt après avoir reçu une balle dans la tête en sortant d'une discothèque"}
+{"id":"bbc001","date":"08-16 15:34","source":"BBC News","rubrique":"International","titre":"Four 'extraordinary' Renaissance paintings stolen from Italian museum"}
+{"id":"lm002","date":"08-16 15:22","source":"Le Monde","rubrique":"France","titre":"EN DIRECT, guerre en Ukraine : sept des dix principaux centres logistiques du géant de l’e-commerce russe Wildberries mis hors de service, selon Kiev"}
+{"id":"lib005","date":"08-16 15:09","source":"Libération","rubrique":"France","titre":"Monique Barbut, ministre de la Transition écologique : «Je n’ai pas passé l’été sur une chaise longue !»"}
+{"id":"f24007","date":"08-16 15:08","source":"France 24","rubrique":"International","titre":"Au Liban, \"respecter le droit de soigner\""}
+{"id":"fi003","date":"08-16 15:03","source":"franceinfo","rubrique":"France","titre":"\"Paradise\" : un premier film mystérieux, entre le Canada et le Ghana"}
+{"id":"lm003","date":"08-16 15:00","source":"Le Monde","rubrique":"France","titre":"Coupe d’Afrique des nations féminine : le Malawi à une victoire de l’un des plus beaux exploits du tournoi"}
+{"id":"lib006","date":"08-16 15:00","source":"Libération","rubrique":"France","titre":"Envers mon endroit (4/8) – Les salles de cinéma, par Karine Tuil : obscur de jouvence"}
+{"id":"lm004","date":"08-16 14:58","source":"Le Monde","rubrique":"France","titre":"Quatre œuvres d’Antonello de Messine volées dans un musée en Sicile"}
+{"id":"fi004","date":"08-16 14:57","source":"franceinfo","rubrique":"France","titre":"Un bus se renverse en Hongrie faisant 12 morts et au moins dix blessés graves"}
+{"id":"lib007","date":"08-16 14:55","source":"Libération","rubrique":"France","titre":"Dans un monde de crises multiples et interconnectées, faire de la résilience une stratégie collective"}
+{"id":"bbc002","date":"08-16 14:53","source":"BBC News","rubrique":"International","titre":"Hurricane Lala sparks flash floods in Hawaii as strong winds and rain persist"}
+{"id":"fi005","date":"08-16 14:52","source":"franceinfo","rubrique":"France","titre":"En Roumanie, un drone a été abattu par un avion de combat espagnol"}
+{"id":"lib008","date":"08-16 14:51","source":"Libération","rubrique":"France","titre":"Quatre œuvres d’Antonello de Messine volées en Sicile dans la ville natale du peintre de la Renaissance"}
+{"id":"fi006","date":"08-16 14:50","source":"franceinfo","rubrique":"France","titre":"La procédure d'alerte à la pollution atmosphérique déclenchée en Moselle en raison des fumées de l'incendie en Belgique"}
+{"id":"fi007","date":"08-16 14:45","source":"franceinfo","rubrique":"France","titre":"Piratage du système d'information des impôts : les sénateurs socialistes demandent une commission d'enquête"}
+{"id":"lm005","date":"08-16 14:39","source":"Le Monde","rubrique":"France","titre":"Piratage du fisc : les sénateurs socialistes demandent une commission d’enquête ; Sébastien Lecornu présidera une cellule interministérielle"}
+{"id":"bbc003","date":"08-16 14:37","source":"BBC News","rubrique":"International","titre":"Thousands displaced by deadly Indonesia earthquake as rescue efforts continue"}
+{"id":"lib009","date":"08-16 14:21","source":"Libération","rubrique":"France","titre":"Faire vieillir l’alcool plus vite : une start-up israélienne a mis au point la recette «secret défense» pour révolutionner la distillerie"}
+{"id":"bbc004","date":"08-16 14:18","source":"BBC News","rubrique":"International","titre":"BBC visits smouldering Kyiv market after Russian strikes"}
+{"id":"lm006","date":"08-16 14:08","source":"Le Monde","rubrique":"France","titre":"La question est moins de savoir si Gianni Infantino va partir que de comprendre comment il a pu rester si longtemps"}
+{"id":"fs002","date":"08-16 14:02","source":"Futura Sciences","rubrique":"Sciences","titre":"Avant la matière telle qu’on la connaît : le Cern traque le mystérieux état qui régnait au début de l’Univers"}
+{"id":"lm007","date":"08-16 14:00","source":"Le Monde","rubrique":"France","titre":"Vidéo : quatre semaine à bord d’un brise-glace, ces navires à la technologie de plus en plus convoitée"}
+{"id":"lm008","date":"08-16 14:00","source":"Le Monde","rubrique":"Économie","titre":"Après les incendies, la Gironde tente de sauver sa saison touristique"}
+{"id":"f24008","date":"08-16 13:59","source":"France 24","rubrique":"International","titre":"Éclipse, séisme en Colombie et colons israéliens en Cisjordanie occupée : la semaine en images"}
+{"id":"bbc005","date":"08-16 13:35","source":"BBC News","rubrique":"International","titre":"Europe's tallest Virgin Mary statue unveiled in rural Poland"}
+{"id":"f24009","date":"08-16 13:34","source":"France 24","rubrique":"International","titre":"Plan de paix pour Gaza : le Hamas et Kushner engagent des discussions avec l’Égypte"}
+{"id":"lm009","date":"08-16 13:30","source":"Le Monde","rubrique":"Économie","titre":"« Après l’Etat-providence, construisons une société de la prévoyance, capable de prévenir les chocs notamment le réchauffement climatique »"}
+{"id":"lm010","date":"08-16 13:28","source":"Le Monde","rubrique":"France","titre":"L’administration Trump retire son visa au fils de l’ancien président « AMLO » et polarise le Mexique"}
+{"id":"fi008","date":"08-16 13:09","source":"franceinfo","rubrique":"France","titre":"Au moins 12 morts dans des frappes en Russie et en Ukraine, la région de Moscou visée par 600 drones"}
+{"id":"bbc006","date":"08-16 12:53","source":"BBC News","rubrique":"International","titre":"Twelve killed as Polish bus veers off Hungarian motorway"}
+{"id":"bbc007","date":"08-16 12:52","source":"BBC News","rubrique":"International","titre":"Five killed as Russia launches fresh aerial attacks across Ukraine"}
+{"id":"lib010","date":"08-16 12:47","source":"Libération","rubrique":"France","titre":"Le contrôle judiciaire de Patrick Bruel allégé, révèle «Mediapart», colère de Corinne Hermann, l’avocate de Flavie Flament"}
+{"id":"lib011","date":"08-16 12:40","source":"Libération","rubrique":"France","titre":"Comment le nageur roumain David Popovici a tracé sa route vers un double sacre à Saint-Denis… en s’entraînant avec son rival numéro 1"}
+{"id":"lib012","date":"08-16 12:33","source":"Libération","rubrique":"France","titre":"Accident d’un car polonais en Hongrie : Varsovie envoie un avion sanitaire à Budapest"}
+{"id":"lm011","date":"08-16 12:30","source":"Le Monde","rubrique":"International","titre":"Belgique : les images d’un des pires incendies de l’histoire du pays"}
+{"id":"lm012","date":"08-16 12:23","source":"Le Monde","rubrique":"France","titre":"Liban : Israël jure de s’en prendre encore au Hezbollah après des bombardements qui ont fait au moins 11 morts dans le sud du pays"}
+{"id":"fs003","date":"08-16 12:15","source":"Futura Sciences","rubrique":"Sciences","titre":"Des IA contournent leur sécurité, voici ce qu'elles veulent vraiment : la réponse du chercheur Jean-Claude Heudin"}
+{"id":"fi009","date":"08-16 12:14","source":"franceinfo","rubrique":"France","titre":"La France remporte la médaille de bronze par équipes sur le marathon des championnats d'Europe d'athlétisme"}
+{"id":"fi010","date":"08-16 12:09","source":"franceinfo","rubrique":"France","titre":"En Suisse, un accident de calèche fait un mort et 12 blessés"}
+{"id":"lib013","date":"08-16 12:07","source":"Libération","rubrique":"France","titre":"Face à un des pires incendies de son histoire, la Belgique en attente d’un soutien venu du ciel"}
+{"id":"f24010","date":"08-16 12:05","source":"France 24","rubrique":"International","titre":"Au moins 12 morts dans l'accident d'un car polonais en Hongrie, la pire catastrophe depuis 20 ans"}
+{"id":"lib014","date":"08-16 12:01","source":"Libération","rubrique":"France","titre":"De l’Indonésie à l’Europe et jusqu’au Canada, «plus aucun territoire n’est à l’abri» des feux ravageurs"}
+{"id":"lib015","date":"08-16 12:00","source":"Libération","rubrique":"France","titre":"Eric Ciotti toujours pas raccord avec le RN sur les retraites"}
+{"id":"lib016","date":"08-16 12:00","source":"Libération","rubrique":"France","titre":"La mémoire indélébile de Mathis Benestebe"}
+{"id":"lib017","date":"08-16 11:54","source":"Libération","rubrique":"France","titre":"«XXXXX» de Arca : ingénieuse du sombre"}
+{"id":"lib018","date":"08-16 11:52","source":"Libération","rubrique":"France","titre":"Avec ces Français qui se jettent à l’eau pour, tôt ou tard, apprendre à nager : «C’est une question de survie»"}
+{"id":"f24011","date":"08-16 11:48","source":"France 24","rubrique":"International","titre":"🔴 En direct : l'Ukraine lance l'une de ses plus importantes attaques aériennes en Russie depuis le début de la guerre"}
+{"id":"lm013","date":"08-16 11:45","source":"Le Monde","rubrique":"France","titre":"Indonésie : après le puissant séisme qui a fait au moins 53 morts, des milliers de personnes évacuées attendent de l’aide"}
+{"id":"lib019","date":"08-16 11:29","source":"Libération","rubrique":"France","titre":"A Bonn, les infrastructures vétustes comme symboles d’une «Allemagne en panne»"}
+{"id":"bbc008","date":"08-16 11:27","source":"BBC News","rubrique":"International","titre":"Qatar denies capturing three Iranian pilots after downing fighter jets"}
+{"id":"f24012","date":"08-16 11:22","source":"France 24","rubrique":"International","titre":"Mort de Jason Arday : ses proches dénoncent une \"campagne de harcèlement\""}
+{"id":"f24013","date":"08-16 11:19","source":"France 24","rubrique":"International","titre":"Face à la sécheresse en France, des terrains de football impraticables"}
+{"id":"f24014","date":"08-16 11:13","source":"France 24","rubrique":"International","titre":"Sénégal : Pape Thiaw met en demeure la Fédération sénégalaise de football"}
+{"id":"f24015","date":"08-16 11:10","source":"France 24","rubrique":"International","titre":"Cisjordanie occupée : la violence des colons hors de contrôle"}
+{"id":"lib020","date":"08-16 11:10","source":"Libération","rubrique":"France","titre":"«On m’a dit qu’il fallait faire attention à eux» : à Toulon, une famille suspectée d’avoir séquestré et tué des militaires ultramarins"}
+{"id":"fi011","date":"08-16 11:05","source":"franceinfo","rubrique":"France","titre":"Léon Marchand qualifié pour la finale du 400 m nage libre des championnats d'Europe de natation"}
+{"id":"fs004","date":"08-16 11:01","source":"Futura Sciences","rubrique":"Sciences","titre":"La plante de la semaine : l’étonnant arbre qui résiste à tout et fait pousser des petits pois… en hauteur !"}
+{"id":"lib021","date":"08-16 10:53","source":"Libération","rubrique":"France","titre":"Au Havre, un dispositif innovant pour lutter contre l’exploitation sexuelle des mineurs : «Le soin était la pièce manquante à notre édifice»"}
+{"id":"fi012","date":"08-16 10:41","source":"franceinfo","rubrique":"France","titre":"Un premier porte-conteneurs chinois a pris la route de l'Europe via l'Arctique, une première pour le géant asiatique"}
+{"id":"lib022","date":"08-16 10:40","source":"Libération","rubrique":"France","titre":"«Il y a une pression esthétique» : pourquoi la protection solaire est parfois négligée"}
+{"id":"lib023","date":"08-16 10:37","source":"Libération","rubrique":"France","titre":"Guerre en Ukraine : Moscou dit avoir été visé par 600 drones dans la nuit, Kyiv par des missiles balistiques"}
+{"id":"fi013","date":"08-16 10:26","source":"franceinfo","rubrique":"France","titre":"Des images d'animaux générées par l'intelligence artificielle menacent faune et humains"}
+{"id":"f24016","date":"08-16 10:20","source":"France 24","rubrique":"International","titre":"🔴 Belgique : déjà 3 000 hectares ravagés, l'un des pires incendies de son histoire"}
+{"id":"fi014","date":"08-16 10:17","source":"franceinfo","rubrique":"France","titre":"En Belgique, près de 3 000 hectares d'un parc naturel ont été ravagés par l'un des pires incendies de l'histoire du pays"}
+{"id":"fi015","date":"08-16 10:13","source":"franceinfo","rubrique":"France","titre":"Après des orages, le clocher d'une église en flammes dans l'Aveyron, des dizaines d'interventions des pompiers dans le Gard"}
+{"id":"f24017","date":"08-16 10:09","source":"France 24","rubrique":"International","titre":"Léon Marchand s'offre son premier titre européen sur 200m papillon"}
+{"id":"f24018","date":"08-16 10:07","source":"France 24","rubrique":"International","titre":"CAN féminine : qui du Malawi ou du Cameroun remportera son premier titre ?"}
+{"id":"lm014","date":"08-16 10:05","source":"Le Monde","rubrique":"France","titre":"En Hongrie, 12 morts et 10 blessés dans l’accident d’un car immatriculé en Pologne"}
+{"id":"fs005","date":"08-16 10:00","source":"Futura Sciences","rubrique":"Sciences","titre":"Les êtres humains continuent-ils vraiment d'évoluer ? Les scientifiques viennent de trouver un nouvel indice"}
+{"id":"fi016","date":"08-16 09:55","source":"franceinfo","rubrique":"France","titre":"Les Girondins de Bordeaux, menacés d'exclusion des championnats nationaux, vont déposer un recours en référé au tribunal administratif"}
+{"id":"f24019","date":"08-16 09:53","source":"France 24","rubrique":"International","titre":"En Roumanie, un drone abattu par un avion de combat espagnol"}
+{"id":"lib024","date":"08-16 09:33","source":"Libération","rubrique":"France","titre":"A neuf mois de la présidentielle : Zemmour et Knafo sont sur un rafiot…"}
+{"id":"lib025","date":"08-16 09:28","source":"Libération","rubrique":"France","titre":"Gabriel Attal appelle à un référendum sur l’interdiction des réseaux sociaux aux moins de 15 ans"}
+{"id":"lib026","date":"08-16 09:28","source":"Libération","rubrique":"France","titre":"Marine Tondelier se dit «prête à rediscuter avec tout le monde à gauche»"}
+{"id":"fi017","date":"08-16 09:11","source":"franceinfo","rubrique":"France","titre":"De son titre olympique à 21 ans à sa médaille de bronze aux JO de Paris, les 14 ans de carrière de Florent Manaudou en sept dates"}
+{"id":"fi018","date":"08-16 09:10","source":"franceinfo","rubrique":"France","titre":"\"La peopolisation ne fabrique pas de la légitimité\" : faire la couverture de \"Paris Match\" est-il une opération payante pour les politiques ?"}
+{"id":"fi019","date":"08-16 09:00","source":"franceinfo","rubrique":"France","titre":"\"Une course contre la montre a démarré\" : Gabriel Attal appelle à un référendum sur l'interdiction des réseaux aux moins de 15 ans"}
+{"id":"fs006","date":"08-16 09:00","source":"Futura Sciences","rubrique":"Sciences","titre":"Elle a confié son emploi du temps à ChatGPT pendant une semaine : voici la surprenante conclusion qu'elle en tire"}
+{"id":"lib027","date":"08-16 08:48","source":"Libération","rubrique":"France","titre":"Isère : une enquête ouverte après des propos jugés antisémites tenus par une commerçante dans la station des Deux-Alpes"}
+{"id":"lib028","date":"08-16 08:47","source":"Libération","rubrique":"France","titre":"Roumanie : un drone abattu par un avion de combat espagnol dans la nuit"}
+{"id":"fi020","date":"08-16 08:45","source":"franceinfo","rubrique":"France","titre":"\"Un prédateur est dans les Landes\" : une victime d'un ancien prêtre, exclu de sa congrégation après plusieurs plaintes pour agression sexuelle, redoute qu'il récidive"}
+{"id":"fi021","date":"08-16 08:43","source":"franceinfo","rubrique":"France","titre":"Incendie dans les Landes : \"La situation évolue plutôt favorablement\", sans reprise de feu majeure cette nuit, selon le préfet"}
+{"id":"lib029","date":"08-16 08:41","source":"Libération","rubrique":"France","titre":"Cyclisme : le biathlète Emilien Jacquelin entre «trac» et «excitation» pour ses débuts pros en Normandie ce dimanche"}
+{"id":"lm015","date":"08-16 08:41","source":"Le Monde","rubrique":"International","titre":"Un premier porte-conteneurs chinois, le « Dubai Tower », a pris la route de l’Europe via l’Arctique"}
+{"id":"f24020","date":"08-16 08:32","source":"France 24","rubrique":"International","titre":"Séisme en Indonésie : au moins 48 morts, des milliers d'évacués en attente d'aide"}
+{"id":"fs007","date":"08-16 08:29","source":"Futura Sciences","rubrique":"Sciences","titre":"Le temps assis n’explique pas tout : ceux qui regardent beaucoup la télé présentent un profil cérébral différent"}
+{"id":"lib030","date":"08-16 08:29","source":"Libération","rubrique":"France","titre":"Les Parisiens sont-ils désagréables et grossiers ? «Tout le monde est charmant, adorable et gentil»"}
+{"id":"f24021","date":"08-16 08:28","source":"France 24","rubrique":"International","titre":"Séisme en Indonésie : au moins 51 morts, des milliers d'évacués en attente d'aide"}
+{"id":"f24022","date":"08-16 08:10","source":"France 24","rubrique":"International","titre":"La Belgique face à l'un des pires feux de son histoire"}
+{"id":"fi022","date":"08-16 08:04","source":"franceinfo","rubrique":"France","titre":"En Espagne, une inondation et un glissement de terrain ont tué deux femmes et blessé deux bébés"}
+{"id":"lm016","date":"08-16 08:00","source":"Le Monde","rubrique":"Économie","titre":"Clément Beaune, haut-commissaire à la stratégie et au plan : « L’hiver démographique sera long, c’est un fait »"}
+{"id":"lm017","date":"08-16 08:00","source":"Le Monde","rubrique":"Culture","titre":"Entre enquête familiale et journal intime, la fille d’Igor Bogdanoff entreprend le deuil de son père"}
+{"id":"lib031","date":"08-16 08:00","source":"Libération","rubrique":"France","titre":"Réseaux sociaux pour les moins de 15 ans : de la liberté de scroller comme principe constitutionnel, par Abel Quentin"}
+{"id":"fs008","date":"08-16 08:00","source":"Futura Sciences","rubrique":"Sciences","titre":"Pendant près de deux siècles, ce volcan est resté introuvable : sa découverte éclaire enfin une catastrophe climatique"}
+{"id":"f24023","date":"08-16 07:59","source":"France 24","rubrique":"International","titre":"3 000 hectares ravagés : la Belgique face à l'un des pires feux de son histoire"}
+{"id":"lm018","date":"08-16 07:56","source":"Le Monde","rubrique":"International","titre":"Au Japon, les pluies diluviennes près de Tokyo causent la mort d’au moins neuf personnes"}
+{"id":"lib032","date":"08-16 07:33","source":"Libération","rubrique":"France","titre":"Population carcérale : première polémique et premier défi du gouvernement Burnham"}
+{"id":"fi023","date":"08-16 07:10","source":"franceinfo","rubrique":"France","titre":"Quelles sont les limites de notre corps face aux fortes chaleurs prolongées ?"}
+{"id":"fi024","date":"08-16 07:09","source":"franceinfo","rubrique":"France","titre":"\"En couple, j'avais tendance à me sacrifier pour l'autre\" : célibataires, ils racontent pourquoi ils ont arrêté de chercher l'amour"}
+{"id":"lib033","date":"08-16 07:05","source":"Libération","rubrique":"France","titre":"Ultra-endurance : pourquoi les femmes rattrapent les hommes à mesure que les kilomètres s’accumulent"}
+{"id":"lm019","date":"08-16 07:00","source":"Le Monde","rubrique":"Culture","titre":"Dominic Guard, du jeune acteur repéré par Joseph Losey à l’adulte psychothérapeute pour enfants"}
+{"id":"fs009","date":"08-16 06:29","source":"Futura Sciences","rubrique":"Sciences","titre":"Une promenade hors du temps : en Chine, ce musée qui se fond dans la nature nous fait traverser l’histoire de la Terre"}
+{"id":"lm020","date":"08-16 06:11","source":"Le Monde","rubrique":"France","titre":"Hawaï : l’ouragan Lala provoque des pluies torrentielles et des vents violents"}
+{"id":"lm021","date":"08-16 06:00","source":"Le Monde","rubrique":"Culture","titre":"Zabou Breitman : « Etre grande gueule, c’est une façon de cacher le reste »"}
+{"id":"lm022","date":"08-16 06:00","source":"Le Monde","rubrique":"International","titre":"En Sierra Leone, la cohabitation exemplaire des chrétiens et des musulmans, loin des tensions confessionnelles des pays de la région"}
+{"id":"lm023","date":"08-16 06:00","source":"Le Monde","rubrique":"France","titre":"Comment les élus se préparent au vieillissement de la population et à la baisse des naissances"}
+{"id":"lm024","date":"08-16 06:00","source":"Le Monde","rubrique":"International","titre":"Pourquoi le transfert de milliers de tonnes d’uranium congolais vers la Chine pose question ? Comprendre en trois minutes"}
+{"id":"lm025","date":"08-16 06:00","source":"Le Monde","rubrique":"International","titre":"« Les luttes de faction à Téhéran pèsent sur les pourparlers avec les Etats-Unis »"}
+{"id":"lm026","date":"08-16 06:00","source":"Le Monde","rubrique":"Culture","titre":"Au Jeu de paume, Elton John expose ses coups de cœur photographiques"}
+{"id":"lm027","date":"08-16 06:00","source":"Le Monde","rubrique":"Économie","titre":"Meublé de tourisme : quand l’appartement n’a pas de fenêtre et que l’annonce ne le précise pas"}
+{"id":"fi025","date":"08-16 06:00","source":"franceinfo","rubrique":"France","titre":"Le PSG retrouve Lens à Bollaert avec un nouveau titre dans le viseur... Ce qu'il faut savoir sur le Trophée des champions"}
+{"id":"fi026","date":"08-16 06:00","source":"franceinfo","rubrique":"France","titre":"Dans \"Fjord\", Palme d'Or 2026, Cristian Mungiu dénonce les dangers de la polarisation à travers l'histoire d'une famille roumaine chrétienne intégriste exilée en Norvège"}
+{"id":"lm028","date":"08-16 05:30","source":"Le Monde","rubrique":"France","titre":"« L’ascension sociale gomme beaucoup de préjugés » : à Saint-Dié-des-Vosges, la communauté peule fait tomber les barrières"}
+{"id":"lm029","date":"08-16 05:30","source":"Le Monde","rubrique":"France","titre":"« Gang bangs » payants : le Conseil d’Etat s’appuie sur le principe de « dignité » humaine pour fermer un établissement parisien"}
+{"id":"lm030","date":"08-16 05:30","source":"Le Monde","rubrique":"France","titre":"Jean Hegland, romancière américaine : « L’idée selon laquelle l’homme doit dominer la Terre et les animaux ne nous a pas bien servis »"}
+{"id":"lm031","date":"08-16 04:42","source":"Le Monde","rubrique":"International","titre":"Le nouveau président colombien demande à son allié Donald Trump de suspendre les droits de douane après le séisme"}
+{"id":"bbc009","date":"08-16 02:11","source":"BBC News","rubrique":"International","titre":"BBC seeks to subpoena family members in Panorama lawsuit"}
+{"id":"lm032","date":"08-16 00:48","source":"Le Monde","rubrique":"International","titre":"L’Iran dénonce la détention de trois pilotes de chasse par le Qatar, qui dément les avoir capturés"}
+{"id":"bbc010","date":"08-15 23:41","source":"BBC News","rubrique":"International","titre":"Australian state to launch gun buyback after Bondi Beach attack"}
+{"id":"fi027","date":"08-15 23:04","source":"franceinfo","rubrique":"France","titre":"En bronze sur le 10 000 m, Jimmy Gressier décroche sa première médaille européenne"}
+{"id":"bbc011","date":"08-15 22:58","source":"BBC News","rubrique":"International","titre":"Morocco detains dozens of migrants trying to cross into Ceuta, reports say"}
+{"id":"lm033","date":"08-15 22:33","source":"Le Monde","rubrique":"International","titre":"Guerre en Ukraine : la Russie affirme avoir intercepté et détruit 180 drones ukrainiens dans la journée de samedi. Retrouvez nos informations du 9 au 15 août."}
+{"id":"bbc012","date":"08-15 22:21","source":"BBC News","rubrique":"International","titre":"Eleven killed in Israeli strikes on southern Lebanon, authorities say"}
+{"id":"bbc013","date":"08-15 21:41","source":"BBC News","rubrique":"International","titre":"Liechtenstein changes succession rule to allow women to ascend the throne"}
+{"id":"bbc014","date":"08-15 21:34","source":"BBC News","rubrique":"International","titre":"Multiple suspects at large after five shot at Virginia State University, police say"}
+{"id":"lib034","date":"08-15 21:07","source":"Libération","rubrique":"France","titre":"Euro de natation : Mary-Ambre Moluh sacrée sur le 100 m dos après Léon Marchand, soirée dorée pour les Français"}
+{"id":"fs010","date":"08-15 21:02","source":"Futura Sciences","rubrique":"Sciences","titre":"Alerte sous la douche : ce que votre shampoing cache vraiment sous l’étiquette"}
+{"id":"lib035","date":"08-15 20:38","source":"Libération","rubrique":"France","titre":"Le feu «n’a pas augmenté» dans les Landes, la vigilance orange canicule levée dans 36 départements dimanche"}
+{"id":"fi028","date":"08-15 20:24","source":"franceinfo","rubrique":"France","titre":"Incendie dans les Landes : \"Quand vous avez des moyens aériens qui sont très éloignés, le temps qu'ils arrivent, c'est parfois trop tard\", regrette le président du département"}
+{"id":"lm034","date":"08-15 20:12","source":"Le Monde","rubrique":"International","titre":"Zimbabwe : le bilan du naufrage d’un ferry sur le lac Kariba s’élève à 68 morts"}
+{"id":"bbc015","date":"08-15 20:02","source":"BBC News","rubrique":"International","titre":"Why is Australia's mushroom killer back in court this week?"}
+{"id":"fs011","date":"08-15 20:01","source":"Futura Sciences","rubrique":"Sciences","titre":"Patient bizarre : il saigne du front sans aucune plaie, les médecins expliquent ce phénomène rarissime"}
+{"id":"bbc016","date":"08-15 19:47","source":"BBC News","rubrique":"International","titre":"Firefighters battle wildfire tearing through Belgian nature reserve"}
+{"id":"lib036","date":"08-15 19:02","source":"Libération","rubrique":"France","titre":"Lecornu prend la plume et promet de nouvelles mesures aux agriculteurs"}
+{"id":"lm035","date":"08-15 19:00","source":"Le Monde","rubrique":"Culture","titre":"Dans la lande austère du Kent, le plasticien et cinéaste Derek Jarman a fait pousser des couleurs"}
+{"id":"fs012","date":"08-15 18:29","source":"Futura Sciences","rubrique":"Sciences","titre":"Se marier avec une IA n’est plus un film : ce risque pour votre vie privée et votre portefeuille"}
+{"id":"lib037","date":"08-15 18:16","source":"Libération","rubrique":"France","titre":"Classement mondial de Shanghai : Harvard toujours au sommet malgré le bras de fer avec Trump, Paris-Saclay à la 13e place"}
+{"id":"lib038","date":"08-15 18:04","source":"Libération","rubrique":"France","titre":"Espagne : un séisme rare de magnitude 5 secoue Grenade, pas de victimes"}
+{"id":"fs013","date":"08-15 18:00","source":"Futura Sciences","rubrique":"Sciences","titre":"Oubliez le débat entre graisses et glucides : cette étude révèle le vrai secret pour protéger votre cœur"}
+{"id":"lm036","date":"08-15 17:57","source":"Le Monde","rubrique":"International","titre":"Les images de la libération de prisonniers politiques au Venezuela"}
+{"id":"lm037","date":"08-15 17:30","source":"Le Monde","rubrique":"Culture","titre":"« Les Cent Ans de la Route 66. Un road-trip de légende », sur Arte.tv : la « Mother Road » raconte l’Amérique profonde, au-delà des clichés"}
+{"id":"fs014","date":"08-15 17:00","source":"Futura Sciences","rubrique":"Sciences","titre":"Titan ne fera aucun cadeau : ce test extrême prépare Dragonfly à l’épreuve qui l’attend"}
+{"id":"bbc017","date":"08-15 16:40","source":"BBC News","rubrique":"International","titre":"South Korea proposes talks to officially end war with North"}
+{"id":"lib039","date":"08-15 16:35","source":"Libération","rubrique":"France","titre":"Un poche pour la plage : «l’Homme qui aimait les îles», «le Trou», «les Eveillées»…"}
+{"id":"lib040","date":"08-15 16:32","source":"Libération","rubrique":"France","titre":"Sud du Liban : neuf morts, dont des enfants, dans des frappes israéliennes"}
+{"id":"lib041","date":"08-15 16:18","source":"Libération","rubrique":"France","titre":"En Bretagne, la quête d’eau des maraîchers frappés de plein fouet par la sécheresse"}
+{"id":"lm038","date":"08-15 16:11","source":"Le Monde","rubrique":"Culture","titre":"A Locarno, le Léopard d’or est attribué à « You Don’t Belong Here », du Roumain Florin Serban"}
+{"id":"fi029","date":"08-15 15:46","source":"franceinfo","rubrique":"France","titre":"Le parquet de Paris ouvre une enquête sur le piratage du système d'information des impôts"}
+{"id":"bbc018","date":"08-15 15:41","source":"BBC News","rubrique":"International","titre":"Family stranded at sea for 16 hours after jet ski capsized in Thailand"}
+{"id":"bbc019","date":"08-15 15:41","source":"BBC News","rubrique":"International","titre":"World's Ugliest Dog contest crowns 2026 winner"}
+{"id":"lib042","date":"08-15 15:33","source":"Libération","rubrique":"France","titre":"Piratage d’impots.gouv : «Les réductions des dépenses publiques conduisent aussi à plus de vols de données fiscales»"}
+{"id":"lib043","date":"08-15 15:23","source":"Libération","rubrique":"France","titre":"Bouches-du-Rhône : des associations féministes s’insurgent contre un concert ce samedi de Naps, condamné pour viol"}
+{"id":"lm039","date":"08-15 14:30","source":"Le Monde","rubrique":"Culture","titre":"Plainte de Jordan Bardella contre le rappeur Kerchak : « Judiciariser une punchline relève soit d’une cécité culturelle, soit d’un contresens volontaire »"}
