@@ -42,11 +42,16 @@
       "contenu": "Le corps de l'article en Markdown restreint.\n\nSeuls ces éléments sont rendus par l'application : **gras**, *italique*, listes commençant par un tiret, séparateur `---`, sous-titres `###`, et liens `[texte](url)`.\n\nChaque affirmation doit être adossée à une dépêche de veille.jsonl. Attribuer explicitement : « selon le président ukrainien », « d'après *Le Monde* ».",
       "_mots_cles": "Ne pas renseigner : Airtable les génère après la publication, à partir du texte.",
       "_sources": [
-        "Des identifiants de dépêche, pas des URL : push_edition.py va chercher l'adresse",
-        "réelle dans veille/AAAA-MM-JJ.json et écrit « Support · titre | url » dans Airtable.",
+        "L'identifiant de la dépêche, un point médian, le début de son titre. Les deux",
+        "moitiés se recoupent à la publication : concordantes, la source est écrite ;",
+        "divergentes, la dépêche est retrouvée par son titre et l'identifiant corrigé ;",
+        "sans correspondance, la source est retirée plutôt qu'écrite de travers.",
         "Une URL écrite en toutes lettres passe quand même : utile pour une édition faite à la main."
       ],
-      "sources": ["lm042", "fi017"]
+      "sources": [
+        "0811-lm042 · Canicule : la vigilance orange gagne 78 départements",
+        "0811-fi017 · Plus de 15 % du parc nucléaire indisponible"
+      ]
     },
     {
       "_role": "Le décryptage : un seul par édition, 400 à 600 mots, structuré en sous-titres.",
@@ -58,7 +63,11 @@
       "contenu": "### Le fait\n\nCe qui s'est passé, en quelques lignes.\n\n### Le mécanisme\n\nPourquoi ça se produit. C'est ici que se joue l'intérêt du brief : expliquer le rouage, pas répéter la nouvelle.\n\n### Ce qu'il faut retenir\n\nCe qui est réellement en jeu, au-delà de l'événement.",
       "chiffre": "95 %",
       "legende_chiffre": "ce que ce nombre mesure, formulé pour être lu seul",
-      "sources": ["lm008", "f24011", "bbc003"]
+      "sources": [
+        "0811-lm008 · Les mégafeux gagnent le nord de la péninsule Ibérique",
+        "0811-f24011 · Sécheresse : l'Europe connaît sa période la plus chaude",
+        "0811-bbc003 · Heatwave grips southern Europe for a third week"
+      ]
     },
     {
       "_role": "Un article qui repose sur une citation : « C'est leur avis » ou « C'est qui ? ».",
@@ -69,7 +78,7 @@
       "citation": "La phrase, sans les guillemets — l'application les ajoute.",
       "auteur_citation": "Prénom Nom, qualité",
       "contenu": "Le contexte du propos, ce qu'il éclaire, et éventuellement ce qui lui répond ailleurs dans l'actualité.",
-      "sources": ["lib021"]
+      "sources": ["0811-lib021 · Le prix de référence du gaz augmente de 5,6 %"]
     }
   ]
 }

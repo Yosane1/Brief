@@ -18,7 +18,6 @@ Format attendu : voir editions/_modele.json
 """
 import argparse
 import json
-import re
 import sys
 from datetime import datetime, timezone
 from pathlib import Path
@@ -30,6 +29,8 @@ for flux in (sys.stdout, sys.stderr):
 
 sys.path.insert(0, __file__.rsplit("\\", 1)[0].rsplit("/", 1)[0])
 from airtable import select, create, update, delete, esc  # noqa: E402
+from identifiants import (SEUIL_ACCORD, cataloguer, concorde, corriger,  # noqa: E402
+                          decouper, indexer, mots, recouvrement, verifiable)
 
 CHAMPS_EDITION = {
     "titre": "Titre", "date": "Date", "numero": "Numéro", "type": "Type",
@@ -53,67 +54,116 @@ CHAMPS_ARTICLE = {
 }
 
 
-# Un préfixe de source peut contenir des chiffres — « f24 » pour France 24 —
-# d'où la première lettre isolée. Ce motif ne sert qu'à distinguer un
-# identifiant introuvable d'une source écrite à la main : la résolution, elle,
-# se fait par recherche dans la table.
-ID_DEPECHE = re.compile(r"^[a-z][a-z0-9]{1,3}\d{3}$")
-
-
 def mappe(source, table):
     return {v: source[k] for k, v in table.items() if source.get(k) not in (None, "")}
 
 
 def charger_liens(jour, dossier="veille"):
     """
-    Table « identifiant de dépêche → source — titre | url ».
+    Table « identifiant de dépêche → [source, titre, url] ».
 
     On cherche d'abord le fichier du jour, celui que la collecte a déposé
     quarante minutes avant la rédaction. S'il manque — édition republiée des
     mois plus tard, date décalée d'un jour — on relit tout le dossier plutôt
-    que d'abandonner : ces fichiers ne sont jamais écrasés, l'identifiant s'y
-    trouve forcément.
+    que d'abandonner.
+
+    Ce repli était un piège tant que les identifiants n'étaient pas datés : les
+    numéros repartant à 001 chaque soir, les 189 identifiants du 11 août
+    existaient tous le 12 en désignant d'autres dépêches, et la fusion les
+    écrasait par les plus récents — sans un mot, avec des sources parfaitement
+    formées et entièrement fausses. `indexer` écarte désormais toute forme que
+    deux collectes se disputent, plutôt que de trancher au hasard.
     """
     base = Path(dossier)
     direct = base / f"{jour}.json"
     fichiers = [direct] if direct.exists() else sorted(base.glob("*.json"))
+    if not direct.exists():
+        print(f"  ⚠ veille/{jour}.json absent : repli sur {len(fichiers)} collecte(s)")
 
-    table = {}
+    table, ambigus, catalogue = {}, set(), []
     for f in fichiers:
         try:
             brut = json.loads(f.read_text(encoding="utf-8"))
         except (OSError, ValueError) as e:
             print(f"  ⚠ {f} illisible ({e}) — ignoré")
             continue
-        for cle, valeur in brut.items():
-            source, titre, url = (list(valeur) + ["", "", ""])[:3]
-            table[cle] = f"{source} · {titre} | {url}"
-    return table
+        indexer(brut, f.stem, table, ambigus)
+        catalogue += cataloguer(brut)
+
+    if ambigus:
+        apercu = ", ".join(sorted(ambigus)[:5])
+        print(f"  ⚠ {len(ambigus)} identifiant(s) revendiqué(s) par plusieurs "
+              f"collectes, écarté(s) plutôt que devinés : {apercu}"
+              + ("…" if len(ambigus) > 5 else ""))
+    return table, catalogue
 
 
-def resoudre_sources(sources, liens, titre_article):
+def ligne_de(entree):
+    source, titre, url = (list(entree) + ["", "", ""])[:3]
+    return f"{source} · {titre} | {url}"
+
+
+def resoudre_sources(sources, liens, catalogue, titre_article, vocabulaire=None):
     """
-    Détend les identifiants ; laisse passer tout le reste inchangé.
+    Détend les citations, et n'écrit que ce qui est vérifié.
 
-    Une édition écrite à la main, ou reprise d'avant ce format, cite ses URL
-    directement — elle doit continuer de fonctionner.
+    Une source fausse est pire qu'une source absente : elle se lit comme une
+    caution. L'article reste parfaitement lisible sans elle, tandis qu'une
+    dépêche sans rapport affirme au lecteur quelque chose de faux sur la
+    provenance de ce qu'il vient de lire. On écarte donc, on ne se contente
+    plus de signaler.
+
+    Trois cas, du plus sûr au plus fragile :
+
+      • citation en deux moitiés — l'identifiant et l'amorce du titre se
+        recoupent, la source est prouvée et rien d'autre n'a à être vérifié ;
+        ils divergent, on retrouve la dépêche par son titre et on corrige, ou
+        on écarte ;
+      • citation nue, héritée d'avant ce format — on retombe sur le contrôle
+        par vocabulaire, qui ne voit que la source n'ayant aucun rapport ;
+      • URL ou ligne déjà résolue — laissée intacte.
     """
-    lignes, manquants = [], []
+    lignes, ecartees, corrigees = [], [], []
     for s in sources:
         if isinstance(s, dict):            # {"titre": …, "url": …}
             lignes.append(f"{s.get('titre', '')} | {s.get('url', '')}")
             continue
-        s = str(s).strip()
-        if s in liens:                     # la table tranche, pas le motif
-            lignes.append(liens[s])
+
+        brut = str(s).strip()
+        ident, amorce = decouper(brut)
+        if not ident:                      # URL, titre libre, ligne résolue
+            lignes.append(brut)
             continue
-        if ID_DEPECHE.match(s):            # gardé tel quel : mieux vaut une
-            manquants.append(s)            # trace qu'une source effacée
-        lignes.append(s)
-    if manquants:
-        print(f"  ⚠ « {titre_article[:45]} » : {', '.join(manquants)} "
-              f"introuvable(s) dans veille/")
-    return "\n".join(lignes)
+
+        entree = liens.get(ident)          # la table tranche, pas le motif
+
+        if verifiable(amorce):
+            if entree and recouvrement(amorce, entree[1]) >= SEUIL_ACCORD:
+                lignes.append(ligne_de(entree))
+                continue
+            trouve = corriger(ident, amorce, catalogue)
+            if trouve:
+                lignes.append(trouve["ligne"])
+                corrigees.append((ident, trouve["id"], trouve["titre"]))
+            else:
+                ecartees.append((ident, "le titre cité ne désigne aucune dépêche du jour"))
+            continue
+
+        # Citation nue : l'amorce manque ou ne pèse pas assez pour prouver.
+        if not entree:
+            ecartees.append((ident, "absent de veille/"))
+        elif vocabulaire and not concorde(vocabulaire, entree[1]):
+            ecartees.append((ident, f"aucun mot commun avec l'article — « {entree[1][:55]} »"))
+        else:
+            lignes.append(ligne_de(entree))
+
+    for ident, neuf, titre in corrigees:
+        print(f"  ↻ « {titre_article[:40]} » : {ident} → {neuf}")
+        print(f"      {titre[:70]}")
+    for ident, motif in ecartees:
+        print(f"  ✂ « {titre_article[:40]} » : {ident} écarté, {motif}")
+
+    return "\n".join(lignes), len(ecartees), len(corrigees)
 
 
 def numero_suivant():
@@ -136,9 +186,12 @@ def publier(chemin, brouillon=False):
     ed.setdefault("genere_par", "Claude Code Cloud")
     ed["statut"] = "Brouillon" if brouillon else ed.get("statut", "Publiée")
     if not ed.get("temps_lecture"):
-        mots = sum(len((a.get("contenu", "") + a.get("chapo", "")).split())
-                   for a in articles)
-        ed["temps_lecture"] = max(2, round(mots / 220))
+        # `mots` est le nom de la fonction importée d'identifiants.py, dont on
+        # se sert plus bas : une variable locale du même nom la masquerait dans
+        # toute la fonction, et la publication échouerait au premier article.
+        volume = sum(len((a.get("contenu", "") + a.get("chapo", "")).split())
+                     for a in articles)
+        ed["temps_lecture"] = max(2, round(volume / 220))
 
     champs = mappe(ed, CHAMPS_EDITION)
 
@@ -164,13 +217,19 @@ def publier(chemin, brouillon=False):
         action = "créée"
 
     # --- Articles ------------------------------------------------------------
-    liens = charger_liens(ed["date"])
-    lignes = []
+    liens, catalogue = charger_liens(ed["date"])
+    lignes, ecartees, corrigees = [], 0, 0
     for i, a in enumerate(articles):
         a.setdefault("ordre", i + 1)
         a.setdefault("date", ed["date"])
         if isinstance(a.get("sources"), list):
-            a["sources"] = resoudre_sources(a["sources"], liens, a.get("titre", ""))
+            # Le titre et le chapô suffisent à dire de quoi parle l'article ;
+            # le contenu n'ajouterait que du bruit au rapprochement.
+            vocabulaire = mots(a.get("titre", "")) | mots(a.get("chapo", ""))
+            a["sources"], ecarts, corrections = resoudre_sources(
+                a["sources"], liens, catalogue, a.get("titre", ""), vocabulaire)
+            ecartees += ecarts
+            corrigees += corrections
         a.pop("mots_cles", None)   # toléré dans un JSON ancien, jamais réécrit
         ligne = mappe(a, CHAMPS_ARTICLE)
         ligne["Édition"] = [rec_id]
@@ -181,6 +240,12 @@ def publier(chemin, brouillon=False):
 
     print(f"✓ Édition {slug} {action} — {len(lignes)} article(s), "
           f"statut « {ed['statut']} », {champs.get('Temps de lecture', '?')} min de lecture")
+    if corrigees:
+        print(f"  ↻ {corrigees} source(s) rétablie(s) d'après le titre cité")
+    if ecartees:
+        # Non publiées : mieux vaut un article sans source qu'un article
+        # accompagné d'une dépêche qui parle d'autre chose.
+        print(f"  ✂ {ecartees} source(s) écartée(s), faute d'avoir pu être vérifiée(s)")
     return rec_id
 
 

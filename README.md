@@ -241,9 +241,21 @@ La collecte écrit donc deux fichiers :
 | `veille/AAAA-MM-JJ.json` | les mêmes, plus **URL** et **résumé** | jamais Claude |
 
 Claude choisit ses sujets sur les titres, puis réclame les résumés des seuls
-candidats retenus — `python scripts/depeches.py lm042 fi017 …`. Les URL, il ne
-les voit jamais : il cite des identifiants, et `push_edition.py` les résout à
-la publication.
+candidats retenus — `python scripts/depeches.py 0818-lm042 0818-fi017 …`. Les
+URL, il ne les voit jamais : il cite l'identifiant de la dépêche suivi du début
+de son titre, et la publication résout le tout.
+
+```
+0818-lm042 · Canicule : la vigilance orange gagne 78 départements
+```
+
+Les deux moitiés désignent la même dépêche par deux chemins indépendants. Un
+identifiant seul n'a aucune redondance : recopié à un rang près, il se résout
+parfaitement sur autre chose, et rien ne peut le voir. Avec le titre à côté, la
+publication recoupe — concordance, la source est écrite ; divergence, la dépêche
+est retrouvée par son titre et l'identifiant **corrigé** ; aucune correspondance,
+la source est **retirée**. Un article sans source vaut mieux qu'un article
+accompagné d'une dépêche qui parle d'autre chose.
 
 Le contexte d'une session passe de 133 à 60 Ko, dont 13 Ko de résumés
 réellement utiles. **Et plus aucune URL ne peut être inventée ou tronquée** :

@@ -10,3 +10,12 @@ __pycache__/
 *.pyc
 .DS_Store
 Thumbs.db
+
+# Miroir local des images servies depuis pCloud. L'application les charge par
+# leur URL (filedn.com), jamais depuis le dépôt : neuf mégaoctets de binaires
+# n'y auraient que des inconvénients.
+image/
+
+# Copies de travail laissées à côté des fichiers qu'elles doublent
+* - Copie*.html
+* - backup.js

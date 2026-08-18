@@ -16,10 +16,15 @@ import sys
 
 sys.path.insert(0, __file__.rsplit("\\", 1)[0].rsplit("/", 1)[0])
 from airtable import select, esc  # noqa: E402
+from identifiants import MOTIF, concorde, mots  # noqa: E402
 
 # Un identifiant de dépêche qui a survécu jusqu'à Airtable, c'est une source
-# que push_edition.py n'a pas su détendre : le lecteur verrait « lm042 ».
-ID_NON_RESOLU = re.compile(r"^[a-z][a-z0-9]{1,3}\d{3}$")
+# que push_edition.py n'a pas su détendre : le lecteur verrait « 0815-lm042 ».
+ID_NON_RESOLU = MOTIF
+
+# Une source résolue s'écrit « Source · Titre | URL ». Le titre est ce qui
+# permet de dire si la dépêche a quelque chose à voir avec l'article.
+SOURCE_RESOLUE = re.compile(r"^(?P<source>[^·|]+)·(?P<titre>[^|]*)(\|(?P<url>.*))?$")
 
 # Le tiret cadratin est proscrit par la règle 7 de la procédure. Il revient
 # tout seul si on ne le surveille pas : autant le dire ici plutôt que de le
@@ -122,6 +127,28 @@ def verifier(jour=None):
             if bruts:
                 alertes.append(f"« {titre} » : source(s) non résolue(s) "
                                f"{', '.join(bruts)}, dépêche absente de veille/")
+
+            # Une source qui ne partage pas un mot avec l'article qu'elle est
+            # censée avoir servi à écrire est le signe d'un identifiant voisin
+            # recopié à la place du bon. Cette erreur-là traversait tout le
+            # pipeline sans laisser de trace : l'identifiant existe, il se
+            # résout, il pointe simplement sur une autre dépêche. Le 15 août
+            # 2026, trois articles de l'extra du samedi citaient ainsi des
+            # dépêches sur le Liechtenstein, les réseaux sociaux et l'Euro de
+            # natation pour des sujets qui parlaient de Locarno, du triangle
+            # des Bermudes et du mariage avec un personnage de manga.
+            vocabulaire = mots(f.get("Titre")) | mots(f.get("Chapô"))
+            if vocabulaire:
+                for ligne in f["Sources"].splitlines():
+                    trouve = SOURCE_RESOLUE.match(ligne.strip())
+                    if not trouve:
+                        continue
+                    titre_depeche = trouve.group("titre").strip()
+                    if titre_depeche and not concorde(vocabulaire, titre_depeche):
+                        avertissements.append(
+                            f"« {titre} » : source sans rapport apparent — "
+                            f"« {titre_depeche[:60]} »"
+                        )
         if motsCles(f.get("Mots-clés")):
             avec_mots += 1
         if r not in RUBRIQUES_CONNUES:

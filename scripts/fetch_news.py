@@ -27,6 +27,11 @@ Claude ne cite que des identifiants.
 Le fichier du dossier `veille/` n'est jamais écrasé : une édition republiée des
 mois plus tard y retrouve ses sources.
 
+Les identifiants portent leur date — `0815-lm001` — parce que les numéros
+repartent à 001 à chaque collecte. Sans ce préfixe, résoudre une édition contre
+la veille d'un autre jour produisait des sources bien formées et entièrement
+fausses, sans que rien ne le signale. Voir identifiants.py.
+
 Usage :
     python scripts/fetch_news.py                        # dernières 24 h
     python scripts/fetch_news.py --hours 48
@@ -41,6 +46,9 @@ import subprocess
 import sys
 from datetime import datetime, timedelta, timezone
 from email.utils import parsedate_to_datetime
+
+sys.path.insert(0, __file__.rsplit("\\", 1)[0].rsplit("/", 1)[0])
+from identifiants import prefixe  # noqa: E402
 
 for flux in (sys.stdout, sys.stderr):
     if hasattr(flux, "reconfigure"):
@@ -187,13 +195,18 @@ def collect(hours):
 
     items.sort(key=lambda i: i["date"] or tres_vieux, reverse=True)
 
-    # Identifiants attribués après tri : « lm001 » est la dépêche du Monde la
-    # plus récente, ce qui rend le fichier lisible de haut en bas.
+    # Identifiants attribués après tri : « 0815-lm001 » est la dépêche du Monde
+    # la plus récente du 15 août, ce qui rend le fichier lisible de haut en bas.
+    #
+    # Le préfixe de date n'est pas décoratif : les numéros repartent à 001 à
+    # chaque collecte, si bien qu'un identifiant nu ne désigne une dépêche que
+    # tant qu'on sait de quel soir il vient. Voir identifiants.py.
+    date = prefixe(datetime.now(timezone.utc).astimezone(PARIS).strftime("%Y-%m-%d"))
     compteurs = {}
     for it in items:
         code = CODES.get(it["source"]) or re.sub(r"[^a-z]", "", it["source"].lower())[:3]
         compteurs[code] = compteurs.get(code, 0) + 1
-        it["id"] = f"{code}{compteurs[code]:03d}"
+        it["id"] = f"{date}-{code}{compteurs[code]:03d}"
 
     return items
 

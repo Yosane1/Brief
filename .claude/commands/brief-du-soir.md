@@ -51,7 +51,7 @@ Le fichier tient en une ligne d'en-tête suivie d'**une dépêche par ligne**,
 classées par date décroissante :
 
 ```json
-{"id":"lm042","date":"08-11 21:56","source":"Le Monde","rubrique":"France","titre":"…"}
+{"id":"0811-lm042","date":"08-11 21:56","source":"Le Monde","rubrique":"France","titre":"…"}
 ```
 
 **Ni résumés ni URL : seulement de quoi choisir.** Sur les quelque 190 dépêches
@@ -80,7 +80,7 @@ juger si un sujet mérite le décryptage.
 **b. Lecture.** Récupère leurs résumés en **une seule commande** :
 
 ```bash
-python scripts/depeches.py lm042 fi017 bbc003 lib021 …
+python scripts/depeches.py 0811-lm042 0811-fi017 0811-bbc003 0811-lib021 …
 ```
 
 Sois large : un résumé pèse 250 octets, un article écrit sur la foi d'un titre
@@ -167,7 +167,10 @@ les voisins sont des éditions parues, pas des gabarits.
       "thematique": "International",
       "chapo": "Une ou deux phrases de mise en bouche.",
       "contenu": "Le corps de l'article, en Markdown restreint.",
-      "sources": ["lm042", "fi017"],
+      "sources": [
+        "0811-lm042 · Canicule : la vigilance orange gagne 78 départements",
+        "0811-fi017 · Plus de 15 % du parc nucléaire indisponible"
+      ],
       "a_la_une": true,
       "chiffre": "2 000",
       "legende_chiffre": "morts depuis janvier",
@@ -178,10 +181,39 @@ les voisins sont des éditions parues, pas des gabarits.
 }
 ```
 
-**`sources` ne contient que des identifiants de dépêche**, ceux de
-`veille.jsonl` — jamais d'URL, jamais de titre. Deux ou trois par article. Ne
-cite que des identifiants que tu as réellement lus : un identifiant inventé
-n'aboutira nulle part et sera signalé à la vérification.
+**Chaque source s'écrit en deux moitiés : l'identifiant, un point médian, le
+début du titre.** Deux ou trois sources par article. Jamais d'URL — la
+résolution s'en charge.
+
+```
+0811-lm042 · Canicule : la vigilance orange gagne 78 départements
+```
+
+**Recopie les deux depuis la ligne de la dépêche, d'un bloc, sans rien écrire
+de mémoire.** Six à dix mots de titre suffisent ; recopie-les tels quels,
+n'abrège pas, ne reformule pas. Le préfixe est celui du jour de collecte —
+`0811-` pour le 11 août.
+
+Cette redondance est là pour une raison précise. Un identifiant seul est un
+numéro sans contrôle : une erreur d'un rang ne se voit pas, `0811-lm003` existe,
+il se résout, il pointe simplement sur un autre sujet. Le 15 août 2026, un
+article sur Locarno, le triangle des Bermudes et le mariage avec un personnage
+de manga s'est retrouvé sourcé par le Liechtenstein, une loi sur les réseaux
+sociaux et l'Euro de natation — trois voisins immédiats des bons, et rien dans
+le pipeline ne pouvait le voir.
+
+Avec le titre à côté, la publication recoupe les deux :
+
+- ils concordent, la source est écrite ;
+- ils divergent, la dépêche est retrouvée par son titre et **l'identifiant est
+  corrigé** ;
+- le titre ne correspond à rien, **la source est retirée** — un article sans
+  source vaut mieux qu'un article accompagné d'une dépêche qui parle d'autre
+  chose.
+
+Autrement dit : un titre recopié fidèlement rattrape un identifiant faux, alors
+qu'un identifiant faux tout seul ne se rattrape pas. C'est le titre qui porte la
+preuve. Les réserves remontent dans la réponse de publication — relis-les.
 
 **N'écris pas de mots-clés.** Airtable les génère lui-même après la
 publication, à partir du texte de l'article, et il les tire plus volontiers

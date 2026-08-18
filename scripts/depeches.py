@@ -15,15 +15,22 @@ Sois large dans la demande : mieux vaut soixante résumés lus qu'un article
 écrit sur la foi d'un titre. Un résumé pèse environ 250 octets, un article
 approximatif se paie en crédibilité.
 
+Les identifiants s'écrivent avec leur date — `0815-lm001` — mais la forme nue
+d'avant le préfixe reste acceptée : les éditions anciennes doivent pouvoir se
+republier telles quelles.
+
 Usage :
-    python scripts/depeches.py lm001 fi017 bbc003
-    python scripts/depeches.py lm001,fi017,bbc003
+    python scripts/depeches.py 0815-lm001 0815-fi017 0815-bbc003
+    python scripts/depeches.py 0815-lm001,0815-fi017
     python scripts/depeches.py --jour 2026-08-11 lm001
 """
 import argparse
 import json
 import sys
 from pathlib import Path
+
+sys.path.insert(0, __file__.rsplit("\\", 1)[0].rsplit("/", 1)[0])
+from identifiants import indexer  # noqa: E402
 
 for flux in (sys.stdout, sys.stderr):
     if hasattr(flux, "reconfigure"):
@@ -47,7 +54,12 @@ def charger(jour=None, dossier="veille"):
         cible = f"{dossier}/{jour}.json" if jour else f"{dossier}/"
         sys.exit(f"✗ Aucune collecte trouvée dans {cible} — "
                  f"le workflow de collecte a-t-il tourné ?")
-    return json.loads(chemins[0].read_text(encoding="utf-8")), chemins[0]
+    brut = json.loads(chemins[0].read_text(encoding="utf-8"))
+    # Une seule collecte est chargée : les deux formes d'un identifiant y
+    # désignent forcément la même dépêche, aucune ambiguïté possible. La table
+    # compte donc plus d'entrées que de dépêches, d'où le décompte à part.
+    table, _ = indexer(brut, chemins[0].stem)
+    return table, chemins[0], len(brut)
 
 
 if __name__ == "__main__":
@@ -64,7 +76,7 @@ if __name__ == "__main__":
                 vus.add(i)
                 demandes.append(i)
 
-    detail, chemin = charger(a.jour, a.dossier)
+    detail, chemin, depeches = charger(a.jour, a.dossier)
 
     introuvables = []
     for i in demandes:
@@ -80,5 +92,5 @@ if __name__ == "__main__":
     if introuvables:
         print(f"⚠ {len(introuvables)} identifiant(s) absent(s) de {chemin} : "
               f"{', '.join(introuvables)}", file=sys.stderr)
-    print(f"{len(demandes) - len(introuvables)} résumé(s) sur {len(detail)} dépêches.",
+    print(f"{len(demandes) - len(introuvables)} résumé(s) sur {depeches} dépêches.",
           file=sys.stderr)
