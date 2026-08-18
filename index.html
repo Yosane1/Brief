@@ -1130,6 +1130,50 @@ mark{background:color-mix(in srgb, var(--accent) 22%, transparent); color:inheri
   .fil-piste > li{flex:0 0 74%; scroll-snap-align:start}
 }
 
+/* Sur écran large, la répartition à parts égales tournait contre elle-même :
+   huit cartes sur une colonne de 680px, c'est 85px chacune, et huit titres
+   coupés au troisième mot. Les cartes gardent donc une largeur lisible et la
+   piste déborde plutôt que de comprimer.
+
+   `flex:1 0 12rem` tient les deux besoins d'un coup : la base fixe la largeur
+   minimale et le zéro de rétrécissement l'y maintient, la croissance laissant
+   deux ou trois cartes occuper toute la ligne comme auparavant. Trois tiennent
+   à l'écran, la quatrième dépasse assez pour annoncer la suite.
+
+   Reste à pouvoir la parcourir : peu de souris savent défiler horizontalement.
+   D'où deux flèches, posées par `equiperFil` seulement quand il y a réellement
+   de quoi défiler. Elles se rangent au bout de la ligne de titre, où elles ne
+   recouvrent aucune carte. Rien de tout ceci ne concerne le téléphone, qui
+   défile au doigt, une carte à la fois. */
+/* Les flèches n'existent pas hors de l'écran large. La règle est posée
+   avant la requête média qui la relève, sans quoi, à spécificité égale,
+   c'est la dernière écrite qui l'emporterait — et elles ne paraîtraient
+   jamais. */
+.fil-fleche{display:none}
+
+@media (min-width:641px){
+  .fil{position:relative}
+  .fil-piste{scroll-behavior:smooth}
+  .fil-piste > li{flex:1 0 12rem}
+  .fil-titre{padding-right:72px}
+
+  .fil-fleche{
+    display:grid; place-items:center; position:absolute; top:-.2rem;
+    width:26px; height:26px; border-radius:99px;
+    background:var(--fond-2); color:var(--texte-2); border:1px solid var(--bord);
+    opacity:0; pointer-events:none;
+    transition:opacity .18s, background .18s, color .18s;
+  }
+  .fil-fleche[data-actif="1"]{opacity:1; pointer-events:auto}
+  .fil-fleche:hover{background:var(--fond-3); color:var(--texte); border-color:var(--bord-fort)}
+  .fil-fleche svg{
+    width:14px; height:14px; fill:none; stroke:currentColor;
+    stroke-width:2.2; stroke-linecap:round; stroke-linejoin:round;
+  }
+  .fil-fleche.arriere{right:32px}
+  .fil-fleche.avant{right:0}
+}
+
 /* ── Garder un article ─────────────────────────────────────────────────── */
 .article-tete{display:flex; align-items:flex-start; gap:.5rem}
 .article-tete h3{flex:1; min-width:0}
@@ -2651,6 +2695,7 @@ const FIL = {
               <span class="fil-carte-titre">${prose(v.titre)}</span>
             </a></li>`).join("")}</ul>
         </nav>`);
+      equiperFils(hote);
     }
   },
 };
@@ -3051,6 +3096,7 @@ async function vueEdition(slug) {
 
   EDITION_LUE = ed.slug;
   observateurSommaire = suivreSommaire();
+  equiperFils();
 
   // L'édition n'est plus marquée lue ici : afficher n'est pas lire. C'est le
   // défilement qui s'en charge, passé LECTURE.SEUIL_LUE.
@@ -3086,6 +3132,56 @@ async function vueEdition(slug) {
  * là que l'œil se pose. Quand plusieurs articles courts tiennent dans cette
  * bande, seul le premier est retenu — deux repères simultanés n'en font aucun.
  */
+/* ── Le fil qui défile, à la souris ────────────────────────────────────────
+ *
+ * Sur écran large les cartes gardent une largeur lisible, donc la piste déborde
+ * dès qu'elles sont nombreuses. Encore faut-il pouvoir la parcourir : peu de
+ * souris savent défiler horizontalement, et une barre masquée n'annonce rien.
+ *
+ * Deux flèches, donc — mais seulement là où il y a réellement de quoi défiler,
+ * et pas au téléphone, où le fil se parcourt déjà au doigt. C'est `data-actif`
+ * qui les allume, réévalué à chaque défilement et à chaque changement de
+ * largeur : arrivé au bout, la flèche correspondante s'éteint plutôt que de
+ * rester là à ne rien faire.
+ */
+const FLECHE_FIL = sens => `
+  <button class="fil-fleche ${sens < 0 ? "arriere" : "avant"}" type="button" data-actif="0"
+          aria-label="${sens < 0 ? "Cartes précédentes" : "Cartes suivantes"}">
+    <svg viewBox="0 0 24 24" aria-hidden="true">
+      <path d="${sens < 0 ? "M15 5l-7 7 7 7" : "M9 5l7 7-7 7"}"/>
+    </svg>
+  </button>`;
+
+function equiperFil(piste) {
+  const fil = piste.closest(".fil");
+  if (!fil || fil.querySelector(".fil-fleche")) return;
+  // En tête du fil : au clavier, on rencontre les flèches avant les cartes
+  // qu'elles commandent, et non après les avoir toutes traversées.
+  fil.insertAdjacentHTML("afterbegin", FLECHE_FIL(-1) + FLECHE_FIL(1));
+  const arriere = fil.querySelector(".fil-fleche.arriere");
+  const avant = fil.querySelector(".fil-fleche.avant");
+
+  const ajuster = () => {
+    // Un pixel de tolérance : des largeurs fractionnaires font « déborder » de
+    // presque rien des pistes qui tiennent en réalité.
+    const deborde = piste.scrollWidth - piste.clientWidth > 1;
+    const reste = piste.scrollWidth - piste.clientWidth - piste.scrollLeft;
+    arriere.dataset.actif = deborde && piste.scrollLeft > 1 ? "1" : "0";
+    avant.dataset.actif = deborde && reste > 1 ? "1" : "0";
+  };
+
+  arriere.onclick = () => piste.scrollBy({ left: -piste.clientWidth * 0.8, behavior: "smooth" });
+  avant.onclick = () => piste.scrollBy({ left: piste.clientWidth * 0.8, behavior: "smooth" });
+  piste.addEventListener("scroll", ajuster, { passive: true });
+  // La piste change de largeur avec la fenêtre, et les cartes avec elle : un
+  // observateur suit les deux sans qu'on ait à écouter le redimensionnement.
+  new ResizeObserver(ajuster).observe(piste);
+  ajuster();
+}
+
+const equiperFils = racine =>
+  (racine || document).querySelectorAll(".fil-piste").forEach(equiperFil);
+
 function suivreSommaire() {
   const liens = new Map($$(".sommaire a").map(a => [a.getAttribute("href").slice(1), a]));
   if (!liens.size || !("IntersectionObserver" in window)) return null;
