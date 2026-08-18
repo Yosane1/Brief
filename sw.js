@@ -10,7 +10,7 @@
 
 // Incrémenter à chaque déploiement : l'activation purge les caches des versions
 // précédentes.
-const VERSION = "brief-v4";
+const VERSION = "brief-v5";
 const COQUILLE = [
   "./",
   "./index.html",
@@ -146,6 +146,14 @@ self.addEventListener("message", e => {
 self.addEventListener("push", e => {
   let d = {};
   try { d = e.data ? e.data.json() : {}; } catch { d = {}; }
+  // Un point sur l'icône, en plus de la notification. Celle-ci s'efface dès
+  // qu'on la balaie, lue ou non ; le point reste jusqu'à l'ouverture. Le
+  // service worker ne peut pas compter les éditions en attente — la liste des
+  // lues vit dans localStorage, hors de sa portée — d'où un point sans nombre,
+  // que la page remplace par le compte exact au prochain démarrage.
+  if (self.navigator && "setAppBadge" in self.navigator) {
+    self.navigator.setAppBadge().catch(() => {});
+  }
   e.waitUntil(afficher(
     d.titre || "Votre brief du soir est arrivé",
     d.corps || "",

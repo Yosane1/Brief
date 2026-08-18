@@ -290,6 +290,55 @@ main{width:var(--lg); margin-inline:auto; padding:2.5rem 0 calc(5rem + var(--pla
 .sommaire a.actif{color:var(--texte); font-weight:700}
 .sommaire li.actif::before{color:var(--accent)}
 
+/* ── La colonne de bureau ──────────────────────────────────────────────────
+ *
+ * L'application est une colonne de 680 pixels : la bonne largeur pour lire, et
+ * la seule qu'on ait jamais dessinée. Sur un écran large, les trois quarts de
+ * la surface ne servaient à rien, pendant que le sommaire restait replié dans
+ * un `<details>` qu'il fallait rouvrir à chaque édition.
+ *
+ * Au-delà de 1100 pixels il se déplie donc à gauche, collant, et la colonne de
+ * lecture garde exactement sa largeur — on ne gagne rien à étirer un texte, et
+ * une ligne de 1100 pixels se lit nettement plus mal qu'une de 680. L'espace
+ * perdu se met à servir sans que la lecture change en quoi que ce soit.
+ *
+ * La colonne réemploie la classe `sommaire` plutôt que de se refaire un style :
+ * la numérotation, les pastilles de rubrique et le repère de l'article en cours
+ * viennent tels quels. Seul le `<details>` est masqué ici — c'est lui qui sert
+ * en deçà, inchangé. */
+.colonne-bureau{display:none}
+.colonne-titre{
+  font-size:.68rem; font-weight:700; letter-spacing:.1em; text-transform:uppercase;
+  color:var(--texte-3); margin-bottom:.15rem;
+}
+
+@media (min-width:1100px){
+  main.avec-colonne{
+    width:var(--lg-large);
+    display:grid;
+    /* La colonne de lecture est plafonnée à sa largeur d'origine ; `minmax`
+       avec un minimum de zéro l'autorise à se réduire plutôt qu'à déborder si
+       la fenêtre se resserre juste au-dessus du seuil. */
+    grid-template-columns:15rem minmax(0, 680px);
+    justify-content:center;
+    gap:3.5rem;
+    align-items:start;
+  }
+  main.avec-colonne .colonne-bureau{
+    display:block;
+    /* L'en-tête est collant et haut de 60 pixels : la colonne se pose en
+       dessous, et se donne de quoi défiler seule quand l'édition compte plus
+       de titres que l'écran n'a de hauteur. */
+    position:sticky; top:5rem;
+    max-height:calc(100vh - 7rem); overflow-y:auto;
+    scrollbar-width:none; padding-bottom:1.5rem;
+  }
+  main.avec-colonne .colonne-bureau::-webkit-scrollbar{width:0}
+  main.avec-colonne .colonne-bureau .sommaire a{font-size:.86rem}
+  main.avec-colonne .colonne-bureau .sommaire li{margin-bottom:.45rem}
+  main.avec-colonne details.sommaire{display:none}
+}
+
 /* ── Rubriques ───────────────────────────────────────────────────────── */
 .rubrique{margin:0 0 3.5rem; scroll-margin-top:80px}
 .rubrique-tete{display:flex; align-items:center; gap:.75rem; margin-bottom:1.5rem}
@@ -1579,6 +1628,7 @@ const LECTURE = {
     s.add(slug);
     LOCAL.ecrire("lues", [...s].slice(-400));
     this.pousser();
+    PASTILLE.rafraichir();
   },
 
   /**
@@ -1606,6 +1656,7 @@ const LECTURE = {
     }
 
     this.pousser();
+    PASTILLE.rafraichir();
     return desormaisLue;
   },
 
@@ -1643,6 +1694,25 @@ const LECTURE = {
       ? editions.filter(e => lues.has(e.slug)).reduce((m, e) => e.date > m ? e.date : m, "")
       : "";
     return this._repere;
+  },
+
+  /**
+   * Combien d'éditions attendent, pour la pastille de l'icône.
+   *
+   * Même repère que `manquees`, mais sans exclure l'édition courante : la
+   * pastille se lit depuis l'écran d'accueil, où la notion d'édition affichée
+   * n'a pas de sens.
+   *
+   * Un nouveau venu n'a pas de retard, il a une archive — lui poser quarante
+   * sur son icône lui présenterait une dette au lieu d'une invitation. On ne
+   * lui montre donc que l'édition du jour, si elle n'est pas lue.
+   */
+  enAttente(editions) {
+    if (!editions.length) return 0;
+    const lues = this.lues();
+    const repere = this.repere(editions);
+    if (!repere) return lues.has(editions[0].slug) ? 0 : 1;
+    return editions.filter(e => e.date > repere && !lues.has(e.slug)).length;
   },
 
   manquees(editions, slugCourant) {
@@ -1693,6 +1763,37 @@ const LECTURE = {
   tempsCumule(editions) {
     const lues = this.lues();
     return editions.reduce((n, e) => n + (lues.has(e.slug) ? (e.minutes || 0) : 0), 0);
+  },
+};
+
+/**
+ * La pastille de l'icône.
+ *
+ * Le seul rappel qui n'interrompe rien. Une notification s'impose puis
+ * disparaît, lue ou non ; la pastille attend sur l'icône, à l'écran d'accueil
+ * ou dans la barre des tâches, aussi longtemps qu'il reste quelque chose à
+ * lire. Elle ne demande aucune permission et ne coûte aucun réseau.
+ *
+ * Elle n'existe que pour une application installée : ailleurs l'appel est
+ * refusé, ce qui est sans conséquence — d'où le silence sur l'échec plutôt
+ * qu'un message dans la console à chaque rendu.
+ *
+ * Réserve à connaître : elle ne se met à jour que lorsque la page tourne. Le
+ * service worker pose un point à l'arrivée d'une notification, faute de
+ * pouvoir lire les éditions lues, qui vivent dans `localStorage` ; le compte
+ * exact le remplace à la prochaine ouverture.
+ */
+const PASTILLE = {
+  poser(n) {
+    if (!("setAppBadge" in navigator)) return;
+    const promesse = n > 0 ? navigator.setAppBadge(n) : navigator.clearAppBadge();
+    promesse?.catch(() => { /* hors application installée : rien à signaler */ });
+  },
+
+  /** Recompte depuis la liste en mémoire ; ne déclenche jamais de requête. */
+  rafraichir() {
+    if (!("setAppBadge" in navigator) || !CACHE.editions) return;
+    this.poser(LECTURE.enAttente(CACHE.editions));
   },
 };
 
@@ -2725,7 +2826,11 @@ async function listerEditions(force = false) {
 
   if (FRAICHEUR.horsLigne && !force) {
     const memo = LOCAL.lire("cache.editions", null);
-    if (memo?.length) return (CACHE.editions = memo);
+    if (memo?.length) {
+      CACHE.editions = memo;
+      PASTILLE.rafraichir();
+      return memo;
+    }
     FRAICHEUR.repasserEnLigne("aucune liste d'éditions en mémoire");
   }
 
@@ -2733,6 +2838,7 @@ async function listerEditions(force = false) {
     const liste = await API.editions();
     FRAICHEUR.noterControle();
     LOCAL.ecrire("cache.editions", liste.slice(0, 40));
+    PASTILLE.poser(LECTURE.enAttente(liste));
     return (CACHE.editions = liste);
   })();
 
@@ -2960,8 +3066,16 @@ async function vueEdition(slug) {
   const surSujets = SUJETS.dansEdition(ed.articles);
 
 
-  vue().className = "";
+  // La colonne de bureau ne se justifie qu'avec plusieurs rubriques, et la
+  // classe commande la grille : sans elle, l'article retomberait dans la
+  // colonne étroite réservée au sommaire.
+  vue().className = ordonnees.length > 1 ? "avec-colonne" : "";
   vue().innerHTML = `
+    ${ordonnees.length > 1 ? `
+    <aside class="colonne-bureau" aria-label="Sommaire de l'édition">
+      <div class="colonne-titre">Au sommaire</div>
+      <div class="sommaire">${groupesSommaire(ordonnees)}</div>
+    </aside>` : ""}
     <article style="--accent:${accent}">
       ${avis ? `<p class="avis-fraicheur">${echappe(avis)}</p>` : ""}
       <div class="une">
@@ -3031,12 +3145,7 @@ async function vueEdition(slug) {
       ${ordonnees.length > 1 ? `
       <details class="sommaire">
         <summary><span class="somm-libelle">Au sommaire</span><span class="somm-aide">Appuyez pour voir les ${ed.articles.length} titres, rubrique par rubrique.</span></summary>
-        ${ordonnees.map(([rubrique, articles]) => `
-          <div class="somm-groupe" style="--c:${couleurDe(rubrique)}">
-            <div class="somm-titre">${echappe(rubrique)}</div>
-            <ol>${articles.map(a =>
-              `<li><a href="#article-${a.id}">${prose(a.titre)}</a></li>`).join("")}</ol>
-          </div>`).join("")}
+        ${groupesSommaire(ordonnees)}
       </details>` : ""}
 
       ${ordonnees.map(([rubrique, articles]) => `
@@ -3132,6 +3241,21 @@ async function vueEdition(slug) {
  * là que l'œil se pose. Quand plusieurs articles courts tiennent dans cette
  * bande, seul le premier est retenu — deux repères simultanés n'en font aucun.
  */
+/**
+ * Les rubriques du sommaire, rendues à part parce que deux endroits les
+ * demandent : le repli en tête d'article, qui sert au téléphone, et la colonne
+ * de bureau. Les deux listes pointent sur les mêmes ancres — c'est pourquoi
+ * `suivreSommaire` suit plusieurs liens par article.
+ */
+function groupesSommaire(ordonnees) {
+  return ordonnees.map(([rubrique, articles]) => `
+    <div class="somm-groupe" style="--c:${couleurDe(rubrique)}">
+      <div class="somm-titre">${echappe(rubrique)}</div>
+      <ol>${articles.map(a =>
+        `<li><a href="#article-${a.id}">${prose(a.titre)}</a></li>`).join("")}</ol>
+    </div>`).join("");
+}
+
 /* ── Le fil qui défile, à la souris ────────────────────────────────────────
  *
  * Sur écran large les cartes gardent une largeur lisible, donc la piste déborde
@@ -3183,7 +3307,15 @@ const equiperFils = racine =>
   (racine || document).querySelectorAll(".fil-piste").forEach(equiperFil);
 
 function suivreSommaire() {
-  const liens = new Map($$(".sommaire a").map(a => [a.getAttribute("href").slice(1), a]));
+  // Un article peut être visé par deux liens : celui du repli et celui de la
+  // colonne de bureau. Une table « ancre → un lien » les aurait écrasés l'un
+  // par l'autre, et seul le dernier rendu se serait allumé.
+  const liens = new Map();
+  for (const a of $$(".sommaire a")) {
+    const ancre = a.getAttribute("href").slice(1);
+    if (!liens.has(ancre)) liens.set(ancre, []);
+    liens.get(ancre).push(a);
+  }
   if (!liens.size || !("IntersectionObserver" in window)) return null;
 
   const ordre = $$(".article").map(el => el.id);
@@ -3195,10 +3327,12 @@ function suivreSommaire() {
       else visibles.delete(e.target.id);
     }
     const courant = ordre.find(id => visibles.has(id));
-    for (const [id, a] of liens) {
+    for (const [id, groupe] of liens) {
       const actif = id === courant;
-      a.classList.toggle("actif", actif);
-      a.parentElement.classList.toggle("actif", actif);
+      for (const a of groupe) {
+        a.classList.toggle("actif", actif);
+        a.parentElement.classList.toggle("actif", actif);
+      }
     }
   }, { rootMargin: "-80px 0px -70% 0px" });
 
