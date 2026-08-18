@@ -36,6 +36,17 @@
   --or-texte:#8a6100;   /* 5,31:1 sur le fond clair */
   --or-plein:#8a6100;   /* le blanc y tient à 5,54:1, dans les deux thèmes */
 
+  /* Même histoire pour le vert : celui des rubriques ne tient pas du texte
+     blanc (2,2:1). Le ruban des archives se pose toujours sur une image et
+     jamais sur le fond de la page — une seule valeur suffit donc aux deux
+     thèmes. */
+  --ruban:#0f8a4d;      /* le blanc y tient à 4,63:1 */
+
+  /* Le rouge de ce qui reste à lire. L'accent de l'application ne pouvait pas
+     servir : à cette taille c'est du petit texte, et le blanc n'y tient que
+     3,29:1. Celui-ci donne 6,9:1. */
+  --neuf:#b3122a;
+
   --fond:#fff; --fond-2:#fafafa; --fond-3:#f2f2f0;
   --texte:#222; --texte-2:#5b5966; --texte-3:#75727f;
   --bord:#e4e3e6; --bord-fort:#d0cfd4;
@@ -344,8 +355,20 @@ main{width:var(--lg); margin-inline:auto; padding:2.5rem 0 calc(5rem + var(--pla
    le sujet, puis l'illustration, puis le chapeau qui l'introduit. Sans image
    dans la base, rien ne s'affiche et rien ne réserve de place. */
 .une-image{margin:0 0 1.5rem}
+/* Aucune hauteur imposée : l'image de une occupe la largeur de la colonne et
+   prend la hauteur que ses proportions commandent.
+
+   C'est bien la contrainte qu'il fallait lever, et non la façon de la remplir.
+   `object-fit` ne fait quelque chose que si la boîte a une hauteur qu'on lui a
+   donnée : `cover` remplit alors en rognant — ce qui amputait le haut et le bas
+   de toute illustration carrée, et les dessins de une le sont presque tous —
+   `contain` rentre l'image en laissant des bandes, `fill` l'étire. Sans hauteur
+   imposée, il n'y a rien à rogner ni à combler, et la propriété devient inutile.
+
+   Les images des articles n'ont jamais été contraintes ; la une s'aligne enfin
+   sur elles. */
 .une-image img{
-  width:100%; aspect-ratio:16/9; object-fit:cover; display:block;
+  width:100%; height:auto; display:block;
   border-radius:12px; background:var(--fond-3);
 }
 .une-image figcaption{font-size:.75rem; color:var(--texte-3); margin-top:.5rem}
@@ -413,36 +436,270 @@ input:focus-visible, select:focus-visible, button:focus-visible, a:focus-visible
   font-size:.72rem; font-weight:700; letter-spacing:.12em; text-transform:uppercase;
   color:var(--texte-3); margin:0 0 1rem; padding-bottom:.6rem; border-bottom:1px solid var(--bord);
 }
-.carte{
-  display:block; text-decoration:none; padding:1.15rem 0; border-bottom:1px solid var(--bord);
-}
-.carte:hover h3{color:var(--accent)}
 .carte-meta{
   display:flex; align-items:center; gap:.5rem; font-size:.7rem; font-weight:600;
   letter-spacing:.08em; text-transform:uppercase; color:var(--texte-3); margin-bottom:.4rem;
 }
-.carte h3{font-size:1.15rem; line-height:1.25; letter-spacing:-.02em; margin:0 0 .35rem; transition:color .15s}
-.carte p{margin:0; font-size:.93rem; color:var(--texte-2); line-height:1.5}
 .pastille{width:7px; height:7px; border-radius:99px; background:var(--c,var(--accent)); flex:none}
 
+/* Une grille, et non le rail du fil du sujet : une archive se parcourt du
+   regard, elle ne se balaie pas au doigt. La carte, elle, est exactement la
+   même — `auto-fill` donne une colonne sur téléphone et trois ou quatre sur
+   un écran large, sans qu'elle change jamais de taille. */
+.grille-mois{
+  display:grid; grid-template-columns:repeat(auto-fill, minmax(178px, 1fr));
+  gap:.8rem; list-style:none; margin:0; padding:.15rem;
+}
+.grille-mois > li{display:flex; min-width:0; position:relative}
+
+/* ── Votre lecture ─────────────────────────────────────────────────────────
+   Trois chiffres et une frise. Les chiffres sont gros parce qu'ils sont peu
+   nombreux, pas pour se féliciter : rien ici ne clignote ni ne s'anime. */
+.compteurs{
+  display:grid; grid-template-columns:repeat(3, 1fr); gap:.8rem;
+  margin:0 0 2.5rem;
+}
+.compteurs > div{
+  background:var(--fond-2); border:1px solid var(--bord); border-radius:12px;
+  padding:1rem .9rem; text-align:center; min-width:0;
+}
+.compteurs b{
+  display:block; font-size:clamp(1.5rem,5vw,2rem); line-height:1.05;
+  letter-spacing:-.03em; font-variant-numeric:tabular-nums;
+}
+.compteurs span{
+  display:block; margin-top:.3rem; font-size:.72rem; line-height:1.25;
+  color:var(--texte-3);
+}
+
+/* La frise. Un carré par édition parue, dans l'ordre du temps. Elle montre les
+   trous sans les commenter — c'est ce qui la rend supportable. */
+.frise{
+  display:flex; flex-wrap:wrap; gap:5px; margin:.6rem 0 1rem;
+}
+.jour{
+  width:14px; height:14px; border-radius:3px; flex:none; display:block;
+  background:var(--fond-3); border:1px solid var(--bord-fort);
+  transition:transform .12s;
+}
+.jour.entamee{background:var(--or-plein); border-color:var(--or-plein)}
+.jour.lue{background:var(--ruban); border-color:var(--ruban)}
+a.jour:hover{transform:scale(1.35)}
+.frise-legende{
+  display:flex; align-items:center; gap:.4rem; flex-wrap:wrap;
+  font-size:.72rem; color:var(--texte-3); margin-bottom:2rem;
+}
+.frise-legende span{margin-right:.8rem}
+
+.bilan-mois{margin:.4rem 0 2rem; color:var(--texte-2); font-size:.95rem}
+
+/* Barres horizontales : le nom lisible à gauche, la mesure à droite. Une barre
+   couchée porte son étiquette sans la faire tourner, ce qu'une barre debout ne
+   permet pas à cette largeur. */
+/* La recherche annonce ce qu'elle a pu lire. Une note discrète, jamais une
+   alerte : ce n'est pas une erreur, c'est une précision sur la portée. */
+.note-recherche{
+  margin:0 0 1.2rem; font-size:.78rem; color:var(--texte-3); line-height:1.45;
+  border-left:2px solid var(--bord-fort); padding-left:.7rem;
+}
+
+.note-bloc{margin:.15rem 0 2rem; font-size:.78rem; color:var(--texte-3); line-height:1.45}
+
+/* ── Les tuiles de sujet ───────────────────────────────────────────────────
+   Le médaillon garde le 3/2 des fichiers déposés : rien n'est rogné, et un
+   dessin y reste lisible — à 155 px de large il fait encore 103 px de haut. */
+/* Trois par rangée, et non « autant qu'il en tient » : à cinq colonnes, les
+   illustrations tombaient à cent pixels de large et le dessin s'y perdait.
+   Trois colonnes sur la colonne de lecture donnent 219 px, soit une image de
+   146 px de haut — de quoi la regarder. */
+.grille-sujets{
+  display:grid; grid-template-columns:repeat(3, 1fr);
+  gap:.8rem; margin:.6rem 0 .5rem;
+}
+@media (max-width:640px){
+  .grille-sujets{grid-template-columns:1fr 1fr; gap:.6rem}
+}
+.tuile-sujet{
+  display:flex; flex-direction:column; align-items:center; text-align:center; gap:.45rem;
+  padding:.8rem .8rem .9rem; border-radius:12px; text-decoration:none; color:inherit;
+  background:var(--fond-2); border:1px solid var(--bord);
+  transition:background .15s, border-color .15s, transform .15s;
+}
+.tuile-sujet:hover{
+  background:var(--fond); border-color:var(--c,var(--bord-fort)); transform:translateY(-2px);
+}
+/* L'emplacement de l'image est toujours réservé, et transparent quand elle
+   manque. C'est ce qui aligne les noms d'une rangée à l'autre : sans lui, la
+   tuile sans illustration remontait son titre à mi-hauteur et cassait la ligne.
+   Rien ne s'y dessine pour autant — ni cadre, ni initiale de remplacement.
+
+   L'image est un enfant du `span` et non d'une `figure` : l'écouteur d'erreur
+   global ne retire alors que la balise fautive, en laissant l'emplacement. */
+.medaillon{
+  position:relative; width:100%; aspect-ratio:3/2; border-radius:8px; overflow:hidden;
+  flex:none; margin:0; background:transparent;
+}
+.medaillon img{width:100%; height:100%; object-fit:cover; display:block}
+/* Le compte, posé dans le coin de l'image. Le voile sombre le tient lisible
+   quelle que soit l'illustration dessous. */
+.tuile-nombre{
+  position:absolute; right:6px; bottom:6px;
+  background:color-mix(in srgb, #000 58%, transparent); color:#fff;
+  border-radius:99px; padding:.1rem .45rem .16rem;
+  font-size:.72rem; font-weight:700; font-variant-numeric:tabular-nums; line-height:1.3;
+}
+/* Sans image, le compte n'a plus de coin où se poser : il repasse dans la
+   ligne du dessous. L'un ou l'autre, jamais les deux. */
+.tuile-sujet:has(.medaillon img) .compte-repli{display:none}
+.tuile-sujet:not(:has(.medaillon img)) .tuile-nombre{display:none}
+.tuile-mot{font-size:.95rem; font-weight:700; letter-spacing:-.01em; line-height:1.2}
+.tuile-meta{font-size:.72rem; color:var(--texte-3); line-height:1.35}
+.tuile-sujet.dort{background:transparent; border-style:dashed}
+.tuile-sujet.dort .tuile-mot{color:var(--texte-3)}
+
+/* ── La page d'un sujet ────────────────────────────────────────────────── */
+/* Pas de repli ici, contrairement à la tuile. La grille a besoin de cellules
+   régulières, donc d'un substitut ; une bannière pleine largeur, non — un
+   aplat de 640 sur 427 avec une lettre au milieu se lit comme une image
+   manquante, pas comme un parti pris. La figure entière disparaît alors, comme
+   pour les illustrations d'article, et la page s'ouvre simplement sur son
+   titre. C'est l'écouteur d'erreur global qui s'en charge. */
+.sujet-banniere{margin:0 0 1.5rem}
+.sujet-banniere img{
+  width:100%; height:auto; display:block; border-radius:12px; background:var(--fond-3);
+}
+.sujet-tete{
+  display:flex; align-items:flex-start; justify-content:space-between;
+  gap:1rem; flex-wrap:wrap; margin-bottom:.4rem;
+}
+.sujet-tete h1{
+  font-size:clamp(1.7rem,4.5vw,2.2rem); letter-spacing:-.03em; margin:0; line-height:1.1;
+}
+.sujet-sous{color:var(--texte-2); margin:0 0 2rem; font-size:.95rem}
+/* Même en-tête de mois que dans les archives : le lecteur retrouve un repère
+   qu'il connaît déjà, et l'on n'a pas deux façons de dater une liste. */
+.mois-sujet{margin-bottom:2.5rem}
+.mois-sujet h2{
+  font-size:.72rem; font-weight:700; letter-spacing:.13em; text-transform:uppercase;
+  color:var(--texte-3); margin:0 0 .3rem; padding-bottom:.5rem;
+  border-bottom:1px solid var(--bord);
+}
+
+
+/* Marquer une édition lue — trois états, deux dessins.
+ *
+ * L'édition finie porte un cachet oblique au milieu de la vignette ; celle qui
+ * reste à lire porte une pastille dans le coin bas-gauche. L'écart est voulu :
+ * le cachet est lourd parce qu'il clôt, la pastille est légère parce qu'elle
+ * appelle. Il a aussi une conséquence pratique — le centre de la carte, là où
+ * le pouce se pose pour ouvrir, ne devient une cible que sur les éditions déjà
+ * lues, c'est-à-dire celles qu'on rouvre le moins.
+ *
+ * Dans les trois cas la marque *est* le bouton : un seul objet à lire, un seul
+ * endroit où appuyer. Une pastille ronde séparée occupait auparavant le coin,
+ * si bien que la carte portait deux signes dont un seul répondait au doigt.
+ *
+ * Le bouton est frère de la carte et non son enfant : un bouton à l'intérieur
+ * d'un lien n'est pas du HTML valide, et le clic partirait de toute façon avec
+ * la navigation. D'où les positions calculées depuis le `li` — voir plus bas.
+ */
+.cachet{
+  position:absolute; left:50%; z-index:2; white-space:nowrap;
+  /* Centré sur la vignette et non sur la carte, alors qu'il lui est extérieur.
+     `.7rem` et `2px` sont la marge haute et la bordure supérieure de la carte,
+     `1.6rem`+`2px` ce que les côtés lui prennent, et 9/32 la demi-hauteur d'un
+     cadre 16/9.
+     La descente passe par `margin-top` et non par `top` : dans un décalage, un
+     pourcentage se calcule sur la *hauteur* du conteneur — ici toute la carte,
+     titre compris — alors qu'une marge se calcule toujours sur sa largeur. Elle
+     seule permet donc de déduire la hauteur de l'image de sa propre largeur. */
+  top:calc(.7rem + 2px);
+  margin-top:calc((100% - 1.6rem - 2px) * .28125);
+  transform:translate(-50%,-50%) rotate(-14deg);
+  border:2.5px solid #0b6b3c; color:#0b6b3c; border-radius:5px;
+  padding:.16rem .5rem .2rem;
+  font-size:.72rem; font-weight:800; letter-spacing:.14em; text-transform:uppercase;
+  /* Un vert plus sombre que celui du ruban : à cette graisse, sur fond clair,
+     `--ruban` ne tient que 3,9:1 alors qu'il en faut 4,5. Celui-ci donne 6,6. */
+  /* Le fond est presque blanc, et non translucide à moitié : posé sur une photo
+     sombre, un voile à 62 % tombait à 2,46:1 contre l'encre. À 86 % il tient
+     entre 5,1 et 6,6:1 quelle que soit l'image, tout en la laissant deviner. */
+  background:color-mix(in srgb, #fff 86%, transparent);
+  transition:transform .15s;
+}
+.cachet:hover{transform:translate(-50%,-50%) rotate(-14deg) scale(1.06)}
+
+/* Ce qui reste à lire. Posée à huit pixels du coin bas-gauche de la vignette :
+   `translateY(-100%)` cale le bas de la pastille sur cette ligne quelle que
+   soit sa hauteur, et 9/16 est la hauteur pleine du cadre de l'image. Même
+   raison qu'au-dessus pour la marge plutôt que le décalage. */
+.pastille-etat{
+  position:absolute; z-index:2; white-space:nowrap;
+  left:calc(.8rem + 1px + 8px);
+  top:calc(.7rem + 2px);
+  margin-top:calc((100% - 1.6rem - 2px) * .5625 - 8px);
+  transform:translateY(-100%);
+  border-radius:99px; padding:.16rem .5rem .2rem; color:#fff;
+  font-size:.6rem; font-weight:800; letter-spacing:.08em;
+  transition:transform .15s;
+}
+.pastille-etat:hover{transform:translateY(-100%) scale(1.06)}
+.pastille-etat.neuve{background:var(--neuf); text-transform:uppercase}
+.pastille-etat.encours{background:var(--or-plein); letter-spacing:.03em}
+
+/* Sur téléphone la carte tombe à 153 px et la vignette à 125 : « Reprendre ·
+   40 % » y occupait 82 % de la largeur de l'image. Le verbe s'efface, le
+   chiffre reste — c'est lui qui porte l'information. */
+@media (max-width:640px){
+  .pastille-etat .verbe{display:none}
+}
+
+/* La cible tapable déborde du dessin : vingt-et-un pixels de haut se visent mal
+   au pouce. L'encart porte la pastille à 45 px et le cachet à 63, sans rien
+   changer de ce qui se voit. Il déborde peu latéralement — cette zone recouvre
+   la vignette, qui est un lien, et chaque pixel pris là est un pixel de moins
+   pour ouvrir l'édition. */
+.cachet::after, .pastille-etat::after{content:""; position:absolute; inset:-12px -6px}
+.cachet:focus-visible, .pastille-etat:focus-visible{outline:2px solid var(--texte); outline-offset:3px}
+
+/* Les chiffres sont tabulaires partout : sans cela la pastille change de
+   largeur à chaque point de pourcentage gagné. */
+.cachet, .pastille-etat{font-variant-numeric:tabular-nums}
+
+/* Deux colonnes fixes sur téléphone. `auto-fill` n'en tient qu'une à 360px, à
+   dix pixels près, et trois éditions par écran ne sont pas un parcours : la
+   grille en montre huit. L'exception se déclare après la règle qu'elle
+   corrige — à spécificité égale, c'est l'ordre qui tranche. */
+@media (max-width:640px){
+  .grille-mois{grid-template-columns:1fr 1fr; gap:.6rem}
+}
+
+/* Le ruban traverse le coin, il ne se pose pas dessus. Il garde sa couleur
+   même sur une édition lue : le numéro doit rester repérable. */
+.ruban{
+  position:absolute; top:11px; right:-34px; width:112px; transform:rotate(45deg);
+  background:var(--ruban); color:#fff; text-align:center;
+  font-size:.68rem; font-weight:700; letter-spacing:.05em; padding:3px 0;
+  font-variant-numeric:tabular-nums;
+}
+
+/* Reprise de lecture : un trait sous la vignette, là où l'ancien badge
+   « En cours » ne tenait plus dans une carte de cette largeur. */
+.arch-reprise{position:absolute; left:0; bottom:0; height:3px; background:var(--c,var(--accent))}
+
 /* Éditions déjà lues. À trois briefs on s'en passe ; à deux cent cinquante on
-   ne sait plus où on en est. La pastille se vide, le titre s'apaise — l'édition
-   reste parfaitement lisible, elle cesse seulement de réclamer l'attention. */
-.carte.lue .pastille{background:transparent; box-shadow:inset 0 0 0 1.5px var(--c,var(--accent))}
-.carte.lue h3{color:var(--texte-2); font-weight:600}
-.carte.lue .carte-meta{opacity:.75}
-.jalon{
-  margin-left:auto; display:inline-flex; align-items:center; gap:.3rem;
-  color:var(--accent); letter-spacing:.06em;
-}
-.jalon i{
-  font-style:normal; width:26px; height:3px; border-radius:99px;
-  background:var(--bord-fort); position:relative; overflow:hidden;
-}
-.jalon i::after{
-  content:""; position:absolute; inset:0 auto 0 0; width:var(--p,0%);
-  background:var(--accent);
-}
+   ne sait plus où on en est. L'image se retire en gris, le titre s'apaise —
+   l'édition reste parfaitement lisible, elle cesse seulement de réclamer
+   l'attention.
+
+   Le retour en couleur est un agrément de bureau. Sur mobile il n'existe pas :
+   l'appui ouvre l'édition dans le même geste, et le `:active` n'aurait que le
+   temps d'un clignement. C'est assumé — le gris seul dit déjà l'essentiel. */
+.fil-carte.lue .fil-image img{filter:grayscale(1) opacity(.8)}
+.fil-carte.lue:hover .fil-image img,
+.fil-carte.lue:active .fil-image img{filter:none}
+.fil-carte.lue .fil-carte-titre{color:var(--texte-2)}
+.fil-carte.lue time{opacity:.75}
 
 /* ── Explorer ────────────────────────────────────────────────────────── */
 .onglets{
@@ -856,10 +1113,12 @@ mark{background:color-mix(in srgb, var(--accent) 22%, transparent); color:inheri
    dans la table Articles et n'est pas encore rempli. Le jour où il le sera,
    la vignette se posera ici sans que la carte change de forme. */
 .fil-image{
-  display:block; aspect-ratio:16/9; border-radius:6px; overflow:hidden;
-  background:var(--fond-3); margin-bottom:.15rem;
+  display:block; position:relative; aspect-ratio:16/9; border-radius:6px;
+  overflow:hidden; background:var(--fond-3); margin-bottom:.15rem;
 }
-.fil-image img{width:100%; height:100%; object-fit:cover; display:block}
+.fil-image img{
+  width:100%; height:100%; object-fit:cover; display:block; transition:filter .25s;
+}
 
 /* L'exception mobile se déclare ici, après la règle qu'elle corrige : placée
    dans le bloc mobile plus haut dans la feuille, elle perdait à égalité de
@@ -1150,6 +1409,11 @@ function dateCourte(iso) {
   const d = new Date(iso + "T12:00:00");
   return `${d.getDate()} ${MOIS_COURT[d.getMonth()]} ${d.getFullYear()}`;
 }
+/** « 11 août » : dans une grille rangée par mois, l'année est déjà au-dessus. */
+function jourEtMois(iso) {
+  const d = new Date(iso + "T12:00:00");
+  return `${d.getDate()} ${MOIS_COURT[d.getMonth()]}`;
+}
 /**
  * La date du jour, en heure locale.
  *
@@ -1189,15 +1453,46 @@ const ECHELLE = {
  */
 const LECTURE = {
   // En deçà, la lecture n'a pas commencé ; au-delà, elle est finie. Dans les
-  // deux cas il n'y a rien à reprendre.
+  // deux cas il n'y a rien à reprendre. MAX ne sert plus qu'aux positions
+  // héritées : au-delà de SEUIL_LUE, plus aucune n'est enregistrée.
   MIN: 0.06,
   MAX: 0.92,
+
+  /**
+   * La part de l'édition qu'il faut avoir parcourue pour qu'elle soit lue.
+   *
+   * L'ouverture marquait autrefois l'édition lue à la seconde où elle
+   * s'affichait. « Lu » voulait donc dire « ouvert », et les trois états de la
+   * carte d'archive ne pouvaient pas coexister : une édition abandonnée au
+   * tiers était grise comme une édition finie.
+   *
+   * Trois quarts, et non la quasi-totalité : le haut de page — une, édito, à la
+   * une, sommaire — occupe déjà vingt à trente pour cent de la hauteur, et le
+   * bas porte la pagination. Les articles s'étendent en gros de 30 à 95 %. À
+   * 75 %, le lecteur a traversé les deux tiers des articles : assez pour que
+   * cela compte, trop pour qu'une ouverture de trois secondes suffise.
+   */
+  SEUIL_LUE: 0.75,
 
   positions() { return LOCAL.lire("positions", {}) || {}; },
 
   noter(slug, y, part) {
+    part = Math.min(1, Math.max(0, part));
     const t = this.positions();
-    t[slug] = { y: Math.round(y), part: Math.min(1, Math.max(0, part)), vu: Date.now() };
+
+    // Passé le seuil, l'édition est lue et il n'y a plus de reprise à offrir.
+    // En garder une ferait afficher « Reprendre 80 % » sur une carte marquée
+    // lue : les deux signes se contrediraient sur la même vignette.
+    if (part >= this.SEUIL_LUE) {
+      if (t[slug]) {
+        delete t[slug];
+        LOCAL.ecrire("positions", t);
+      }
+      this.marquerLue(slug);
+      return;
+    }
+
+    t[slug] = { y: Math.round(y), part, vu: Date.now() };
     // Cent éditions suffisent largement : au-delà, on oublie les plus anciennes
     // plutôt que de laisser enfler le stockage local.
     const gardees = Object.keys(t).sort((a, b) => t[b].vu - t[a].vu).slice(0, 100);
@@ -1215,11 +1510,68 @@ const LECTURE = {
 
   _repere: undefined,   // voir repere() : figé pour la durée de la session
 
+  // Les bascules sont groupées, comme celles des sujets : marquer trois
+  // éditions d'affilée ne doit coûter qu'une écriture.
+  DELAI: 1200,
+  _minuteur: null,
+
+  /**
+   * Appelé à l'ouverture d'une session : la base fait foi.
+   *
+   * L'état de lecture suit l'abonné et non l'appareil — une édition lue le
+   * midi sur l'ordinateur ne doit pas se representer comme neuve le soir sur
+   * le téléphone. Mêmes trois règles que pour les sujets suivis : la connexion
+   * fait autorité, entre deux connexions la copie locale mène, et l'on envoie
+   * toujours la liste entière — un envoi manqué est réparé par le suivant.
+   */
+  adopter(liste) {
+    if (!Array.isArray(liste)) return;
+    LOCAL.ecrire("lues", liste.slice(-400));
+  },
+
   marquerLue(slug) {
     const s = this.lues();
     if (s.has(slug)) return;
     s.add(slug);
     LOCAL.ecrire("lues", [...s].slice(-400));
+    this.pousser();
+  },
+
+  /**
+   * Marquage manuel. Rend le nouvel état.
+   *
+   * Le sens est imposé par l'appelant plutôt que déduit de la liste. Ouvrir une
+   * édition l'y inscrit aussitôt : celle qu'on a abandonnée au tiers y figure
+   * donc déjà, tout en s'affichant « en cours ». Une simple bascule l'aurait
+   * *dépointée* — c'est-à-dire rien de visible — alors qu'en appuyant sur
+   * « Reprendre · 40 % » le lecteur veut dire qu'il en a fini. C'est l'état
+   * affiché qui doit décider, pas l'appartenance à la liste.
+   */
+  definirLue(slug, desormaisLue) {
+    const s = this.lues();
+    if (desormaisLue) s.add(slug); else s.delete(slug);
+    LOCAL.ecrire("lues", [...s].slice(-400));
+
+    // Marquer « lue » à la main, c'est dire qu'on en a fini. La position
+    // mémorisée n'a plus lieu d'être — sans cela l'édition se réafficherait
+    // « en cours » au rendu suivant, ce qui contredirait le geste.
+    if (desormaisLue) {
+      const t = this.positions();
+      delete t[slug];
+      LOCAL.ecrire("positions", t);
+    }
+
+    this.pousser();
+    return desormaisLue;
+  },
+
+  /** Envoi groupé. L'échec est silencieux : la copie locale reste juste. */
+  pousser() {
+    clearTimeout(this._minuteur);
+    this._minuteur = setTimeout(() => {
+      API.lues([...this.lues()]).catch(e =>
+        console.warn("Éditions lues non enregistrées, elles repartiront au prochain changement :", e.message));
+    }, this.DELAI);
   },
 
   /**
@@ -1256,6 +1608,48 @@ const LECTURE = {
     return editions.filter(e =>
       e.date > repere && e.slug !== slugCourant && !lues.has(e.slug));
   },
+
+  /* ── Ce que le lecteur a accumulé ─────────────────────────────────────
+   *
+   * Tout se calcule ici, sur la liste des éditions déjà en mémoire et sur la
+   * liste des lues, qui voyage avec le profil. Rien à demander à la base, rien
+   * à stocker de plus.
+   *
+   * La série se compte en *éditions* et non en jours : le brief ne paraît pas
+   * le dimanche, et compter les jours punirait une régularité parfaite. Le
+   * pardon n'a pas besoin d'être codé — rattraper les éditions manquées les
+   * inscrit dans `lues`, ce qui ressoude la série d'elle-même.
+   */
+
+  /** Les éditions consécutives lues, en partant de la plus récente parue. */
+  serie(editions) {
+    if (!editions.length) return 0;
+    const lues = this.lues();
+    // L'édition du soir même ne compte pas contre le lecteur tant qu'il ne l'a
+    // pas ouverte : sans cette grâce, la série tomberait à zéro chaque soir à
+    // la parution, pour se rétablir à la lecture. On ne saute que celle-là.
+    let i = lues.has(editions[0].slug) ? 0 : 1;
+    let n = 0;
+    for (; i < editions.length && lues.has(editions[i].slug); i++) n++;
+    return n;
+  },
+
+  /** La plus longue série jamais tenue, dans les éditions connues. */
+  meilleureSerie(editions) {
+    const lues = this.lues();
+    let record = 0, courante = 0;
+    for (const e of editions) {
+      courante = lues.has(e.slug) ? courante + 1 : 0;
+      if (courante > record) record = courante;
+    }
+    return record;
+  },
+
+  /** Minutes cumulées, d'après le temps de lecture annoncé de chaque édition. */
+  tempsCumule(editions) {
+    const lues = this.lues();
+    return editions.reduce((n, e) => n + (lues.has(e.slug) ? (e.minutes || 0) : 0), 0);
+  },
 };
 
 /**
@@ -1269,8 +1663,37 @@ const LECTURE = {
 const GARDES = {
   MAX: 200,
 
+  // Les bascules sont groupées, comme celles des sujets et des éditions lues :
+  // garder trois articles d'affilée ne doit coûter qu'une écriture.
+  DELAI: 1200,
+  _minuteur: null,
+
   tous() { return LOCAL.lire("gardes", []) || []; },
   contient(id) { return this.tous().some(g => g.id === id); },
+
+  /**
+   * Appelé à l'ouverture d'une session : la base fait foi.
+   *
+   * La collection suit l'abonné et non l'appareil. C'était la dernière donnée
+   * du lecteur à ne pas le faire — un vidage de cache emportait des mois de
+   * mises de côté, alors que les éditions lues et les sujets suivis, eux,
+   * revenaient. Mêmes trois règles qu'eux : la connexion fait autorité, entre
+   * deux connexions la copie locale mène, et l'on envoie toujours la liste
+   * entière, si bien qu'un envoi manqué est réparé par le suivant.
+   */
+  adopter(liste) {
+    if (!Array.isArray(liste)) return;
+
+    // La base fait autorité — sauf le jour où elle n'a rien à dire. À la
+    // première connexion suivant la mise en service, le champ Airtable est
+    // vide tandis que l'appareil porte peut-être des mois de mises de côté :
+    // l'adopter tel quel effacerait la collection que cette synchronisation
+    // existe pour sauver. Dans ce cas précis, c'est le local qui remonte.
+    const locaux = this.tous();
+    if (!liste.length && locaux.length) return void this.pousser();
+
+    LOCAL.ecrire("gardes", liste.slice(0, this.MAX));
+  },
 
   basculer(article, date) {
     const liste = this.tous();
@@ -1281,12 +1704,23 @@ const GARDES = {
       rubrique: article.rubrique, chapo: (article.chapo || "").slice(0, 180),
     });
     LOCAL.ecrire("gardes", liste.slice(0, this.MAX));
+    this.pousser();
     return i === -1;                      // vrai si l'article vient d'être gardé
   },
 
   /** Retrait par identifiant seul, depuis la vue des gardés. */
   retirer(id) {
     LOCAL.ecrire("gardes", this.tous().filter(g => g.id !== id));
+    this.pousser();
+  },
+
+  /** Envoi groupé. L'échec est silencieux : la copie locale reste juste. */
+  pousser() {
+    clearTimeout(this._minuteur);
+    this._minuteur = setTimeout(() => {
+      API.gardes(this.tous()).catch(e =>
+        console.warn("Articles gardés non enregistrés, ils repartiront au prochain changement :", e.message));
+    }, this.DELAI);
   },
 };
 
@@ -1627,6 +2061,17 @@ const API = {
     return this.appelAuth("/sujets", { methode: "POST", corps: { sujets: liste } });
   },
 
+  /** Enregistre la liste complète des éditions lues pour ce client. */
+  async lues(liste) {
+    if (!this.passerelle) return;
+    return this.appelAuth("/lues", { methode: "POST", corps: { lues: liste } });
+  },
+
+  async gardes(liste) {
+    if (!this.passerelle) return;
+    return this.appelAuth("/gardes", { methode: "POST", corps: { gardes: liste } });
+  },
+
   async abonnement(active, description = "", souscription = null) {
     if (this.passerelle) {
       return this.appelAuth("/abonnement", {
@@ -1892,8 +2337,11 @@ async function ouvrirSession(identifiant, jeton, client) {
   LOCAL.ecrire("session", { identifiant, jeton, client, verifiee: Date.now() });
 
   // La connexion est le point de réconciliation : la base fait autorité sur
-  // les sujets suivis, et écrase ce que cet appareil croyait savoir.
+  // les sujets suivis et sur les éditions lues, et écrase ce que cet appareil
+  // croyait savoir.
   if (Array.isArray(client?.sujets)) SUJETS.adopter(client.sujets);
+  if (Array.isArray(client?.lues)) LECTURE.adopter(client.lues);
+  if (Array.isArray(client?.gardes)) GARDES.adopter(client.gardes);
 
   // En mode passerelle, le Worker a déjà daté la connexion et journalisé.
   if (API.passerelle) return;
@@ -2075,6 +2523,8 @@ let EDITION_LUE = null;
 // Distincte de EDITION_LUE, qui n'est qu'un slug et sert au suivi de position.
 let EDITION_AFFICHEE = null;
 let observateurSommaire = null;
+// Voir vueEdition : le rattrapage des éditions trop courtes pour défiler.
+let minuteurCourteEdition = null;
 
 /* ══════════════════════════════════════════════════════════════════════════
    Le fil du sujet
@@ -2147,7 +2597,15 @@ const FIL = {
     return Math.log(total / (freq.get(mot) || 1));
   },
 
-  /** Les articles antérieurs qui traitent du même sujet, du plus proche au moins. */
+  /**
+   * Les articles antérieurs qui traitent du même sujet, du plus récent au plus
+   * ancien.
+   *
+   * Deux tris successifs, et non un seul : la pertinence choisit *lesquels*
+   * retenir, la chronologie décide *dans quel ordre* les montrer. Un fil se lit
+   * comme une frise — on remonte le temps en allant vers la droite — alors que
+   * les classer par score y mêlait une édition de mai entre deux de juillet.
+   */
   voisins(article) {
     if (!this.index || !article.motsCles?.length) return [];
     const siens = new Set(article.motsCles);
@@ -2165,8 +2623,10 @@ const FIL = {
 
       retenus.push({ ...autre, score: communs.reduce((s, m) => s + this.poids(m), 0) });
     }
-    return retenus.sort((x, y) => y.score - x.score || y.date.localeCompare(x.date))
-                  .slice(0, this.MAX);
+    return retenus
+      .sort((x, y) => y.score - x.score || y.date.localeCompare(x.date))
+      .slice(0, this.MAX)
+      .sort((x, y) => y.date.localeCompare(x.date));
   },
 
   /**
@@ -2304,6 +2764,44 @@ function lireArticle(r) {
 
 const rechercher = (q, filtres = {}) => API.articles({ q, ...filtres });
 
+/** Minuscules et accents neutralisés, pour que « éclipse » trouve « Éclipse ». */
+const sansAccents = s =>
+  String(s || "").toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, "");
+
+/**
+ * La recherche dans le vivier déjà en mémoire.
+ *
+ * Le corpus est chargé depuis longtemps quand le lecteur arrive ici : Explorer,
+ * le fil des sujets et les pages de sujet s'en servent tous. Le consulter coûte
+ * donc zéro requête et répond pendant la frappe, là où l'aller-retour réseau
+ * imposait un délai de 350 ms avant le moindre signe de vie — et ne répondait
+ * pas du tout hors ligne.
+ *
+ * Il ne remplace pas la recherche du serveur : le vivier porte les titres, les
+ * chapôs, les mots-clés, la rubrique et la thématique, mais **pas le contenu**
+ * des articles. Un mot qui n'apparaît qu'au milieu d'un papier lui échappe.
+ * D'où les deux temps : le local répond tout de suite, le serveur complète.
+ *
+ * Rend `null` — et non un tableau vide — quand le vivier n'a jamais été chargé :
+ * l'appelant doit pouvoir distinguer « rien trouvé » de « rien à chercher ».
+ */
+function chercherLocalement(q, { rubrique = "", thematique = "" } = {}) {
+  const corpus = CACHE.vivier;
+  if (!corpus?.length) return null;
+
+  const mots = sansAccents(q).split(/\s+/).filter(Boolean);
+  return corpus.filter(a => {
+    if (rubrique && a.rubrique !== rubrique) return false;
+    if (thematique && a.thematique !== thematique) return false;
+    if (!mots.length) return true;
+    // Tous les mots doivent s'y trouver, dans n'importe quel ordre : « eclipse
+    // espagne » rapporte l'article même si le titre les sépare.
+    const foin = sansAccents(
+      `${a.titre} ${a.chapo} ${a.motsCles.join(" ")} ${a.rubrique} ${a.thematique}`);
+    return mots.every(m => foin.includes(m));
+  });
+}
+
 /* ══════════════════════════════════════════════════════════════════════════
    Vues
    ══════════════════════════════════════════════════════════════════════════ */
@@ -2343,7 +2841,18 @@ function erreur(titre, detail) {
  * la mise en ligne dépend d'une file d'attente qui a déjà pris trois quarts
  * d'heure de retard.
  */
+/* Masqué pour le moment, à la demande : sur la une, l'avis pesait lourd pour
+   dire le plus souvent ce que la ligne de date disait déjà en toutes lettres.
+
+   Le remettre, c'est passer ce drapeau à `true` — mais il faudra d'abord lui
+   apprendre le calendrier. Le brief ne paraît pas le dimanche, et rien ici ne
+   le sait : « demain » y est littéralement demain. Tout dimanche avant 19h45,
+   l'avis promet donc une édition qui ne viendra jamais, et ce pendant une
+   vingtaine d'heures chaque semaine. */
+const AVIS_FRAICHEUR_VISIBLE = false;
+
 function avisFraicheur(dateEdition) {
+  if (!AVIS_FRAICHEUR_VISIBLE) return "";
   if (!dateEdition || dateEdition === aujourdhui()) return "";
 
   const parution = heureParution();
@@ -2542,7 +3051,22 @@ async function vueEdition(slug) {
 
   EDITION_LUE = ed.slug;
   observateurSommaire = suivreSommaire();
-  LECTURE.marquerLue(ed.slug);
+
+  // L'édition n'est plus marquée lue ici : afficher n'est pas lire. C'est le
+  // défilement qui s'en charge, passé LECTURE.SEUIL_LUE.
+  //
+  // Reste le cas d'une édition assez courte pour tenir dans l'écran : aucun
+  // événement de défilement ne surviendra jamais, et elle ne serait donc jamais
+  // marquée. On la marque alors au bout d'un moment — le temps de la lire, pas
+  // celui de l'apercevoir — et on revérifie à ce moment-là qu'elle tient
+  // toujours dans l'écran, les images ayant pu l'allonger depuis.
+  clearTimeout(minuteurCourteEdition);
+  minuteurCourteEdition = setTimeout(() => {
+    if (EDITION_LUE === ed.slug &&
+        document.documentElement.scrollHeight <= innerHeight + 40) {
+      LECTURE.marquerLue(ed.slug);
+    }
+  }, 20000);
 
   LOCAL.ecrire("derniereLue", ed.slug);
   journaliser("Lecture", `Édition ${ed.slug} · ${ed.articles.length} articles`);
@@ -2618,7 +3142,7 @@ function rendreArticle(a) {
           : echappe(s.titre)}</li>`).join("")}</ul>
       </details>` : ""}
     ${a.motsCles.length ? `<div class="etiquettes">${a.motsCles.slice(0, 8).map(m =>
-      `<a class="etiquette" href="#/recherche?q=${encodeURIComponent(m)}">${echappe(m)}</a>`).join("")}</div>` : ""}
+      `<a class="etiquette" href="#/sujet/${encodeURIComponent(m)}">${echappe(m)}</a>`).join("")}</div>` : ""}
   </div>`;
 }
 
@@ -2729,7 +3253,319 @@ function vueGardes() {
 
 }
 
+/* ── Vue : votre lecture ───────────────────────────────────────────────────
+ *
+ * Ce que l'application sait du lecteur et ne lui rendait jamais. Elle retient
+ * jusqu'à quatre cents éditions lues et cent positions de reprise ; elle n'en
+ * montrait qu'un compteur de gardés dans le menu du compte.
+ *
+ * Registre : celui d'un carnet de lecture, pas d'un jeu. Aucun badge, aucun
+ * palier célébré, aucune animation. Un soir d'attentat, des félicitations
+ * seraient odieuses — et une série qu'on entretient pour la série ne vaut de
+ * toute façon rien.
+ *
+ * Tout se calcule sur place : la liste des éditions est déjà en mémoire, celle
+ * des lues voyage avec le profil. Aucun appel, aucun champ Airtable.
+ */
+
+/** « 160 » → « 2 h 40 ». En dessous d'une heure, on reste en minutes. */
+function dureeLongue(minutes) {
+  if (minutes < 60) return `${minutes}${INSEC}min`;
+  const h = Math.floor(minutes / 60), m = minutes % 60;
+  return m ? `${h}${INSEC}h${INSEC}${String(m).padStart(2, "0")}` : `${h}${INSEC}h`;
+}
+
+/**
+ * La tuile d'un sujet suivi.
+ *
+ * L'existence de l'illustration n'est jamais vérifiée : la plupart des sujets
+ * n'en auront pas avant longtemps, et sonder chaque adresse coûterait une
+ * requête par sujet pour n'apprendre qu'une absence. La figure est donc posée
+ * telle quelle, et l'écouteur d'erreur global la retire entière quand le
+ * fichier manque — la tuile se réduit alors à son nom, sans encart vide ni
+ * initiale de remplacement.
+ */
+function tuileSujet({ mot, n, theme, dernier }) {
+  return `
+    <a class="tuile-sujet${n ? "" : " dort"}" href="#/sujet/${encodeURIComponent(mot)}"
+       style="--c:${couleurTheme(theme)}">
+      <span class="medaillon">
+        <img src="${echappe(imageSujet(mot))}" alt="" loading="lazy" decoding="async">
+        ${n ? `<span class="tuile-nombre">${n}</span>` : ""}
+      </span>
+      <span class="tuile-mot">${echappe(mot)}</span>
+      <span class="tuile-meta">${n
+        ? `<span class="compte-repli">${n} article${n > 1 ? "s" : ""} · </span>${depuisQuand(dernier)}`
+        : "rien ce mois-ci"}</span>
+    </a>`;
+}
+
+async function vueLecture() {
+  chargement("Rassemblement de vos lectures…");
+  const editions = await listerEditions();
+  const lues = LECTURE.lues();
+  const positions = LECTURE.positions();
+
+  const nbLues = editions.filter(e => lues.has(e.slug)).length;
+  const serie = LECTURE.serie(editions);
+  const record = LECTURE.meilleureSerie(editions);
+  const minutes = LECTURE.tempsCumule(editions);
+
+  // Le mois courant, horizon plus court que la frise.
+  const moisCle = aujourdhui().slice(0, 7);
+  const duMois = editions.filter(e => e.date.startsWith(moisCle));
+  const luesDuMois = duMois.filter(e => lues.has(e.slug));
+  const minutesDuMois = luesDuMois.reduce((n, e) => n + (e.minutes || 0), 0);
+
+  // Douze semaines de parution, remises dans l'ordre du temps : on lit la
+  // frise de gauche à droite, du plus ancien vers aujourd'hui.
+  const frise = editions.slice(0, 84).reverse();
+
+  const carre = e => {
+    const etat = lues.has(e.slug) ? "lue"
+      : positions[e.slug] ? "entamee" : "neuve";
+    const dit = lues.has(e.slug) ? "lue"
+      : positions[e.slug] ? `entamée à ${Math.round(positions[e.slug].part * 100)}${INSEC}%`
+      : "non lue";
+    return `<a class="jour ${etat}" href="#/edition/${e.slug}"
+               title="${echappe(dateCourte(e.date))} — ${dit}"
+               aria-label="${echappe(dateCourte(e.date))}, ${dit}"></a>`;
+  };
+
+  vue().className = "";
+  vue().innerHTML = `
+    <div class="chapeau-page">
+      <h1>Votre lecture</h1>
+      <p>${nbLues} édition${nbLues > 1 ? "s" : ""} lue${nbLues > 1 ? "s" : ""}
+         sur ${editions.length} parue${editions.length > 1 ? "s" : ""}${
+           editions.length ? `, depuis le ${dateCourte(editions[editions.length - 1].date)}` : ""}.</p>
+    </div>
+
+    ${editions.length ? `
+    <div class="compteurs">
+      <div><b>${serie}</b><span>${serie > 1 ? "éditions d'affilée" : "édition d'affilée"}</span></div>
+      <div><b>${record}</b><span>meilleure série</span></div>
+      <div><b>${dureeLongue(minutes)}</b><span>de lecture</span></div>
+    </div>
+
+    ${duMois.length ? `
+    <div class="surtitre">En ${MOIS[+moisCle.slice(5) - 1]}</div>
+    <p class="bilan-mois">${luesDuMois.length} édition${luesDuMois.length > 1 ? "s" : ""}
+      lue${luesDuMois.length > 1 ? "s" : ""} sur ${duMois.length} parue${duMois.length > 1 ? "s" : ""}${
+        minutesDuMois ? `, ${dureeLongue(minutesDuMois)} de lecture` : ""}.</p>` : ""}
+
+    <div class="surtitre">Les douze dernières semaines</div>
+    <div class="frise">${frise.map(carre).join("")}</div>
+    <div class="frise-legende">
+      <i class="jour neuve"></i><span>non lue</span>
+      <i class="jour entamee"></i><span>entamée</span>
+      <i class="jour lue"></i><span>lue</span>
+    </div>
+
+    ${serie === 0 && nbLues ? `
+    <div class="vide">Votre série est repartie de zéro. Les éditions manquées
+      se rattrapent en quelques minutes, et la série se ressoude toute seule.
+      <a href="#/rattrapage">Voir ce que vous avez manqué</a></div>` : ""}
+
+    <div id="lecture-corpus"></div>
+    ` : `<div class="vide">Aucune édition parue pour l'instant.</div>`}`;
+
+  document.title = ["Votre lecture", identite("app_nom")].filter(Boolean).join(" · ");
+
+  // Le reste demande le vivier — un relevé complet des articles. Il est déjà en
+  // mémoire si le lecteur a ouvert une édition ou Explorer ; à froid c'est une
+  // requête. On ne fait donc pas attendre devant un écran vide : ce qui vient
+  // des éditions est déjà à l'écran, le reste s'ajoute en dessous. Un échec ne
+  // prive que de ces trois blocs.
+  if (editions.length) {
+    garnirLecture(editions, lues)
+      .catch(e => console.warn("Portrait de lecture indisponible :", e.message));
+  }
+}
+
+/**
+ * Les trois blocs tirés du vivier : les sujets suivis, les rubriques, les mots
+ * qui reviennent.
+ *
+ * Réserve à connaître : on croise le vivier avec les *éditions* lues, faute de
+ * savoir quels articles l'ont été. C'est donc « ce qui vous est passé sous les
+ * yeux » et non « ce que vous avez lu ». L'approximation ne valait rien tant
+ * que « lu » signifiait « ouvert » ; avec le seuil des trois quarts, elle
+ * devient honnête.
+ */
+async function garnirLecture(editions, lues) {
+  const corpus = await chargerVivier();
+  const hote = $("#lecture-corpus");
+  if (!hote || !corpus?.length) return;
+
+  const datesLues = new Set(editions.filter(e => lues.has(e.slug)).map(e => e.date));
+  const vus = corpus.filter(a => datesLues.has(a.date));
+
+  // ── Les sujets suivis, et ce qu'ils ont donné ces trente derniers jours ──
+  const suivis = SUJETS.tous();
+  const bord = new Date();
+  bord.setDate(bord.getDate() - 30);
+  const recents = corpus.filter(a => a.date >= aujourdhui(bord));
+  const activite = suivis.map(mot => {
+    const siens = recents.filter(a => a.motsCles.includes(mot));
+    // La couleur du sujet est celle de sa thématique dominante : un sujet parle
+    // d'une chose, et cette chose a déjà une couleur ailleurs dans l'application.
+    const parTheme = new Map();
+    for (const a of siens) parTheme.set(a.thematique, (parTheme.get(a.thematique) || 0) + 1);
+    const theme = [...parTheme.entries()].sort((x, y) => y[1] - x[1])[0]?.[0] || "";
+    const dernier = siens.reduce((d, a) => a.date > d ? a.date : d, "");
+    return { mot, n: siens.length, theme, dernier };
+  }).sort((x, y) => y.n - x.n);
+
+  // ── Les mots qui reviennent, sujets déjà suivis exclus ───────────────────
+  // Les montrer serait redondant avec le bloc du dessus ; tout l'intérêt est de
+  // faire apparaître ce qu'on suit sans le savoir.
+  const dejaSuivis = new Set(suivis);
+  const freq = new Map();
+  for (const a of vus) {
+    for (const m of new Set(a.motsCles)) {
+      if (!dejaSuivis.has(m)) freq.set(m, (freq.get(m) || 0) + 1);
+    }
+  }
+  const recurrents = [...freq.entries()]
+    .filter(([, n]) => n >= 2)
+    .sort((x, y) => y[1] - x[1]).slice(0, 12);
+
+  hote.innerHTML = `
+    <div class="surtitre">Ce que vous suivez</div>
+    ${suivis.length ? `
+      <div class="grille-sujets">${activite.map(tuileSujet).join("")}</div>
+      <p class="note-bloc">Articles parus sur ces sujets en trente jours.</p>`
+      : `<div class="vide">Vous ne suivez aucun sujet. L'étiquette sous un article
+           propose de le suivre : l'application veille ensuite pour vous, y compris
+           les soirs où vous n'ouvrez pas.</div>`}
+
+    ${recurrents.length ? `
+    <div class="surtitre">Ce qui revient chez vous</div>
+    <div class="etiquettes">${recurrents.map(([m, n]) =>
+      `<a class="etiquette" href="#/sujet/${encodeURIComponent(m)}"
+          title="${n} articles">${echappe(m)}</a>`).join("")}</div>
+    <p class="note-bloc">Les mots les plus fréquents de vos lectures, hors sujets
+      déjà suivis. De quoi repérer ce que vous suivez sans le savoir.</p>` : ""}`;
+}
+
+/* ── Vue : un sujet ────────────────────────────────────────────────────────
+ *
+ * Tout ce qui a été écrit sur un mot, sous son illustration. C'est ce que la
+ * tuile de « Votre lecture » ouvre, et c'est une adresse en propre — donc
+ * partageable, et retrouvable dans l'historique du navigateur, ce qu'une
+ * recherche pré-remplie n'aurait pas offert.
+ */
+async function vueSujet(mot) {
+  if (!mot) return erreur("Sujet introuvable", "Aucun sujet n'a été demandé.");
+  chargement(`Rassemblement des articles sur ${mot}…`);
+
+  let corpus = [];
+  try { corpus = await chargerVivier(); }
+  catch (e) { return erreur("Sujet indisponible", e.message); }
+
+  const siens = corpus.filter(a => a.motsCles.includes(mot))
+    .sort((x, y) => y.date.localeCompare(x.date));
+
+  // La couleur vient de la thématique dominante, comme sur la tuile.
+  const parTheme = new Map();
+  for (const a of siens) parTheme.set(a.thematique, (parTheme.get(a.thematique) || 0) + 1);
+  const theme = [...parTheme.entries()].sort((x, y) => y[1] - x[1])[0]?.[0] || "";
+
+  // Tout est montré, rien n'est filtré : un mois vide n'apparaît simplement
+  // pas. Un sélecteur de date obligerait à deviner une période avant de voir
+  // quoi que ce soit, là où l'en-tête de mois se traverse au défilement — et
+  // c'est déjà la convention des archives.
+  const parMois = [];
+  for (const a of siens) {
+    const cle = a.date.slice(0, 7);
+    if (parMois.length && parMois[parMois.length - 1][0] === cle) {
+      parMois[parMois.length - 1][1].push(a);
+    } else {
+      parMois.push([cle, [a]]);
+    }
+  }
+
+  vue().className = "";
+  vue().innerHTML = `
+    <div style="--c:${couleurTheme(theme)}">
+      <figure class="sujet-banniere">
+        <img src="${echappe(imageSujet(mot))}" alt="" decoding="async">
+      </figure>
+
+      <div class="sujet-tete">
+        <h1>${echappe(mot)}</h1>
+        ${offreDeSuivi(mot)}
+      </div>
+      <p class="sujet-sous">${siens.length
+        ? `${siens.length} article${siens.length > 1 ? "s" : ""}, le plus récent ${
+            depuisQuand(siens[0].date)}.`
+        : "Aucun article ne porte encore ce sujet."}</p>
+
+      ${siens.length
+        ? parMois.map(([cle, articles]) => {
+            const [an, m] = cle.split("-");
+            return `
+              <section class="mois-sujet">
+                <h2>${MOIS[+m - 1]} ${an}</h2>
+                <div class="resultats">${articles.map(a => rendreResultat(a, "")).join("")}</div>
+              </section>`;
+          }).join("")
+        : `<div class="vide">Le sujet est suivi : dès qu'un article le croisera,
+             il vous sera signalé à l'ouverture de l'édition.</div>`}
+    </div>`;
+
+  document.title = [mot, identite("app_nom")].filter(Boolean).join(" · ");
+}
+
 /* ── Vue : archives ────────────────────────────────────────────────────── */
+
+/* Illustration de repli, pour les éditions sans « Image de une » : une grille
+   à trous ressemble à une panne, une même image partout a l'air d'un choix.
+   Elle vient de la table Réglages, clé `image_defaut`, et n'est pas nommée
+   ici — sans elle, la vignette garde simplement son aplat. */
+const imageDeRepli = () => reglage("image_defaut", "");
+
+/* Le verbe est dans sa propre balise pour que le téléphone puisse le retirer
+   sans que le chiffre ait à être recalculé ailleurs. */
+const libelleReprise = part =>
+  `<span class="verbe">Reprendre ·${INSEC}</span>${Math.round(part * 100)}${INSEC}%`;
+
+/* ── Les sujets : illustration et couleur ─────────────────────────────────
+ *
+ * L'illustration d'un sujet est déposée à la main dans un dossier, sous le nom
+ * du sujet débarrassé de ses accents, les espaces devenus des tirets :
+ * « Thaïlande » donne « Thailande.jpg », « Éclipse » donnerait « Eclipse.jpg ».
+ *
+ * On ne vérifie jamais qu'elle existe. La plupart des sujets n'en auront pas
+ * pendant longtemps, et sonder chaque adresse coûterait une requête par sujet
+ * pour n'apprendre qu'une absence. L'image est donc posée par-dessus un repli
+ * qui, lui, est toujours là : si le fichier manque, l'écouteur d'erreur global
+ * retire la balise et le repli se découvre tout seul.
+ */
+const imageSujet = mot => reglage("images_sujets",
+    "https://filedn.com/l4HWkMiUlkPSpmGVW2IXoEB/Brief/image/Sujets/")
+  + encodeURIComponent(String(mot).normalize("NFD").replace(/[̀-ͯ]/g, "")
+      .replace(/\s+/g, "-")) + ".jpg";
+
+/* Les thématiques ont leur couleur, comme les rubriques ont la leur. Elle ne
+   sert qu'en teinte pâle — voir `.medaillon` : plusieurs de ces couleurs ne
+   tiennent pas du texte blanc, et l'aplat plein criait par-dessus les
+   illustrations qu'il était censé remplacer. */
+const THEMATIQUES = [
+  ["International", "var(--bleu)"],   ["France", "var(--rouge)"],
+  ["Économie", "var(--or-plein)"],    ["Environnement", "var(--sarcelle)"],
+  ["Sciences", "var(--cyan)"],        ["Culture", "var(--magenta)"],
+  ["Santé", "var(--violet)"],         ["Sport", "var(--vert)"],
+];
+const couleurTheme = t => (THEMATIQUES.find(x => x[0] === t) || [, "var(--texte-3)"])[1];
+
+/** « il y a 2 jours », « hier », « aujourd'hui ». */
+function depuisQuand(iso) {
+  const jours = Math.round((Date.now() - new Date(iso + "T12:00:00")) / 86400000);
+  return jours <= 0 ? "aujourd'hui" : jours === 1 ? "hier" : `il y a ${jours} jours`;
+}
+
 async function vueArchives() {
   chargement("Chargement des archives…");
   const editions = await listerEditions();
@@ -2791,31 +3627,57 @@ async function vueArchives() {
 
 function rendreArchives(parMois) {
   const lues = LECTURE.lues();
+  const repli = imageDeRepli();
 
   return [...parMois.entries()].map(([cle, liste]) => {
     const [an, m] = cle.split("-");
     return `
       <section class="mois">
         <h2>${MOIS[+m - 1]} ${an}</h2>
+        <ul class="grille-mois">
         ${liste.map(e => {
           // Une édition « en cours » l'emporte sur « lue » : c'est celle vers
           // laquelle le lecteur veut revenir, elle ne doit pas s'effacer.
           const reprise = LECTURE.reprise(e.slug);
           const lue = lues.has(e.slug) && !reprise;
+          const couleur = e.type === "Extra du samedi" ? "var(--violet)" : "var(--rouge)";
+          // Pas de source, pas de balise : un `src` vide relance la page entière
+          // sur certains navigateurs. L'aplat de la vignette tient alors seul.
+          const illustration = e.image || repli;
+          // `lue` et non `lues.has()` : l'édition ouverte puis laissée en route
+          // figure dans la liste tout en s'affichant « en cours », et c'est ce
+          // qui s'affiche que le bouton doit annoncer.
+          const libelle = lue ? "Marquer comme non lue" : "Marquer comme lue";
+          // Trois états. L'édition finie reçoit le cachet, celles qui restent à
+          // lire une pastille de coin — voir la feuille de style pour le
+          // pourquoi de cet écart de traitement.
+          const etat = reprise
+            ? { forme: "pastille-etat", classe: "encours",
+                texte: libelleReprise(reprise.part) }
+            : lue
+              ? { forme: "cachet", classe: "lue", texte: "Lue" }
+              : { forme: "pastille-etat", classe: "neuve", texte: "Nouveau" };
           return `
-          <a class="carte${lue ? " lue" : ""}" href="#/edition/${e.slug}" style="--c:${e.type === "Extra du samedi" ? "var(--violet)" : "var(--rouge)"}">
-            <div class="carte-meta">
-              <i class="pastille"></i>
-              <span>${dateLongue(e.date)}</span>
-              ${e.numero ? `<span class="sep">N° ${e.numero}</span>` : ""}
-              ${e.minutes ? `<span class="sep">${e.minutes} min</span>` : ""}
-              ${reprise ? `<span class="jalon">En cours
-                  <i style="--p:${Math.round(reprise.part * 100)}%"></i></span>` : ""}
-            </div>
-            <h3>${prose(e.titre)}</h3>
-            ${e.resume ? `<p>${prose(e.resume)}</p>` : ""}
-          </a>`;
+          <li style="--c:${couleur}">
+            <a class="fil-carte${lue ? " lue" : ""}" href="#/edition/${e.slug}">
+              <span class="fil-image">
+                ${illustration
+                  ? `<img src="${echappe(illustration)}" alt="" loading="lazy" decoding="async">`
+                  : ""}
+                ${e.numero ? `<span class="ruban">N°${INSEC}${e.numero}</span>` : ""}
+                ${reprise ? `<span class="arch-reprise"
+                    style="width:${Math.round(reprise.part * 100)}%"></span>` : ""}
+              </span>
+              <time datetime="${e.date}">${jourEtMois(e.date)}${
+                e.minutes ? ` · ${e.minutes}${INSEC}min` : ""}</time>
+              <span class="fil-carte-titre">${prose(e.titre)}</span>
+            </a>
+            <button class="${etat.forme} ${etat.classe}" data-lue="${echappe(e.slug)}"
+                    aria-pressed="${lue}" title="${libelle}"
+                    aria-label="${libelle}">${etat.texte}</button>
+          </li>`;
         }).join("")}
+        </ul>
       </section>`;
   }).join("");
 }
@@ -2917,7 +3779,7 @@ async function vueExplorer(params) {
       <p class="surtitre" style="display:block; margin-bottom:.75rem">Vos sujets</p>
       <div class="nuage nuage-suivis">
         ${suivis.map(m => `
-          <a class="suivi" href="#/recherche?q=${encodeURIComponent(m)}"
+          <a class="suivi" href="#/sujet/${encodeURIComponent(m)}"
              >${echappe(m)}${parMotCle.get(m) ? `<i>${parMotCle.get(m)}</i>` : ""}</a>`).join("")}
       </div>
       <p class="note-nuage" style="margin-bottom:1.75rem">Signalés en tête d'édition dès qu'un
@@ -2929,7 +3791,7 @@ async function vueExplorer(params) {
       </p>
       <div class="nuage">
         ${restants.slice(0, 120).map(([m, n]) => `
-          <a href="#/recherche?q=${encodeURIComponent(m)}">${echappe(m)}<i>${n}</i></a>`).join("")}
+          <a href="#/sujet/${encodeURIComponent(m)}">${echappe(m)}<i>${n}</i></a>`).join("")}
       </div>
       ${motsUniques ? `<p class="note-nuage">${motsUniques} autre${motsUniques > 1 ? "s" : ""}
         mot${motsUniques > 1 ? "s" : ""}-clé${motsUniques > 1 ? "s" : ""}
@@ -3015,6 +3877,10 @@ async function vueRecherche(params) {
      changer la route reconstruirait le formulaire et le champ perdrait le
      focus au premier caractère. On ne remplace donc que les résultats, et
      l'adresse est réécrite en silence pour rester partageable. */
+  // Chargé sans attendre : arriver sur « #/recherche?q=… » ne doit pas priver
+  // le lecteur de la réponse immédiate faute de vivier en mémoire.
+  chargerVivier().catch(() => { /* la recherche réseau reste utilisable */ });
+
   let minuteur, requeteEnCours = 0;
   async function lancer({ pousserRoute = false } = {}) {
     const t = $("#q").value.trim();
@@ -3033,7 +3899,13 @@ async function vueRecherche(params) {
     // Une réponse lente ne doit pas écraser le résultat d'une frappe plus
     // récente : seule la dernière requête lancée a le droit d'afficher.
     const mien = ++requeteEnCours;
-    $("#resultats").innerHTML = `<p class="vide">Recherche en cours…</p>`;
+
+    // Le vivier est déjà en mémoire : on répond avant même d'interroger le
+    // réseau. Le lecteur voit quelque chose à la frappe, et non après 350 ms.
+    const locaux = chercherLocalement(t, { rubrique: r, thematique: th });
+    if (locaux) afficherResultats(locaux, t, "partiel");
+    else $("#resultats").innerHTML = `<p class="vide">Recherche en cours…</p>`;
+
     try {
       const trouves = t ? await rechercher(t, { rubrique: r, thematique: th })
                         : await filtrerSansTerme({ rubrique: r, thematique: th });
@@ -3042,6 +3914,9 @@ async function vueRecherche(params) {
       journaliser("Recherche", `« ${t} » → ${trouves.length} résultat(s)`);
     } catch (e) {
       if (mien !== requeteEnCours) return;
+      // Le réseau a manqué, mais la mémoire avait déjà répondu : on garde ce
+      // qu'on a plutôt que de le remplacer par un message d'échec.
+      if (locaux) return void afficherResultats(locaux, t, "horsLigne");
       $("#resultats").innerHTML =
         `<div class="vide"><b>La recherche a échoué</b>${echappe(e.message)}</div>`;
     }
@@ -3089,17 +3964,33 @@ function offreDeSuivi(q) {
        des articles : vous serez signalé presque chaque soir.</small>` : ""}`;
 }
 
-function afficherResultats(trouves, q) {
+/**
+ * `etat` distingue trois situations que le lecteur doit pouvoir lire :
+ *   • `complet`  — le serveur a répondu, contenu des articles compris ;
+ *   • `partiel`  — ce que le vivier local sait, en attendant le serveur ;
+ *   • `horsLigne`— le serveur n'a pas répondu, on en reste au local.
+ * Sans cette nuance, une recherche locale afficherait « aucun résultat » avec
+ * l'aplomb d'une recherche complète, alors qu'elle n'a pas lu les contenus.
+ */
+function afficherResultats(trouves, q, etat = "complet") {
+  const note = etat === "complet" ? ""
+    : etat === "horsLigne"
+      ? `<p class="note-recherche">Hors ligne : cherché dans les titres, chapôs et
+           mots-clés des articles en mémoire. Les contenus n'ont pas pu être lus.</p>`
+      : `<p class="note-recherche">Résultats immédiats, tirés de la mémoire.
+           Le serveur complète avec les contenus…</p>`;
+
   $("#resultats").innerHTML = trouves.length
     ? `<div class="resultats-tete">
          <p class="surtitre">${trouves.length} résultat${trouves.length > 1 ? "s" : ""}</p>
          ${offreDeSuivi(q)}
        </div>
+       ${note}
        ${trouves.map(a => rendreResultat(a, q)).join("")}`
     : `<div class="vide">
          <b>Aucun résultat</b>
          Aucun article ne correspond${q ? ` à « ${echappe(q)} »` : ""}.
-       </div>`;
+       </div>${note}`;
 }
 
 /**
@@ -3134,7 +4025,7 @@ async function ecranDeDepart() {
       </div>` : ""}
       ${sujets.length ? `<div>
         <span class="surtitre">Sujets qui reviennent</span>
-        ${nuage(sujets, s => `#/recherche?q=${encodeURIComponent(s)}`)}
+        ${nuage(sujets, s => `#/sujet/${encodeURIComponent(s)}`)}
       </div>` : ""}
     </div>`;
 }
@@ -3768,6 +4659,7 @@ function rendreMenuCompte() {
       </select>
       <small>✦ voix distante, nettement plus naturelle</small>
     </div>` : ""}
+    <a href="#/lecture">Votre lecture</a>
     <a href="#/archives">Parcourir les archives</a>
     ${gardes ? `<a href="#/gardes">Articles gardés <b class="pastille-nombre">${gardes}</b></a>` : ""}
     <button id="btn-deconnexion">Se déconnecter</button>`;
@@ -3818,6 +4710,9 @@ function router() {
     switch (segments[0]) {
       case "archives":  marquer("archives");  return vueArchives();
       case "gardes":                          return vueGardes();
+      case "lecture":                         return vueLecture();
+      case "sujet":                           return vueSujet(
+                                                decodeURIComponent(segments[1] || ""));
       case "rattrapage":                      return vueRattrapage();
       case "explorer":  marquer("explorer");  return vueExplorer(params);
       case "recherche": marquer("recherche"); return vueRecherche(params);
@@ -3977,6 +4872,44 @@ async function demarrer() {
     if (img?.tagName !== "IMG") return;
     (img.closest("figure") || img).remove();
   }, true);
+
+  // Marquer une édition lue ou non lue depuis les archives. Le bouton se
+  // superpose à la carte, qui est un lien : sans preventDefault, le clic
+  // ouvrirait l'édition dans la foulée.
+  document.addEventListener("click", e => {
+    const btn = e.target.closest("[data-lue]");
+    if (!btn) return;
+    e.preventDefault();
+
+    // Seul le cachet signifie « lue » : la pastille couvre aussi bien l'édition
+    // jamais ouverte que celle laissée en route, et l'une comme l'autre attend
+    // du geste qu'il la termine.
+    const lue = LECTURE.definirLue(btn.dataset.lue, !btn.classList.contains("cachet"));
+    const libelle = lue ? "Marquer comme non lue" : "Marquer comme lue";
+    btn.setAttribute("aria-pressed", String(lue));
+    btn.setAttribute("aria-label", libelle);
+    btn.title = libelle;
+
+    const carte = btn.parentElement.querySelector(".fil-carte");
+    const trait = btn.parentElement.querySelector(".arch-reprise");
+
+    // Marquer « lue » à la main efface la position mémorisée : le trait de
+    // reprise n'a plus d'objet.
+    if (lue) trait?.remove();
+
+    // Dépointée, une édition dont la position subsiste redevient « en cours »
+    // et non « neuve » : c'est ce que le prochain rendu affichera de toute
+    // façon, autant que le cachet le dise tout de suite.
+    const entamee = !lue && trait;
+    btn.className = lue ? "cachet lue"
+      : entamee ? "pastille-etat encours" : "pastille-etat neuve";
+    btn.innerHTML = lue ? "Lue"
+      : entamee ? libelleReprise(parseFloat(trait.style.width) / 100)
+      : "Nouveau";
+
+    // La carte grise sa vignette et apaise son titre.
+    carte?.classList.toggle("lue", lue);
+  });
 
   // Garder un article. Un seul écouteur pour toute l'application : posé dans
   // les vues, il se serait accumulé à chaque rendu et un clic aurait fini par
