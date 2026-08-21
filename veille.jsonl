@@ -1,186 +1,193 @@
-{"collecte":"2026-08-20 16:39","fuseau":"Europe/Paris","fenetre_heures":26,"depeches":185,"detail":"veille/2026-08-20.json","format":"titres seuls — résumés via « python scripts/depeches.py id1 id2 … »"}
-{"id":"0820-bbc001","date":"08-20 16:34","source":"BBC News","rubrique":"International","titre":"At least 13 workers killed in landslide at Colombian gold mine"}
-{"id":"0820-fs001","date":"08-20 16:33","source":"Futura Sciences","rubrique":"Sciences","titre":"Nous sommes peut-être au seuil d'être frappés par une tempête solaire dévastatrice !"}
-{"id":"0820-lm001","date":"08-20 16:30","source":"Le Monde","rubrique":"France","titre":"Le massif du Mont-Blanc déstabilisé par un été caniculaire et des chutes de pierres qui le défigurent"}
-{"id":"0820-lib001","date":"08-20 16:22","source":"Libération","rubrique":"France","titre":"L’opérateur SFR victime d’une cyberattaque, des données personnelles de 2,1 millions d’abonnés à la fibre dans la nature"}
-{"id":"0820-fi001","date":"08-20 16:22","source":"franceinfo","rubrique":"France","titre":"Les Hautes-Alpes rejoignent cinq autres départements du Sud-Est déjà placés en vigilance orange aux orages, la Corse en alerte vendredi matin"}
-{"id":"0820-f24001","date":"08-20 16:17","source":"France 24","rubrique":"International","titre":"À la frontière de Ceuta, des familles marocaines à la recherche de leurs enfants disparus"}
-{"id":"0820-lm002","date":"08-20 16:17","source":"Le Monde","rubrique":"France","titre":"Les Etats-Unis dénoncent la détention « arbitraire » d’un deuxième citoyen américain en Chine"}
-{"id":"0820-lib002","date":"08-20 16:15","source":"Libération","rubrique":"France","titre":"Frappes et alliances provocatrices : en Syrie, Nétanyahou joue avec le feu turc"}
-{"id":"0820-lib003","date":"08-20 16:12","source":"Libération","rubrique":"France","titre":"Crise à la Fifa : un congrès extraordinaire en discussion pour renverser Gianni Infantino"}
-{"id":"0820-f24002","date":"08-20 16:11","source":"France 24","rubrique":"International","titre":"Gaza : une crise humanitaire qui prive les civils de tout"}
-{"id":"0820-f24003","date":"08-20 16:07","source":"France 24","rubrique":"International","titre":"L'étoile la plus rapide de notre galaxie file à 25 000 kilomètres par seconde"}
-{"id":"0820-lib004","date":"08-20 16:06","source":"Libération","rubrique":"France","titre":"Annulée en juin en raison de la canicule, la Marche des Fiertés se tiendra le 3 octobre"}
-{"id":"0820-f24004","date":"08-20 16:05","source":"France 24","rubrique":"International","titre":"Angélique Kidjo, première artiste africaine étoilée à Hollywood"}
-{"id":"0820-f24005","date":"08-20 16:04","source":"France 24","rubrique":"International","titre":"Libye : des politiques de l'Ouest et du Sud réunis à Tunis"}
-{"id":"0820-lm003","date":"08-20 16:03","source":"Le Monde","rubrique":"France","titre":"Appel à témoignages : vous faites face à la mort d’un(e) de vos proches après l’une des vagues de chaleur ? Racontez-nous"}
-{"id":"0820-f24006","date":"08-20 16:03","source":"France 24","rubrique":"International","titre":"Guinée : l'activiste Bella Bah condamné pour injures et diffamation"}
-{"id":"0820-lm004","date":"08-20 16:01","source":"Le Monde","rubrique":"France","titre":"En Colombie, un glissement de terrain dans une mine d’or illégale fait au moins 13 morts"}
-{"id":"0820-f24007","date":"08-20 16:01","source":"France 24","rubrique":"International","titre":"États-Unis : la dette publique franchit le seuil historique des 40 000 milliards"}
-{"id":"0820-lm005","date":"08-20 16:00","source":"Le Monde","rubrique":"France","titre":"Victor Wembanyama fait son retour au sein de l’équipe de France de basket en tant que capitaine, deux ans après les Jeux de Paris"}
-{"id":"0820-lm006","date":"08-20 16:00","source":"Le Monde","rubrique":"Culture","titre":"La violoniste Anne-Sophie Mutter célèbre les 50 ans d’une carrière menée archet battant"}
-{"id":"0820-f24008","date":"08-20 15:59","source":"France 24","rubrique":"International","titre":"Corée du Nord : une dizaine de missiles tirés vers la mer du Japon"}
-{"id":"0820-lib005","date":"08-20 15:59","source":"Libération","rubrique":"France","titre":"Le maire d’Arcachon, Yves Foulon, condamné pour «menaces» et «violences» contre son opposant écologiste"}
-{"id":"0820-lm007","date":"08-20 15:57","source":"Le Monde","rubrique":"France","titre":"Yves Foulon, maire d’Arcachon, condamné à 5 000 euros d’amende pour menaces et violences envers son principal opposant aux municipales"}
-{"id":"0820-bbc002","date":"08-20 15:56","source":"BBC News","rubrique":"International","titre":"At least 15 killed in Kyiv as Ukraine grapples with air defence shortages"}
-{"id":"0820-lib006","date":"08-20 15:50","source":"Libération","rubrique":"France","titre":"Le chef d’orchestre Manfred Honeck, honnête et précis"}
-{"id":"0820-f24009","date":"08-20 15:49","source":"France 24","rubrique":"International","titre":"Bangladesh : les bus roses arrivent à Dacca"}
-{"id":"0820-fi002","date":"08-20 15:42","source":"franceinfo","rubrique":"France","titre":"Corps calciné, deux hommes arrêtés, une arme retrouvée... Ce que l'on sait de la mort de l'influenceuse Sonia Bellina dans le Gard"}
-{"id":"0820-fi003","date":"08-20 15:41","source":"franceinfo","rubrique":"France","titre":"Fin de la grève au Samu social : la CGT revendique sa \"victoire\" sans pour autant abandonner la lutte, après presque deux mois de mobilisation"}
-{"id":"0820-lib007","date":"08-20 15:27","source":"Libération","rubrique":"France","titre":"Changement climatique : les surfaces brûlées par les incendies vont augmenter en Europe, préviennent des chercheurs"}
-{"id":"0820-fi004","date":"08-20 15:22","source":"franceinfo","rubrique":"France","titre":"Le maire d'Arcachon, Yves Foulon, condamné à 5 000 euros d'amende pour menaces et violences envers son principal opposant"}
-{"id":"0820-fs002","date":"08-20 15:08","source":"Futura Sciences","rubrique":"Sciences","titre":"« 39 % de surface brûlée en plus chaque année » : les modèles révèlent ce qui attend l’Europe même sous les +2 °C !"}
-{"id":"0820-lib008","date":"08-20 15:07","source":"Libération","rubrique":"France","titre":"Envers mon endroit (8/8) – La digue de Wimereux, par Ivan Jablonka : Opale en couleurs"}
-{"id":"0820-bbc003","date":"08-20 15:04","source":"BBC News","rubrique":"International","titre":"German neo-Nazi suspected of deadly 1970 fire at Jewish retirement home"}
-{"id":"0820-lm008","date":"08-20 15:02","source":"Le Monde","rubrique":"France","titre":"Xu Jiayin, l’ex-patron chinois du géant de l’immobilier Evergrande, condamné à la prison à vie"}
-{"id":"0820-f24010","date":"08-20 15:00","source":"France 24","rubrique":"International","titre":"France : le gouvernement créé une \"nouvelle unité cyber\""}
-{"id":"0820-fi005","date":"08-20 15:00","source":"franceinfo","rubrique":"France","titre":"Affaire Le Scouarnec : un collectif de victimes redoute \"une posture politique\" de Gérald Darmanin lors d'une rencontre en Bretagne vendredi"}
-{"id":"0820-lm009","date":"08-20 15:00","source":"Le Monde","rubrique":"France","titre":"Au Brésil, Sao Paulo s’enorgueillit de son système de surveillance massif, malgré une efficacité contestée"}
-{"id":"0820-lm010","date":"08-20 15:00","source":"Le Monde","rubrique":"France","titre":"François d’Assise, apôtre de la paix universelle : quand le saint en croisade a rencontré le sultan"}
-{"id":"0820-lm011","date":"08-20 15:00","source":"Le Monde","rubrique":"France","titre":"Défense : les exportations d’armes françaises encore à des sommets en 2025"}
-{"id":"0820-fi006","date":"08-20 14:58","source":"franceinfo","rubrique":"France","titre":"En Roumanie, un avion de chasse abat un drone maritime près d'un projet gazier en mer Noire"}
-{"id":"0820-f24011","date":"08-20 14:58","source":"France 24","rubrique":"International","titre":"Canicule en Europe : 14 000 décès liés à la chaleur en Allemagne, près de 4 500 en Espagne"}
-{"id":"0820-lib009","date":"08-20 14:57","source":"Libération","rubrique":"France","titre":"«GTA VI» : des militaires américains auront droit à une «permission spéciale» pour pouvoir y jouer"}
-{"id":"0820-lm012","date":"08-20 14:52","source":"Le Monde","rubrique":"Sciences","titre":"Des scientifiques découvrent l’étoile la plus rapide de notre galaxie"}
-{"id":"0820-lm013","date":"08-20 14:46","source":"Le Monde","rubrique":"Économie","titre":"Cour des comptes : un rapport interne appelle à une « vigilance accrue » sur la liberté d’expression des magistrats de l’institution"}
-{"id":"0820-lm014","date":"08-20 14:44","source":"Le Monde","rubrique":"France","titre":"Ebola en RDC : l’OMS déploie 70 000 doses du vaccin Ervebo"}
-{"id":"0820-f24012","date":"08-20 14:44","source":"France 24","rubrique":"International","titre":"Le dossier de la Syrie ravive la rivalité entre Israël et la Turquie"}
-{"id":"0820-lib010","date":"08-20 14:42","source":"Libération","rubrique":"France","titre":"Casque obligatoire à vélo : madame la ministre, ne nous prenez pas la tête !"}
-{"id":"0820-bbc004","date":"08-20 14:38","source":"BBC News","rubrique":"International","titre":"Assad officer extradited to Syria on war crimes charges for first time"}
-{"id":"0820-lm015","date":"08-20 14:25","source":"Le Monde","rubrique":"France","titre":"EN DIRECT, guerre en Ukraine : près de 40 000 personnes se sont réfugiées dans le métro de Kiev lors de l’attaque russe dans la nuit de mercredi à jeudi"}
-{"id":"0820-fi007","date":"08-20 14:19","source":"franceinfo","rubrique":"France","titre":"Les enseignants gagnaient en moyenne 3 090 euros en 2024, selon une étude du ministère de l'Education nationale"}
-{"id":"0820-f24013","date":"08-20 14:09","source":"France 24","rubrique":"International","titre":"Qui est l'\"assistante spéciale\" Natalie Harp, toujours dans l'ombre de Donald Trump ?"}
-{"id":"0820-fi008","date":"08-20 14:08","source":"franceinfo","rubrique":"France","titre":"\"Ça commence par là, la démolition, le nettoyage…\" : au Porge, la sécurité civile aide les sinistrés à déblayer leur terrain avant la reconstruction"}
-{"id":"0820-lib011","date":"08-20 14:07","source":"Libération","rubrique":"France","titre":"La proche de Lena Situations, Gisèle Journo, ciblée sur les réseaux : enquête ouverte pour cyberharcèlement et menace de mort"}
-{"id":"0820-lm016","date":"08-20 13:55","source":"Le Monde","rubrique":"France","titre":"Ceuta : l’Espagne ouvre des centres d’hébergement pour 1 800 migrants face à l’urgence humanitaire"}
-{"id":"0820-lm017","date":"08-20 13:54","source":"Le Monde","rubrique":"International","titre":"Min Aung Hlaing, le président birman, en visite à Moscou pour consolider l’alliance avec la Russie"}
-{"id":"0820-f24014","date":"08-20 13:48","source":"France 24","rubrique":"International","titre":"New York : le retour des baleines à bosse lié au réchauffement climatique"}
-{"id":"0820-fi009","date":"08-20 13:48","source":"franceinfo","rubrique":"France","titre":"La Marche des fiertés de Paris, annulée à cause de la canicule en juin, est reportée au 3 octobre"}
-{"id":"0820-lm018","date":"08-20 13:48","source":"Le Monde","rubrique":"International","titre":"En Hongrie, la télévision publique reprend ses journaux d’information après 44 jours d’une interruption décidée par Péter Magyar, successeur de Viktor Orban"}
-{"id":"0820-fi010","date":"08-20 13:47","source":"franceinfo","rubrique":"France","titre":"La Corée du Nord a tiré une dizaine de missiles balistiques, affirme Séoul"}
-{"id":"0820-fi011","date":"08-20 13:46","source":"franceinfo","rubrique":"France","titre":"\"La Jeune Fille à la perle\" de Vermeer au Japon pour une rare exposition internationale"}
-{"id":"0820-lm019","date":"08-20 13:45","source":"Le Monde","rubrique":"International","titre":"Entre la Grèce et la Turquie, un projet de parcs marins accroît les tensions sur la délimitation de leurs eaux territoriales"}
-{"id":"0820-f24015","date":"08-20 13:44","source":"France 24","rubrique":"International","titre":"Ebola en RD Congo : un enfant sur quatre parmi les cas détectés"}
-{"id":"0820-f24016","date":"08-20 13:30","source":"France 24","rubrique":"International","titre":"Guinée : l'activiste Bella Bah condamné à 6 mois de prison pour \"injures envers un Imam\""}
-{"id":"0820-lm020","date":"08-20 13:24","source":"Le Monde","rubrique":"Économie","titre":"Le site de vente de vêtements Boohoo condamné à une amende de 2,33 millions d’euros"}
-{"id":"0820-lm021","date":"08-20 13:22","source":"Le Monde","rubrique":"France","titre":"Plan Trump pour Gaza : Jared Kushner tente de sortir de l’impasse, mais sans obtenir de garanties en Israël"}
-{"id":"0820-lib012","date":"08-20 13:21","source":"Libération","rubrique":"France","titre":"Orages violents et risques d’inondations : plusieurs départements du Sud-Est en vigilance orange ce jeudi"}
-{"id":"0820-fi012","date":"08-20 13:17","source":"franceinfo","rubrique":"France","titre":"Trois hommes, dont un mineur, soupçonnés d'avoir tabassé à mort une personne sans domicile fixe dans l'Orne"}
-{"id":"0820-bbc005","date":"08-20 13:08","source":"BBC News","rubrique":"International","titre":"Former Liberian vice-president charged in drug-trafficking probe"}
-{"id":"0820-lib013","date":"08-20 13:05","source":"Libération","rubrique":"France","titre":"En moyenne, les enseignants gagnaient 3 090 euros en 2024, selon une étude du ministère de l’Education nationale"}
-{"id":"0820-fi013","date":"08-20 13:04","source":"franceinfo","rubrique":"France","titre":"Une gérante de plusieurs salons de massage à Lille condamnée pour proxénétisme"}
-{"id":"0820-lib014","date":"08-20 12:59","source":"Libération","rubrique":"France","titre":"«Ce modèle est l’exemple à ne pas suivre» : Amnesty alerte sur les centres de rétention pour migrants délocalisés en Albanie par l’Italie"}
-{"id":"0820-lm022","date":"08-20 12:57","source":"Le Monde","rubrique":"International","titre":"La Turquie dément toute présence militaire sur la base syrienne frappée par Israël et promet de défendre la souveraineté de la Syrie"}
-{"id":"0820-lib015","date":"08-20 12:54","source":"Libération","rubrique":"France","titre":"Avec 23 jours consécutifs, la vague de chaleur en cours est la plus longue jamais enregistrée, ex æquo avec juillet 1983"}
-{"id":"0820-f24017","date":"08-20 12:53","source":"France 24","rubrique":"International","titre":"Vingt-trois jours : la vague de chaleur débutée fin juillet est la plus longue en France depuis 1983"}
-{"id":"0820-lib016","date":"08-20 12:48","source":"Libération","rubrique":"France","titre":"14 000 en Allemagne, près de 4 500 en Espagne... L’Europe compte ses morts dues aux chaleurs extrêmes"}
-{"id":"0820-fi014","date":"08-20 12:48","source":"franceinfo","rubrique":"France","titre":"L'Espagne ouvre plusieurs centres d'hébergement pour les 1 800 migrants encore présents à Ceuta"}
-{"id":"0820-fi015","date":"08-20 12:47","source":"franceinfo","rubrique":"France","titre":"Orages : le préfet du Var appelle à \"éviter les déplacements\" et redoute des inondations"}
-{"id":"0820-bbc006","date":"08-20 12:41","source":"BBC News","rubrique":"International","titre":"Ecuador intelligence chief and five Americans killed in Kenya helicopter crash"}
-{"id":"0820-f24018","date":"08-20 12:39","source":"France 24","rubrique":"International","titre":"Ukraine : les missiles russes embrasent le ciel de Kiev"}
-{"id":"0820-fs003","date":"08-20 12:35","source":"Futura Sciences","rubrique":"Sciences","titre":"« Un milliard de personnes concernées » : le danger de la chaleur a été largement sous-estimé, révèle une étude de Stanford"}
-{"id":"0820-f24019","date":"08-20 12:34","source":"France 24","rubrique":"International","titre":"Retour de terrain : à la rencontre des migrants de Ceuta"}
-{"id":"0820-bbc007","date":"08-20 12:32","source":"BBC News","rubrique":"International","titre":"Four workers dead after being hit by train in Japan"}
-{"id":"0820-f24020","date":"08-20 12:30","source":"France 24","rubrique":"International","titre":"Cameroun : une centaine de morts dans l'éboulement d'une mine d'or"}
-{"id":"0820-f24021","date":"08-20 12:29","source":"France 24","rubrique":"International","titre":"Royaume-Uni : Harry et Meghan de retour près de Londres"}
-{"id":"0820-f24022","date":"08-20 12:26","source":"France 24","rubrique":"International","titre":"Colombie : trois cents morts et 9,5 milliards de dégâts après le séisme"}
-{"id":"0820-lib017","date":"08-20 12:24","source":"Libération","rubrique":"France","titre":"«GTA VI» : authenticité, IA, revendications… ce que l’on sait des fuites supposées du jeu vidéo"}
-{"id":"0820-f24023","date":"08-20 12:23","source":"France 24","rubrique":"International","titre":"Sécheresse en France : les clubs privés de leurs pelouses"}
-{"id":"0820-lm023","date":"08-20 12:18","source":"Le Monde","rubrique":"International","titre":"Bande de Gaza : l’Australie « outrée » par la décision d’Israël de clore une enquête sur la mort d’humanitaires"}
-{"id":"0820-fi016","date":"08-20 12:16","source":"franceinfo","rubrique":"France","titre":"La vague de chaleur en cours devient la plus longue jamais enregistrée en France, ex aequo avec celle de juillet 1983"}
-{"id":"0820-bbc008","date":"08-20 12:14","source":"BBC News","rubrique":"International","titre":"Belgian car salesman becomes prince after royal parentage confirmed"}
-{"id":"0820-lib018","date":"08-20 12:11","source":"Libération","rubrique":"France","titre":"Fêtes de village, brocantes, soirées… Les affiches faites par IA, une prolifération qui file le mouron"}
-{"id":"0820-fi017","date":"08-20 12:09","source":"franceinfo","rubrique":"France","titre":"Gabriel Attal et Jean-Luc Mélenchon : un duel permanent, avec l'élection présidentielle en ligne de mire"}
-{"id":"0820-bbc009","date":"08-20 12:07","source":"BBC News","rubrique":"International","titre":"Ex-Zambian minister killed in security raid on opposition"}
-{"id":"0820-lib019","date":"08-20 12:05","source":"Libération","rubrique":"France","titre":"«Almageste», l’exploration hors frontières de Mouna Saboni"}
-{"id":"0820-fi018","date":"08-20 12:03","source":"franceinfo","rubrique":"France","titre":"Fortes pluies, grêle et vents violents : le Var et les Alpes-Maritimes placés en vigilance orange pour orages par Météo France"}
-{"id":"0820-fi019","date":"08-20 12:01","source":"franceinfo","rubrique":"France","titre":"Le vaccin contre le cancer de la peau représente \"un réel espoir,\" souligne l’oncologue Suzette Delaloge"}
-{"id":"0820-lm024","date":"08-20 12:00","source":"Le Monde","rubrique":"International","titre":"« Sous Trump, mener un projet sur Israël et la Palestine à l’université est une épreuve institutionnelle »"}
-{"id":"0820-lm025","date":"08-20 11:56","source":"Le Monde","rubrique":"Culture","titre":"Keiko Kishi, actrice, écrivaine et productrice japonaise, est morte"}
-{"id":"0820-lib020","date":"08-20 11:53","source":"Libération","rubrique":"France","titre":"Cancer de la peau : un vaccin à ARN messager testé par Moderna et Merck pourrait repousser de manière «significative» la récidive"}
-{"id":"0820-lm026","date":"08-20 11:48","source":"Le Monde","rubrique":"International","titre":"La Corée du Nord a tiré une dizaine de « missiles balistiques de courte portée », selon l’armée sud-coréenne"}
-{"id":"0820-lib021","date":"08-20 11:47","source":"Libération","rubrique":"France","titre":"Le médicament Tavneos, indiqué pour certaines maladies rares, retiré du marché car jugé trop dangereux"}
-{"id":"0820-lib022","date":"08-20 11:46","source":"Libération","rubrique":"France","titre":"Edouard Philippe dit vouloir fermer «totalement» les «vannes de l’immigration» à Mayotte"}
-{"id":"0820-lm027","date":"08-20 11:42","source":"Le Monde","rubrique":"International","titre":"Attentat antisémite de Munich en 1970 : un suspect d’extrême droite identifié, cinquante-six ans après les faits"}
-{"id":"0820-fi020","date":"08-20 11:33","source":"franceinfo","rubrique":"France","titre":"En Allemagne, environ 14 000 morts liées à la chaleur cet été, largement supérieur au pic recensé en 2018"}
-{"id":"0820-fi021","date":"08-20 11:31","source":"franceinfo","rubrique":"France","titre":"\"Il a laissé des manuscrits expliquant son mal-être\" : le maire de Chaumont s'est lui-même blessé par balle"}
-{"id":"0820-lm028","date":"08-20 11:30","source":"Le Monde","rubrique":"International","titre":"Procès de Meta : la société contre l’avidité des plateformes"}
-{"id":"0820-lm029","date":"08-20 11:29","source":"Le Monde","rubrique":"International","titre":"Canicule : 14 000 morts liées à la chaleur recensées cet été en Allemagne, près de 4 500 en Espagne"}
-{"id":"0820-fi022","date":"08-20 11:26","source":"franceinfo","rubrique":"France","titre":"En Chine, le fondateur du géant immobilier Evergrande condamné à la prison à vie pour \"fraude fiscale à grande échelle\""}
-{"id":"0820-bbc010","date":"08-20 11:13","source":"BBC News","rubrique":"International","titre":"Trump vows tougher economic measures on Iran and supporting countries"}
-{"id":"0820-lib023","date":"08-20 11:11","source":"Libération","rubrique":"France","titre":"Après le piratage du fisc, Sébastien Lecornu veut créer une «nouvelle unité cyber» d’intervention rapide"}
-{"id":"0820-lib024","date":"08-20 11:11","source":"Libération","rubrique":"France","titre":"Mort du footballeur Robert Mouynet, dernier survivant de l’équipe de France troisième de la Coupe du monde 1958"}
-{"id":"0820-fs004","date":"08-20 11:03","source":"Futura Sciences","rubrique":"Sciences","titre":"Vous pensiez votre carte bancaire expirée inutilisable ? Cette démonstration prouve le contraire"}
-{"id":"0820-lm030","date":"08-20 11:00","source":"Le Monde","rubrique":"International","titre":"En Italie, un compromis politique inhabituel pourrait créer un organisme public de soutien au cinéma"}
-{"id":"0820-lm031","date":"08-20 11:00","source":"Le Monde","rubrique":"Culture","titre":"« Lanterns », sur HBO Max : il ne faut pas les prendre pour des messies"}
-{"id":"0820-lib025","date":"08-20 10:48","source":"Libération","rubrique":"France","titre":"La dette des Etats-Unis dépasse désormais les 40 000 milliards de dollars"}
-{"id":"0820-lib026","date":"08-20 10:44","source":"Libération","rubrique":"France","titre":"Chine : Xi Jiayin, fondateur du géant immobilier Evergrande, condamné à la prison à vie"}
-{"id":"0820-fi023","date":"08-20 10:11","source":"franceinfo","rubrique":"France","titre":"Qui est Natalie Harp, l'omniprésente assistante personnelle du président américain, Donald Trump ?"}
-{"id":"0820-bbc011","date":"08-20 09:33","source":"BBC News","rubrique":"International","titre":"Australia 'outraged' after Israel decides not to open criminal investigation into killing of aid worker in Gaza"}
-{"id":"0820-fi024","date":"08-20 09:25","source":"franceinfo","rubrique":"France","titre":"Ligue 1 : en raison de l'état de la pelouse du Parc des Princes, le match PSG-Stade Rennais est inversé et se jouera à Rennes dimanche"}
-{"id":"0820-lib027","date":"08-20 09:22","source":"Libération","rubrique":"France","titre":"Harry et Meghan rentrent au bercail : les «Royals» réunis"}
-{"id":"0820-bbc012","date":"08-20 09:15","source":"BBC News","rubrique":"International","titre":"Canadian marathon route was 674m too long"}
-{"id":"0820-bbc013","date":"08-20 09:08","source":"BBC News","rubrique":"International","titre":"Mushroom killer must stay in jail forever for 'truly dreadful' crime, appeal court told"}
-{"id":"0820-lib028","date":"08-20 09:08","source":"Libération","rubrique":"France","titre":"Cyberharcèlement : pourquoi Lena Situations et ses amis influenceurs sont-ils accusés d’avoir lâché l’agente Gisèle Journo ?"}
-{"id":"0820-lib029","date":"08-20 09:00","source":"Libération","rubrique":"France","titre":"Cet été, 30 chiffres aussi dingues qu’inutiles"}
-{"id":"0820-lib030","date":"08-20 08:45","source":"Libération","rubrique":"France","titre":"Frappes russes sur Kyiv, nouvelles accusations contre Joël Le Scouarnec, LFI et les Ecologistes font leur rentrée… L’actu de ce jeudi 20 août au matin"}
-{"id":"0820-lib031","date":"08-20 08:33","source":"Libération","rubrique":"France","titre":"Trump menace l’Iran et ses partenaires commerciaux de «terribles répercussions économiques»"}
-{"id":"0820-lib032","date":"08-20 08:20","source":"Libération","rubrique":"France","titre":"«White River Crossing» de Ian McGuire, de la pépite d’or au mirage ténébreux"}
-{"id":"0820-lib033","date":"08-20 08:19","source":"Libération","rubrique":"France","titre":"François Fillon suspendu de la Légion d’honneur et de l’ordre national du Mérite"}
-{"id":"0820-lib034","date":"08-20 08:15","source":"Libération","rubrique":"France","titre":"Yassine B., 19 ans, petite main du narcotrafic : «Le deal, c’est derrière moi»"}
-{"id":"0820-lib035","date":"08-20 08:14","source":"Libération","rubrique":"France","titre":"«Les degrés, les dates, tout est hors norme» : dans les vignobles français, des vendanges historiquement précoces"}
-{"id":"0820-lib036","date":"08-20 08:12","source":"Libération","rubrique":"France","titre":"Des frappes russes font neuf morts à Kyiv et dans sa région"}
-{"id":"0820-bbc014","date":"08-20 08:08","source":"BBC News","rubrique":"International","titre":"Founder of collapsed Chinese property giant Evergrande sentenced to life in prison"}
-{"id":"0820-lib037","date":"08-20 08:03","source":"Libération","rubrique":"France","titre":"Etudiants en galère d’appart : «Sans garant et sans APL, je ne sais pas où je vais vivre à la rentrée»"}
-{"id":"0820-bbc015","date":"08-20 07:45","source":"BBC News","rubrique":"International","titre":"Missing teen hiker found dead in Australian bush after eight-day search"}
-{"id":"0820-lib038","date":"08-20 07:45","source":"Libération","rubrique":"France","titre":"Les leçons à tirer d’un été brûlant, non pas hors norme, mais nouvelle norme, par Corinne Lepage"}
-{"id":"0820-lib039","date":"08-20 07:34","source":"Libération","rubrique":"France","titre":"Au Sénégal, «un mandat déjà gâté» par la querelle de l’ancien binôme Diomaye-Sonko"}
-{"id":"0820-lib040","date":"08-20 07:02","source":"Libération","rubrique":"France","titre":"Mohamed Ali vs George Foreman : «The Rumble in the Jungle», le poing d’orgue de deux champions"}
-{"id":"0820-lib041","date":"08-20 07:02","source":"Libération","rubrique":"France","titre":"Enguerran Macia, anthropologue : «L’orgasme condense tout notre être au monde»"}
-{"id":"0820-bbc016","date":"08-20 07:01","source":"BBC News","rubrique":"International","titre":"Captured Ukrainian-born soldiers tell BBC why they fought for Russia"}
-{"id":"0820-lm032","date":"08-20 06:57","source":"Le Monde","rubrique":"Économie","titre":"En Chine, le fondateur d’Evergrande, géant immobilier tombé en faillite, condamné à la prison à vie"}
-{"id":"0820-lib042","date":"08-20 06:31","source":"Libération","rubrique":"France","titre":"Avec le drone MICH 2000 pompé sur les Chinois, les Ukrainiens harcèlent l’ennemi russe"}
-{"id":"0820-lib043","date":"08-20 06:20","source":"Libération","rubrique":"France","titre":"Comment les écologistes ont raté la refondation de la gauche"}
-{"id":"0820-bbc017","date":"08-20 06:17","source":"BBC News","rubrique":"International","titre":"Israel confirms soldiers fired at car in which Hind Rajab was killed and opens criminal investigation"}
-{"id":"0820-lib044","date":"08-20 06:11","source":"Libération","rubrique":"France","titre":"«Vivre en lisière» d’Elsa Ballanfat : un espace à soi"}
-{"id":"0820-lm033","date":"08-20 06:00","source":"Le Monde","rubrique":"Économie","titre":"Après l’euphorie et la crise, les fonds immobiliers continuent de voir leurs rendements se tasser"}
-{"id":"0820-lm034","date":"08-20 06:00","source":"Le Monde","rubrique":"France","titre":"Présidentielle 2027 : « Le vote utile qu’espère mobiliser Jean-Luc Mélenchon n’aura plus le même sens qu’en 2022 »"}
-{"id":"0820-lm035","date":"08-20 06:00","source":"Le Monde","rubrique":"Culture","titre":"La déclaration d’amour de « Phèdre » jouée par Valérie Dréville : « La parole creuse le mal, le désir, la folie »"}
-{"id":"0820-fi025","date":"08-20 06:00","source":"franceinfo","rubrique":"France","titre":"\"Choses que je croyais perdues\" : Clémentine Mélois fait parler la mémoire des objets dans un roman plein de fantaisie sur la rupture amoureuse"}
-{"id":"0820-lib045","date":"08-20 06:00","source":"Libération","rubrique":"France","titre":"Pet-sitter, plats concoctés par un chef, conciergerie… En France, le toutourisme met les crocs moyens"}
-{"id":"0820-lib046","date":"08-20 06:00","source":"Libération","rubrique":"France","titre":"Quiz : fans des années 80"}
-{"id":"0820-fi026","date":"08-20 05:57","source":"franceinfo","rubrique":"France","titre":"Les prix des fruits et légumes n'ont-ils vraiment pas augmenté malgré la sécheresse, comme l'affirme la ministre de l'Agriculture ?"}
-{"id":"0820-lm036","date":"08-20 05:30","source":"Le Monde","rubrique":"Économie","titre":"Aux Etats-Unis, la demande de capitaux pour l’IA et la défense provoque un début de crise de la dette"}
-{"id":"0820-lm037","date":"08-20 05:30","source":"Le Monde","rubrique":"France","titre":"« On sent un regard sur nous, plus insistant que pour les personnes valides » : les difficultés quotidiennes des parents avec un handicap"}
-{"id":"0820-lm038","date":"08-20 05:15","source":"Le Monde","rubrique":"Économie","titre":"Les capitaux chinois à l’affût des marques occidentales, de l’équipementier de montagne Mammut à l’icône des amplis Marshall"}
-{"id":"0820-lm039","date":"08-20 05:00","source":"Le Monde","rubrique":"Culture","titre":"Une autre histoire de Miles Davis et John Coltrane, tachée par le racisme, la violence et la drogue"}
-{"id":"0820-lm040","date":"08-20 05:00","source":"Le Monde","rubrique":"Économie","titre":"Comment les marchés financiers font bondir les taux souverains européens"}
-{"id":"0820-lm041","date":"08-20 04:09","source":"Le Monde","rubrique":"Économie","titre":"La grève au Samusocial de Paris a pris fin après cinquante-sept jours de mobilisation et « des avancées importantes », selon la CGT"}
-{"id":"0820-bbc018","date":"08-20 04:05","source":"BBC News","rubrique":"International","titre":"Giant whales move into Greenland waters as ice disappears"}
-{"id":"0820-bbc019","date":"08-20 01:11","source":"BBC News","rubrique":"International","titre":"Key Trump aide Natalie Harp suddenly in spotlight after years behind scenes"}
-{"id":"0820-lm042","date":"08-20 00:52","source":"Le Monde","rubrique":"Sciences","titre":"La NASA annonce l’échec de sa périlleuse mission de sauvetage du télescope scientifique Swift"}
-{"id":"0820-lm043","date":"08-20 00:01","source":"Le Monde","rubrique":"Économie","titre":"La dette publique américaine dépasse pour la première fois les 40 000 milliards de dollars"}
-{"id":"0820-lib047","date":"08-19 22:10","source":"Libération","rubrique":"France","titre":"«Ainsi la Cour décide» de Caroline Knecht : récits en recours"}
-{"id":"0820-lib048","date":"08-19 20:52","source":"Libération","rubrique":"France","titre":"Ligue 1 : la pelouse du Parc des Princes est dans un état catastrophique à cause de la canicule, le match PSG-Rennes déplacé"}
-{"id":"0820-lib049","date":"08-19 20:45","source":"Libération","rubrique":"France","titre":"Retraites, niches fiscales, politiques familiales… Pour le budget 2027, une nuée de ballons d’essai à arbitrer"}
-{"id":"0820-lib050","date":"08-19 20:42","source":"Libération","rubrique":"France","titre":"L’incendie est «éteint» dans le Var, «fixé» dans la Drôme, «ne progresse plus» en Gironde : le point sur les brasiers en France"}
-{"id":"0820-fs005","date":"08-19 20:08","source":"Futura Sciences","rubrique":"Sciences","titre":"Un été au Groenland : je voulais découvrir une île isolée, j’ai trouvé le monde entier à ses portes"}
-{"id":"0820-bbc020","date":"08-19 19:46","source":"BBC News","rubrique":"International","titre":"Multiple deadly Israeli strikes in Gaza in under 24 hours"}
-{"id":"0820-lm044","date":"08-19 19:00","source":"Le Monde","rubrique":"Économie","titre":"« Je suis en train de scier la branche sur laquelle je suis assis » : ces travailleurs qui filment leurs gestes pour entraîner les IA en Inde"}
-{"id":"0820-lm045","date":"08-19 18:36","source":"Le Monde","rubrique":"Culture","titre":"Le réalisateur britannique John Irvin, connu pour son film « Hamburger Hill » et sa série « La Taupe », est mort à 86 ans"}
-{"id":"0820-bbc021","date":"08-19 18:30","source":"BBC News","rubrique":"International","titre":"Trial of mum accused of killing her three children puts postpartum psychosis on the map"}
-{"id":"0820-fs006","date":"08-19 18:30","source":"Futura Sciences","rubrique":"Sciences","titre":"Les meilleures tablettes pour les étudiants à la rentrée 2026"}
-{"id":"0820-lm046","date":"08-19 18:00","source":"Le Monde","rubrique":"Économie","titre":"Crime organisé : Sébastien Lecornu demande à renforcer la lutte contre la corruption dans la fonction publique"}
-{"id":"0820-lm047","date":"08-19 17:50","source":"Le Monde","rubrique":"Économie","titre":"« Quand j’ouvre la porte, ma cheffe et deux collègues hurlent de rire » : le pot de départ canular de Louise, encadrante de bénévoles dans une association"}
-{"id":"0820-bbc022","date":"08-19 17:39","source":"BBC News","rubrique":"International","titre":"Jellyfish mesmerise in their own museum in Florida"}
-{"id":"0820-bbc023","date":"08-19 17:38","source":"BBC News","rubrique":"International","titre":"Why is Ukraine's ex-defence minister calling for wartime elections?"}
-{"id":"0820-lm048","date":"08-19 17:30","source":"Le Monde","rubrique":"Culture","titre":"« The Shards », sur Disney+ : Ryan Murphy adapte maladroitement Bret Easton Ellis"}
-{"id":"0820-fs007","date":"08-19 17:23","source":"Futura Sciences","rubrique":"Sciences","titre":"Fraîcheur jusqu’à fin août, chaleur en septembre ? Ce que prévoient réellement les météorologues"}
-{"id":"0820-bbc024","date":"08-19 17:01","source":"BBC News","rubrique":"International","titre":"'Incredible': SpaceX rocket spotted off Christmas Island coast"}
-{"id":"0820-lm049","date":"08-19 17:01","source":"Le Monde","rubrique":"Culture","titre":"Nicolas Altmayer, producteur de « Brice de Nice » et de la trilogie des « OSS 117 », est mort"}
-{"id":"0820-fs008","date":"08-19 17:01","source":"Futura Sciences","rubrique":"Sciences","titre":"« Un test décisif de la théorie d’Einstein » : le trou noir géant de la Voie lactée fait tourbillonner l'espace-temps !"}
-{"id":"0820-lm050","date":"08-19 16:56","source":"Le Monde","rubrique":"Culture","titre":"Quand, en 1960, la performance incontrôlable de Jean Tinguely met le feu au MoMA de New York"}
-{"id":"0820-lm051","date":"08-19 16:10","source":"Le Monde","rubrique":"Culture","titre":"« Fjord », Palme d’or 2026 : « Cristian Mungiu prête le prestige du cinéma au registre de la lutte contre le politiquement correct »"}
-{"id":"0820-fs009","date":"08-19 15:43","source":"Futura Sciences","rubrique":"Sciences","titre":"Apple a laissé fuiter sa feuille de route dans macOS… et certains appareils sont totalement inattendus"}
-{"id":"0820-lm052","date":"08-19 15:42","source":"Le Monde","rubrique":"Sciences","titre":"Le médicament Tavneos, destiné à traiter certaines maladies auto-immunes rares, retiré du marché en France après plusieurs morts à l’étranger"}
-{"id":"0820-fs010","date":"08-19 14:45","source":"Futura Sciences","rubrique":"Sciences","titre":"Avant-après : les images de la Nasa montrent une étrange « aile de papillon » autour de l’impact de SpaceX sur la Lune"}
+{"collecte":"2026-08-21 16:39","fuseau":"Europe/Paris","fenetre_heures":26,"depeches":192,"detail":"veille/2026-08-21.json","format":"titres seuls — résumés via « python scripts/depeches.py id1 id2 … »"}
+{"id":"0821-fi001","date":"08-21 16:33","source":"franceinfo","rubrique":"France","titre":"Tennis : le numéro un mondial, Jannik Sinner, forfait pour l'US Open"}
+{"id":"0821-lib001","date":"08-21 16:32","source":"Libération","rubrique":"France","titre":"Renards, fouines, corbeaux… la liste des neuf animaux «nuisibles», un copier-coller de la précédente, en pire"}
+{"id":"0821-fi002","date":"08-21 16:32","source":"franceinfo","rubrique":"France","titre":"Mort de Sonia Bellina dans le Gard : un suspect, déjà condamné pour violences conjugales, mis en examen pour \"assassinat\" et placé en détention provisoire"}
+{"id":"0821-lib002","date":"08-21 16:30","source":"Libération","rubrique":"France","titre":"Des armes à feu découvertes dans une cache près de Berlin, les services secrets russes suspectés"}
+{"id":"0821-lm001","date":"08-21 16:30","source":"Le Monde","rubrique":"International","titre":"En Corée du Sud, le bisaïeul d’une actrice ravive les débats sur la collaboration avec le Japon"}
+{"id":"0821-fi003","date":"08-21 16:24","source":"franceinfo","rubrique":"France","titre":"Ce que l'on sait de la mort de l'influenceuse Sonia Bellina dans le Gard"}
+{"id":"0821-lm002","date":"08-21 16:20","source":"Le Monde","rubrique":"France","titre":"Procès contre le « Daily Mail » : le prince Harry, Elton John, Liz Hurley et d’autres personnes devront verser 9,5 millions de livres au journal britannique"}
+{"id":"0821-lib003","date":"08-21 16:19","source":"Libération","rubrique":"France","titre":"Comment le gouvernement israélien a fabriqué un institut de recherche fictif pour influencer les IA génératives"}
+{"id":"0821-lm003","date":"08-21 16:15","source":"Le Monde","rubrique":"Économie","titre":"Appel à témoignages : vous êtes cadre, vos conditions de travail et votre rémunération vous satisfont-elles ? Racontez-nous"}
+{"id":"0821-lm004","date":"08-21 16:09","source":"Le Monde","rubrique":"France","titre":"En Suède, une attaque à l’épée dans un lycée fait plusieurs blessés, l’auteur présumé interpellé"}
+{"id":"0821-lm005","date":"08-21 16:00","source":"Le Monde","rubrique":"Culture","titre":"En Haute-Corse, les Rencontres de Calenzana, itinérance musicale dans les montagnes de Balagne"}
+{"id":"0821-lm006","date":"08-21 16:00","source":"Le Monde","rubrique":"France","titre":"En Tunisie, les motifs de mécontentement s’accumulent, mais l’opposition reste inaudible"}
+{"id":"0821-lm007","date":"08-21 16:00","source":"Le Monde","rubrique":"Économie","titre":"« La hausse des ratios de dette n’est pas un problème si elle s’accompagne d’investissements dans les actifs d’avenir »"}
+{"id":"0821-fi004","date":"08-21 15:58","source":"franceinfo","rubrique":"France","titre":"En quoi consiste le \"bug bounty\", cette chasse aux bugs évoquée par le gouvernement après le piratage du fisc ?"}
+{"id":"0821-lib004","date":"08-21 15:56","source":"Libération","rubrique":"France","titre":"Mort de Sonia Bellina : un suspect mis en examen et placé en détention provisoire pour assassinat"}
+{"id":"0821-lib005","date":"08-21 15:52","source":"Libération","rubrique":"France","titre":"Rentrée littéraire : «Baignade surveillée» de Laura Kasischke, une plongée implacable en eaux toxiques"}
+{"id":"0821-lm008","date":"08-21 15:51","source":"Le Monde","rubrique":"France","titre":"EN DIRECT, guerre en Ukraine : l’Elysée annonce une réunion de la coalition des volontaires, lundi, avec Volodymyr Zelensky"}
+{"id":"0821-lm009","date":"08-21 15:49","source":"Le Monde","rubrique":"France","titre":"Marine Tondelier, la cheffe des Ecologistes, appelle de nouveau à l’union de la gauche pour la présidentielle de 2027"}
+{"id":"0821-lib006","date":"08-21 15:45","source":"Libération","rubrique":"France","titre":"En librairies : Ada Walter, Jean-Pierre Montal, Tine Laclos..."}
+{"id":"0821-lib007","date":"08-21 15:43","source":"Libération","rubrique":"France","titre":"Plusieurs blessés après une attaque à l’arme blanche dans un lycée de Suède"}
+{"id":"0821-lm010","date":"08-21 15:39","source":"Le Monde","rubrique":"France","titre":"Sept humanitaires morts à Gaza : le Royaume-Uni, le Canada et l’Australie jugent « honteuse » la décision d’Israël de clore l’enquête"}
+{"id":"0821-fi005","date":"08-21 15:26","source":"franceinfo","rubrique":"France","titre":"La vague de chaleur s'est officiellement achevée mercredi après 23 jours"}
+{"id":"0821-f24001","date":"08-21 15:25","source":"France 24","rubrique":"International","titre":"Ligue 1 : le PSG sans concurrence dans un championnat en crise"}
+{"id":"0821-lib008","date":"08-21 15:25","source":"Libération","rubrique":"France","titre":"Tout à couples (1/7) : Ariane et Solal, furies de la passion"}
+{"id":"0821-fi006","date":"08-21 15:22","source":"franceinfo","rubrique":"France","titre":"\"La chose la plus dure qu'on puisse imaginer\" : deux pêcheurs, réfugiés dans une glacière, secourus au large du Mexique cinq jours après leur disparition"}
+{"id":"0821-f24002","date":"08-21 15:19","source":"France 24","rubrique":"International","titre":"Football : Ronaldinho rechausse les crampons à 46 ans"}
+{"id":"0821-fi007","date":"08-21 15:17","source":"franceinfo","rubrique":"France","titre":"L'Ukraine sanctionne \"Masha et Michka\", populaire série d'animation russe pour enfants"}
+{"id":"0821-bbc001","date":"08-21 15:10","source":"BBC News","rubrique":"International","titre":"Five missing after fire in Swiss Alpine town"}
+{"id":"0821-bbc002","date":"08-21 15:07","source":"BBC News","rubrique":"International","titre":"Rosenberg: Shortage of petrol but not patriotism as Russians feel growing impact of war"}
+{"id":"0821-f24003","date":"08-21 15:03","source":"France 24","rubrique":"International","titre":"Côte d'Ivoire : Notre-Dame de la Paix, une basilique toujours au frais malgré le climat"}
+{"id":"0821-fs001","date":"08-21 15:03","source":"Futura Sciences","rubrique":"Sciences","titre":"Chang'e 7 : la Chine part « bondir » dans les zones les plus secrètes du pôle sud de la Lune où s’installeront les Américains"}
+{"id":"0821-lm011","date":"08-21 15:01","source":"Le Monde","rubrique":"France","titre":"Droits de douane : Donald Trump annonce une suspension temporaire des taxes sur certaines importations de bœuf"}
+{"id":"0821-f24004","date":"08-21 14:57","source":"France 24","rubrique":"International","titre":"Cuba : l'île asphyxiée par Washington manque d'eau"}
+{"id":"0821-lib009","date":"08-21 14:56","source":"Libération","rubrique":"France","titre":"Empoisonnement, maladie ou pesticides : au Kenya, une vingtaine d’éléphants morts d’un mal inexpliqué"}
+{"id":"0821-lm012","date":"08-21 14:54","source":"Le Monde","rubrique":"France","titre":"Rougeole : comment vaccino-scepticisme de l’administration Trump favorise-t-elle le retour de la maladie ?"}
+{"id":"0821-fi008","date":"08-21 14:54","source":"franceinfo","rubrique":"France","titre":"Du doublement du plafond à une indexation sur l'inflation, le gouvernement change son fusil d'épaule pour les franchises médicales"}
+{"id":"0821-fi009","date":"08-21 14:52","source":"franceinfo","rubrique":"France","titre":"Le président iranien déclare qu'il \"vaut mieux mettre fin à la guerre maintenant\" avec les Etats-Unis, alors que l'Iran est \"en position de force\""}
+{"id":"0821-f24005","date":"08-21 14:51","source":"France 24","rubrique":"International","titre":"Cisjordanie : le projet de colonie israélienne E1 dénoncé par Paris Londres Berlin et Rome"}
+{"id":"0821-lib010","date":"08-21 14:49","source":"Libération","rubrique":"France","titre":"Flottille pour Gaza : la Turquie émet un mandat d’arrêt d’international contre Nétanyahou"}
+{"id":"0821-f24006","date":"08-21 14:47","source":"France 24","rubrique":"International","titre":"Israël met en garde la Turquie contre toute \"aventure dangereuse\" en Syrie"}
+{"id":"0821-f24007","date":"08-21 14:45","source":"France 24","rubrique":"International","titre":"Football : Ronaldinho revient à 46 ans en 3e division italienne"}
+{"id":"0821-lib011","date":"08-21 14:43","source":"Libération","rubrique":"France","titre":"Un boa d’1,50 mètre sous un capot, un autre en liberté sur la route : en Haute-Garonne, les pompiers aux prises avec les nouveaux animaux de compagnie"}
+{"id":"0821-lib012","date":"08-21 14:40","source":"Libération","rubrique":"France","titre":"Rentrée littéraire : «Nous aussi» d’Anne Godard, cuisson de famille"}
+{"id":"0821-f24008","date":"08-21 14:37","source":"France 24","rubrique":"International","titre":"Colonies en Cisjordanie : quel sera l'impact du positionnement de Paris, Londres, Berlin et Rome ?"}
+{"id":"0821-f24009","date":"08-21 14:37","source":"France 24","rubrique":"International","titre":"Tunisie : nouvelle manifestation contre les coupures d'eau et d'électricité"}
+{"id":"0821-lib013","date":"08-21 14:35","source":"Libération","rubrique":"France","titre":"Accusé de véhiculer la propagande du Kremlin, le célèbre dessin animé «Masha et Michka» sanctionné par Kyiv"}
+{"id":"0821-fi010","date":"08-21 14:35","source":"franceinfo","rubrique":"France","titre":"Une cache avec des armes à feu retrouvée près de Berlin, un suspect arrêté en Roumanie"}
+{"id":"0821-lm013","date":"08-21 14:30","source":"Le Monde","rubrique":"France","titre":"En Ligue 1, la saison débute après une valse inédite sur le banc des entraîneurs"}
+{"id":"0821-f24010","date":"08-21 14:14","source":"France 24","rubrique":"International","titre":"Ebola : l'épidémie en RD Congo \"progresse de façon exponentielle\", alerte l'ONU"}
+{"id":"0821-bbc003","date":"08-21 13:57","source":"BBC News","rubrique":"International","titre":"Two Mexicans arrested as police uncover big meth lab on South African farm"}
+{"id":"0821-lib014","date":"08-21 13:56","source":"Libération","rubrique":"France","titre":"Avec 23 jours consécutifs, la vague de chaleur en cours est la plus longue jamais enregistrée, ex æquo avec juillet 1983"}
+{"id":"0821-lib015","date":"08-21 13:53","source":"Libération","rubrique":"France","titre":"Rentrée littéraire : «Rouges-Truites» de Pierric Bailly, sombre juillet"}
+{"id":"0821-fi011","date":"08-21 13:49","source":"franceinfo","rubrique":"France","titre":"Amnesty International dénonce neuf exécutions sommaires du Hamas à Gaza"}
+{"id":"0821-fi012","date":"08-21 13:46","source":"franceinfo","rubrique":"France","titre":"Le phénomène climatique El Niño pourrait être \"le plus intense depuis plus d'un siècle\", alerte l'agence météorologique britannique"}
+{"id":"0821-lib016","date":"08-21 13:45","source":"Libération","rubrique":"France","titre":"Emojis «👍» ou «🙏» : ce que les smileys que vous envoyez par messages disent de votre âge"}
+{"id":"0821-fs002","date":"08-21 13:30","source":"Futura Sciences","rubrique":"Sciences","titre":"Les meilleurs écrans PC pour le télétravail en 2026"}
+{"id":"0821-fs003","date":"08-21 13:27","source":"Futura Sciences","rubrique":"Sciences","titre":"Des singes adoptent parfois d’autres animaux, et ces cas sont étonnamment nombreux"}
+{"id":"0821-lm014","date":"08-21 13:16","source":"Le Monde","rubrique":"International","titre":"Ebola en RDC : l’épidémie progresse « de façon exponentielle » et dépasse 2 500 morts, alerte l’ONU"}
+{"id":"0821-fi013","date":"08-21 13:13","source":"franceinfo","rubrique":"France","titre":"A Hong Kong, deux militants de la mémoire de Tiananmen reconnus coupables d'\"incitation à la subversion\""}
+{"id":"0821-lm015","date":"08-21 13:12","source":"Le Monde","rubrique":"France","titre":"Plus de 40 000 préservatifs « non conformes » vendus en France au cours des derniers mois, les utilisateurs invités à se faire tester"}
+{"id":"0821-lib017","date":"08-21 13:08","source":"Libération","rubrique":"France","titre":"«Ce qui nous frôle sous la surface» de Colum McCann, roman de la rentrée littéraire : quand la tempête pète un câble"}
+{"id":"0821-lm016","date":"08-21 13:02","source":"Le Monde","rubrique":"France","titre":"Samsung, premier fabricant mondial de puces mémoire, va racheter entre 55,8 et 68,2 milliards d’euros de ses actions"}
+{"id":"0821-fi014","date":"08-21 12:49","source":"franceinfo","rubrique":"France","titre":"Des dizaines de milliers de préservatifs \"non conformes\" vendus en France ces derniers mois, les autorités recommandent des dépistages et tests de grossesse"}
+{"id":"0821-lib018","date":"08-21 12:49","source":"Libération","rubrique":"France","titre":"Israël : Ben-Gvir se filme devant le chantier d’une potence et multiplie les provocations à l’approche des élections"}
+{"id":"0821-bbc004","date":"08-21 12:48","source":"BBC News","rubrique":"International","titre":"'We are devastated' - Nigerian villagers bury bodies after overloaded boat capsizes"}
+{"id":"0821-bbc005","date":"08-21 12:46","source":"BBC News","rubrique":"International","titre":"Pakistan ex-PM Imran Khan back in jail after hospital examination"}
+{"id":"0821-lm017","date":"08-21 12:43","source":"Le Monde","rubrique":"International","titre":"Maison de l’Argentine : la Mairie de Paris demande au Quai d’Orsay d’enquêter sur son nouveau directeur lié à l’extrême droite"}
+{"id":"0821-lib019","date":"08-21 12:30","source":"Libération","rubrique":"France","titre":"«Le sable, le meilleur rempart contre la mer» : face à l’érosion côtière, des habitants du Morbihan s’emparent de solutions naturelles"}
+{"id":"0821-lib020","date":"08-21 12:25","source":"Libération","rubrique":"France","titre":"Retour de la Ligue 1 : derrière le PSG, une saison ouverte à tous les vents"}
+{"id":"0821-f24011","date":"08-21 12:23","source":"France 24","rubrique":"International","titre":"Moins de sel, de sucre et de colorants... la grande distribution promet des recettes plus saines"}
+{"id":"0821-lib021","date":"08-21 12:15","source":"Libération","rubrique":"France","titre":"Budget 2027 : le gouvernement envisage de prolonger la surtaxe sur les grandes entreprises"}
+{"id":"0821-lib022","date":"08-21 12:15","source":"Libération","rubrique":"France","titre":"Faune sauvage : après les incendies, la sécheresse et la canicule, «la chasse, c’est le coup de grâce»"}
+{"id":"0821-fs004","date":"08-21 12:15","source":"Futura Sciences","rubrique":"Sciences","titre":"Faire exploser une bombe nucléaire près d’un astéroïde : les simulations révèlent un effet inattendu"}
+{"id":"0821-lib023","date":"08-21 12:15","source":"Libération","rubrique":"France","titre":"Alessandra Montagne, cheffe invitée au festival la Grande Bouffe : «Quand je sors mon poulet du four, tout le monde arrête de respirer»"}
+{"id":"0821-lib024","date":"08-21 12:12","source":"Libération","rubrique":"France","titre":"Rentrée littéraire : «De la terre des pleurs un grand vent s’éleva» de Jane Sautière, fenêtres sur corps"}
+{"id":"0821-f24012","date":"08-21 12:11","source":"France 24","rubrique":"International","titre":"Pérou : les intempéries perturbent l'accès au Machu Picchu"}
+{"id":"0821-lm018","date":"08-21 12:07","source":"Le Monde","rubrique":"France","titre":"Une enquête ouverte pour cyberharcèlement et menace de mort à l’encontre de Gisèle Journo, agente d’influenceurs"}
+{"id":"0821-lm019","date":"08-21 12:06","source":"Le Monde","rubrique":"International","titre":"Tomoko Akane, présidente de la CPI sanctionnée par les Etats-Unis, met en garde contre la « disparition de l’Etat de droit international »"}
+{"id":"0821-bbc006","date":"08-21 12:03","source":"BBC News","rubrique":"International","titre":"Bodies of two hikers missing for decades found after Swiss glacier melts"}
+{"id":"0821-lib025","date":"08-21 12:02","source":"Libération","rubrique":"France","titre":"Affaire Jacques Bouthier : le parquet de Paris requiert un procès pour traite d’êtres humains et viols sur mineur"}
+{"id":"0821-lm020","date":"08-21 12:00","source":"Le Monde","rubrique":"France","titre":"Le calvaire judiciaire d’Onsi Abichou, un Franco-Tunisien cinq fois acquitté et toujours en prison à Tunis"}
+{"id":"0821-fi015","date":"08-21 12:00","source":"franceinfo","rubrique":"France","titre":"L'épidémie d'Ebola en République démocratique du Congo \"progresse de façon exponentielle\", alerte l'ONU"}
+{"id":"0821-lib026","date":"08-21 12:00","source":"Libération","rubrique":"France","titre":"Dans les rues d’un Paris perdu, avec Eugène Atget"}
+{"id":"0821-f24013","date":"08-21 11:58","source":"France 24","rubrique":"International","titre":"Après la surprise, les questions sur le retour de Harry et sa famille au Royaume-Uni"}
+{"id":"0821-f24014","date":"08-21 11:55","source":"France 24","rubrique":"International","titre":"Cancer de la peau : un vaccin prometteur pour éviter les récidives"}
+{"id":"0821-bbc007","date":"08-21 11:53","source":"BBC News","rubrique":"International","titre":"Eight killed in plane crash at remote Alaskan military site, air force says"}
+{"id":"0821-f24015","date":"08-21 11:52","source":"France 24","rubrique":"International","titre":"Hong Kong : deux militants reconnus coupables d'\"incitation à la subversion\""}
+{"id":"0821-fi016","date":"08-21 11:50","source":"franceinfo","rubrique":"France","titre":"Des malades saluent l'abandon du doublement des franchises médicales mais redoutent toujours une hausse"}
+{"id":"0821-fi017","date":"08-21 11:46","source":"franceinfo","rubrique":"France","titre":"La présidente de la Cour pénale internationale, visée par des sanctions américaines, met en garde contre la \"disparition de l'Etat de droit international\""}
+{"id":"0821-f24016","date":"08-21 11:43","source":"France 24","rubrique":"International","titre":"Colonisation israélienne en Cisjordanie : quatre pays européens haussent le ton"}
+{"id":"0821-f24017","date":"08-21 11:42","source":"France 24","rubrique":"International","titre":"Centrafrique : éboulement d'une mine d'or, au moins quarante-neuf morts"}
+{"id":"0821-fi018","date":"08-21 11:26","source":"franceinfo","rubrique":"France","titre":"En Suisse, cinq personnes sont portées disparues et 19 blessées dans deux incendies d'immeubles"}
+{"id":"0821-fs005","date":"08-21 11:13","source":"Futura Sciences","rubrique":"Sciences","titre":"Le Covid-19 pourrait réveiller des virus cachés dans votre corps, même si vous êtes en bonne santé !"}
+{"id":"0821-f24018","date":"08-21 11:11","source":"France 24","rubrique":"International","titre":"Angélique Kidjo à Hollywood, Paul Biya de retour au Cameroun, Ebola en RD Congo : l'hebdo afrique"}
+{"id":"0821-lib027","date":"08-21 11:09","source":"Libération","rubrique":"France","titre":"Risque d’éclatement, perforation, non-conformité… Les autorités françaises alertent sur 300 000 préservatifs défectueux"}
+{"id":"0821-f24019","date":"08-21 11:02","source":"France 24","rubrique":"International","titre":"La spationaute Sophie Adenot va effectuer une nouvelle sortie dans l’espace mardi"}
+{"id":"0821-lib028","date":"08-21 11:00","source":"Libération","rubrique":"France","titre":"Sophie Adenot bientôt de retour dans l’espace"}
+{"id":"0821-lm021","date":"08-21 11:00","source":"Le Monde","rubrique":"International","titre":"Cisjordanie : les Européens haussent le ton contre la colonisation et dénoncent « des niveaux sans précédent de violences » commises par des colons israéliens"}
+{"id":"0821-fi019","date":"08-21 10:59","source":"franceinfo","rubrique":"France","titre":"Bison futé lève le drapeau rouge sur une partie du territoire dans le sens des retours ce week-end"}
+{"id":"0821-lib029","date":"08-21 10:59","source":"Libération","rubrique":"France","titre":"Secrétariat général de l’ONU : les cinq femmes et les trois hommes en lice"}
+{"id":"0821-lib030","date":"08-21 10:39","source":"Libération","rubrique":"France","titre":"Cancer de la peau : un vaccin à ARN messager testé par Moderna et Merck pourrait diminuer de manière «significative» la récidive"}
+{"id":"0821-f24020","date":"08-21 10:39","source":"France 24","rubrique":"International","titre":"Au Pérou, un puissant séisme couplé à des pluies torrentielles"}
+{"id":"0821-bbc008","date":"08-21 10:38","source":"BBC News","rubrique":"International","titre":"Why the US economy is ringing alarm bells"}
+{"id":"0821-lib031","date":"08-21 10:36","source":"Libération","rubrique":"France","titre":"«Le Courage et la Joie» ou comment affronter ce fascisme qui revient"}
+{"id":"0821-f24021","date":"08-21 10:24","source":"France 24","rubrique":"International","titre":"Le sud du Pérou touché par un séisme de magnitude 6,7"}
+{"id":"0821-lm022","date":"08-21 10:16","source":"Le Monde","rubrique":"Sciences","titre":"Sophie Adenot effectuera une nouvelle sortie dans l’espace le 25 août"}
+{"id":"0821-lm023","date":"08-21 10:03","source":"Le Monde","rubrique":"International","titre":"Le Japon proteste contre des essais de missiles russes près des îles Kouriles, disputées"}
+{"id":"0821-fs006","date":"08-21 10:00","source":"Futura Sciences","rubrique":"Sciences","titre":"Cette pyramide a résisté plus d'un millénaire, alors pourquoi s'est-elle effondrée aujourd'hui ?"}
+{"id":"0821-fi020","date":"08-21 09:47","source":"franceinfo","rubrique":"France","titre":"\"Les femmes continuent de mourir dans l'indifférence la plus totale\", dénonce la présidente de l'Union des familles de féminicide"}
+{"id":"0821-lib032","date":"08-21 09:43","source":"Libération","rubrique":"France","titre":"Cinq disparus et huit blessées dans l’incendie d’un immeuble d’habitation en Suisse"}
+{"id":"0821-lib033","date":"08-21 09:43","source":"Libération","rubrique":"France","titre":"Rencontres amoureuses : le supermarché en connaît un rayon"}
+{"id":"0821-lib034","date":"08-21 09:38","source":"Libération","rubrique":"France","titre":"Cyclisme : Julian Alaphilippe au bout de sa route"}
+{"id":"0821-fi021","date":"08-21 09:35","source":"franceinfo","rubrique":"France","titre":"\"Il est temps de nettoyer les écuries d’Augias\" : un message de Marine Le Pen sur la dette française met en colère le camp présidentiel"}
+{"id":"0821-lib035","date":"08-21 09:27","source":"Libération","rubrique":"France","titre":"Rentrée de LFI : l’été sous pression de Bally Bagayoko"}
+{"id":"0821-lib036","date":"08-21 09:25","source":"Libération","rubrique":"France","titre":"Cet été, 30 chiffres aussi dingues qu’inutiles"}
+{"id":"0821-fi022","date":"08-21 09:24","source":"franceinfo","rubrique":"France","titre":"Sophie Adenot va effectuer une nouvelle sortie dans l'espace mardi pour terminer sa mission"}
+{"id":"0821-lib037","date":"08-21 09:11","source":"Libération","rubrique":"France","titre":"Chine : le bilan des inondations du Guanxi monte à 159 morts"}
+{"id":"0821-lib038","date":"08-21 09:03","source":"Libération","rubrique":"France","titre":"A Hongkong, deux militants reconnus coupables d’«incitation à la subversion» pour un hommage à la mémoire de Tiananmen"}
+{"id":"0821-lm024","date":"08-21 09:00","source":"Le Monde","rubrique":"International","titre":"En Colombie, le séisme complique les premiers pas d’Abelardo de la Espriella, le nouveau président d’extrême droite"}
+{"id":"0821-lm025","date":"08-21 08:50","source":"Le Monde","rubrique":"International","titre":"« Pourquoi le premier ministre britannique, Andy Burnham, doit aussi intéresser l’Europe »"}
+{"id":"0821-lib039","date":"08-21 08:46","source":"Libération","rubrique":"France","titre":"Des pirates s’emparent d’un pétrolier au large du Yémen et font route vers la Somalie"}
+{"id":"0821-bbc009","date":"08-21 08:46","source":"BBC News","rubrique":"International","titre":"Panama Canal to cut number of ships passing through due to El Niño"}
+{"id":"0821-fi023","date":"08-21 08:41","source":"franceinfo","rubrique":"France","titre":"\"La justice doit pouvoir faire sereinement son travail\" : le maire de Chartres ne veut pas accueillir le premier concert de la tournée de Patrick Bruel"}
+{"id":"0821-lib040","date":"08-21 08:38","source":"Libération","rubrique":"France","titre":"Vigilance orange orages sur une partie de la France, le gouvernement renonce à doubler les franchises médicales, vote indicatif pour désigner le prochain chef de l’ONU… L’actu de ce vendredi 21 août au matin"}
+{"id":"0821-bbc010","date":"08-21 08:33","source":"BBC News","rubrique":"International","titre":"Gandhi's handwritten notes on life sold for $1.69m at Indian auction"}
+{"id":"0821-lm026","date":"08-21 08:20","source":"Le Monde","rubrique":"International","titre":"Au Pakistan, Imran Khan, ancien premier ministre, a été reconduit en prison après son transfert à l’hôpital"}
+{"id":"0821-lib041","date":"08-21 08:18","source":"Libération","rubrique":"France","titre":"Christophe Bonneuil : «L’écologisation de nos sociétés industrielles est une bataille permanente»"}
+{"id":"0821-fi024","date":"08-21 08:13","source":"franceinfo","rubrique":"France","titre":"Franchises médicales : \"Il faut que le gouvernement renonce à toute augmentation\", estime la CGT"}
+{"id":"0821-lib042","date":"08-21 08:10","source":"Libération","rubrique":"France","titre":"Orages : la Corse, le Var et les Alpes-Maritimes en vigilance orange"}
+{"id":"0821-fi025","date":"08-21 08:09","source":"franceinfo","rubrique":"France","titre":"Gabriel Attal visé par deux séries de fausses informations en ligne"}
+{"id":"0821-lib043","date":"08-21 08:08","source":"Libération","rubrique":"France","titre":"«J’ai voté pour Mélenchon et…» : Paroles d’électeurs, convaincus ou non, de revoter pour lui en 2027"}
+{"id":"0821-lm027","date":"08-21 08:00","source":"Le Monde","rubrique":"Sciences","titre":"Délire de fellation chez une patiente schizophrène : un cas clinique inédit"}
+{"id":"0821-fs007","date":"08-21 08:00","source":"Futura Sciences","rubrique":"Sciences","titre":"Et si la maladie d'Alzheimer était aussi liée à une bactérie présente dans notre bouche ?"}
+{"id":"0821-lib044","date":"08-21 07:55","source":"Libération","rubrique":"France","titre":"Etudiants en galère d’appart : «Parfois, je remets tout en question... Est-ce que j’arrête les études ? »"}
+{"id":"0821-bbc011","date":"08-21 07:47","source":"BBC News","rubrique":"International","titre":"Hong Kong's Tiananmen activists guilty in national security trial"}
+{"id":"0821-fi026","date":"08-21 07:42","source":"franceinfo","rubrique":"France","titre":"\"Je suis en colère, ça fait des mois qu'il y a des failles de sécurité\" : des contribuables racontent le piratage de leurs données après la cyberattaque des services fiscaux"}
+{"id":"0821-lib045","date":"08-21 07:34","source":"Libération","rubrique":"France","titre":"La situation climatique est radicale : notre responsabilité doit être à sa hauteur, par les maires de Grenoble, de Lyon et de Tours"}
+{"id":"0821-bbc012","date":"08-21 07:30","source":"BBC News","rubrique":"International","titre":"British rapper Yung Filly to face retrial on rape charges in Australia"}
+{"id":"0821-fi027","date":"08-21 07:27","source":"franceinfo","rubrique":"France","titre":"Les patients saluent la première reconnaissance officielle du syndrome de fatigue chronique par l'Assurance-maladie"}
+{"id":"0821-lib046","date":"08-21 07:25","source":"Libération","rubrique":"France","titre":"Mi-Daredevil, mi-Zidane : qui est Frédéric Villeroux, le serial buteur des Bleus de cécifoot ?"}
+{"id":"0821-f24022","date":"08-21 07:13","source":"France 24","rubrique":"International","titre":"Ligue Conférence : Monaco prend une option en Pologne"}
+{"id":"0821-f24023","date":"08-21 07:10","source":"France 24","rubrique":"International","titre":"Désormais incontournable, le RN entre présidentialisation et refus de l’État de droit (3/3)"}
+{"id":"0821-bbc013","date":"08-21 07:02","source":"BBC News","rubrique":"International","titre":"Sparks fly over Mamdani's 'hit list' against New York's rich home owners"}
+{"id":"0821-bbc014","date":"08-21 07:00","source":"BBC News","rubrique":"International","titre":"Israel re-establishes closed West Bank settlement, defying growing international protests"}
+{"id":"0821-lib047","date":"08-21 07:00","source":"Libération","rubrique":"France","titre":"Areva-EDF : entre Anne Lauvergeon et Henri Proglio, un combat de haut volt"}
+{"id":"0821-bbc015","date":"08-21 06:54","source":"BBC News","rubrique":"International","titre":"Australian hiker's body recovered as officials apologise for misreporting she was alive"}
+{"id":"0821-lm028","date":"08-21 06:30","source":"Le Monde","rubrique":"Culture","titre":"Avec « It Goes On », Westside Cowboy sort un premier album prometteur, entre influences nord-américaines et ancrage local"}
+{"id":"0821-lib048","date":"08-21 06:22","source":"Libération","rubrique":"France","titre":"Pour loger les étudiants, les architectes ont plus d’une tour dans leur sac"}
+{"id":"0821-fi028","date":"08-21 06:15","source":"franceinfo","rubrique":"France","titre":"Après l’opération dégraissage du mercato, quelles ambitions pour l’OM en Ligue 1 ?"}
+{"id":"0821-lib049","date":"08-21 06:10","source":"Libération","rubrique":"France","titre":"Rentrée à gauche : LFI voit le vert à moitié plein"}
+{"id":"0821-fs008","date":"08-21 06:08","source":"Futura Sciences","rubrique":"Sciences","titre":"Des chercheurs ont créé un cœur robotique capable d’imiter une insuffisance cardiaque, pour mieux soigner la nôtre"}
+{"id":"0821-fi029","date":"08-21 06:01","source":"franceinfo","rubrique":"France","titre":"\"Je ne peux pas vous dire quel est le bon choix\" : pour leur rentrée, des écologistes divisés sur la question d'un ralliement à gauche pour la présidentielle"}
+{"id":"0821-lm029","date":"08-21 06:00","source":"Le Monde","rubrique":"France","titre":"L’avocat, star d’Instagram pour les jeunes attachés à un mode de vie « healthy »... malgré son coût environnemental exorbitant"}
+{"id":"0821-fi030","date":"08-21 06:00","source":"franceinfo","rubrique":"France","titre":"\"Des jeunes qui répondent à un effet de meute\" : plongée dans la nébuleuse des \"lookups\", ces moteurs de recherche où finissent les données piratées"}
+{"id":"0821-lm030","date":"08-21 06:00","source":"Le Monde","rubrique":"International","titre":"Dans le delta du Pô, l’invasion du crabe tueur de palourdes : « Sans “vongole”, plus d’économie. Tout le territoire meurt »"}
+{"id":"0821-lm031","date":"08-21 06:00","source":"Le Monde","rubrique":"Économie","titre":"Où acheter son logement pour vivre loin du bruit de la circulation, des transports ou des touristes ?"}
+{"id":"0821-lm032","date":"08-21 06:00","source":"Le Monde","rubrique":"Culture","titre":"La complainte d’Harpagon dans « L’Avare » jouée par Denis Podalydès : « Il faut se sacrifier pour le texte »"}
+{"id":"0821-lib050","date":"08-21 06:00","source":"Libération","rubrique":"France","titre":"«Fouilles humiliantes», «chants suprémacistes»... Le Conseil d’Etat examine le recours de Darmanin sur les violences à la prison de Condé-sur-Sarthe"}
+{"id":"0821-lm033","date":"08-21 05:40","source":"Le Monde","rubrique":"Économie","titre":"« Spider-Man : Brand New Day » et « L’Odyssée », les deux films qui redonnent des couleurs au marché du cinéma en France"}
+{"id":"0821-f24024","date":"08-21 05:39","source":"France 24","rubrique":"International","titre":"Hong Kong : des militants de la mémoire de Tiananmen jugés coupables d'\"incitation à la subversion\""}
+{"id":"0821-lm034","date":"08-21 05:00","source":"Le Monde","rubrique":"France","titre":"Miles Davis et John Coltrane, la somme de deux contraires, comme le yin et le yang"}
+{"id":"0821-lm035","date":"08-21 05:00","source":"Le Monde","rubrique":"Économie","titre":"Scott Bessent, le secrétaire américain au Trésor, à l’assaut des marchés obligataires pour faire baisser les taux"}
+{"id":"0821-bbc016","date":"08-21 04:57","source":"BBC News","rubrique":"International","titre":"What happened to Harry and Meghan's American dream?"}
+{"id":"0821-bbc017","date":"08-21 04:49","source":"BBC News","rubrique":"International","titre":"Japan executes man who killed five in Pachinko parlour fire"}
+{"id":"0821-bbc018","date":"08-21 04:33","source":"BBC News","rubrique":"International","titre":"Bali jails Swiss tourist for insulting sacred Day of Silence"}
+{"id":"0821-lm036","date":"08-21 04:30","source":"Le Monde","rubrique":"France","titre":"Jean Jouzel, climatologue : « Il n’y a pas, chez les candidats à la présidentielle, une véritable prise de conscience de la réalité du réchauffement climatique »"}
+{"id":"0821-bbc019","date":"08-21 02:04","source":"BBC News","rubrique":"International","titre":"Broken toilets, leaking roofs: Why India's 'cockroach' party wants to fix schools"}
+{"id":"0821-bbc020","date":"08-21 01:21","source":"BBC News","rubrique":"International","titre":"Why Nigeria's one-time political giant may face extinction"}
+{"id":"0821-bbc021","date":"08-21 01:16","source":"BBC News","rubrique":"International","titre":"How much could Trump's 'economic D-Day' hurt Iran?"}
+{"id":"0821-bbc022","date":"08-21 00:01","source":"BBC News","rubrique":"International","titre":"Trump wants to be friends with Kim - but South Korea could pay the price"}
+{"id":"0821-bbc023","date":"08-20 22:41","source":"BBC News","rubrique":"International","titre":"Watch: Fishermen rescued after five days adrift in cool box"}
+{"id":"0821-bbc024","date":"08-20 22:08","source":"BBC News","rubrique":"International","titre":"Como mayor hit by electric bike and issues blanket ban in Italian city"}
+{"id":"0821-lm037","date":"08-20 21:07","source":"Le Monde","rubrique":"Sciences","titre":"Franchises médicales : le gouvernement renonce au doublement des plafonds dans l’immédiat et promet une future réforme « juste »"}
+{"id":"0821-fs009","date":"08-20 21:03","source":"Futura Sciences","rubrique":"Sciences","titre":"On a détecté des sortes de boules de « photons nucléaires », les glueballs !"}
+{"id":"0821-fs010","date":"08-20 20:07","source":"Futura Sciences","rubrique":"Sciences","titre":"Un été au Groenland : comment vit-on dans l’une des régions les plus extrêmes du monde ?"}
+{"id":"0821-lm038","date":"08-20 19:31","source":"Le Monde","rubrique":"Économie","titre":"Moderna saluée par Wall Street pour l’efficacité promise d’un traitement utilisant l’ARN messager contre le cancer de la peau"}
+{"id":"0821-lm039","date":"08-20 19:00","source":"Le Monde","rubrique":"Culture","titre":"Quand, en 1968, la plasticienne Tania Mouraud fait son autodafé pour mieux renaître"}
+{"id":"0821-bbc025","date":"08-20 18:54","source":"BBC News","rubrique":"International","titre":"Watch: What does Harry's return mean for his fractured relationship with William?"}
+{"id":"0821-fs011","date":"08-20 18:29","source":"Futura Sciences","rubrique":"Sciences","titre":"Regardez cette impressionnante armée de robots chinois se préparer pour des Jeux hors norme"}
+{"id":"0821-lm040","date":"08-20 18:00","source":"Le Monde","rubrique":"Culture","titre":"« Derrière les crédits de la culture se joue la capacité de la France à transmettre une histoire commune »"}
+{"id":"0821-lm041","date":"08-20 18:00","source":"Le Monde","rubrique":"Économie","titre":"Absence de budget et loi spéciale prolongée : l’inspection générale des finances alerte sur des « risques majeurs »"}
+{"id":"0821-lm042","date":"08-20 18:00","source":"Le Monde","rubrique":"Économie","titre":"« A la caserne, nous n’avons pas l’habitude de dire nos sentiments. Là, c’est tout l’inverse » : le pot de départ avec gyrophares d’Olivier, pompier professionnel"}
+{"id":"0821-fs012","date":"08-20 18:00","source":"Futura Sciences","rubrique":"Sciences","titre":"Relâcher des millions de moustiques pour faire baisser leur population : le principe surprend"}
+{"id":"0821-lm043","date":"08-20 17:30","source":"Le Monde","rubrique":"Culture","titre":"« La Route », sur Arte.tv : dans les vallées isolées de l’Himalaya, la Zanskar Highway bouleverse l’ancien monde"}
+{"id":"0821-fs013","date":"08-20 17:30","source":"Futura Sciences","rubrique":"Sciences","titre":"Quels sont les meilleurs disques durs externes pour sauvegarder ses cours ?"}
+{"id":"0821-fs014","date":"08-20 16:33","source":"Futura Sciences","rubrique":"Sciences","titre":"Nous sommes peut-être au seuil d'être frappés par une tempête solaire dévastatrice !"}
+{"id":"0821-lm044","date":"08-20 16:00","source":"Le Monde","rubrique":"Culture","titre":"La violoniste Anne-Sophie Mutter célèbre les 50 ans d’une carrière menée archet battant"}
+{"id":"0821-fs015","date":"08-20 15:08","source":"Futura Sciences","rubrique":"Sciences","titre":"« 39 % de surface brûlée en plus chaque année » : les modèles révèlent ce qui attend l’Europe même sous les +2 °C !"}
+{"id":"0821-lm045","date":"08-20 15:02","source":"Le Monde","rubrique":"Économie","titre":"Xu Jiayin, l’ex-patron chinois du géant de l’immobilier Evergrande, condamné à la prison à vie"}
+{"id":"0821-lm046","date":"08-20 15:00","source":"Le Monde","rubrique":"Économie","titre":"Défense : les exportations d’armes françaises encore à des sommets en 2025"}
+{"id":"0821-lm047","date":"08-20 14:52","source":"Le Monde","rubrique":"Sciences","titre":"Des scientifiques découvrent l’étoile la plus rapide de notre galaxie"}
+{"id":"0821-lm048","date":"08-20 14:46","source":"Le Monde","rubrique":"Économie","titre":"Cour des comptes : un rapport interne appelle à une « vigilance accrue » sur la liberté d’expression des magistrats de l’institution"}
